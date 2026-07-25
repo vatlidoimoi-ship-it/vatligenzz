@@ -15,10 +15,18 @@ STATIC_FORUM_UPLOAD_DIR = BASE_DIR / "static" / "uploads" / "forum"
 DATA_BACKEND = os.getenv("DATA_BACKEND", "file").lower()
 PERSISTENT_DIR = os.getenv("PERSISTENT_DIR")
 GITHUB_BACKEND = DATA_BACKEND == "github"
+SUPABASE_BACKEND = DATA_BACKEND == "supabase"
 GITHUB_DATA_REPO = os.getenv("GITHUB_DATA_REPO", "")
 GITHUB_DATA_BRANCH = os.getenv("GITHUB_DATA_BRANCH", "main")
 GITHUB_DATA_TOKEN = os.getenv("GITHUB_DATA_TOKEN") or os.getenv("GITHUB_TOKEN")
 GITHUB_DATA_PREFIX = os.getenv("GITHUB_DATA_PREFIX", "").strip("/")
+SUPABASE_URL = os.getenv("SUPABASE_URL", "").rstrip("/")
+SUPABASE_KEY = (
+    os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+    or os.getenv("SUPABASE_ANON_KEY")
+    or os.getenv("SUPABASE_KEY")
+)
+SUPABASE_JSON_TABLE = os.getenv("SUPABASE_JSON_TABLE", "app_json_store")
 
 RUNNING_ON_RENDER = any(
     os.getenv(name)
@@ -30,11 +38,12 @@ RUNNING_ON_RENDER = any(
     )
 )
 
-if RUNNING_ON_RENDER and not PERSISTENT_DIR and not GITHUB_BACKEND:
+if RUNNING_ON_RENDER and not PERSISTENT_DIR and not GITHUB_BACKEND and not SUPABASE_BACKEND:
     raise RuntimeError(
         "Persistent storage is required on Render to prevent user data loss. "
-        "Set PERSISTENT_DIR for a Render Persistent Disk or set DATA_BACKEND=github "
-        "with GITHUB_DATA_REPO and GITHUB_DATA_TOKEN."
+        "Set PERSISTENT_DIR for a Render Persistent Disk, set DATA_BACKEND=github "
+        "with GITHUB_DATA_REPO and GITHUB_DATA_TOKEN, or set DATA_BACKEND=supabase "
+        "with SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."
     )
 
 if GITHUB_BACKEND and (not GITHUB_DATA_REPO or not GITHUB_DATA_TOKEN):
@@ -42,9 +51,16 @@ if GITHUB_BACKEND and (not GITHUB_DATA_REPO or not GITHUB_DATA_TOKEN):
         "DATA_BACKEND=github requires GITHUB_DATA_REPO and GITHUB_DATA_TOKEN."
     )
 
-if GITHUB_BACKEND and not PERSISTENT_DIR:
+if SUPABASE_BACKEND and (not SUPABASE_URL or not SUPABASE_KEY):
+    raise RuntimeError(
+        "DATA_BACKEND=supabase requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY "
+        "(or SUPABASE_ANON_KEY/SUPABASE_KEY if your table policies allow server writes)."
+    )
+
+if (GITHUB_BACKEND or SUPABASE_BACKEND) and not PERSISTENT_DIR:
     _github_cache_root = Path(
-        os.getenv("GITHUB_DATA_CACHE_DIR", BASE_DIR / ".runtime_data")
+        os.getenv("REMOTE_DATA_CACHE_DIR")
+        or os.getenv("GITHUB_DATA_CACHE_DIR", BASE_DIR / ".runtime_data")
     ).resolve()
     DATA_DIR = Path(os.getenv("DATA_DIR", _github_cache_root / "data")).resolve()
     STATE_DIR = Path(os.getenv("STATE_DIR", _github_cache_root)).resolve()
@@ -104,6 +120,75 @@ def _remote_path_for(local_path):
 
 def _github_content_url(remote_path):
     return f"https://api.github.com/repos/{GITHUB_DATA_REPO}/contents/{remote_path}"
+
+
+def _supabase_headers(prefer=None):
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}",
+    }
+    if prefer:
+        headers["Prefer"] = prefer
+    return headers
+
+
+def _supabase_table_url():
+    return f"{SUPABASE_URL}/rest/v1/{SUPABASE_JSON_TABLE}"
+
+
+def _supabase_key_for(local_path):
+    local_path = Path(local_path).resolve()
+    for base, prefix in (
+        (DATA_DIR, "data"),
+        (REPO_DATA_DIR, "data"),
+        (STATE_DIR, ""),
+        (BASE_DIR, ""),
+    ):
+        try:
+            relative = local_path.relative_to(base.resolve()).as_posix()
+        except ValueError:
+            continue
+        return f"{prefix}/{relative}" if prefix else relative
+    return None
+
+
+def _supabase_get_json(remote_key):
+    response = requests.get(
+        _supabase_table_url(),
+        headers=_supabase_headers(),
+        params={"key": f"eq.{remote_key}", "select": "value"},
+        timeout=20,
+    )
+    response.raise_for_status()
+    rows = response.json()
+    if not rows:
+        return None
+    return rows[0].get("value")
+
+
+def _supabase_upsert_json(remote_key, value):
+    response = requests.post(
+        _supabase_table_url(),
+        headers=_supabase_headers("resolution=merge-duplicates,return=minimal"),
+        params={"on_conflict": "key"},
+        json={"key": remote_key, "value": value},
+        timeout=30,
+    )
+    response.raise_for_status()
+
+
+def _write_local_json(path, value):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_name(f".{path.name}.tmp")
+    with _lock_for(path):
+        with open(tmp_path, "w", encoding="utf-8") as f:
+            json.dump(value, f, ensure_ascii=False, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_path, path)
 
 
 def _github_get_metadata(remote_path):
@@ -174,6 +259,19 @@ def _github_upload(remote_path, data, message):
 
 
 def ensure_file_from_remote(local_path, remote_path=None):
+    if SUPABASE_BACKEND:
+        local_path = Path(local_path)
+        if local_path.suffix.lower() != ".json":
+            return False
+        remote_path = remote_path or _supabase_key_for(local_path)
+        if not remote_path:
+            return False
+        value = _supabase_get_json(remote_path)
+        if value is None:
+            return False
+        _write_local_json(local_path, value)
+        return True
+
     if not GITHUB_BACKEND:
         return False
     local_path = Path(local_path)
@@ -190,6 +288,17 @@ def ensure_file_from_remote(local_path, remote_path=None):
 
 
 def sync_file_to_remote(local_path, remote_path=None):
+    if SUPABASE_BACKEND:
+        local_path = Path(local_path)
+        if local_path.suffix.lower() != ".json" or not local_path.exists():
+            return
+        remote_path = remote_path or _supabase_key_for(local_path)
+        if not remote_path:
+            return
+        with open(local_path, "r", encoding="utf-8") as f:
+            _supabase_upsert_json(remote_path, json.load(f))
+        return
+
     if not GITHUB_BACKEND:
         return
     local_path = Path(local_path)
@@ -225,6 +334,14 @@ def _lock_for(path):
 
 
 def read_json(path, default=None):
+    if SUPABASE_BACKEND:
+        remote_path = _supabase_key_for(path)
+        if remote_path:
+            value = _supabase_get_json(remote_path)
+            if value is not None:
+                _write_local_json(path, value)
+                return value
+
     try:
         with _lock_for(path):
             with open(path, "r", encoding="utf-8") as f:
@@ -234,15 +351,7 @@ def read_json(path, default=None):
 
 
 def write_json(path, value):
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp_path = path.with_name(f".{path.name}.tmp")
-    with _lock_for(path):
-        with open(tmp_path, "w", encoding="utf-8") as f:
-            json.dump(value, f, ensure_ascii=False, indent=2)
-            f.flush()
-            os.fsync(f.fileno())
-        os.replace(tmp_path, path)
+    _write_local_json(path, value)
     sync_file_to_remote(path)
 
 
@@ -254,7 +363,10 @@ def _copy_seed(seed_path, target_path):
 
 def writable_data_file(filename, default=None):
     target = DATA_DIR / filename
-    if GITHUB_BACKEND and ensure_file_from_remote(target):
+    if (GITHUB_BACKEND or SUPABASE_BACKEND) and ensure_file_from_remote(target):
+        return str(target)
+    if SUPABASE_BACKEND and target.exists():
+        sync_file_to_remote(target)
         return str(target)
     if not target.exists():
         seed = REPO_DATA_DIR / filename
@@ -267,7 +379,7 @@ def writable_data_file(filename, default=None):
 
 def readable_data_file(filename):
     target = DATA_DIR / filename
-    if GITHUB_BACKEND and ensure_file_from_remote(target):
+    if (GITHUB_BACKEND or SUPABASE_BACKEND) and ensure_file_from_remote(target):
         return str(target)
     if target.exists():
         return str(target)
@@ -276,7 +388,10 @@ def readable_data_file(filename):
 
 def writable_state_file(filename, default=None):
     target = STATE_DIR / filename
-    if GITHUB_BACKEND and ensure_file_from_remote(target):
+    if (GITHUB_BACKEND or SUPABASE_BACKEND) and ensure_file_from_remote(target):
+        return str(target)
+    if SUPABASE_BACKEND and target.exists():
+        sync_file_to_remote(target)
         return str(target)
     if not target.exists():
         seed = BASE_DIR / filename

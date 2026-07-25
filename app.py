@@ -9,6 +9,7 @@ from flask import (
     flash,
     send_from_directory,
 )
+from dotenv import load_dotenv
 from functools import wraps
 import os
 import random
@@ -16,6 +17,9 @@ import re
 from werkzeug.utils import secure_filename
 import uuid
 from PIL import Image, UnidentifiedImageError
+
+load_dotenv()
+
 from utils.auth import register_user, login_user, get_user_by_id, load_users, save_users
 from utils.database import Database
 from utils.gemini_api import (
