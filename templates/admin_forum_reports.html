@@ -32,12 +32,12 @@
             <strong>{{ stats.questions }}</strong>
             <em>{{ stats.answers }} câu trả lời</em>
         </article>
-        <article class="metric-card accent-rose">
+        <article class="metric-card accent-danger">
             <span>Báo cáo vi phạm</span>
             <strong>{{ counts.pending }}</strong>
             <em>{{ stats.resolved_rate }}% đã xử lý</em>
         </article>
-        <article class="metric-card accent-indigo">
+        <article class="metric-card accent-highlight">
             <span>Kim cương đã trao</span>
             <strong>{{ stats.total_diamonds }}</strong>
             <em>Bảng xếp hạng theo tháng</em>
@@ -316,8 +316,8 @@ body { background: #eef1f4; }
 .accent-blue::before { background: #2b7bbb; }
 .accent-green::before { background: #16a34a; }
 .accent-amber::before { background: #d97706; }
-.accent-rose::before { background: #e11d48; }
-.accent-indigo::before { background: #4f46e5; }
+.accent-danger::before { background: var(--phyedu-danger, #F4432D); }
+.accent-highlight::before { background: var(--phyedu-highlight, #FFC400); }
 .accent-slate::before { background: #475569; }
 .analytics-grid {
     display: grid;

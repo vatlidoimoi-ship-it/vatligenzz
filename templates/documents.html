@@ -1,10 +1,79 @@
-{% extends "base.html" %} {% block title %}Kho tài liệu - Vui Học THCS{%
+{% extends "base.html" %} {% block title %}Kho tài liệu - Vật Lý THPT{%
 endblock %} {% block content %}
+{% macro document_card(doc) %}
+<div class="document-card">
+    <div class="doc-header">
+        <span class="doc-type-badge {{ doc.doc_type }}">
+            {% if doc.doc_type == 'document' %}📄 Tài liệu{% elif
+            doc.doc_type == 'lecture' %}🎓 Bài giảng{% elif
+            doc.doc_type == 'exam' %}📝 Đề thi{% else %}📋 Khác{%
+            endif %}
+        </span>
+        <span class="doc-grade-badge grade-{{ doc.grade }}"
+            >{{ document_grade_labels.get(doc.grade, 'Lớp ' ~ doc.grade) }}</span
+        >
+        {% if doc.grade == 'hsg' and doc.topic %}
+        <span class="doc-topic-badge">{{ doc.topic }}</span>
+        {% endif %}
+    </div>
+
+    <h3 class="doc-title">{{ doc.title }}</h3>
+    <p class="doc-description">
+        {{ doc.description or 'Không có mô tả' }}
+    </p>
+
+    <div class="doc-meta">
+        <span class="link-type"
+            >{% if doc.link_type == 'youtube' %}🎥 YouTube{% elif
+            doc.link_type == 'drive' %}☁️ Google Drive{% else %}🔗
+            Link{% endif %}</span
+        >
+        <span class="doc-date"
+            >📅 {{ doc.created_at[:10] if doc.created_at else 'N/A'
+            }}</span
+        >
+    </div>
+
+    <div class="doc-actions">
+        {% if doc.link_type == 'youtube' %}
+        <button
+            onclick="openVideoModal('{{ doc.url }}', '{{ doc.title }}')"
+            class="btn btn-primary btn-action"
+        >
+            ▶️ Xem video
+        </button>
+        {% else %}
+        <a
+            href="{{ doc.url }}"
+            target="_blank"
+            class="btn btn-primary btn-action"
+            >{% if doc.link_type == 'drive' %}📥 Tải tài liệu{% else
+            %}👁️ Xem tài liệu{% endif %}</a
+        >
+        {% endif %} {% if session.role == 'teacher' and
+        doc.get('teacher_id') == session.user_id %}
+        <a
+            href="{{ url_for('edit_document', doc_id=doc.id) }}"
+            class="btn btn-secondary btn-action"
+            title="Sửa tài liệu"
+            >🖊️</a
+        >
+        <button
+            onclick="deleteDocument('{{ doc.id }}', '{{ doc.title }}')"
+            class="btn btn-danger btn-action"
+            title="Xóa tài liệu"
+        >
+            🗑️
+        </button>
+        {% endif %}
+    </div>
+</div>
+{% endmacro %}
 <div class="container">
     <div class="page-header">
-        <h1>📚 Kho tài liệu học tập THCS</h1>
+        <h1>📚 Kho tài liệu Vật Lý</h1>
         <p class="subtitle">
-            Tài liệu, bài giảng và đề thi theo từng lớp (6, 7, 8, 9)
+            Tài liệu, bài giảng, đề thi theo lớp 10, 11, 12 và chuyên đề HSG
         </p>
         {% if session.role == 'teacher' %}
         <a href="{{ url_for('add_document') }}" class="btn btn-primary"
@@ -19,32 +88,16 @@ endblock %} {% block content %}
             class="grade-btn {% if current_grade == 'all' %}active{% endif %}"
             onclick="location.href='{{ url_for('documents', grade='all', type=current_type) }}'"
         >
-            🎯 Tất cả lớp
+            🎯 Tất cả
         </button>
+        {% for grade in document_grade_levels %}
         <button
-            class="grade-btn {% if current_grade == '6' %}active{% endif %}"
-            onclick="location.href='{{ url_for('documents', grade='6', type=current_type) }}'"
+            class="grade-btn {% if current_grade == grade %}active{% endif %}"
+            onclick="location.href='{{ url_for('documents', grade=grade, type=current_type) }}'"
         >
-            📘 Lớp 6
+            {{ document_grade_labels.get(grade, 'Lớp ' ~ grade) }}
         </button>
-        <button
-            class="grade-btn {% if current_grade == '7' %}active{% endif %}"
-            onclick="location.href='{{ url_for('documents', grade='7', type=current_type) }}'"
-        >
-            📗 Lớp 7
-        </button>
-        <button
-            class="grade-btn {% if current_grade == '8' %}active{% endif %}"
-            onclick="location.href='{{ url_for('documents', grade='8', type=current_type) }}'"
-        >
-            📙 Lớp 8
-        </button>
-        <button
-            class="grade-btn {% if current_grade == '9' %}active{% endif %}"
-            onclick="location.href='{{ url_for('documents', grade='9', type=current_type) }}'"
-        >
-            📕 Lớp 9
-        </button>
+        {% endfor %}
     </div>
 
     <!-- Bộ LỌC THEO LOẠI -->
@@ -75,186 +128,113 @@ endblock %} {% block content %}
         </button>
     </div>
 
+    {% if current_grade == 'hsg' %}
+    <div class="topic-filters">
+        <button
+            class="topic-btn {% if current_topic == 'all' %}active{% endif %}"
+            onclick="location.href='{{ url_for('documents', grade='hsg', type=current_type, topic='all') }}'"
+        >
+            Tất cả chủ đề
+        </button>
+        {% for topic in hsg_topics %}
+        <button
+            class="topic-btn {% if current_topic == topic %}active{% endif %}"
+            onclick="location.href='{{ url_for('documents', grade='hsg', type=current_type, topic=topic) }}'"
+        >
+            {{ topic }}
+        </button>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <!-- HIỂN THỊ TÀI LIỆU -->
-    {% if current_grade == 'all' %} {% for grade, docs in docs_by_grade.items()
-    %} {% if docs %}
-    <div class="grade-section">
-        <h2 class="grade-title">
-            {% if grade == '6' %}📘 Lớp 6{% elif grade == '7' %}📗 Lớp 7{% elif
-            grade == '8' %}📙 Lớp 8{% elif grade == '9' %}📕 Lớp 9{% endif %}
-            <span class="doc-count">({{ docs|length }} tài liệu)</span>
-        </h2>
-        <div class="documents-grid">
-            {% for doc in docs %}
-            <div class="document-card">
-                <div class="doc-header">
-                    <span class="doc-type-badge {{ doc.doc_type }}">
-                        {% if doc.doc_type == 'document' %}📄 Tài liệu{% elif
-                        doc.doc_type == 'lecture' %}🎓 Bài giảng{% elif
-                        doc.doc_type == 'exam' %}📝 Đề thi{% else %}📋 Khác{%
-                        endif %}
-                    </span>
-                    <span class="doc-grade-badge grade-{{ doc.grade }}"
-                        >Lớp {{ doc.grade }}</span
-                    >
-                </div>
-
-                <h3 class="doc-title">{{ doc.title }}</h3>
-                <p class="doc-description">
-                    {{ doc.description or 'Không có mô tả' }}
-                </p>
-
-                <div class="doc-meta">
-                    <span class="link-type"
-                        >{% if doc.link_type == 'youtube' %}🎥 YouTube{% elif
-                        doc.link_type == 'drive' %}☁️ Google Drive{% else %}🔗
-                        Link{% endif %}</span
-                    >
-                    <span class="doc-date"
-                        >📅 {{ doc.created_at[:10] if doc.created_at else 'N/A'
-                        }}</span
-                    >
-                </div>
-
-                <div class="doc-actions">
-                    {% if doc.link_type == 'youtube' %}
-                    <button
-                        onclick="openVideoModal('{{ doc.url }}', '{{ doc.title }}')"
-                        class="btn btn-primary btn-action"
-                    >
-                        ▶️ Xem video
-                    </button>
-                    {% else %}
-                    <a
-                        href="{{ doc.url }}"
-                        target="_blank"
-                        class="btn btn-primary btn-action"
-                        >{% if doc.link_type == 'drive' %}📥 Tải tài liệu{% else
-                        %}👁️ Xem tài liệu{% endif %}</a
-                    >
-                    {% endif %} {% if session.role == 'teacher' and
-                    doc.get('teacher_id') == session.user_id %}
-                    <a
-                        href="{{ url_for('edit_document', doc_id=doc.id) }}"
-                        class="btn btn-secondary btn-action"
-                        title="Sửa tài liệu"
-                        >🖊️</a
-                    >
-                    <button
-                        onclick="deleteDocument('{{ doc.id }}', '{{ doc.title }}')"
-                        class="btn btn-danger btn-action"
-                        title="Xóa tài liệu"
-                    >
-                        🗑️
-                    </button>
-                    {% endif %}
+    {% if current_grade == 'all' %}
+        {% set total_docs = namespace(count=0) %}
+        {% for grade, docs in docs_by_grade.items() %}
+            {% if docs %}
+            {% set total_docs.count = total_docs.count + docs|length %}
+            <div class="grade-section">
+                <h2 class="grade-title">
+                    {{ document_grade_labels.get(grade, 'Lớp ' ~ grade) }}
+                    <span class="doc-count">({{ docs|length }} tài liệu)</span>
+                </h2>
+                <div class="documents-grid">
+                    {% for doc in docs %}
+                        {{ document_card(doc) }}
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
+            {% endif %}
+        {% endfor %}
+        {% if total_docs.count == 0 %}
+        <div class="empty-state">
+            <div class="empty-icon">🔭</div>
+            <h3>Chưa có tài liệu nào</h3>
+            <p>Hiện tại chưa có tài liệu nào trong hệ thống.</p>
+            {% if session.role == 'teacher' %}<a
+                href="{{ url_for('add_document') }}"
+                class="btn btn-primary"
+                >➕ Thêm tài liệu đầu tiên</a
+            >{% endif %}
         </div>
-    </div>
-    {% endif %} {% endfor %} {% if not docs_by_grade['6'] and not
-    docs_by_grade['7'] and not docs_by_grade['8'] and not docs_by_grade['9'] %}
-    <div class="empty-state">
-        <div class="empty-icon">🔭</div>
-        <h3>Chưa có tài liệu nào</h3>
-        <p>Hiện tại chưa có tài liệu nào trong hệ thống.</p>
-        {% if session.role == 'teacher' %}<a
-            href="{{ url_for('add_document') }}"
-            class="btn btn-primary"
-            >➕ Thêm tài liệu đầu tiên</a
-        >{% endif %}
-    </div>
-    {% endif %} {% else %} {% set selected_docs =
-    docs_by_grade.get(current_grade, []) %} {% if selected_docs %}
-    <div class="grade-section">
-        <h2 class="grade-title">
-            {% if current_grade == '6' %}📘 Lớp 6{% elif current_grade == '7'
-            %}📗 Lớp 7{% elif current_grade == '8' %}📙 Lớp 8{% elif
-            current_grade == '9' %}📕 Lớp 9{% endif %}
-            <span class="doc-count">({{ selected_docs|length }} tài liệu)</span>
-        </h2>
-        <div class="documents-grid">
-            {% for doc in selected_docs %}
-            <div class="document-card">
-                <div class="doc-header">
-                    <span class="doc-type-badge {{ doc.doc_type }}">
-                        {% if doc.doc_type == 'document' %}📄 Tài liệu{% elif
-                        doc.doc_type == 'lecture' %}🎓 Bài giảng{% elif
-                        doc.doc_type == 'exam' %}📝 Đề thi{% else %}📋 Khác{%
-                        endif %}
-                    </span>
-                    <span class="doc-grade-badge grade-{{ doc.grade }}"
-                        >Lớp {{ doc.grade }}</span
-                    >
-                </div>
-
-                <h3 class="doc-title">{{ doc.title }}</h3>
-                <p class="doc-description">
-                    {{ doc.description or 'Không có mô tả' }}
-                </p>
-
-                <div class="doc-meta">
-                    <span class="link-type"
-                        >{% if doc.link_type == 'youtube' %}🎥 YouTube{% elif
-                        doc.link_type == 'drive' %}☁️ Google Drive{% else %}🔗
-                        Link{% endif %}</span
-                    >
-                    <span class="doc-date"
-                        >📅 {{ doc.created_at[:10] if doc.created_at else 'N/A'
-                        }}</span
-                    >
-                </div>
-
-                <div class="doc-actions">
-                    {% if doc.link_type == 'youtube' %}
-                    <button
-                        onclick="openVideoModal('{{ doc.url }}', '{{ doc.title }}')"
-                        class="btn btn-primary btn-action"
-                    >
-                        ▶️ Xem video
-                    </button>
-                    {% else %}
-                    <a
-                        href="{{ doc.url }}"
-                        target="_blank"
-                        class="btn btn-primary btn-action"
-                        >{% if doc.link_type == 'drive' %}📥 Tải tài liệu{% else
-                        %}👁️ Xem tài liệu{% endif %}</a
-                    >
-                    {% endif %} {% if session.role == 'teacher' and
-                    doc.get('teacher_id') == session.user_id %}
-                    <a
-                        href="{{ url_for('edit_document', doc_id=doc.id) }}"
-                        class="btn btn-secondary btn-action"
-                        title="Sửa tài liệu"
-                        >🖊️</a
-                    >
-                    <button
-                        onclick="deleteDocument('{{ doc.id }}', '{{ doc.title }}')"
-                        class="btn btn-danger btn-action"
-                        title="Xóa tài liệu"
-                    >
-                        🗑️
-                    </button>
-                    {% endif %}
+        {% endif %}
+    {% elif current_grade == 'hsg' %}
+        {% set total_hsg_docs = namespace(count=0) %}
+        {% for topic, docs in hsg_docs_by_topic.items() %}
+            {% if docs %}
+            {% set total_hsg_docs.count = total_hsg_docs.count + docs|length %}
+            <div class="grade-section topic-section">
+                <h2 class="grade-title">
+                    {{ topic }}
+                    <span class="doc-count">({{ docs|length }} tài liệu HSG)</span>
+                </h2>
+                <div class="documents-grid">
+                    {% for doc in docs %}
+                        {{ document_card(doc) }}
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
+            {% endif %}
+        {% endfor %}
+        {% if total_hsg_docs.count == 0 %}
+        <div class="empty-state">
+            <div class="empty-icon">🔭</div>
+            <h3>Chưa có tài liệu HSG</h3>
+            <p>Chưa có tài liệu HSG trong chủ đề này.</p>
+            {% if session.role == 'teacher' %}<a
+                href="{{ url_for('add_document') }}"
+                class="btn btn-primary"
+                >➕ Thêm tài liệu HSG đầu tiên</a
+            >{% endif %}
         </div>
-    </div>
+        {% endif %}
     {% else %}
-    <div class="empty-state">
-        <div class="empty-icon">🔭</div>
-        <h3>Chưa có tài liệu nào</h3>
-        <p>Chưa có tài liệu cho lớp {{ current_grade }} trong danh mục này.</p>
-        {% if session.role == 'teacher' %}<a
-            href="{{ url_for('add_document') }}"
-            class="btn btn-primary"
-            >➕ Thêm tài liệu đầu tiên</a
-        >{% endif %}
-    </div>
-    {% endif %} {% endif %}
+        {% set selected_docs = docs_by_grade.get(current_grade, []) %}
+        {% if selected_docs %}
+        <div class="grade-section">
+            <h2 class="grade-title">
+                {{ document_grade_labels.get(current_grade, 'Lớp ' ~ current_grade) }}
+                <span class="doc-count">({{ selected_docs|length }} tài liệu)</span>
+            </h2>
+            <div class="documents-grid">
+                {% for doc in selected_docs %}
+                    {{ document_card(doc) }}
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">🔭</div>
+            <h3>Chưa có tài liệu nào</h3>
+            <p>Chưa có tài liệu cho {{ document_grade_labels.get(current_grade, 'lớp ' ~ current_grade) }} trong danh mục này.</p>
+            {% if session.role == 'teacher' %}<a
+                href="{{ url_for('add_document') }}"
+                class="btn btn-primary"
+                >➕ Thêm tài liệu đầu tiên</a
+            >{% endif %}
+        </div>
+        {% endif %}
+    {% endif %}
 </div>
 
 <!-- MODAL XÓA XÁC NHẬN -->
@@ -441,7 +421,7 @@ endblock %} {% block content %}
         text-align: center;
         margin-bottom: 40px;
         padding: 30px 20px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--phyedu-info, #0091EA) 0%, var(--phyedu-info-dark, #0064B7) 100%);
         border-radius: 15px;
         color: white;
     }
@@ -456,7 +436,8 @@ endblock %} {% block content %}
         opacity: 0.9;
     }
     .grade-filters,
-    .type-filters {
+    .type-filters,
+    .topic-filters {
         display: flex;
         justify-content: center;
         gap: 15px;
@@ -465,25 +446,25 @@ endblock %} {% block content %}
     }
     .grade-btn {
         padding: 14px 28px;
-        border: 3px solid #667eea;
+        border: 3px solid var(--phyedu-primary, #00C853);
         background: white;
         border-radius: 12px;
         cursor: pointer;
         transition: all 0.3s;
         font-size: 16px;
         font-weight: 700;
-        color: #667eea;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        color: var(--phyedu-primary-dark, #009624);
+        box-shadow: 0 2px 8px rgba(0, 200, 83, 0.16);
     }
     .grade-btn:hover {
-        background: #667eea;
+        background: var(--phyedu-primary, #00C853);
         color: white;
         transform: translateY(-3px);
-        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 6px 16px rgba(0, 200, 83, 0.24);
     }
     .grade-btn.active {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-color: #764ba2;
+        background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-primary-dark, #009624) 100%);
+        border-color: var(--phyedu-primary-dark, #009624);
         color: white;
         transform: translateY(-2px);
     }
@@ -508,15 +489,48 @@ endblock %} {% block content %}
         border-color: #28a745;
         color: white;
     }
+    .topic-filters {
+        background: rgba(255, 255, 255, 0.86);
+        border: 2px solid #BBDDF8;
+        border-radius: 16px;
+        margin: 0 auto 32px;
+        max-width: 980px;
+        padding: 14px;
+    }
+    .topic-btn {
+        padding: 10px 18px;
+        border: 2px solid #8BCBFF;
+        background: #ffffff;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 14px;
+        font-weight: 700;
+        color: #12324A;
+    }
+    .topic-btn:hover {
+        background: #EAF4FF;
+        border-color: var(--phyedu-info-dark, #0064B7);
+        transform: translateY(-2px);
+    }
+    .topic-btn.active {
+        background: linear-gradient(135deg, #0064B7 0%, #004F91 100%);
+        border-color: #004F91;
+        color: #ffffff;
+    }
     .grade-section {
         margin-bottom: 60px;
+    }
+    .topic-section {
+        border-left: 5px solid var(--phyedu-info-dark, #0064B7);
+        padding-left: 18px;
     }
     .grade-title {
         font-size: 28px;
         color: #333;
         margin-bottom: 25px;
         padding-bottom: 15px;
-        border-bottom: 4px solid #667eea;
+        border-bottom: 4px solid var(--phyedu-primary, #00C853);
         display: flex;
         align-items: center;
         gap: 10px;
@@ -542,10 +556,26 @@ endblock %} {% block content %}
         flex-direction: column;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
+    .document-card:nth-child(4n + 1) {
+        background: linear-gradient(180deg, var(--phyedu-green-soft, #EAFBF1) 0%, #ffffff 100%);
+        border-color: #BAE7CB;
+    }
+    .document-card:nth-child(4n + 2) {
+        background: linear-gradient(180deg, var(--phyedu-blue-soft, #EAF4FF) 0%, #ffffff 100%);
+        border-color: #BBDDF8;
+    }
+    .document-card:nth-child(4n + 3) {
+        background: linear-gradient(180deg, var(--phyedu-orange-soft, #FFF4E6) 0%, #ffffff 100%);
+        border-color: #FFD2A6;
+    }
+    .document-card:nth-child(4n) {
+        background: linear-gradient(180deg, var(--phyedu-yellow-soft, #FFF8D7) 0%, #ffffff 100%);
+        border-color: #F5E18A;
+    }
     .document-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        border-color: #667eea;
+        border-color: var(--phyedu-primary, #00C853);
     }
     .doc-header {
         display: flex;
@@ -579,21 +609,30 @@ endblock %} {% block content %}
         font-size: 12px;
         font-weight: 700;
     }
-    .doc-grade-badge.grade-6 {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    .doc-grade-badge.grade-10 {
+        background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-primary-dark, #009624) 70%, var(--phyedu-info, #0091EA) 100%);
         color: white;
     }
-    .doc-grade-badge.grade-7 {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    .doc-grade-badge.grade-11 {
+        background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-primary-dark, #009624) 100%);
         color: white;
     }
-    .doc-grade-badge.grade-8 {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    .doc-grade-badge.grade-12 {
+        background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00) 0%, var(--phyedu-accent-light, #FF9100) 100%);
         color: white;
     }
-    .doc-grade-badge.grade-9 {
-        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    .doc-grade-badge.grade-hsg {
+        background: linear-gradient(135deg, #0064B7 0%, #004F91 100%);
         color: white;
+    }
+    .doc-topic-badge {
+        background: rgba(255, 255, 255, .18);
+        border: 1px solid rgba(255, 255, 255, .32);
+        border-radius: 20px;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 6px 14px;
     }
     .doc-title {
         font-size: 19px;
@@ -657,12 +696,12 @@ endblock %} {% block content %}
         font-size: 14px;
     }
     .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00) 0%, var(--phyedu-accent-light, #FF9100) 100%);
         color: white;
     }
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 6px 16px rgba(255, 109, 0, 0.3);
     }
     .btn-danger {
         background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
@@ -681,6 +720,42 @@ endblock %} {% block content %}
     .btn-secondary:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 16px rgba(108, 117, 125, 0.4);
+    }
+
+    .document-card:nth-child(4n + 1) {
+        background: linear-gradient(135deg, #00A63E 0%, #007E20 100%);
+    }
+
+    .document-card:nth-child(4n + 2) {
+        background: linear-gradient(135deg, #0091EA 0%, #0064B7 100%);
+    }
+
+    .document-card:nth-child(4n + 3) {
+        background: linear-gradient(135deg, #FF6D00 0%, #C95A00 100%);
+    }
+
+    .document-card:nth-child(4n) {
+        background: linear-gradient(135deg, #B77900 0%, #8A6200 100%);
+    }
+
+    .document-card,
+    .document-card .doc-title,
+    .document-card .doc-description,
+    .document-card .doc-date {
+        color: #ffffff;
+    }
+
+    .document-card .doc-meta {
+        border-top-color: rgba(255, 255, 255, .26);
+    }
+
+    .document-card .link-type,
+    .document-card .doc-type-badge,
+    .document-card .doc-grade-badge,
+    .document-card .doc-topic-badge {
+        background: rgba(255, 255, 255, .18);
+        border: 1px solid rgba(255, 255, 255, .32);
+        color: #ffffff;
     }
 
     .empty-state {
@@ -835,8 +910,8 @@ endblock %} {% block content %}
         z-index: 10001;
         background: linear-gradient(
             135deg,
-            rgba(102, 126, 234, 0.95) 0%,
-            rgba(118, 75, 162, 0.95) 100%
+            rgba(0, 100, 183, 0.95) 0%,
+            rgba(0, 79, 145, 0.95) 100%
         );
         backdrop-filter: blur(10px);
         padding: 18px 28px;
@@ -887,7 +962,7 @@ endblock %} {% block content %}
         width: 60px;
         height: 60px;
         border: 5px solid rgba(255, 255, 255, 0.1);
-        border-top-color: #667eea;
+        border-top-color: var(--phyedu-primary, #00C853);
         border-radius: 50%;
         animation: spin 1s linear infinite;
         margin-bottom: 24px;
@@ -919,11 +994,13 @@ endblock %} {% block content %}
             grid-template-columns: 1fr;
         }
         .grade-filters,
-        .type-filters {
+        .type-filters,
+        .topic-filters {
             flex-direction: column;
         }
         .grade-btn,
-        .type-btn {
+        .type-btn,
+        .topic-btn {
             width: 100%;
         }
         .page-header h1 {

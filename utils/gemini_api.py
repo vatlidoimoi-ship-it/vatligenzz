@@ -270,16 +270,16 @@ def _validate_quiz_payload(payload, requested_count):
 
     return {
         'type': 'quiz',
-        'title': str(payload.get('title') or 'Trắc nghiệm Toán').strip(),
-        'subject': str(payload.get('subject') or 'Toán').strip(),
+        'title': str(payload.get('title') or 'Trắc nghiệm Vật Lý').strip(),
+        'subject': str(payload.get('subject') or 'Vật Lý').strip(),
         'questions': validated_questions,
     }
 
 
-def generate_math_quiz(user_message):
+def generate_physics_quiz(user_message):
     requested_count = _extract_quiz_count(user_message)
     prompt = f"""
-Bạn là giáo viên Toán THCS. Hãy tạo một bài trắc nghiệm tương tác dựa trên yêu cầu của học sinh:
+Bạn là giáo viên Vật Lý THPT. Hãy tạo một bài trắc nghiệm tương tác dựa trên yêu cầu của học sinh:
 
 {user_message}
 
@@ -287,8 +287,9 @@ YÊU CẦU BẮT BUỘC:
 - Tạo đúng {requested_count} câu trắc nghiệm.
 - Mỗi câu có đúng 4 lựa chọn.
 - Chỉ có một đáp án đúng.
-- Nội dung thuộc môn Toán, ưu tiên đúng chủ đề học sinh yêu cầu.
-- Công thức và kí hiệu Toán phải viết bằng LaTeX chuẩn.
+- Nội dung thuộc môn Vật Lý, chỉ trong phạm vi lớp 10, 11, 12.
+- Nếu người dùng hỏi môn khác, hãy chuyển thành một bài trắc nghiệm Vật Lý có chủ đề gần nhất.
+- Công thức và kí hiệu Vật Lý phải viết bằng LaTeX chuẩn.
 - Inline math dùng $...$, công thức dài dùng $$...$$.
 - Vì đang trả về JSON, mọi dấu \\ trong LaTeX phải escape thành \\\\.
 - Ví dụ viết "$\\\\frac{{1}}{{2}}$", không viết "$\\frac{{1}}{{2}}$".
@@ -299,7 +300,7 @@ SCHEMA:
 {{
   "type": "quiz",
   "title": "Tên bài trắc nghiệm ngắn",
-  "subject": "Toán",
+  "subject": "Vật Lý",
   "questions": [
     {{
       "question": "Nội dung câu hỏi, có thể chứa LaTeX",
@@ -328,10 +329,14 @@ SCHEMA:
     return _validate_quiz_payload(payload, requested_count)
 
 
+def generate_math_quiz(user_message):
+    return generate_physics_quiz(user_message)
+
+
 def generate_teacher_exam(subject_name, topic, question_count=10, grade='', time_limit=30):
     question_count = max(1, min(int(question_count or 10), 30))
     time_limit = max(5, min(int(time_limit or 30), 180))
-    grade_text = f"lớp {grade}" if grade else "THCS"
+    grade_text = f"lớp {grade}" if grade else "THPT"
 
     prompt = f"""
 Bạn là giáo viên {subject_name} {grade_text}. Tạo một đề trắc nghiệm theo yêu cầu:
@@ -342,7 +347,7 @@ YÊU CẦU:
 - Tạo đúng {question_count} câu trắc nghiệm.
 - Mỗi câu có đúng 4 lựa chọn A, B, C, D.
 - Chỉ có một đáp án đúng, ghi bằng chữ A/B/C/D.
-- Câu hỏi phù hợp học sinh THCS.
+- Câu hỏi phù hợp học sinh THPT, ưu tiên lớp 10, 11, 12.
 - Nếu có công thức/kí hiệu toán hoặc khoa học, viết bằng LaTeX chuẩn.
 - Vì đang trả về JSON, mọi dấu \\ trong LaTeX phải escape thành \\\\.
 - Không dùng HTML, không markdown ngoài LaTeX.
@@ -413,12 +418,13 @@ SCHEMA:
     return {
         'title': str(payload.get('title') or f'Đề trắc nghiệm {subject_name}').strip(),
         'description': str(payload.get('description') or topic).strip(),
+        'grade': grade,
         'time_limit': time_limit,
         'questions': normalized_questions,
     }
 
 SYSTEM_PROMPT_BASE = """
-Bạn là trợ lý AI cho học sinh THCS Việt Nam.
+Bạn là trợ lý AI cho học sinh THPT Việt Nam, tập trung hỗ trợ môn Vật Lý lớp 10, 11, 12.
 
 QUY TẮC PHẢN HỒI - BẮT BUỘC:
 
@@ -485,7 +491,7 @@ QUY TẮC PHẢN HỒI - BẮT BUỘC:
 7. FORMAT VĂN BẢN:
    - KHÔNG dùng markdown **, __, # trong văn bản thường
    - KHÔNG dùng icon, emoji không cần thiết
-   - Viết rõ ràng, dễ hiểu, phù hợp học sinh THCS
+   - Viết rõ ràng, dễ hiểu, phù hợp học sinh THPT lớp 10, 11, 12
 6. VẼ HÌNH VÀ SƠ ĐỒ:
    
    A. HÌNH HỌC/MẠCH ĐIỆN/ĐỒ THỊ → SVG:
@@ -595,6 +601,54 @@ def chat_with_gemini(user_message, chat_history=None):
     except Exception as e:
         print(f"❌ Error in chat_with_gemini: {str(e)}")
         return f"❌ Lỗi: {str(e)}"
+
+
+CAREER_GUIDANCE_PROMPT = """
+Bạn là bot tư vấn tâm lí học đường và hướng nghiệp trong web PHYEDU cho học sinh THPT lớp 10, 11, 12.
+
+Phong cách trả lời:
+- Nói tiếng Việt tự nhiên, ấm áp, ngắn gọn, không lên lớp.
+- Trả lời như một cuộc trò chuyện, có thể hỏi lại 1-2 câu nếu học sinh chưa nói rõ.
+- Ưu tiên giúp học sinh bình tĩnh, tự hiểu bản thân, chia nhỏ vấn đề và chọn bước tiếp theo.
+- Khi tư vấn hướng nghiệp, liên hệ với sở thích, điểm mạnh, môn học, hoàn cảnh và các nhóm ngành phù hợp.
+- Không chẩn đoán bệnh, không kê thuốc, không khẳng định thay chuyên gia tâm lí/bác sĩ.
+- Nếu học sinh nói về tự làm hại bản thân, muốn biến mất, bị bạo lực, bị xâm hại hoặc nguy hiểm ngay lập tức: khuyên em dừng ở nơi an toàn, gọi người lớn tin cậy ngay, liên hệ cấp cứu/đường dây hỗ trợ tại địa phương, và không ở một mình.
+
+Khi trả lời, dùng cấu trúc dễ đọc:
+- Một đoạn đồng cảm ngắn.
+- 2-4 gợi ý cụ thể.
+- Một câu hỏi tiếp theo để tiếp tục cuộc trò chuyện.
+"""
+
+
+def chat_with_career_guidance(user_message, chat_history=None):
+    """Chat bot tư vấn tâm lí học đường và hướng nghiệp."""
+    try:
+        if not user_message or not user_message.strip():
+            return "Bạn cứ nhập điều bạn đang băn khoăn nhé."
+
+        def send_message():
+            model = genai.GenerativeModel(
+                MODEL_NAME,
+                system_instruction=CAREER_GUIDANCE_PROMPT,
+                generation_config={
+                    "temperature": 0.45,
+                    "top_p": 0.9,
+                    "top_k": 40,
+                    "max_output_tokens": CHAT_MAX_OUTPUT_TOKENS,
+                }
+            )
+
+            if chat_history:
+                chat = model.start_chat(history=chat_history)
+                return _response_text(chat.send_message(user_message))
+            return _response_text(model.generate_content(user_message))
+
+        return _run_with_gemini_key(send_message)
+
+    except Exception as e:
+        print(f"[CAREER CHAT ERROR] {str(e)}")
+        return "Mình đang gặp lỗi khi phản hồi. Bạn thử gửi lại tin nhắn ngắn hơn một chút nhé."
 
 
 def process_response(response_text):
@@ -771,7 +825,7 @@ def analyze_exam_results(exam_data):
             level = "Cần cố gắng 💪"
         
         prompt = f"""
-Bạn là giáo viên {subject_name} giàu kinh nghiệm, tận tâm với học sinh THCS.
+Bạn là giáo viên {subject_name} giàu kinh nghiệm, tận tâm với học sinh THPT lớp 10, 11, 12.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📊 THÔNG TIN BÀI THI:
@@ -795,7 +849,7 @@ YÊU CẦU:
 5. LỜI ĐỘNG VIÊN (2-3 câu): Khích lệ tinh thần
 
 QUY TẮC:
-✓ Thân thiện, gần gũi, phù hợp THCS (12-15 tuổi)
+✓ Thân thiện, gần gũi, phù hợp THPT lớp 10, 11, 12
 ✓ Cụ thể, dễ hiểu, ít thuật ngữ chuyên môn
 ✓ Sử dụng emoji phù hợp
 ✓ Động viên và tôn trọng học sinh

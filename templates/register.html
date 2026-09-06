@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Đăng ký - Học Vui THCS{% endblock %}
+{% block title %}Đăng ký - Vật Lý THPT{% endblock %}
 
 {% block content %}
 <style>
@@ -9,7 +9,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #ffd1dc 0%, #e8b4f0 30%, #c9a8e8 60%, #b8a4e0 100%);
+        background: linear-gradient(135deg, var(--phyedu-bg, #FAFAFA) 0%, var(--phyedu-green-soft, #EAFBF1) 45%, var(--phyedu-orange-soft, #FFF4E6) 100%);
         padding: 2rem;
         position: relative;
         overflow: hidden;
@@ -20,7 +20,7 @@
         position: absolute;
         width: 600px;
         height: 600px;
-        background: radial-gradient(circle, rgba(255, 182, 223, 0.25) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(0, 200, 83, 0.16) 0%, transparent 70%);
         border-radius: 50%;
         top: -300px;
         right: -300px;
@@ -32,7 +32,7 @@
         position: absolute;
         width: 500px;
         height: 500px;
-        background: radial-gradient(circle, rgba(219, 166, 237, 0.2) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(255, 109, 0, 0.14) 0%, transparent 70%);
         border-radius: 50%;
         bottom: -250px;
         left: -250px;
@@ -52,12 +52,12 @@
         width: 100%;
         max-width: 480px;
         box-shadow: 
-            0 30px 80px rgba(201, 143, 211, 0.4),
+            0 30px 80px rgba(0, 150, 36, 0.16),
             0 0 1px rgba(255, 255, 255, 0.5) inset;
         position: relative;
         z-index: 1;
         animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        border: 1px solid rgba(255, 192, 236, 0.3);
+        border: 1px solid rgba(0, 200, 83, 0.16);
     }
 
     @keyframes slideUp {
@@ -74,10 +74,7 @@
     .auth-box h2 {
         font-size: 2rem;
         font-weight: 700;
-        background: linear-gradient(135deg, #d946a6 0%, #a855f7 50%, #c084fc 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--phyedu-primary-dark, #009624);
         margin: 0 0 0.75rem 0;
         text-align: center;
         letter-spacing: -0.5px;
@@ -88,10 +85,10 @@
         display: block;
         width: 80px;
         height: 4px;
-        background: linear-gradient(90deg, #f472b6, #d946a6, #a855f7);
+        background: linear-gradient(90deg, var(--phyedu-primary, #00C853), var(--phyedu-highlight, #FFC400), var(--phyedu-accent, #FF6D00));
         margin: 1.25rem auto;
         border-radius: 2px;
-        box-shadow: 0 2px 8px rgba(217, 70, 166, 0.4);
+        box-shadow: 0 2px 8px rgba(0, 200, 83, 0.24);
     }
 
     .alert {
@@ -136,7 +133,7 @@
         display: block;
         font-size: 0.95rem;
         font-weight: 600;
-        color: #4a1d4a;
+        color: var(--phyedu-text, #1F2933);
         margin-bottom: 0.625rem;
         transition: all 0.3s ease;
         letter-spacing: 0.2px;
@@ -146,31 +143,31 @@
         width: 100%;
         padding: 1rem 1.25rem;
         font-size: 1rem;
-        border: 2px solid #f3e8ff;
+        border: 2px solid #D6EEDF;
         border-radius: 14px;
-        background: #fdf4ff;
+        background: #F7FFF9;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-sizing: border-box;
-        color: #4a1d4a;
+        color: var(--phyedu-text, #1F2933);
     }
 
     .form-group input::placeholder {
-        color: #c4b5fd;
+        color: #94A3B8;
     }
 
     .form-group input:focus {
         outline: none;
-        border-color: #d946a6;
+        border-color: var(--phyedu-primary, #00C853);
         background: white;
         box-shadow: 
-            0 0 0 4px rgba(217, 70, 166, 0.15),
-            0 4px 12px rgba(168, 85, 247, 0.2);
+            0 0 0 4px rgba(0, 200, 83, 0.12),
+            0 4px 12px rgba(0, 150, 36, 0.12);
         transform: translateY(-2px);
     }
 
     .form-group input:focus + label,
     .form-group:focus-within label {
-        color: #d946a6;
+        color: var(--phyedu-primary-dark, #009624);
     }
 
     .btn {
@@ -208,19 +205,19 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg, #f472b6 0%, #d946a6 30%, #a855f7 70%, #9333ea 100%);
+        background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00) 0%, var(--phyedu-accent-light, #FF9100) 100%);
         color: white;
         box-shadow: 
-            0 6px 20px rgba(217, 70, 166, 0.4),
-            0 2px 4px rgba(168, 85, 247, 0.3);
+            0 6px 20px rgba(255, 109, 0, 0.28),
+            0 2px 4px rgba(255, 145, 0, 0.2);
         position: relative;
     }
 
     .btn-primary:hover {
         transform: translateY(-3px);
         box-shadow: 
-            0 10px 30px rgba(217, 70, 166, 0.5),
-            0 4px 8px rgba(168, 85, 247, 0.4);
+            0 10px 30px rgba(255, 109, 0, 0.34),
+            0 4px 8px rgba(255, 145, 0, 0.26);
     }
 
     .btn-primary:active {
@@ -236,30 +233,30 @@
         margin-top: 2.5rem;
         text-align: center;
         padding-top: 2rem;
-        border-top: 2px solid #f3e8ff;
+        border-top: 2px solid #D6EEDF;
     }
 
     .auth-footer p {
         margin: 0 0 0.75rem 0;
-        color: #6b2175;
+        color: var(--phyedu-muted, #64748B);
         font-size: 0.95rem;
         font-weight: 500;
     }
 
     .auth-footer small {
-        color: #8b5e9e;
+        color: var(--phyedu-muted, #64748B);
         font-size: 0.85rem;
         font-weight: 500;
         display: block;
         margin-top: 1rem;
         padding: 0.75rem;
-        background: linear-gradient(135deg, #fef3ff 0%, #fae8ff 100%);
+        background: linear-gradient(135deg, var(--phyedu-green-soft, #EAFBF1) 0%, var(--phyedu-blue-soft, #EAF4FF) 100%);
         border-radius: 10px;
-        border-left: 3px solid #d946a6;
+        border-left: 3px solid var(--phyedu-info, #0091EA);
     }
 
     .auth-footer a {
-        color: #d946a6;
+        color: var(--phyedu-primary-dark, #009624);
         text-decoration: none;
         font-weight: 700;
         transition: all 0.3s ease;
@@ -273,7 +270,7 @@
         height: 2px;
         bottom: -3px;
         left: 0;
-        background: linear-gradient(90deg, #f472b6, #d946a6, #a855f7);
+        background: linear-gradient(90deg, var(--phyedu-primary, #00C853), var(--phyedu-highlight, #FFC400), var(--phyedu-accent, #FF6D00));
         transition: width 0.3s ease;
     }
 
@@ -282,7 +279,7 @@
     }
 
     .auth-footer a:hover {
-        color: #a855f7;
+        color: var(--phyedu-accent, #FF6D00);
     }
 
     @media (max-width: 480px) {

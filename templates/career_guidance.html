@@ -1,0 +1,560 @@
+{% extends "base.html" %}
+
+{% block title %}Tâm lí - hướng nghiệp - PHYEDU{% endblock %}
+
+{% block content %}
+<div class="advisor-shell">
+    <aside class="advisor-sidebar" aria-label="Lịch sử tư vấn">
+        <div class="sidebar-brand">
+            <span class="brand-dot"><i class="fa-solid fa-comments"></i></span>
+            <div>
+                <strong>PHYEDU Care</strong>
+                <small>Tâm lí - hướng nghiệp</small>
+            </div>
+        </div>
+        <button class="new-chat-btn" id="newChatBtn" type="button">
+            <i class="fa-solid fa-plus"></i>
+            Cuộc trò chuyện mới
+        </button>
+        <div class="sidebar-note">
+            <strong>Gợi ý</strong>
+            <span>Chia sẻ ngắn gọn điều bạn đang băn khoăn để bot tư vấn đúng hơn.</span>
+        </div>
+    </aside>
+
+    <section class="advisor-chat" aria-label="Chat tư vấn tâm lí và hướng nghiệp">
+        <div class="advisor-topbar">
+            <div>
+                <h1>Tâm lí - hướng nghiệp</h1>
+                <p>Bot tư vấn học đường cho học sinh lớp 10, 11, 12</p>
+            </div>
+            <span class="online-pill"><i class="fa-solid fa-circle"></i> Đang sẵn sàng</span>
+        </div>
+
+        <div class="messages" id="messages">
+            <article class="message bot-message">
+                <div class="avatar bot-avatar"><i class="fa-solid fa-robot"></i></div>
+                <div class="bubble">
+                    <p>Chào bạn, mình có thể cùng bạn gỡ rối chuyện học tập, áp lực, chọn ngành hoặc định hướng nghề nghiệp. Bạn đang muốn nói về điều gì trước?</p>
+                </div>
+            </article>
+        </div>
+
+        <div class="prompt-row" id="promptRow">
+            <button type="button" data-prompt="Mình đang áp lực học tập và không biết bắt đầu lại từ đâu.">Áp lực học tập</button>
+            <button type="button" data-prompt="Mình thích Vật Lý nhưng chưa biết nên chọn ngành nào.">Chọn ngành phù hợp</button>
+            <button type="button" data-prompt="Mình chưa biết điểm mạnh của bản thân là gì.">Tìm điểm mạnh</button>
+        </div>
+
+        <form class="composer" id="advisorForm">
+            <textarea id="advisorInput" rows="1" placeholder="Nhập điều bạn muốn chia sẻ..." autocomplete="off"></textarea>
+            <button class="send-btn" id="sendBtn" type="submit" aria-label="Gửi tin nhắn">
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
+        </form>
+    </section>
+</div>
+
+<script>
+const messagesEl = document.getElementById('messages');
+const formEl = document.getElementById('advisorForm');
+const inputEl = document.getElementById('advisorInput');
+const sendBtn = document.getElementById('sendBtn');
+const newChatBtn = document.getElementById('newChatBtn');
+const promptRow = document.getElementById('promptRow');
+let chatHistory = [];
+
+function escapeHTML(value) {
+    return String(value || '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    }[char]));
+}
+
+function formatMessage(text) {
+    const safe = escapeHTML(text);
+    return safe
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n{2,}/g, '</p><p>')
+        .replace(/\n/g, '<br>');
+}
+
+function appendMessage(role, text) {
+    const article = document.createElement('article');
+    article.className = `message ${role === 'user' ? 'user-message' : 'bot-message'}`;
+    article.innerHTML = `
+        <div class="avatar ${role === 'user' ? 'user-avatar' : 'bot-avatar'}">
+            <i class="fa-solid ${role === 'user' ? 'fa-user' : 'fa-robot'}"></i>
+        </div>
+        <div class="bubble"><p>${formatMessage(text)}</p></div>
+    `;
+    messagesEl.appendChild(article);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function appendTyping() {
+    const article = document.createElement('article');
+    article.className = 'message bot-message typing-message';
+    article.innerHTML = `
+        <div class="avatar bot-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div class="bubble typing-bubble">
+            <span></span><span></span><span></span>
+        </div>
+    `;
+    messagesEl.appendChild(article);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return article;
+}
+
+function autoResize() {
+    inputEl.style.height = 'auto';
+    inputEl.style.height = `${Math.min(inputEl.scrollHeight, 160)}px`;
+}
+
+async function sendMessage(text) {
+    const message = text.trim();
+    if (!message) return;
+
+    appendMessage('user', message);
+    inputEl.value = '';
+    autoResize();
+    sendBtn.disabled = true;
+    promptRow.classList.add('compact');
+
+    const typingEl = appendTyping();
+
+    try {
+        const response = await fetch('/api/career-guidance/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({message, history: chatHistory})
+        });
+        const data = await response.json();
+        typingEl.remove();
+
+        if (!data.success) {
+            appendMessage('bot', data.error || 'Mình chưa phản hồi được, bạn thử lại nhé.');
+            return;
+        }
+
+        appendMessage('bot', data.response);
+        chatHistory.push({role: 'user', content: message});
+        chatHistory.push({role: 'model', content: data.response});
+        chatHistory = chatHistory.slice(-10);
+    } catch (error) {
+        typingEl.remove();
+        appendMessage('bot', 'Kết nối đang gặp lỗi. Bạn thử gửi lại sau một chút nhé.');
+    } finally {
+        sendBtn.disabled = false;
+        inputEl.focus();
+    }
+}
+
+formEl.addEventListener('submit', event => {
+    event.preventDefault();
+    sendMessage(inputEl.value);
+});
+
+inputEl.addEventListener('input', autoResize);
+inputEl.addEventListener('keydown', event => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage(inputEl.value);
+    }
+});
+
+promptRow.addEventListener('click', event => {
+    const button = event.target.closest('button[data-prompt]');
+    if (!button) return;
+    sendMessage(button.dataset.prompt);
+});
+
+newChatBtn.addEventListener('click', () => {
+    chatHistory = [];
+    messagesEl.innerHTML = '';
+    appendMessage('bot', 'Mình đã mở cuộc trò chuyện mới. Bạn muốn bắt đầu từ chuyện học tập, cảm xúc hay định hướng nghề nghiệp?');
+    promptRow.classList.remove('compact');
+    inputEl.focus();
+});
+
+autoResize();
+</script>
+
+<style>
+    body:has(.advisor-shell) {
+        overflow: hidden;
+    }
+
+    body:has(.advisor-shell) .main-content {
+        min-height: 0;
+        padding: 0;
+    }
+
+    body:has(.advisor-shell) .footer,
+    body:has(.advisor-shell) .gift-float-btn {
+        display: none;
+    }
+
+    .advisor-shell {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        height: calc(100vh - 84px);
+        min-height: 0;
+        width: 100%;
+    }
+
+    .advisor-sidebar {
+        background: #F7FFF9;
+        border-right: 1px solid #D8E6F2;
+        color: #12324A;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px;
+    }
+
+    .sidebar-brand {
+        align-items: center;
+        display: flex;
+        gap: 12px;
+    }
+
+    .brand-dot,
+    .avatar {
+        align-items: center;
+        border-radius: 999px;
+        display: inline-flex;
+        justify-content: center;
+    }
+
+    .brand-dot {
+        background: linear-gradient(135deg, #0064B7, #004F91);
+        color: #ffffff;
+        height: 42px;
+        width: 42px;
+    }
+
+    .sidebar-brand strong,
+    .sidebar-brand small {
+        display: block;
+    }
+
+    .sidebar-brand strong {
+        color: #12324A;
+        font-weight: 850;
+    }
+
+    .sidebar-brand small,
+    .sidebar-note span {
+        color: #52677A;
+        font-size: 0.85rem;
+    }
+
+    .new-chat-btn {
+        align-items: center;
+        background: #ffffff;
+        border: 1px solid #BBDDF8;
+        border-radius: 10px;
+        color: #12324A;
+        cursor: pointer;
+        display: flex;
+        font-weight: 800;
+        gap: 10px;
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .new-chat-btn:hover {
+        background: #EAF4FF;
+        border-color: #0064B7;
+    }
+
+    .sidebar-note {
+        background: #EAF4FF;
+        border: 1px solid #BBDDF8;
+        border-radius: 12px;
+        margin-top: auto;
+        padding: 16px;
+    }
+
+    .sidebar-note strong,
+    .sidebar-note span {
+        display: block;
+    }
+
+    .sidebar-note strong {
+        color: #004F91;
+        margin-bottom: 6px;
+    }
+
+    .advisor-chat {
+        background: #ffffff;
+        color: #1F2933;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto auto;
+        min-width: 0;
+    }
+
+    .advisor-chat .advisor-topbar {
+        align-items: center;
+        background: #ffffff !important;
+        border-bottom: 1px solid #E2E8F0;
+        color: #12324A !important;
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+        margin: 0 !important;
+        padding: 18px 28px;
+    }
+
+    .advisor-chat .advisor-topbar h1 {
+        color: #12324A;
+        font-size: 1.18rem;
+        font-weight: 850;
+        margin: 0 0 4px;
+        text-align: left;
+    }
+
+    .advisor-chat .advisor-topbar p {
+        color: #52677A;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .online-pill {
+        align-items: center;
+        background: #EAFBF1;
+        border: 1px solid #BAE7CB;
+        border-radius: 999px;
+        color: #007E20;
+        display: inline-flex;
+        font-size: 0.86rem;
+        font-weight: 800;
+        gap: 8px;
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+
+    .online-pill i {
+        font-size: 0.55rem;
+    }
+
+    .messages {
+        overflow-y: auto;
+        padding: 28px max(24px, calc((100% - 840px) / 2));
+    }
+
+    .message {
+        align-items: flex-start;
+        display: flex;
+        gap: 12px;
+        margin-bottom: 22px;
+        padding: 0;
+    }
+
+    .user-message {
+        flex-direction: row-reverse;
+    }
+
+    .avatar {
+        color: #ffffff;
+        flex: 0 0 34px;
+        height: 34px;
+        width: 34px;
+    }
+
+    .bot-avatar {
+        background: linear-gradient(135deg, #0064B7, #004F91);
+    }
+
+    .user-avatar {
+        background: linear-gradient(135deg, #00A63E, #007E20);
+    }
+
+    .bubble {
+        border-radius: 18px;
+        line-height: 1.72;
+        max-width: min(720px, 78%);
+        padding: 14px 17px;
+    }
+
+    .bot-message .bubble {
+        background: #F7FFF9;
+        border: 1px solid #D8E6F2;
+        color: #1F2933;
+    }
+
+    .user-message .bubble {
+        background: linear-gradient(135deg, #0064B7, #004F91);
+        color: #ffffff;
+    }
+
+    .bubble p {
+        margin: 0;
+    }
+
+    .prompt-row {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        padding: 0 24px 16px;
+    }
+
+    .prompt-row.compact {
+        display: none;
+    }
+
+    .prompt-row button {
+        background: #ffffff;
+        border: 1px solid #BBDDF8;
+        border-radius: 999px;
+        color: #12324A;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 750;
+        padding: 10px 14px;
+    }
+
+    .prompt-row button:hover {
+        background: #EAF4FF;
+        border-color: #0064B7;
+    }
+
+    .composer {
+        align-items: flex-end;
+        background: #ffffff;
+        border: 1px solid #D8E6F2;
+        border-radius: 24px;
+        display: flex;
+        gap: 10px;
+        margin: 0 auto 24px;
+        max-width: 860px;
+        padding: 10px 10px 10px 18px;
+        width: calc(100% - 48px);
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .composer textarea {
+        background: transparent;
+        border: 0;
+        color: #1F2933;
+        flex: 1;
+        font: inherit;
+        line-height: 1.55;
+        max-height: 160px;
+        min-height: 34px;
+        outline: none;
+        padding: 6px 0;
+        resize: none;
+    }
+
+    .composer textarea::placeholder {
+        color: #75889A;
+    }
+
+    .send-btn {
+        align-items: center;
+        background: #0064B7;
+        border: 0;
+        border-radius: 999px;
+        color: #ffffff;
+        cursor: pointer;
+        display: inline-flex;
+        flex: 0 0 40px;
+        height: 40px;
+        justify-content: center;
+        width: 40px;
+    }
+
+    .send-btn:hover {
+        background: #004F91;
+    }
+
+    .send-btn:disabled {
+        background: #9FB4C8;
+        cursor: not-allowed;
+    }
+
+    .typing-bubble {
+        align-items: center;
+        display: inline-flex;
+        gap: 5px;
+        min-height: 48px;
+    }
+
+    .typing-bubble span {
+        animation: typingPulse 1s infinite ease-in-out;
+        background: #0064B7;
+        border-radius: 999px;
+        display: block;
+        height: 7px;
+        width: 7px;
+    }
+
+    .typing-bubble span:nth-child(2) {
+        animation-delay: .16s;
+    }
+
+    .typing-bubble span:nth-child(3) {
+        animation-delay: .32s;
+    }
+
+    @keyframes typingPulse {
+        0%, 80%, 100% {
+            opacity: .35;
+            transform: translateY(0);
+        }
+        40% {
+            opacity: 1;
+            transform: translateY(-4px);
+        }
+    }
+
+    @media (max-width: 1100px) {
+        .advisor-shell {
+            grid-template-columns: 1fr;
+            height: calc(100vh - 84px);
+            min-height: 0;
+        }
+
+        .advisor-sidebar {
+            display: none;
+        }
+
+        .advisor-chat {
+            min-height: 0;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .advisor-chat .advisor-topbar {
+            align-items: flex-start;
+            flex-direction: column;
+            padding: 16px;
+        }
+
+        .messages {
+            padding: 20px 14px;
+        }
+
+        .bubble {
+            max-width: 86%;
+        }
+
+        .prompt-row {
+            align-items: stretch;
+            flex-direction: column;
+            padding: 0 14px 14px;
+        }
+
+        .composer {
+            border-radius: 18px;
+            margin-bottom: 14px;
+            width: calc(100% - 28px);
+        }
+    }
+</style>
+{% endblock %}

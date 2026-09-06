@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* ========== SUBJECT BADGE ========== */
 .subject-badge {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-primary-dark, #009624) 100%);
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 6px;
@@ -547,8 +547,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .essay-card:hover {
-    border-color: #8b5cf6;
-    box-shadow: 0 4px 16px rgba(139,92,246,0.15);
+    border-color: var(--phyedu-primary, #00C853);
+    box-shadow: 0 4px 16px rgba(0, 200, 83, 0.14);
 }
 
 .essay-title {
@@ -559,7 +559,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .essay-badge {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    background: linear-gradient(135deg, var(--phyedu-info, #0091EA) 0%, var(--phyedu-info-dark, #0064B7) 100%);
     color: white;
     padding: 0.4rem 0.9rem;
     border-radius: 8px;
@@ -596,8 +596,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .essay-textarea:focus {
     outline: none;
-    border-color: #8b5cf6;
-    box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+    border-color: var(--phyedu-primary, #00C853);
+    box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.1);
 }
 
 .essay-footer {

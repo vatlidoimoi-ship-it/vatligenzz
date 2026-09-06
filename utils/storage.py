@@ -1,4 +1,3 @@
-import base64
 import json
 import os
 import shutil
@@ -14,12 +13,7 @@ STATIC_FORUM_UPLOAD_DIR = BASE_DIR / "static" / "uploads" / "forum"
 
 DATA_BACKEND = os.getenv("DATA_BACKEND", "file").lower()
 PERSISTENT_DIR = os.getenv("PERSISTENT_DIR")
-GITHUB_BACKEND = DATA_BACKEND == "github"
 SUPABASE_BACKEND = DATA_BACKEND == "supabase"
-GITHUB_DATA_REPO = os.getenv("GITHUB_DATA_REPO", "")
-GITHUB_DATA_BRANCH = os.getenv("GITHUB_DATA_BRANCH", "main")
-GITHUB_DATA_TOKEN = os.getenv("GITHUB_DATA_TOKEN") or os.getenv("GITHUB_TOKEN")
-GITHUB_DATA_PREFIX = os.getenv("GITHUB_DATA_PREFIX", "").strip("/")
 SUPABASE_URL = os.getenv("SUPABASE_URL", "").rstrip("/")
 SUPABASE_KEY = (
     os.getenv("SUPABASE_SERVICE_ROLE_KEY")
@@ -38,17 +32,11 @@ RUNNING_ON_RENDER = any(
     )
 )
 
-if RUNNING_ON_RENDER and not PERSISTENT_DIR and not GITHUB_BACKEND and not SUPABASE_BACKEND:
+if RUNNING_ON_RENDER and not PERSISTENT_DIR and not SUPABASE_BACKEND:
     raise RuntimeError(
         "Persistent storage is required on Render to prevent user data loss. "
-        "Set PERSISTENT_DIR for a Render Persistent Disk, set DATA_BACKEND=github "
-        "with GITHUB_DATA_REPO and GITHUB_DATA_TOKEN, or set DATA_BACKEND=supabase "
+        "Set PERSISTENT_DIR for a Render Persistent Disk or set DATA_BACKEND=supabase "
         "with SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."
-    )
-
-if GITHUB_BACKEND and (not GITHUB_DATA_REPO or not GITHUB_DATA_TOKEN):
-    raise RuntimeError(
-        "DATA_BACKEND=github requires GITHUB_DATA_REPO and GITHUB_DATA_TOKEN."
     )
 
 if SUPABASE_BACKEND and (not SUPABASE_URL or not SUPABASE_KEY):
@@ -57,15 +45,14 @@ if SUPABASE_BACKEND and (not SUPABASE_URL or not SUPABASE_KEY):
         "(or SUPABASE_ANON_KEY/SUPABASE_KEY if your table policies allow server writes)."
     )
 
-if (GITHUB_BACKEND or SUPABASE_BACKEND) and not PERSISTENT_DIR:
-    _github_cache_root = Path(
-        os.getenv("REMOTE_DATA_CACHE_DIR")
-        or os.getenv("GITHUB_DATA_CACHE_DIR", BASE_DIR / ".runtime_data")
+if SUPABASE_BACKEND and not PERSISTENT_DIR:
+    _remote_cache_root = Path(
+        os.getenv("REMOTE_DATA_CACHE_DIR") or BASE_DIR / ".runtime_data"
     ).resolve()
-    DATA_DIR = Path(os.getenv("DATA_DIR", _github_cache_root / "data")).resolve()
-    STATE_DIR = Path(os.getenv("STATE_DIR", _github_cache_root)).resolve()
+    DATA_DIR = Path(os.getenv("DATA_DIR", _remote_cache_root / "data")).resolve()
+    STATE_DIR = Path(os.getenv("STATE_DIR", _remote_cache_root)).resolve()
     FORUM_UPLOAD_DIR = Path(
-        os.getenv("FORUM_UPLOAD_DIR", _github_cache_root / "uploads" / "forum")
+        os.getenv("FORUM_UPLOAD_DIR", _remote_cache_root / "uploads" / "forum")
     ).resolve()
 elif PERSISTENT_DIR:
     _persistent_root = Path(PERSISTENT_DIR).resolve()
@@ -84,42 +71,6 @@ else:
 FORUM_UPLOAD_URL_PREFIX = "/uploads/forum"
 _json_locks = {}
 _json_locks_guard = threading.Lock()
-_github_sha_cache = {}
-_github_sha_cache_lock = threading.Lock()
-
-
-def _github_headers():
-    return {
-        "Accept": "application/vnd.github+json",
-        "Authorization": f"Bearer {GITHUB_DATA_TOKEN}",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-
-
-def _github_remote_path(relative_path):
-    relative_path = str(relative_path).replace("\\", "/").strip("/")
-    if GITHUB_DATA_PREFIX:
-        return f"{GITHUB_DATA_PREFIX}/{relative_path}"
-    return relative_path
-
-
-def _remote_path_for(local_path):
-    local_path = Path(local_path).resolve()
-    for base, prefix in (
-        (DATA_DIR, "data"),
-        (FORUM_UPLOAD_DIR, "uploads/forum"),
-        (STATE_DIR, ""),
-    ):
-        try:
-            relative = local_path.relative_to(base.resolve()).as_posix()
-        except ValueError:
-            continue
-        return _github_remote_path(f"{prefix}/{relative}" if prefix else relative)
-    return None
-
-
-def _github_content_url(remote_path):
-    return f"https://api.github.com/repos/{GITHUB_DATA_REPO}/contents/{remote_path}"
 
 
 def _supabase_headers(prefer=None):
@@ -191,73 +142,6 @@ def _write_local_json(path, value):
         os.replace(tmp_path, path)
 
 
-def _github_get_metadata(remote_path):
-    response = requests.get(
-        _github_content_url(remote_path),
-        headers=_github_headers(),
-        params={"ref": GITHUB_DATA_BRANCH},
-        timeout=20,
-    )
-    if response.status_code == 404:
-        with _github_sha_cache_lock:
-            _github_sha_cache[remote_path] = None
-        return None
-    response.raise_for_status()
-    metadata = response.json()
-    if metadata.get("type") == "file":
-        with _github_sha_cache_lock:
-            _github_sha_cache[remote_path] = metadata.get("sha")
-    return metadata
-
-
-def _github_download(remote_path):
-    metadata = _github_get_metadata(remote_path)
-    if not metadata or metadata.get("type") != "file":
-        return None
-    content = metadata.get("content", "")
-    return base64.b64decode(content)
-
-
-def _github_upload(remote_path, data, message):
-    payload = {
-        "message": message,
-        "branch": GITHUB_DATA_BRANCH,
-        "content": base64.b64encode(data).decode("ascii"),
-    }
-    with _github_sha_cache_lock:
-        cached_sha = _github_sha_cache.get(remote_path)
-    if remote_path not in _github_sha_cache:
-        metadata = _github_get_metadata(remote_path)
-        cached_sha = metadata.get("sha") if metadata else None
-    if cached_sha:
-        payload["sha"] = cached_sha
-
-    response = requests.put(
-        _github_content_url(remote_path),
-        headers=_github_headers(),
-        json=payload,
-        timeout=30,
-    )
-    if response.status_code == 409:
-        metadata = _github_get_metadata(remote_path)
-        if metadata and metadata.get("sha"):
-            payload["sha"] = metadata["sha"]
-            response = requests.put(
-                _github_content_url(remote_path),
-                headers=_github_headers(),
-                json=payload,
-                timeout=30,
-            )
-    response.raise_for_status()
-    try:
-        updated_sha = response.json().get("content", {}).get("sha")
-    except ValueError:
-        updated_sha = None
-    if updated_sha:
-        with _github_sha_cache_lock:
-            _github_sha_cache[remote_path] = updated_sha
-
-
 def ensure_file_from_remote(local_path, remote_path=None):
     if SUPABASE_BACKEND:
         local_path = Path(local_path)
@@ -272,19 +156,7 @@ def ensure_file_from_remote(local_path, remote_path=None):
         _write_local_json(local_path, value)
         return True
 
-    if not GITHUB_BACKEND:
-        return False
-    local_path = Path(local_path)
-    remote_path = remote_path or _remote_path_for(local_path)
-    if not remote_path:
-        return False
-    data = _github_download(remote_path)
-    if data is None:
-        return False
-    local_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(local_path, "wb") as f:
-        f.write(data)
-    return True
+    return False
 
 
 def sync_file_to_remote(local_path, remote_path=None):
@@ -299,13 +171,7 @@ def sync_file_to_remote(local_path, remote_path=None):
             _supabase_upsert_json(remote_path, json.load(f))
         return
 
-    if not GITHUB_BACKEND:
-        return
-    local_path = Path(local_path)
-    remote_path = remote_path or _remote_path_for(local_path)
-    if not remote_path or not local_path.exists():
-        return
-    _github_upload(remote_path, local_path.read_bytes(), f"Update {remote_path}")
+    return
 
 
 def ensure_forum_upload_available(filename):
@@ -363,7 +229,7 @@ def _copy_seed(seed_path, target_path):
 
 def writable_data_file(filename, default=None):
     target = DATA_DIR / filename
-    if (GITHUB_BACKEND or SUPABASE_BACKEND) and ensure_file_from_remote(target):
+    if SUPABASE_BACKEND and ensure_file_from_remote(target):
         return str(target)
     if SUPABASE_BACKEND and target.exists():
         sync_file_to_remote(target)
@@ -379,7 +245,7 @@ def writable_data_file(filename, default=None):
 
 def readable_data_file(filename):
     target = DATA_DIR / filename
-    if (GITHUB_BACKEND or SUPABASE_BACKEND) and ensure_file_from_remote(target):
+    if SUPABASE_BACKEND and ensure_file_from_remote(target):
         return str(target)
     if target.exists():
         return str(target)
@@ -388,7 +254,7 @@ def readable_data_file(filename):
 
 def writable_state_file(filename, default=None):
     target = STATE_DIR / filename
-    if (GITHUB_BACKEND or SUPABASE_BACKEND) and ensure_file_from_remote(target):
+    if SUPABASE_BACKEND and ensure_file_from_remote(target):
         return str(target)
     if SUPABASE_BACKEND and target.exists():
         sync_file_to_remote(target)

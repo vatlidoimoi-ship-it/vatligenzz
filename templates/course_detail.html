@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ course.title }} - Vui Học THCS{% endblock %}
+{% block title %}{{ course.title }} - Vật Lý THPT{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -334,7 +334,7 @@ async function markComplete(courseId, lessonId, autoReload = true) {
 
 <style>
 .course-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-info, #0091EA) 100%);
     color: white;
     padding: 30px;
     border-radius: 12px;

@@ -3,4 +3,8 @@
 *.env
 __pycache__/
 *.pyc
+*.log
 .runtime_data/
+runtime-data/
+prod/
+static/uploads/forum/

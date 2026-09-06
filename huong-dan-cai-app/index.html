@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hướng dẫn cài app PHYEDU</title>
+  <meta name="description" content="Hướng dẫn cài đặt PWA PHYEDU trên iPhone, iPad, Android và máy tính.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Về đầu trang">
+      <img class="brand-mark" src="assets/logo-phyedu.png" alt="" width="42" height="42">
+      <span>
+        <strong>PHYEDU</strong>
+        <small>Hướng dẫn cài app</small>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Điều hướng nhanh">
+      <a href="#devices">Thiết bị</a>
+      <a href="#checklist">Kiểm tra</a>
+      <a href="#troubleshooting">Lỗi thường gặp</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-overlay">
+        <p class="eyebrow">PWA install guide</p>
+        <h1 id="page-title">Cài PHYEDU thành app trên mọi thiết bị</h1>
+        <p class="intro-copy">
+          Trang này dùng để gửi cho học sinh và giáo viên khi cần cài web PHYEDU ra màn hình chính như một ứng dụng.
+        </p>
+      </div>
+    </section>
+
+    <section class="setup-band" aria-labelledby="setup-title">
+      <div class="section-inner setup-grid">
+        <div>
+          <p class="eyebrow">Đường dẫn web</p>
+          <h2 id="setup-title">Nhập link web đang deploy</h2>
+          <p class="muted">Link này sẽ hiện trong từng hướng dẫn và có thể copy nhanh để gửi cho người dùng.</p>
+        </div>
+        <form class="url-tool" id="urlTool">
+          <label for="siteUrl">Link PHYEDU</label>
+          <div class="url-row">
+            <input id="siteUrl" name="siteUrl" type="url" value="https://ten-mien-cua-ban.com" autocomplete="url">
+            <button class="primary-btn" type="button" id="copyUrlBtn">Sao chép</button>
+          </div>
+          <p class="copy-state" id="copyState" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="devices" id="devices" aria-labelledby="devices-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Chọn thiết bị</p>
+            <h2 id="devices-title">Hướng dẫn cài đặt</h2>
+          </div>
+          <div class="device-tabs" role="tablist" aria-label="Chọn loại thiết bị">
+            <button class="tab-btn is-active" type="button" role="tab" aria-selected="true" data-device="ios">iPhone/iPad</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-device="android">Android</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-device="desktop">Máy tính</button>
+          </div>
+        </div>
+
+        <article class="guide-panel is-active" data-panel="ios">
+          <div class="panel-copy">
+            <p class="platform-label">Safari trên iOS</p>
+            <h3>iPhone và iPad cài bằng màn hình chính</h3>
+            <p class="muted">iOS không hiện popup cài app như Android. Người dùng cần mở bằng Safari và thêm thủ công.</p>
+          </div>
+          <ol class="steps">
+            <li>Mở Safari trên iPhone hoặc iPad.</li>
+            <li>Truy cập <strong class="live-url">https://ten-mien-cua-ban.com</strong>.</li>
+            <li>Bấm nút Chia sẻ ở thanh công cụ Safari.</li>
+            <li>Chọn Thêm vào Màn hình chính.</li>
+            <li>Bấm Thêm để tạo icon PHYEDU ngoài màn hình chính.</li>
+          </ol>
+        </article>
+
+        <article class="guide-panel" data-panel="android">
+          <div class="panel-copy">
+            <p class="platform-label">Chrome trên Android</p>
+            <h3>Android có thể cài trực tiếp từ trình duyệt</h3>
+            <p class="muted">Nếu PWA đủ điều kiện, Chrome sẽ hiện nút Cài app trên trang hoặc trong menu.</p>
+          </div>
+          <ol class="steps">
+            <li>Mở Chrome trên điện thoại Android.</li>
+            <li>Truy cập <strong class="live-url">https://ten-mien-cua-ban.com</strong>.</li>
+            <li>Bấm nút Cài app trên trang nếu có hiện.</li>
+            <li>Nếu không thấy, bấm menu ba chấm và chọn Thêm vào màn hình chính hoặc Cài đặt ứng dụng.</li>
+            <li>Xác nhận Cài đặt, sau đó mở PHYEDU từ icon vừa tạo.</li>
+          </ol>
+        </article>
+
+        <article class="guide-panel" data-panel="desktop">
+          <div class="panel-copy">
+            <p class="platform-label">Chrome hoặc Edge trên máy tính</p>
+            <h3>Máy tính cài như một ứng dụng riêng</h3>
+            <p class="muted">Sau khi cài, PHYEDU có thể mở trong cửa sổ riêng, gắn vào taskbar hoặc desktop.</p>
+          </div>
+          <ol class="steps">
+            <li>Mở Chrome hoặc Microsoft Edge.</li>
+            <li>Truy cập <strong class="live-url">https://ten-mien-cua-ban.com</strong>.</li>
+            <li>Bấm biểu tượng cài đặt trên thanh địa chỉ nếu có.</li>
+            <li>Nếu không thấy, mở menu trình duyệt và chọn Cài đặt PHYEDU hoặc Apps.</li>
+            <li>Xác nhận cài đặt và mở app từ Start Menu, Desktop hoặc Taskbar.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="checklist-band" id="checklist" aria-labelledby="checklist-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Trước khi gửi link</p>
+            <h2 id="checklist-title">Checklist PWA</h2>
+          </div>
+          <p class="muted narrow">Dùng phần này để kiểm tra web đã sẵn sàng cho người dùng cài thành app hay chưa.</p>
+        </div>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox"> Web đang chạy bằng HTTPS khi đưa lên hosting</label>
+          <label class="check-item"><input type="checkbox"> Manifest PWA truy cập được</label>
+          <label class="check-item"><input type="checkbox"> Service worker đăng ký thành công</label>
+          <label class="check-item"><input type="checkbox"> Icon app hiện đúng trên điện thoại</label>
+          <label class="check-item"><input type="checkbox"> Trang offline hiện khi mất mạng</label>
+          <label class="check-item"><input type="checkbox"> Đã test Safari iOS, Chrome Android và Chrome/Edge máy tính</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="troubleshooting" id="troubleshooting" aria-labelledby="troubleshooting-title">
+      <div class="section-inner">
+        <p class="eyebrow">Hỗ trợ nhanh</p>
+        <h2 id="troubleshooting-title">Nếu không thấy nút cài app</h2>
+        <div class="problem-list">
+          <details open>
+            <summary>Đang mở web bằng iPhone nhưng không thấy nút Cài app</summary>
+            <p>Hãy mở bằng Safari, bấm Chia sẻ, rồi chọn Thêm vào Màn hình chính. iOS thường không hiện popup cài đặt riêng.</p>
+          </details>
+          <details>
+            <summary>Android không hiện thông báo cài đặt</summary>
+            <p>Thử tải lại trang, mở menu ba chấm của Chrome, hoặc kiểm tra web đã chạy HTTPS và service worker không lỗi.</p>
+          </details>
+          <details>
+            <summary>Máy tính không có icon cài app trên thanh địa chỉ</summary>
+            <p>Mở bằng Chrome hoặc Edge mới nhất. Nếu vẫn không có, vào menu trình duyệt và tìm mục Apps hoặc Install this site.</p>
+          </details>
+          <details>
+            <summary>App cài xong nhưng nội dung cũ vẫn hiện</summary>
+            <p>Đóng app, mở lại web trên trình duyệt, tải lại trang. Nếu cần, xóa app đã cài và cài lại sau khi deploy bản mới.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>PHYEDU - Hướng dẫn cài app PWA cho học sinh và giáo viên.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

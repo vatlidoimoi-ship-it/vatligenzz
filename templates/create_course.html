@@ -13,7 +13,7 @@
             
             <div class="form-group">
                 <label for="title">Tên khóa học: <span class="required">*</span></label>
-                <input type="text" id="title" placeholder="VD: Lập trình Python cơ bản" required 
+                <input type="text" id="title" placeholder="VD: Vật Lý 10 - Động học chất điểm" required 
                     {% if edit_mode %}value="{{ course.title }}"{% endif %}>
             </div>
             
@@ -26,7 +26,7 @@
                 <label for="grade">Lớp: <span class="required">*</span></label>
                 <select id="grade" required>
                     <option value="">Chọn lớp</option>
-                    {% for grade in ['6', '7', '8', '9'] %}
+                    {% for grade in allowed_grade_levels %}
                     <option value="{{ grade }}" {% if edit_mode and course.grade|default('') == grade %}selected{% endif %}>Lớp {{ grade }}</option>
                     {% endfor %}
                 </select>
@@ -54,7 +54,7 @@
 
                     <div class="form-group">
                         <label>Tiêu đề bài học: <span class="required">*</span></label>
-                        <input type="text" class="lesson-title" placeholder="VD: Giới thiệu về Python" required
+                        <input type="text" class="lesson-title" placeholder="VD: Chuyển động thẳng đều" required
                                value="{{ lesson.title|default('')|e }}">
                     </div>
 
@@ -150,15 +150,12 @@
     </div>
     
     <div class="toolbar-tabs">
-        <button type="button" class="tab-btn active" onclick="switchTab(event, 'math')">Toán</button>
-        <button type="button" class="tab-btn" onclick="switchTab(event, 'chemistry')">Hóa</button>
-        <button type="button" class="tab-btn" onclick="switchTab(event, 'physics')">Lý</button>
-        <button type="button" class="tab-btn" onclick="switchTab(event, 'biology')">Sinh</button>
+        <button type="button" class="tab-btn active" onclick="switchTab(event, 'physics')">Vật Lý</button>
     </div>
     
     <div class="toolbar-content">
-        <!-- Tab Toán học -->
-        <div id="tab-math" class="tab-content active">
+        <!-- Tab ký hiệu cơ bản -->
+        <div id="tab-math" class="tab-content">
             <div class="symbol-group">
                 <div class="group-title">Phép tính cơ bản:</div>
                 <div class="symbol-list">
@@ -261,7 +258,7 @@
             </div>
         </div>
         
-        <!-- Tab Hóa học -->
+        <!-- Tab ký hiệu phản ứng -->
         <div id="tab-chemistry" class="tab-content">
             <div class="symbol-group">
                 <div class="group-title">Mũi tên phản ứng:</div>
@@ -310,7 +307,7 @@
         </div>
         
         <!-- Tab Vật lý -->
-        <div id="tab-physics" class="tab-content">
+        <div id="tab-physics" class="tab-content active">
             <div class="symbol-group">
                 <div class="group-title">Đơn vị:</div>
                 <div class="symbol-list">
@@ -358,7 +355,7 @@
             </div>
         </div>
         
-        <!-- Tab Sinh học -->
+        <!-- Tab ký hiệu khác -->
         <div id="tab-biology" class="tab-content">
             <div class="symbol-group">
                 <div class="group-title">Giới tính:</div>
@@ -413,7 +410,7 @@ function addLesson(existingData = null, focusNewLesson = false) {
         
         <div class="form-group">
             <label>Tiêu đề bài học: <span class="required">*</span></label>
-            <input type="text" class="lesson-title" placeholder="VD: Giới thiệu về Python" required
+            <input type="text" class="lesson-title" placeholder="VD: Chuyển động thẳng đều" required
                 value="${existingData ? existingData.title : ''}">
         </div>
         
@@ -677,7 +674,7 @@ document.getElementById('courseForm').addEventListener('submit', async function(
     }
 
     if (!courseData.grade) {
-        alert('Vui lòng chọn lớp 6, 7, 8 hoặc 9!');
+        alert('Vui lòng chọn lớp 10, 11 hoặc 12!');
         return;
     }
     

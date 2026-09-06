@@ -1,7 +1,7 @@
-# LMS - Learning Management System (THCS Vietnam)
+# LMS - Learning Management System (Vật Lý THPT)
 
 ## Overview
-A web-based Learning Management System for Vietnamese secondary school (THCS) students. Teachers can create courses, upload documents, manage exercises, and grade essays. Students can enroll in courses, take quizzes, use an AI chatbot (Google Gemini), participate in a forum, and chat.
+A web-based Learning Management System for Vietnamese high school students learning Vật Lý in grades 10, 11, and 12. Teachers can create courses, upload documents, manage exercises, and grade essays. Students can enroll in courses, take quizzes, use an AI chatbot (Google Gemini), participate in a forum, and chat.
 
 ## Tech Stack
 - **Backend:** Flask (Python 3.12)
@@ -21,7 +21,7 @@ data/               # JSON flat-file database
   courses.json      # Course metadata
   progress.json     # Student progress
   exam_results.json # Exam results
-  ...               # Subject-specific question banks (toan.json, li.json, etc.)
+  li.json           # Vật Lý exam bank
 static/
   css/style.css
   js/main.js, chatbot.js
@@ -42,9 +42,9 @@ scores.json         # Scores data
 - `GEMINI_API_KEY` — Required. Google Gemini API key for AI features.
 
 ## Key Features
-- Role-based access (student / teacher)
+- Role-based access (student / teacher / admin)
 - AI Chatbot with LaTeX math rendering, SVG, and Mermaid diagram support
-- Course management with lesson tracking
+- Vật Lý course management for grades 10, 11, and 12 with lesson tracking
 - Multiple-choice & essay exercises with AI grading
 - Exam analysis with AI feedback
 - Forum & chat room

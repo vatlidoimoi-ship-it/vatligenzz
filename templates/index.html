@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}EduPath - Học tập thông minh{% endblock %}
+{% block title %}PHYEDU - Học tập thông minh{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -8,14 +8,14 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 <style>
 body {
-    background: #f5f7fb;
+    background: var(--phyedu-bg, #FAFAFA);
 }
 .main-content {
     padding: 0;
 }
 .home-page {
-    background: #f5f7fb;
-    color: #102033;
+    background: var(--phyedu-bg, #FAFAFA);
+    color: var(--phyedu-text, #1F2933);
     overflow: hidden;
 }
 .home-hero {
@@ -25,15 +25,15 @@ body {
     align-items: center;
     padding: 76px 0 58px;
     background:
-        linear-gradient(90deg, rgba(13, 32, 54, .86) 0%, rgba(13, 32, 54, .72) 42%, rgba(13, 32, 54, .25) 100%),
-        url("{{ url_for('static', filename='nen.jpg') }}") center / cover;
+        linear-gradient(90deg, rgba(5, 16, 20, .52) 0%, rgba(5, 16, 20, .34) 42%, rgba(5, 16, 20, .04) 100%),
+        url("{{ url_for('static', filename='anhnen.png') }}") center / cover;
 }
 .home-hero::after {
     content: "";
     position: absolute;
     inset: auto 0 0;
     height: 9px;
-    background: linear-gradient(90deg, #37b6a3, #4d83d8, #f4b740);
+    background: linear-gradient(90deg, var(--phyedu-primary, #00C853), var(--phyedu-highlight, #FFC400), var(--phyedu-accent, #FF6D00), var(--phyedu-info, #0091EA));
 }
 .home-wrap {
     width: min(1180px, calc(100% - 40px));
@@ -48,7 +48,7 @@ body {
     align-items: center;
 }
 .hero-kicker {
-    color: #9ee8dc;
+    color: #B9F6CA;
     font-size: .9rem;
     font-weight: 800;
     letter-spacing: 0;
@@ -90,9 +90,10 @@ body {
     transform: translateY(-2px);
 }
 .hero-btn.primary {
-    background: #fff;
-    border: 1px solid #fff;
-    color: #1f5cbb;
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00), var(--phyedu-accent-light, #FF9100));
+    border: 1px solid rgba(255, 255, 255, .66);
+    box-shadow: 0 14px 34px rgba(255, 109, 0, .32);
+    color: #fff;
 }
 .hero-btn.secondary {
     background: rgba(255, 255, 255, .08);
@@ -107,9 +108,15 @@ body {
     max-width: 620px;
 }
 .metric {
-    border-left: 3px solid #9ee8dc;
+    border-left: 3px solid var(--phyedu-primary, #00C853);
     color: #fff;
     padding: 3px 0 3px 14px;
+}
+.metric:nth-child(2) {
+    border-left-color: var(--phyedu-accent, #FF6D00);
+}
+.metric:nth-child(3) {
+    border-left-color: var(--phyedu-info, #0091EA);
 }
 .metric strong {
     display: block;
@@ -123,29 +130,33 @@ body {
     margin-top: 5px;
 }
 .hero-panel {
-    background: rgba(255, 255, 255, .94);
-    border: 1px solid rgba(255, 255, 255, .8);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid rgba(255, 255, 255, .34);
     border-radius: 8px;
-    box-shadow: 0 24px 70px rgba(4, 13, 25, .26);
+    box-shadow: none;
     padding: 18px;
 }
 .panel-head {
     align-items: center;
-    border-bottom: 1px solid #e4eaf2;
+    border-bottom: 1px solid rgba(255, 255, 255, .28);
     display: flex;
     justify-content: space-between;
     gap: 12px;
     padding-bottom: 14px;
 }
 .panel-head h2 {
-    color: #102033;
+    color: #ffffff;
     font-size: 1.05rem;
     margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .22);
 }
 .panel-head span {
-    background: #eaf7f5;
+    background: rgba(0, 0, 0, .2);
+    border: 1px solid rgba(255, 255, 255, .28);
     border-radius: 999px;
-    color: #147d70;
+    color: #ffffff;
     font-size: .78rem;
     font-weight: 850;
     padding: 5px 9px;
@@ -158,8 +169,8 @@ body {
 }
 .today-item {
     align-items: center;
-    background: #f7f9fc;
-    border: 1px solid #e6edf5;
+    background: #f8fbff;
+    border: 1px solid #dbeafe;
     border-radius: 7px;
     display: grid;
     grid-template-columns: 42px minmax(0, 1fr) auto;
@@ -171,7 +182,7 @@ body {
     background: #fff;
     border: 1px solid #d9e4ef;
     border-radius: 6px;
-    color: #1f5cbb;
+    color: var(--phyedu-info, #0091EA);
     display: flex;
     height: 42px;
     justify-content: center;
@@ -182,16 +193,16 @@ body {
     display: block;
 }
 .today-item strong {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     font-size: .96rem;
 }
 .today-item span {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     font-size: .86rem;
     margin-top: 2px;
 }
 .today-item b {
-    color: #147d70;
+    color: var(--phyedu-primary-dark, #009624);
     font-size: .86rem;
     white-space: nowrap;
 }
@@ -202,9 +213,9 @@ body {
 }
 .process-step {
     align-items: center;
-    background: linear-gradient(90deg, #f5f4ff 0%, #f8fbff 100%);
-    border: 1px solid #e4e7fb;
-    border-left: 4px solid #5f63c7;
+    background: linear-gradient(90deg, var(--phyedu-blue-soft, #EAF4FF) 0%, #ffffff 100%);
+    border: 1px solid #dbeafe;
+    border-left: 4px solid var(--phyedu-info, #0091EA);
     border-radius: 7px;
     display: grid;
     grid-template-columns: 34px minmax(0, 1fr);
@@ -214,7 +225,7 @@ body {
 }
 .process-step b {
     align-items: center;
-    background: linear-gradient(135deg, #5f63c7, #8c58d6);
+    background: linear-gradient(135deg, var(--phyedu-info, #0091EA), var(--phyedu-info-dark, #0064B7));
     border-radius: 999px;
     color: #fff;
     display: inline-flex;
@@ -224,13 +235,45 @@ body {
     justify-content: center;
     width: 30px;
 }
+.process-step:nth-child(3) {
+    background: linear-gradient(90deg, var(--phyedu-green-soft, #EAFBF1) 0%, #ffffff 100%);
+    border-color: #BAE7CB;
+    border-left-color: var(--phyedu-primary, #00C853);
+}
+.process-step:nth-child(3) b {
+    background: linear-gradient(135deg, var(--phyedu-primary, #00C853), var(--phyedu-primary-dark, #009624));
+}
+.process-step:nth-child(5) {
+    background: linear-gradient(90deg, var(--phyedu-orange-soft, #FFF4E6) 0%, #ffffff 100%);
+    border-color: #FFD2A6;
+    border-left-color: var(--phyedu-accent, #FF6D00);
+}
+.process-step:nth-child(5) b {
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00), var(--phyedu-accent-light, #FF9100));
+}
+.process-step:nth-child(7) {
+    background: linear-gradient(90deg, var(--phyedu-yellow-soft, #FFF8D7) 0%, #ffffff 100%);
+    border-color: #F5E18A;
+    border-left-color: var(--phyedu-highlight, #FFC400);
+}
+.process-step:nth-child(7) b {
+    background: linear-gradient(135deg, var(--phyedu-highlight, #FFC400), #D79000);
+}
+.process-step:nth-child(9) {
+    background: linear-gradient(90deg, var(--phyedu-red-soft, #FFECEC) 0%, #ffffff 100%);
+    border-color: #F7C0C0;
+    border-left-color: var(--phyedu-danger, #F4432D);
+}
+.process-step:nth-child(9) b {
+    background: linear-gradient(135deg, var(--phyedu-danger, #F4432D), var(--phyedu-danger-dark, #C62828));
+}
 .process-step strong {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     display: block;
     font-size: .95rem;
 }
 .process-step span {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     display: block;
     font-size: .82rem;
     line-height: 1.35;
@@ -244,7 +287,7 @@ body {
     text-align: center;
 }
 .progress-box {
-    background: #102033;
+    background: #0A3420;
     border-radius: 7px;
     color: #fff;
     margin-top: 12px;
@@ -265,7 +308,7 @@ body {
     overflow: hidden;
 }
 .progress-track i {
-    background: #f4b740;
+    background: linear-gradient(90deg, var(--phyedu-highlight, #FFC400), var(--phyedu-accent, #FF6D00));
     border-radius: inherit;
     display: block;
     height: 100%;
@@ -283,14 +326,40 @@ body {
 }
 .quick-card {
     background: #fff;
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     min-height: 128px;
     padding: 22px;
     text-decoration: none;
+    transition: transform .18s ease, box-shadow .18s ease;
 }
 .quick-card i {
-    color: #1f5cbb;
+    color: var(--phyedu-info, #0091EA);
     font-size: 1.35rem;
+}
+.quick-card:hover {
+    box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .06), 0 16px 34px rgba(15, 23, 42, .08);
+    transform: translateY(-2px);
+}
+.quick-card:nth-child(1) {
+    background: linear-gradient(180deg, var(--phyedu-green-soft, #EAFBF1), #ffffff);
+}
+.quick-card:nth-child(1) i {
+    color: var(--phyedu-primary-dark, #009624);
+}
+.quick-card:nth-child(2) {
+    background: linear-gradient(180deg, var(--phyedu-orange-soft, #FFF4E6), #ffffff);
+}
+.quick-card:nth-child(2) i {
+    color: var(--phyedu-accent, #FF6D00);
+}
+.quick-card:nth-child(3) {
+    background: linear-gradient(180deg, var(--phyedu-blue-soft, #EAF4FF), #ffffff);
+}
+.quick-card:nth-child(4) {
+    background: linear-gradient(180deg, var(--phyedu-yellow-soft, #FFF8D7), #ffffff);
+}
+.quick-card:nth-child(4) i {
+    color: #D79000;
 }
 .quick-card strong {
     display: block;
@@ -298,13 +367,14 @@ body {
     margin: 12px 0 6px;
 }
 .quick-card span {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     display: block;
     font-size: .92rem;
     line-height: 1.5;
 }
 .section {
     padding: 64px 0;
+    scroll-margin-top: 96px;
 }
 .section-head {
     align-items: end;
@@ -314,13 +384,13 @@ body {
     margin-bottom: 22px;
 }
 .section-head h2 {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 900;
     margin: 0;
 }
 .section-head p {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     margin: 0;
     max-width: 560px;
 }
@@ -334,14 +404,31 @@ body {
     border: 1px solid #dde5ef;
     border-radius: 8px;
     padding: 20px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, .06);
+}
+.subject-card:nth-child(1) {
+    background: linear-gradient(180deg, var(--phyedu-blue-soft, #EAF4FF), #ffffff);
+    border-color: #BBDDF8;
+}
+.subject-card:nth-child(2) {
+    background: linear-gradient(180deg, var(--phyedu-green-soft, #EAFBF1), #ffffff);
+    border-color: #BAE7CB;
+}
+.subject-card:nth-child(3) {
+    background: linear-gradient(180deg, var(--phyedu-orange-soft, #FFF4E6), #ffffff);
+    border-color: #FFD2A6;
+}
+.subject-card:nth-child(4) {
+    background: linear-gradient(180deg, var(--phyedu-yellow-soft, #FFF8D7), #ffffff);
+    border-color: #F5E18A;
 }
 .subject-card h3 {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     font-size: 1.1rem;
     margin: 0 0 8px;
 }
 .subject-card p {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     line-height: 1.55;
     margin: 0 0 16px;
 }
@@ -349,7 +436,7 @@ body {
     align-items: center;
     display: flex;
     gap: 8px;
-    color: #1f5cbb;
+    color: var(--phyedu-info-dark, #0064B7);
     font-size: .88rem;
     font-weight: 800;
 }
@@ -363,18 +450,24 @@ body {
     transform: translateY(0);
 }
 .math-section {
-    background: #eef5ff;
-    border-top: 1px solid #dce7f5;
-    border-bottom: 1px solid #dce7f5;
+    background: linear-gradient(180deg, #ffffff 0%, #F2FFF6 52%, #FFF8EC 100%);
+    border-top: 1px solid #d8efe1;
+    border-bottom: 1px solid #f1dfc8;
 }
 .math-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 420px;
     gap: 18px;
-    align-items: stretch;
+    align-items: start;
+}
+.math-left {
+    display: grid;
+    gap: 18px;
+    min-width: 0;
 }
 .math-map,
 .math-board,
+.impact-panel,
 .chart-panel,
 .testimonial-card {
     background: #fff;
@@ -386,40 +479,56 @@ body {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
+    align-self: start;
+    align-items: start;
     padding: 18px;
 }
 .map-node {
     border: 1px solid #dce7f5;
     border-radius: 8px;
+    min-height: 190px;
     padding: 16px;
     position: relative;
+}
+.map-node:nth-child(1) {
+    background: var(--phyedu-blue-soft, #EAF4FF);
+    border-color: #BBDDF8;
+}
+.map-node:nth-child(2) {
+    background: var(--phyedu-green-soft, #EAFBF1);
+    border-color: #BAE7CB;
+}
+.map-node:nth-child(3) {
+    background: var(--phyedu-orange-soft, #FFF4E6);
+    border-color: #FFD2A6;
 }
 .map-node::after {
     content: "";
     position: absolute;
     right: -13px;
     top: 50%;
+    transform: translateY(-50%);
     width: 13px;
     height: 2px;
-    background: #4d83d8;
+    background: var(--phyedu-primary, #00C853);
 }
 .map-node:nth-child(3n)::after,
 .map-node:last-child::after {
     display: none;
 }
 .map-node b {
-    color: #1f5cbb;
+    color: var(--phyedu-info-dark, #0064B7);
     display: block;
     font-size: .86rem;
     margin-bottom: 16px;
 }
 .map-node strong {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     display: block;
     font-size: 1rem;
 }
 .map-node span {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     display: block;
     font-size: .9rem;
     line-height: 1.5;
@@ -427,6 +536,99 @@ body {
 }
 .math-board {
     padding: 20px;
+}
+.impact-panel {
+    background: #ffffff;
+    overflow: hidden;
+    padding: 22px;
+}
+.impact-head {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+.impact-head h3 {
+    color: var(--phyedu-text, #1F2933);
+    font-size: 1.25rem;
+    font-weight: 900;
+    margin: 0 0 6px;
+}
+.impact-head p {
+    color: var(--phyedu-muted, #64748B);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 520px;
+}
+.impact-badge {
+    background: var(--phyedu-green-soft, #EAFBF1);
+    border: 1px solid #BAE7CB;
+    border-radius: 999px;
+    color: var(--phyedu-primary-dark, #009624);
+    flex: 0 0 auto;
+    font-size: .8rem;
+    font-weight: 900;
+    padding: 7px 11px;
+}
+.impact-chart {
+    background:
+        linear-gradient(rgba(15, 23, 42, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, .045) 1px, transparent 1px),
+        #ffffff;
+    background-size: 52px 36px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    height: 230px;
+    margin-top: 18px;
+    overflow: hidden;
+    position: relative;
+}
+.impact-chart svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.impact-line {
+    fill: none;
+    stroke: url(#impactRedGradient);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 20;
+}
+.impact-arrow {
+    fill: url(#impactRedGradient);
+}
+.impact-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+}
+.impact-stat {
+    border-radius: 8px;
+    padding: 12px;
+}
+.impact-stat:nth-child(1) {
+    background: linear-gradient(135deg, #0091EA 0%, #0064B7 100%);
+}
+.impact-stat:nth-child(2) {
+    background: linear-gradient(135deg, #00A63E 0%, #007E20 100%);
+}
+.impact-stat:nth-child(3) {
+    background: linear-gradient(135deg, #FF6D00 0%, #C95A00 100%);
+}
+.impact-stat strong {
+    color: #ffffff;
+    display: block;
+    font-size: .98rem;
+    margin-bottom: 4px;
+}
+.impact-stat span {
+    color: rgba(255, 255, 255, .88);
+    display: block;
+    font-size: .84rem;
+    line-height: 1.4;
 }
 .board-head {
     align-items: flex-start;
@@ -436,15 +638,15 @@ body {
     margin-bottom: 16px;
 }
 .board-head h3 {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     font-size: 1.14rem;
     margin: 0;
 }
 .board-head span {
-    background: #eaf7f5;
-    border: 1px solid #bee9e2;
+    background: var(--phyedu-green-soft, #EAFBF1);
+    border: 1px solid #BAE7CB;
     border-radius: 999px;
-    color: #147d70;
+    color: var(--phyedu-primary-dark, #009624);
     font-size: .8rem;
     font-weight: 850;
     padding: 5px 9px;
@@ -455,28 +657,40 @@ body {
     gap: 12px;
 }
 .formula-card {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    background: linear-gradient(180deg, #ffffff 0%, var(--phyedu-blue-soft, #EAF4FF) 100%);
     border: 1px solid #d7e5f4;
-    border-left: 4px solid #1f5cbb;
+    border-left: 4px solid var(--phyedu-info, #0091EA);
     border-radius: 8px;
     display: grid;
     gap: 8px;
     padding: 13px 14px;
 }
+.formula-card:nth-child(2) {
+    background: linear-gradient(180deg, #ffffff 0%, var(--phyedu-green-soft, #EAFBF1) 100%);
+    border-left-color: var(--phyedu-primary, #00C853);
+}
+.formula-card:nth-child(3) {
+    background: linear-gradient(180deg, #ffffff 0%, var(--phyedu-orange-soft, #FFF4E6) 100%);
+    border-left-color: var(--phyedu-accent, #FF6D00);
+}
+.formula-card:nth-child(4) {
+    background: linear-gradient(180deg, #ffffff 0%, var(--phyedu-yellow-soft, #FFF8D7) 100%);
+    border-left-color: var(--phyedu-highlight, #FFC400);
+}
 .formula-tag {
-    color: #1f5cbb;
+    color: var(--phyedu-info-dark, #0064B7);
     font-size: .78rem;
     font-weight: 900;
     text-transform: uppercase;
 }
 .formula-math {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     display: block;
     font-size: 1.08rem;
     min-height: 30px;
 }
 .formula-card span {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     font-size: .9rem;
     line-height: 1.45;
 }
@@ -490,7 +704,7 @@ body {
     padding: 18px;
 }
 .chart-panel h3 {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     font-size: 1.08rem;
     margin: 0 0 18px;
 }
@@ -511,14 +725,14 @@ body {
     justify-content: flex-end;
 }
 .bar i {
-    background: linear-gradient(180deg, #37b6a3, #1f5cbb);
+    background: linear-gradient(180deg, var(--phyedu-primary, #00C853), var(--phyedu-info-dark, #0064B7));
     border-radius: 8px 8px 3px 3px;
     display: block;
     min-height: 30px;
     width: 100%;
 }
 .bar span {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     font-size: .8rem;
     font-weight: 800;
     line-height: 1.25;
@@ -526,7 +740,7 @@ body {
 }
 .empty-chart {
     align-items: center;
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     display: flex;
     font-weight: 800;
     grid-column: 1 / -1;
@@ -544,18 +758,44 @@ body {
     border: 1px solid #d9e4ef;
     border-radius: 8px;
     padding: 18px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, .06);
+}
+.insight-card:nth-child(1) {
+    background: linear-gradient(180deg, var(--phyedu-blue-soft, #EAF4FF), #ffffff);
+    border-color: #BBDDF8;
+}
+.insight-card:nth-child(2) {
+    background: linear-gradient(180deg, var(--phyedu-green-soft, #EAFBF1), #ffffff);
+    border-color: #BAE7CB;
+}
+.insight-card:nth-child(3) {
+    background: linear-gradient(180deg, var(--phyedu-yellow-soft, #FFF8D7), #ffffff);
+    border-color: #F5E18A;
+}
+.insight-card:nth-child(4) {
+    background: linear-gradient(180deg, var(--phyedu-red-soft, #FFECEC), #ffffff);
+    border-color: #F7C0C0;
 }
 .insight-card i {
-    color: #1f5cbb;
+    color: var(--phyedu-info, #0091EA);
     font-size: 1.25rem;
 }
+.insight-card:nth-child(2) i {
+    color: var(--phyedu-primary-dark, #009624);
+}
+.insight-card:nth-child(3) i {
+    color: #D79000;
+}
+.insight-card:nth-child(4) i {
+    color: var(--phyedu-danger, #F4432D);
+}
 .insight-card strong {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     display: block;
     margin: 14px 0 7px;
 }
 .insight-card span {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     display: block;
     line-height: 1.5;
 }
@@ -570,8 +810,20 @@ body {
 .testimonial-card {
     padding: 18px;
 }
+.testimonial-card:nth-child(1) {
+    background: linear-gradient(180deg, var(--phyedu-green-soft, #EAFBF1), #ffffff);
+    border-color: #BAE7CB;
+}
+.testimonial-card:nth-child(2) {
+    background: linear-gradient(180deg, var(--phyedu-blue-soft, #EAF4FF), #ffffff);
+    border-color: #BBDDF8;
+}
+.testimonial-card:nth-child(3) {
+    background: linear-gradient(180deg, var(--phyedu-orange-soft, #FFF4E6), #ffffff);
+    border-color: #FFD2A6;
+}
 .stars {
-    color: #f4b740;
+    color: var(--phyedu-highlight, #FFC400);
     letter-spacing: 0;
     margin-bottom: 12px;
 }
@@ -587,9 +839,9 @@ body {
 }
 .avatar-dot {
     align-items: center;
-    background: #eaf7f5;
+    background: var(--phyedu-green-soft, #EAFBF1);
     border-radius: 50%;
-    color: #147d70;
+    color: var(--phyedu-primary-dark, #009624);
     display: flex;
     font-weight: 900;
     height: 40px;
@@ -601,11 +853,11 @@ body {
     display: block;
 }
 .reviewer span {
-    color: #657589;
+    color: var(--phyedu-muted, #64748B);
     font-size: .86rem;
 }
 .workflow {
-    background: #102033;
+    background: linear-gradient(135deg, #07351F 0%, #0A4A2B 58%, #0B3A45 100%);
     color: #fff;
 }
 .workflow .section-head h2,
@@ -618,12 +870,28 @@ body {
     gap: 14px;
 }
 .workflow-step {
-    border: 1px solid rgba(255, 255, 255, .16);
+    border: 1px solid rgba(255, 255, 255, .18);
     border-radius: 8px;
     padding: 20px;
 }
+.workflow-step:nth-child(1) {
+    background: rgba(0, 145, 234, .16);
+    border-color: rgba(0, 145, 234, .42);
+}
+.workflow-step:nth-child(2) {
+    background: rgba(0, 200, 83, .16);
+    border-color: rgba(0, 200, 83, .42);
+}
+.workflow-step:nth-child(3) {
+    background: rgba(255, 109, 0, .16);
+    border-color: rgba(255, 109, 0, .45);
+}
+.workflow-step:nth-child(4) {
+    background: rgba(255, 196, 0, .16);
+    border-color: rgba(255, 196, 0, .45);
+}
 .workflow-step b {
-    color: #9ee8dc;
+    color: #B9F6CA;
     display: block;
     font-size: .95rem;
     margin-bottom: 26px;
@@ -651,13 +919,13 @@ body {
     align-items: center;
 }
 .final-cta h2 {
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
     font-size: clamp(1.8rem, 3vw, 2.6rem);
     font-weight: 900;
     margin: 0 0 8px;
 }
 .final-cta p {
-    color: #526277;
+    color: var(--phyedu-muted, #64748B);
     margin: 0;
 }
 .final-actions {
@@ -673,13 +941,127 @@ body {
     text-decoration: none;
 }
 .final-actions .solid {
-    background: #1f5cbb;
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00), var(--phyedu-accent-light, #FF9100));
     color: #fff;
 }
 .final-actions .line {
     background: #fff;
     border: 1px solid #b9c7d8;
-    color: #102033;
+    color: var(--phyedu-text, #1F2933);
+}
+
+.quick-card:nth-child(1),
+.subject-card:nth-child(2),
+.map-node:nth-child(2),
+.formula-card:nth-child(2),
+.insight-card:nth-child(2),
+.testimonial-card:nth-child(1) {
+    background: linear-gradient(135deg, #00A63E 0%, #007E20 100%);
+    border-color: rgba(255, 255, 255, .34);
+    color: #ffffff;
+}
+
+.quick-card:nth-child(3),
+.subject-card:nth-child(1),
+.map-node:nth-child(1),
+.formula-card:nth-child(1),
+.insight-card:nth-child(1),
+.testimonial-card:nth-child(2) {
+    background: linear-gradient(135deg, #0091EA 0%, #0064B7 100%);
+    border-color: rgba(255, 255, 255, .34);
+    color: #ffffff;
+}
+
+.quick-card:nth-child(2),
+.subject-card:nth-child(3),
+.map-node:nth-child(3),
+.formula-card:nth-child(3),
+.insight-card:nth-child(3),
+.testimonial-card:nth-child(3) {
+    background: linear-gradient(135deg, #FF6D00 0%, #C95A00 100%);
+    border-color: rgba(255, 255, 255, .34);
+    color: #ffffff;
+}
+
+.quick-card:nth-child(4),
+.subject-card:nth-child(4),
+.formula-card:nth-child(4) {
+    background: linear-gradient(135deg, #B77900 0%, #8A6200 100%);
+    border-color: rgba(255, 255, 255, .34);
+    color: #ffffff;
+}
+
+.insight-card:nth-child(4) {
+    background: linear-gradient(135deg, #F4432D 0%, #C62828 100%);
+    border-color: rgba(255, 255, 255, .34);
+    color: #ffffff;
+}
+
+.process-step,
+.process-step:nth-child(3),
+.process-step:nth-child(5),
+.process-step:nth-child(7),
+.process-step:nth-child(9) {
+    background: linear-gradient(135deg, #00A63E 0%, #007E20 100%);
+    border-color: rgba(255, 255, 255, .28);
+    border-left-color: #FFC400;
+    color: #ffffff;
+}
+
+.process-step:nth-child(5) {
+    background: linear-gradient(135deg, #0091EA 0%, #0064B7 100%);
+}
+
+.process-step:nth-child(7) {
+    background: linear-gradient(135deg, #FF6D00 0%, #C95A00 100%);
+}
+
+.process-step:nth-child(9) {
+    background: linear-gradient(135deg, #F4432D 0%, #C62828 100%);
+}
+
+.process-step b,
+.process-step:nth-child(3) b,
+.process-step:nth-child(5) b,
+.process-step:nth-child(7) b,
+.process-step:nth-child(9) b {
+    background: rgba(255, 255, 255, .2);
+    border: 1px solid rgba(255, 255, 255, .45);
+    color: #ffffff;
+}
+
+.quick-card i,
+.quick-card:nth-child(1) i,
+.quick-card:nth-child(2) i,
+.quick-card:nth-child(4) i,
+.insight-card i,
+.insight-card:nth-child(2) i,
+.insight-card:nth-child(3) i,
+.insight-card:nth-child(4) i,
+.subject-meta,
+.map-node b,
+.formula-tag,
+.avatar-dot,
+.process-step strong,
+.process-step span,
+.quick-card strong,
+.quick-card span,
+.subject-card h3,
+.subject-card p,
+.map-node strong,
+.map-node span,
+.formula-math,
+.formula-card span,
+.insight-card strong,
+.insight-card span,
+.testimonial-card p,
+.reviewer span {
+    color: #ffffff;
+}
+
+.avatar-dot {
+    background: rgba(255, 255, 255, .18);
+    border: 1px solid rgba(255, 255, 255, .32);
 }
 @media (max-width: 980px) {
     .home-hero {
@@ -724,6 +1106,15 @@ body {
     .hero-panel {
         padding: 14px;
     }
+    .impact-head {
+        flex-direction: column;
+    }
+    .impact-chart {
+        height: 190px;
+    }
+    .impact-stats {
+        grid-template-columns: 1fr;
+    }
     .today-item {
         grid-template-columns: 40px minmax(0, 1fr);
     }
@@ -742,8 +1133,7 @@ body {
     <section class="home-hero">
         <div class="home-wrap hero-grid">
             <div class="hero-copy">
-                <p class="hero-kicker">LMS cho học sinh THCS và giáo viên</p>
-                <h1>EduPath</h1>
+                <h1>PHYEDU</h1>
                 <p>Nền tảng học tập gọn, có bài giảng, bài tập, trợ lí AI và cộng đồng hỏi đáp để học sinh được hỗ trợ đúng lúc.</p>
 
                 {% if not session.user_id %}
@@ -802,9 +1192,9 @@ body {
 
     <section class="quick-strip">
         <div class="home-wrap quick-grid">
-            <a class="quick-card" href="{{ url_for('courses') }}"><i class="fa-solid fa-layer-group"></i><strong>Khóa học</strong><span>Lộ trình học rõ ràng theo từng môn.</span></a>
+            <a class="quick-card" href="{{ url_for('courses') }}"><i class="fa-solid fa-layer-group"></i><strong>Khóa học</strong><span>Lộ trình học Vật Lý rõ ràng theo từng lớp.</span></a>
             <a class="quick-card" href="{{ url_for('tracnghiem') }}"><i class="fa-solid fa-list-check"></i><strong>Trắc nghiệm</strong><span>Làm bài, nhận điểm và xem lại kết quả.</span></a>
-            <a class="quick-card" href="{{ url_for('chatbot') }}"><i class="fa-solid fa-wand-magic-sparkles"></i><strong>Trợ lí AI</strong><span>Hỏi bài, tạo câu hỏi luyện tập cho nhiều môn THCS.</span></a>
+            <a class="quick-card" href="{{ url_for('chatbot') }}"><i class="fa-solid fa-wand-magic-sparkles"></i><strong>Trợ lí AI</strong><span>Hỏi bài và tạo câu hỏi luyện tập Vật Lý.</span></a>
             <a class="quick-card" href="{{ url_for('forum') }}"><i class="fa-solid fa-trophy"></i><strong>Diễn đàn</strong><span>Hỏi đáp, nhận kim cương và vật phẩm.</span></a>
         </div>
     </section>
@@ -813,26 +1203,26 @@ body {
         <div class="home-wrap">
             <div class="section-head">
                 <h2>Không gian học tập có tổ chức</h2>
-                <p>Trang chủ tập trung vào các hành động chính: vào học, luyện tập, hỏi AI và tham gia cộng đồng. Nội dung được chia theo nhóm môn để học sinh lớp 6-9 tìm đúng phần cần học.</p>
+                <p>Trang chủ tập trung vào các hành động chính: vào học Vật Lý, luyện tập, hỏi AI và tham gia cộng đồng. Nội dung được chia theo lớp 10, 11, 12 để học sinh tìm đúng phần cần học.</p>
             </div>
             <div class="subject-grid">
                 <article class="subject-card">
-                    <h3>Khoa học tự nhiên</h3>
-                    <p>Toán, Vật lý, Hóa học và Sinh học được tổ chức theo chủ đề, công thức, thí nghiệm và bài vận dụng.</p>
-                    <div class="subject-meta"><i class="fa-solid fa-atom"></i> Toán · Lý · Hóa · Sinh</div>
+                    <h3>Vật Lý 10</h3>
+                    <p>Cơ học, động học, động lực học, năng lượng và các bài vận dụng nền tảng.</p>
+                    <div class="subject-meta"><i class="fa-solid fa-atom"></i> Lớp 10 · Cơ học</div>
                 </article>
                 <article class="subject-card">
-                    <h3>Khoa học xã hội</h3>
-                    <p>Ngữ văn, Lịch sử, Địa lý và GDCD có không gian ghi nhớ ý chính, luyện phân tích và thảo luận câu hỏi mở.</p>
-                    <div class="subject-meta"><i class="fa-solid fa-book-open"></i> Văn · Sử · Địa · GDCD</div>
+                    <h3>Vật Lý 11</h3>
+                    <p>Điện học, từ trường, cảm ứng điện từ, quang học và luyện giải bài tập theo dạng.</p>
+                    <div class="subject-meta"><i class="fa-solid fa-bolt"></i> Lớp 11 · Điện từ</div>
                 </article>
                 <article class="subject-card">
-                    <h3>Ngoại ngữ</h3>
-                    <p>Tiếng Anh tập trung vào từ vựng, ngữ pháp, đọc hiểu, viết đoạn và hệ thống câu hỏi luyện phản xạ.</p>
-                    <div class="subject-meta"><i class="fa-solid fa-language"></i> Vocabulary · Grammar · Reading</div>
+                    <h3>Vật Lý 12</h3>
+                    <p>Dao động, sóng, điện xoay chiều, lượng tử ánh sáng, hạt nhân và ôn tập thi.</p>
+                    <div class="subject-meta"><i class="fa-solid fa-wave-square"></i> Lớp 12 · Dao động · Sóng</div>
                 </article>
                 <article class="subject-card">
-                    <h3>Công nghệ học tập</h3>
+                    <h3>Công cụ học tập</h3>
                     <p>Tài liệu, trắc nghiệm, diễn đàn, kim cương và hồ sơ cá nhân liên kết thành một luồng học tập xuyên suốt.</p>
                     <div class="subject-meta"><i class="fa-solid fa-file-lines"></i> {{ home_stats.documents }} tài liệu · {{ home_stats.lessons }} bài học</div>
                 </article>
@@ -843,54 +1233,68 @@ body {
     <section class="section math-section reveal">
         <div class="home-wrap">
             <div class="section-head">
-                <h2>Bản đồ nội dung THCS</h2>
-                <p>Mỗi nhóm môn có một lối vào riêng: công thức cho môn tự nhiên, ý chính cho môn xã hội, kỹ năng cho ngoại ngữ và thực hành cho công nghệ.</p>
+                <h2>Bản đồ nội dung Vật Lý 10-12</h2>
+                <p>Nội dung tập trung vào công thức, hiện tượng, bài tập vận dụng và đề luyện theo từng lớp.</p>
             </div>
             <div class="math-layout">
-                <div class="math-map">
-                    <div class="map-node"><b>01</b><strong>Toán</strong><span>Số học, đại số, hình học, xác suất và bài toán thực tế.</span></div>
-                    <div class="map-node"><b>02</b><strong>Ngữ văn</strong><span>Đọc hiểu, tiếng Việt, nghị luận, kể chuyện và phân tích tác phẩm.</span></div>
-                    <div class="map-node"><b>03</b><strong>Tiếng Anh</strong><span>Từ vựng, ngữ pháp, nghe đọc, viết đoạn và giao tiếp cơ bản.</span></div>
-                    <div class="map-node"><b>04</b><strong>Vật lý</strong><span>Cơ học, điện học, quang học, năng lượng và hiện tượng đời sống.</span></div>
-                    <div class="map-node"><b>05</b><strong>Hóa học</strong><span>Chất, phản ứng, dung dịch, nguyên tố và bài tập cân bằng.</span></div>
-                    <div class="map-node"><b>06</b><strong>Sinh học</strong><span>Cơ thể sống, tế bào, di truyền, sinh thái và sức khỏe.</span></div>
-                    <div class="map-node"><b>07</b><strong>Lịch sử</strong><span>Mốc thời gian, nhân vật, sự kiện và kỹ năng lập timeline.</span></div>
-                    <div class="map-node"><b>08</b><strong>Địa lý</strong><span>Bản đồ, khí hậu, dân cư, kinh tế và đọc biểu đồ số liệu.</span></div>
-                    <div class="map-node"><b>09</b><strong>GDCD</strong><span>Quyền, nghĩa vụ, pháp luật, kỹ năng sống và tình huống.</span></div>
-                    <div class="map-node"><b>10</b><strong>Công nghệ</strong><span>Thiết kế, sản xuất, nông nghiệp, kỹ thuật và ứng dụng.</span></div>
-                    <div class="map-node"><b>11</b><strong>Tin học</strong><span>Dữ liệu, thuật toán, bảng tính, an toàn số và lập trình cơ bản.</span></div>
-                    <div class="map-node"><b>12</b><strong>Ôn tập</strong><span>Đề trắc nghiệm, câu hỏi diễn đàn, bài sai và kế hoạch tuần.</span></div>
+                <div class="math-left">
+                    <div class="math-map">
+                        <div class="map-node"><b>10</b><strong>Vật Lý 10</strong><span>Chuyển động thẳng, lực, công, năng lượng, động lượng và chất khí.</span></div>
+                        <div class="map-node"><b>11</b><strong>Vật Lý 11</strong><span>Điện trường, dòng điện, từ trường, cảm ứng điện từ và quang học.</span></div>
+                        <div class="map-node"><b>12</b><strong>Vật Lý 12</strong><span>Dao động, sóng, điện xoay chiều, lượng tử ánh sáng và hạt nhân.</span></div>
+                    </div>
+                    <article class="impact-panel" aria-label="Biểu đồ hiệu quả học tập">
+                        <div class="impact-head">
+                            <div>
+                                <h3>Thời gian học tập</h3>
+                            </div>
+                            <span class="impact-badge">Xu hướng tiến bộ</span>
+                        </div>
+                        <div class="impact-chart">
+                            <svg viewBox="0 0 760 230" role="img" aria-label="Mũi tên đỏ đi lên thể hiện kết quả học tập tăng dần">
+                                <defs>
+                                    <linearGradient id="impactRedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#F87171"></stop>
+                                        <stop offset="45%" stop-color="#E71922"></stop>
+                                        <stop offset="100%" stop-color="#E71922"></stop>
+                                    </linearGradient>
+                                </defs>
+                                <path class="impact-line" d="M48 176 L132 126 L210 146 L292 102 L374 132 L466 78 L548 104 L620 66" />
+                                <polygon class="impact-arrow" points="704,34 602,28 644,126" />
+                            </svg>
+                        </div>
+                        <div class="impact-stats">
+                            <div class="impact-stat"><strong>Điểm quiz tăng</strong><span>Theo dõi điểm sau từng lần luyện tập.</span></div>
+                            <div class="impact-stat"><strong>Hoàn thành đều</strong><span>Tiến độ học được ghi nhận liên tục.</span></div>
+                            <div class="impact-stat"><strong>Tự tin hơn</strong><span>AI và diễn đàn hỗ trợ khi gặp bài khó.</span></div>
+                        </div>
+                    </article>
                 </div>
                 <aside class="math-board">
                     <div class="board-head">
-                        <h3>Góc ghi nhớ liên môn</h3>
+                        <h3>Góc ghi nhớ Vật Lý</h3>
                         <span>Mẫu học nhanh</span>
                     </div>
                     <div class="formula-list">
-                        <div class="formula-card">
-                            <div class="formula-tag">Toán</div>
-                            <div class="formula-math">\(P(A)=\dfrac{n(A)}{n(\Omega)}\)</div>
-                            <span>Xác suất của biến cố A, dùng khi luyện thống kê và tổ hợp.</span>
-                        </div>
                         <div class="formula-card">
                             <div class="formula-tag">Vật lý</div>
                             <div class="formula-math">\(I=\dfrac{U}{R}\)</div>
                             <span>Định luật Ôm, nối nhanh giữa điện áp, cường độ dòng điện và điện trở.</span>
                         </div>
                         <div class="formula-card">
-                            <div class="formula-tag">Hóa học</div>
-                            <div class="formula-math">\(2H_2+O_2 \rightarrow 2H_2O\)</div>
-                            <span>Ví dụ cân bằng phương trình phản ứng hóa học.</span>
+                            <div class="formula-tag">Vật lý</div>
+                            <div class="formula-math">\(F=ma\)</div>
+                            <span>Định luật II Newton, liên hệ giữa lực, khối lượng và gia tốc.</span>
                         </div>
                         <div class="formula-card">
-                            <div class="formula-tag">Tiếng Anh</div>
-                            <div class="formula-math">S + have/has + V3</div>
-                            <span>Cấu trúc hiện tại hoàn thành, dễ nhầm với quá khứ đơn.</span>
+                            <div class="formula-tag">Vật lý</div>
+                            <div class="formula-math">\(A=Fs\cos\alpha\)</div>
+                            <span>Công của lực khi vật dịch chuyển theo hướng hợp với lực một góc alpha.</span>
                         </div>
                         <div class="formula-card">
-                            <div class="formula-tag">Ngữ văn</div>
-                            <div class="formula-math">Luận điểm → Dẫn chứng → Nhận xét</div>
-                            <span>Khung triển khai đoạn nghị luận ngắn, rõ ý và dễ chấm.</span>
+                            <div class="formula-tag">Vật lý</div>
+                            <div class="formula-math">\(T=2\pi\sqrt{\dfrac{l}{g}}\)</div>
+                            <span>Chu kỳ dao động nhỏ của con lắc đơn.</span>
                         </div>
                     </div>
                 </aside>
@@ -902,12 +1306,12 @@ body {
         <div class="home-wrap">
             <div class="section-head">
                 <h2>Hoạt động được nhìn bằng biểu đồ</h2>
-                <p>Biểu đồ lấy từ câu hỏi thật trong diễn đàn để thấy môn nào đang được học sinh quan tâm nhiều nhất.</p>
+                <p>Biểu đồ lấy từ câu hỏi thật trong diễn đàn để thấy hoạt động Vật Lý đang được học sinh quan tâm ra sao.</p>
             </div>
             <div class="analytics-layout">
                 <div class="chart-panel">
-                    <h3>Câu hỏi diễn đàn theo môn</h3>
-                    <div class="bar-chart" aria-label="Biểu đồ câu hỏi diễn đàn theo môn">
+                    <h3>Câu hỏi diễn đàn Vật Lý</h3>
+                    <div class="bar-chart" aria-label="Biểu đồ câu hỏi diễn đàn Vật Lý">
                         {% if home_stats.chart_items %}
                             {% for item in home_stats.chart_items %}
                             <div class="bar"><i style="height: {{ item.percent }}%"></i><span>{{ item.label }} · {{ item.value }}</span></div>
@@ -918,7 +1322,7 @@ body {
                     </div>
                 </div>
                 <div class="insight-grid">
-                    <div class="insight-card"><i class="fa-solid fa-bolt"></i><strong>Quiz trong chat</strong><span>Học sinh hỏi một chủ đề ở bất kỳ môn nào, AI tạo bộ câu trắc nghiệm để làm ngay.</span></div>
+                    <div class="insight-card"><i class="fa-solid fa-bolt"></i><strong>Quiz trong chat</strong><span>Học sinh hỏi một chủ đề Vật Lý, AI tạo bộ câu trắc nghiệm để làm ngay.</span></div>
                     <div class="insight-card"><i class="fa-solid fa-chart-line"></i><strong>Lưu kết quả</strong><span>Điểm số và hoạt động được gom lại để theo dõi lâu dài.</span></div>
                     <div class="insight-card"><i class="fa-solid fa-gem"></i><strong>Kim cương</strong><span>Trả lời tốt trong diễn đàn sẽ nhận thưởng và đổi vật phẩm.</span></div>
                     <div class="insight-card"><i class="fa-solid fa-shield-halved"></i><strong>Kiểm duyệt</strong><span>Báo cáo vi phạm giúp cộng đồng học tập sạch hơn.</span></div>
@@ -931,7 +1335,7 @@ body {
         <div class="home-wrap">
             <div class="section-head">
                 <h2>Quy trình học gọn hơn</h2>
-                <p>Quy trình được chia theo hành động học thật: chọn môn, luyện tập, hỏi khi bí và ghi nhận tiến bộ.</p>
+                <p>Quy trình được chia theo hành động học thật: chọn lớp, luyện tập, hỏi khi bí và ghi nhận tiến bộ.</p>
             </div>
             <div class="workflow-grid">
                 <div class="workflow-step"><b>01</b><strong>Chọn nội dung</strong><span>Vào khóa học, bài tập hoặc đề trắc nghiệm phù hợp.</span></div>
@@ -946,23 +1350,23 @@ body {
         <div class="home-wrap">
             <div class="section-head">
                 <h2>Đánh giá từ người dùng</h2>
-                <p>Các phản hồi ngắn để người mới hiểu nhanh giá trị của EduPath.</p>
+                <p>Các phản hồi ngắn để người mới hiểu nhanh giá trị của PHYEDU.</p>
             </div>
             <div class="testimonial-grid">
                 <article class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <p>“Em thích phần AI tạo câu hỏi luyện tập, có thể hỏi Toán, Anh hoặc Lý rồi làm quiz ngay.”</p>
-                    <div class="reviewer"><div class="avatar-dot">A</div><div><strong>Anh Minh</strong><span>Học sinh lớp 9</span></div></div>
+                    <p>“Em thích phần AI tạo câu hỏi luyện tập Vật Lý rồi làm quiz ngay.”</p>
+                    <div class="reviewer"><div class="avatar-dot">A</div><div><strong>Anh Minh</strong><span>Học sinh lớp 10</span></div></div>
                 </article>
                 <article class="testimonial-card">
                     <div class="stars">★★★★★</div>
                     <p>“Diễn đàn có điểm thưởng làm học sinh chịu giải thích bài rõ hơn, không chỉ gửi đáp án.”</p>
-                    <div class="reviewer"><div class="avatar-dot">T</div><div><strong>Cô Thảo</strong><span>Giáo viên THCS</span></div></div>
+                    <div class="reviewer"><div class="avatar-dot">T</div><div><strong>Cô Thảo</strong><span>Giáo viên Vật Lý</span></div></div>
                 </article>
                 <article class="testimonial-card">
                     <div class="stars">★★★★☆</div>
                     <p>“Profile, huy hiệu và shop làm trang học có động lực hơn, nhìn hoạt động rất thật.”</p>
-                    <div class="reviewer"><div class="avatar-dot">K</div><div><strong>Khánh Linh</strong><span>Học sinh lớp 8</span></div></div>
+                    <div class="reviewer"><div class="avatar-dot">K</div><div><strong>Khánh Linh</strong><span>Học sinh lớp 12</span></div></div>
                 </article>
             </div>
         </div>
@@ -972,7 +1376,7 @@ body {
         <div class="home-wrap final-cta-box">
             <div>
                 <h2>Bắt đầu học theo cách rõ ràng hơn</h2>
-                <p>EduPath gom bài học, AI, diễn đàn và thành tích vào cùng một luồng học tập.</p>
+                <p>PHYEDU gom bài học, AI, diễn đàn và thành tích vào cùng một luồng học tập.</p>
             </div>
             <div class="final-actions">
                 {% if not session.user_id %}

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Tiến độ học sinh - Học Vui THCS{% endblock %}
+{% block title %}Tiến độ học sinh - Vật Lý THPT{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -110,7 +110,7 @@
 }
 
 .summary-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-info, #0091EA) 100%);
     color: white;
     padding: 25px;
     border-radius: 12px;
@@ -183,7 +183,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00) 0%, var(--phyedu-accent-light, #FF9100) 100%);
     color: white;
     display: flex;
     align-items: center;
@@ -209,14 +209,14 @@
 
 .progress-fill-small {
     height: 100%;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-info, #0091EA) 100%);
     border-radius: 10px;
     transition: width 0.3s;
 }
 
 .percentage-text {
     font-weight: 600;
-    color: #667eea;
+    color: var(--phyedu-primary-dark, #009624);
     min-width: 45px;
 }
 

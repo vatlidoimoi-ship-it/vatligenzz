@@ -1,0 +1,47 @@
+{
+  "name": "PHYEDU - Vật Lý THPT",
+  "short_name": "PHYEDU",
+  "description": "LMS học Vật Lý cho học sinh lớp 10, 11, 12.",
+  "start_url": "/app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAFAFA",
+  "theme_color": "#00C853",
+  "categories": ["education", "productivity"],
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "/static/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Khóa học",
+      "short_name": "Khóa học",
+      "url": "/courses",
+      "icons": [{ "src": "/static/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Trắc nghiệm",
+      "short_name": "Quiz",
+      "url": "/tracnghiem",
+      "icons": [{ "src": "/static/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Chatbot AI",
+      "short_name": "AI",
+      "url": "/chatbot",
+      "icons": [{ "src": "/static/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

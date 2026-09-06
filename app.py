@@ -14,9 +14,17 @@ from functools import wraps
 import os
 import random
 import re
+import sys
 from werkzeug.utils import secure_filename
 import uuid
 from PIL import Image, UnidentifiedImageError
+
+for output_stream in (sys.stdout, sys.stderr):
+    if hasattr(output_stream, "reconfigure"):
+        try:
+            output_stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
 
 load_dotenv()
 
@@ -24,7 +32,8 @@ from utils.auth import register_user, login_user, get_user_by_id, load_users, sa
 from utils.database import Database
 from utils.gemini_api import (
     chat_with_gemini,
-    generate_math_quiz,
+    chat_with_career_guidance,
+    generate_physics_quiz,
     generate_teacher_exam,
     is_quiz_request,
     process_response,
@@ -72,19 +81,26 @@ NOTIFICATIONS_FILE = writable_data_file("notifications.json", [])
 GIFT_EVENTS_FILE = writable_data_file("gift_events.json", [])
 
 FORUM_SUBJECTS = [
-    "Toán",
-    "Ngữ Văn",
-    "Tiếng Anh",
     "Vật Lý",
-    "Hóa Học",
-    "Sinh Học",
-    "Lịch Sử",
-    "Địa Lý",
-    "GDCD",
-    "Công Nghệ",
-    "Tin Học",
 ]
-ALLOWED_GRADE_LEVELS = ["6", "7", "8", "9"]
+ALLOWED_GRADE_LEVELS = ["10", "11", "12"]
+DOCUMENT_HSG_GRADE = "hsg"
+DOCUMENT_GRADE_LEVELS = ALLOWED_GRADE_LEVELS + [DOCUMENT_HSG_GRADE]
+DOCUMENT_GRADE_LABELS = {
+    "10": "Lớp 10",
+    "11": "Lớp 11",
+    "12": "Lớp 12",
+    DOCUMENT_HSG_GRADE: "HSG",
+}
+HSG_TOPIC_SUGGESTIONS = [
+    "Cơ học nâng cao",
+    "Điện học nâng cao",
+    "Quang học",
+    "Nhiệt học",
+    "Dao động - sóng",
+    "Ôn thi HSG",
+]
+DEFAULT_HSG_TOPIC = "Chưa phân loại"
 FORUM_GRADES = [f"Lớp {grade}" for grade in ALLOWED_GRADE_LEVELS]
 FORUM_REPORT_REASONS = {
     "spam": "Tài khoản spam",
@@ -108,48 +124,48 @@ GIFT_BOX_REWARDS = {
     "gold": {"name": "Hộp vàng", "threshold": 10, "points": 15},
     "red": {"name": "Hộp đỏ", "threshold": 15, "points": 25},
 }
-DAILY_MATH_QUESTIONS = [
+DAILY_PHYSICS_QUESTIONS = [
     {
-        "id": "math_01",
-        "question": "Tính giá trị của biểu thức: 3(2x - 1) khi x = 4.",
-        "options": ["18", "21", "23", "24"],
-        "answer": 1,
-        "explanation": "Thay x = 4, ta có 3(8 - 1) = 21.",
-    },
-    {
-        "id": "math_02",
-        "question": "Cho tam giác có hai góc 55° và 65°. Góc còn lại bằng bao nhiêu?",
-        "options": ["50°", "55°", "60°", "65°"],
+        "id": "physics_01",
+        "question": "Một vật chuyển động thẳng đều với vận tốc 12 m/s trong 5 giây. Quãng đường đi được là bao nhiêu?",
+        "options": ["17 m", "24 m", "60 m", "120 m"],
         "answer": 2,
-        "explanation": "Tổng ba góc tam giác là 180°, nên góc còn lại là 180° - 55° - 65° = 60°.",
+        "explanation": "Chuyển động thẳng đều có s = v.t = 12 x 5 = 60 m.",
     },
     {
-        "id": "math_03",
-        "question": "Giải phương trình: 2x + 7 = 19.",
-        "options": ["x = 5", "x = 6", "x = 7", "x = 8"],
+        "id": "physics_02",
+        "question": "Đơn vị SI của lực là gì?",
+        "options": ["Jun (J)", "Niutơn (N)", "Oát (W)", "Pascal (Pa)"],
         "answer": 1,
-        "explanation": "2x = 12 nên x = 6.",
+        "explanation": "Trong hệ SI, lực được đo bằng niutơn, kí hiệu N.",
     },
     {
-        "id": "math_04",
-        "question": "Rút gọn phân số 24/36 được kết quả nào?",
-        "options": ["1/2", "2/3", "3/4", "4/5"],
+        "id": "physics_03",
+        "question": "Công thức định luật II Newton là công thức nào?",
+        "options": ["F = m/a", "F = m.a", "F = a/m", "F = m + a"],
         "answer": 1,
-        "explanation": "Chia cả tử và mẫu cho 12, ta được 2/3.",
+        "explanation": "Định luật II Newton: gia tốc cùng hướng với hợp lực và có độ lớn a = F/m, nên F = m.a.",
     },
     {
-        "id": "math_05",
-        "question": "Nếu hình vuông có cạnh 7 cm thì diện tích là bao nhiêu?",
-        "options": ["14 cm²", "28 cm²", "49 cm²", "56 cm²"],
-        "answer": 2,
-        "explanation": "Diện tích hình vuông bằng cạnh nhân cạnh: 7 x 7 = 49 cm².",
+        "id": "physics_04",
+        "question": "Một điện tích thử dương đặt trong điện trường sẽ chịu lực theo hướng nào?",
+        "options": ["Ngược chiều điện trường", "Cùng chiều điện trường", "Vuông góc điện trường", "Không chịu lực"],
+        "answer": 1,
+        "explanation": "Chiều của véc tơ cường độ điện trường được quy ước là chiều lực tác dụng lên điện tích thử dương.",
     },
     {
-        "id": "math_06",
-        "question": "Số nào là nghiệm của bất phương trình x - 3 > 4?",
-        "options": ["6", "7", "8", "4"],
+        "id": "physics_05",
+        "question": "Trong mạch điện một chiều, công suất điện được tính bằng công thức nào?",
+        "options": ["P = U/I", "P = U.I", "P = I/U", "P = U + I"],
+        "answer": 1,
+        "explanation": "Công suất điện của đoạn mạch có thể tính bằng P = U.I.",
+    },
+    {
+        "id": "physics_06",
+        "question": "Hạt nhân nguyên tử gồm những hạt nào?",
+        "options": ["Electron và proton", "Proton và neutron", "Electron và neutron", "Photon và electron"],
         "answer": 2,
-        "explanation": "x - 3 > 4 nên x > 7. Trong các đáp án, 8 phù hợp.",
+        "explanation": "Hạt nhân nguyên tử gồm proton mang điện dương và neutron không mang điện.",
     },
 ]
 
@@ -160,6 +176,14 @@ def prevent_stale_html_cache(response):
         response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
         response.headers["Pragma"] = "no-cache"
         response.headers["Expires"] = "0"
+    return response
+
+
+@app.route("/service-worker.js")
+def service_worker():
+    response = send_from_directory(app.static_folder, "service-worker.js")
+    response.headers["Cache-Control"] = "no-cache"
+    response.headers["Service-Worker-Allowed"] = "/"
     return response
 
 
@@ -200,6 +224,11 @@ def youtube_embed_url(url):
 @app.template_filter("youtube_embed_url")
 def youtube_embed_url_filter(value):
     return youtube_embed_url(value)
+
+
+def normalize_document_topic(value):
+    topic = str(value or "").strip()
+    return topic if topic else DEFAULT_HSG_TOPIC
 
 
 def sanitize_course_payload(course_data):
@@ -344,6 +373,10 @@ def inject_admin_state():
     return {
         "is_admin_session": is_admin_account(),
         "notification_unread_count": unread_notifications_count(user_id) if user_id else 0,
+        "allowed_grade_levels": ALLOWED_GRADE_LEVELS,
+        "document_grade_levels": DOCUMENT_GRADE_LEVELS,
+        "document_grade_labels": DOCUMENT_GRADE_LABELS,
+        "hsg_topic_suggestions": HSG_TOPIC_SUGGESTIONS,
     }
 
 
@@ -396,10 +429,10 @@ def gift_attendance_streak(user_events, dt=None):
     return streak
 
 
-def daily_math_question_for(user_id, date_key=None):
+def daily_physics_question_for(user_id, date_key=None):
     date_key = date_key or gift_date_key()
     seed = sum(ord(ch) for ch in f"{user_id}:{date_key}")
-    question = DAILY_MATH_QUESTIONS[seed % len(DAILY_MATH_QUESTIONS)]
+    question = DAILY_PHYSICS_QUESTIONS[seed % len(DAILY_PHYSICS_QUESTIONS)]
     return {
         "id": question["id"],
         "question": question["question"],
@@ -449,7 +482,7 @@ def gift_status_payload(user_id):
         )
     return {
         "date": date_key,
-        "question": daily_math_question_for(user_id, date_key),
+        "question": daily_physics_question_for(user_id, date_key),
         "question_answered": bool(today_question),
         "question_correct": bool(today_question.get("is_correct")) if today_question else False,
         "question_points": int(today_question.get("points", 0)) if today_question else 0,
@@ -506,20 +539,46 @@ def build_home_stats():
         return cached_value
 
     users = load_users()
-    courses = db.get_all_courses()
+    courses = [
+        course
+        for course in db.get_all_courses()
+        if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
+    ]
     documents = [
         doc
         for doc in db.get_all_documents()
-        if doc.get("grade") in ALLOWED_GRADE_LEVELS
+        if doc.get("grade") in DOCUMENT_GRADE_LEVELS
     ]
-    forum_posts = db.get_all_forum_posts()
-    forum_comments = db._load_json(db.forum_comments_file)
-    submissions = db.get_all_submissions()
-    progress_rows = db._load_json(db.progress_file)
+    forum_posts = [
+        forum_normalize_question(post)
+        for post in db.get_all_forum_posts()
+    ]
+    forum_posts = [
+        post
+        for post in forum_posts
+        if post.get("subject") in FORUM_SUBJECTS and post.get("grade") in FORUM_GRADES
+    ]
+    visible_forum_post_ids = {post.get("id") for post in forum_posts}
+    forum_comments = [
+        comment
+        for comment in db._load_json(db.forum_comments_file)
+        if comment.get("post_id") in visible_forum_post_ids
+    ]
+    course_ids = {course.get("id") for course in courses}
+    submissions = [
+        submission
+        for submission in db.get_all_submissions()
+        if submission.get("course_id") in course_ids
+    ]
+    progress_rows = [
+        row
+        for row in db._load_json(db.progress_file)
+        if row.get("course_id") in course_ids
+    ]
     exam_results = [
         result
         for result in read_json(readable_data_file("exam_results.json"), [])
-        if str(result.get("grade", "")) in ALLOWED_GRADE_LEVELS
+        if result.get("subject") in SUBJECTS
     ]
 
     course_by_id = {course.get("id"): course for course in courses}
@@ -544,19 +603,7 @@ def build_home_stats():
         else 0
     )
 
-    exam_subject_codes = [
-        "toan",
-        "anh",
-        "li",
-        "hoa",
-        "sinh",
-        "su",
-        "dia",
-        "nguvan",
-        "gdcd",
-        "congnghe",
-        "tinhoc",
-    ]
+    exam_subject_codes = SUBJECTS.keys()
     total_exams = 0
     for subject_code in exam_subject_codes:
         subject_data = read_json(readable_data_file(f"{subject_code}.json"), {"exams": []})
@@ -601,19 +648,76 @@ def build_home_stats():
     return stats
 
 
+def redirect_to_role_home():
+    if session.get("role") == "admin":
+        return redirect(url_for("admin_home"))
+    if session.get("role") == "teacher":
+        return redirect(url_for("teacher_dashboard"))
+    return redirect(url_for("student_dashboard"))
+
+
 @app.route("/")
 def index():
     if "user_id" in session:
-        if session.get("role") == "admin":
-            return redirect(url_for("admin_home"))
-        elif session.get("role") == "teacher":
-            return redirect(url_for("teacher_dashboard"))
-        else:
-            return redirect(url_for("student_dashboard"))
+        return redirect_to_role_home()
 
     home_stats = build_home_stats()
 
     return render_template("index.html", home_stats=home_stats)
+
+
+@app.route("/app")
+def pwa_entry():
+    if "user_id" in session:
+        return redirect_to_role_home()
+    return redirect(url_for("login"))
+
+
+@app.route("/huong-dan-cai-app/")
+def install_guide():
+    guide_dir = os.path.join(app.root_path, "huong-dan-cai-app")
+    return send_from_directory(guide_dir, "index.html")
+
+
+@app.route("/huong-dan-cai-app/<path:filename>")
+def install_guide_asset(filename):
+    guide_dir = os.path.join(app.root_path, "huong-dan-cai-app")
+    return send_from_directory(guide_dir, filename)
+
+
+@app.route("/tam-li-huong-nghiep")
+@login_required
+def career_guidance():
+    return render_template("career_guidance.html")
+
+
+@app.route("/api/career-guidance/chat", methods=["POST"])
+@login_required
+def career_guidance_chat():
+    try:
+        data = request.get_json() or {}
+        message = str(data.get("message") or "").strip()
+        history = data.get("history") or []
+
+        if not message:
+            return jsonify({"success": False, "error": "Vui lòng nhập tin nhắn"}), 400
+
+        chat_history = []
+        for item in history[-8:]:
+            role = item.get("role")
+            content = str(item.get("content") or "").strip()
+            if role in {"user", "model"} and content:
+                chat_history.append({"role": role, "parts": [content]})
+
+        response = chat_with_career_guidance(message, chat_history=chat_history)
+        return jsonify({"success": True, "response": response})
+
+    except Exception as e:
+        print(f"[CAREER GUIDANCE API ERROR] {str(e)}")
+        return jsonify({
+            "success": False,
+            "error": "Có lỗi xảy ra khi tư vấn. Vui lòng thử lại sau.",
+        }), 500
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -854,8 +958,8 @@ def gift_question_submit():
     except (TypeError, ValueError):
         selected = -1
 
-    public_question = daily_math_question_for(user_id, date_key)
-    question = next(item for item in DAILY_MATH_QUESTIONS if item["id"] == public_question["id"])
+    public_question = daily_physics_question_for(user_id, date_key)
+    question = next(item for item in DAILY_PHYSICS_QUESTIONS if item["id"] == public_question["id"])
     is_correct = selected == int(question["answer"])
     points = random.randint(5, 10) if is_correct else 0
     user = get_user_by_id(user_id)
@@ -865,7 +969,7 @@ def gift_question_submit():
             session.get("username", "Unknown"),
             user.get("role", session.get("role", "student")) if user else session.get("role", "student"),
             points,
-            "daily_math_question",
+            "daily_physics_question",
         )
     events.append(
         {
@@ -931,7 +1035,11 @@ def gift_open_box():
 @login_required
 @student_required
 def student_dashboard():
-    courses = db.get_all_courses()
+    courses = [
+        course
+        for course in db.get_all_courses()
+        if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
+    ]
     my_progress = db.get_student_progress(session["user_id"])
 
     enrolled_courses = []
@@ -964,7 +1072,11 @@ def student_dashboard():
 @login_required
 @teacher_required
 def teacher_dashboard():
-    my_courses = db.get_courses_by_teacher(session["user_id"])
+    my_courses = [
+        course
+        for course in db.get_courses_by_teacher(session["user_id"])
+        if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
+    ]
 
     course_stats = []
     for course in my_courses:
@@ -989,7 +1101,11 @@ def teacher_dashboard():
 @app.route("/courses")
 @login_required
 def courses():
-    all_courses = db.get_all_courses()
+    all_courses = [
+        course
+        for course in db.get_all_courses()
+        if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
+    ]
 
     courses_with_teacher = []
     for course in all_courses:
@@ -1007,6 +1123,9 @@ def course_detail(course_id):
 
     if not course:
         flash("Khóa học không tồn tại", "danger")
+        return redirect(url_for("courses"))
+    if str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
+        flash("Khóa học không thuộc lớp đang hỗ trợ", "warning")
         return redirect(url_for("courses"))
 
     teacher = get_user_by_id(course["teacher_id"])
@@ -1041,7 +1160,7 @@ def create_course():
 
             if not data.get("grade"):
                 return jsonify(
-                    {"success": False, "message": "Vui lòng chọn lớp 6, 7, 8 hoặc 9"}
+                    {"success": False, "message": "Vui lòng chọn lớp 10, 11 hoặc 12"}
                 )
 
             all_courses = db.get_all_courses()
@@ -1078,6 +1197,9 @@ def edit_course(course_id):
     if not course:
         flash("Khóa học không tồn tại", "danger")
         return redirect(url_for("teacher_dashboard"))
+    if str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
+        flash("Khóa học không thuộc lớp đang hỗ trợ", "warning")
+        return redirect(url_for("teacher_dashboard"))
 
     if course["teacher_id"] != session["user_id"]:
         flash("Bạn không có quyền chỉnh sửa khóa học này", "danger")
@@ -1088,7 +1210,7 @@ def edit_course(course_id):
             data = sanitize_course_payload(request.get_json())
             if not data.get("grade"):
                 return jsonify(
-                    {"success": False, "message": "Vui lòng chọn lớp 6, 7, 8 hoặc 9"}
+                    {"success": False, "message": "Vui lòng chọn lớp 10, 11 hoặc 12"}
                 )
 
             success = db.update_course(course_id, data)
@@ -1113,6 +1235,8 @@ def delete_course(course_id):
 
     if not course:
         return jsonify({"success": False, "message": "Khóa học không tồn tại"})
+    if str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
+        return jsonify({"success": False, "message": "Khóa học không thuộc lớp đang hỗ trợ"})
 
     if course["teacher_id"] != session["user_id"]:
         return jsonify(
@@ -1129,7 +1253,11 @@ def delete_course(course_id):
 @app.route("/exercises")
 @login_required
 def exercises():
-    all_courses = db.get_all_courses()
+    all_courses = [
+        course
+        for course in db.get_all_courses()
+        if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
+    ]
 
     exercises_list = []
     for course in all_courses:
@@ -1177,6 +1305,10 @@ def submit_exercise():
         ):
             return jsonify({"success": False, "message": "Dữ liệu không đầy đủ"})
 
+        course = db.get_course_by_id(data["course_id"])
+        if not course or str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
+            return jsonify({"success": False, "message": "Khóa học không thuộc lớp đang hỗ trợ"})
+
         submission_data = {
             "course_id": data["course_id"],
             "exercise_id": data["lesson_id"],
@@ -1186,7 +1318,6 @@ def submit_exercise():
 
         submission_id = db.save_exercise_submission(session["user_id"], submission_data)
 
-        course = db.get_course_by_id(data["course_id"])
         if course:
             lesson = next(
                 (l for l in course.get("lessons", []) if l["id"] == data["lesson_id"]),
@@ -1237,30 +1368,63 @@ def submit_exercise():
 @login_required
 def documents():
     # Lấy các tham số lọc từ query string
-    grade_filter = request.args.get("grade", "all")  # 6, 7, 8, 9, hoặc all
+    grade_filter = request.args.get("grade", "all")  # 10, 11, 12, hsg hoặc all
     type_filter = request.args.get("type", "all")  # document, lecture, exam, hoặc all
+    topic_filter = request.args.get("topic", "all").strip()
 
-    docs = db.get_all_documents()
-    docs = [d for d in docs if d.get("grade") in ALLOWED_GRADE_LEVELS]
+    docs = []
+    for doc in db.get_all_documents():
+        if doc.get("grade") not in DOCUMENT_GRADE_LEVELS:
+            continue
+        clean_doc = dict(doc)
+        if clean_doc.get("grade") == DOCUMENT_HSG_GRADE:
+            clean_doc["topic"] = normalize_document_topic(clean_doc.get("topic"))
+        docs.append(clean_doc)
 
-    if grade_filter != "all" and grade_filter not in ALLOWED_GRADE_LEVELS:
+    if grade_filter != "all" and grade_filter not in DOCUMENT_GRADE_LEVELS:
         grade_filter = "all"
 
-    if grade_filter != "all":
-        docs = [d for d in docs if d.get("grade") == grade_filter]
     if type_filter != "all":
         docs = [d for d in docs if d.get("doc_type") == type_filter]
 
+    hsg_docs = [d for d in docs if d.get("grade") == DOCUMENT_HSG_GRADE]
+    hsg_topics = list(HSG_TOPIC_SUGGESTIONS)
+    for topic in sorted({normalize_document_topic(d.get("topic")) for d in hsg_docs}):
+        if topic not in hsg_topics:
+            hsg_topics.append(topic)
+
+    if grade_filter != "all":
+        docs = [d for d in docs if d.get("grade") == grade_filter]
+
+    if grade_filter == DOCUMENT_HSG_GRADE and topic_filter != "all":
+        docs = [
+            d for d in docs
+            if normalize_document_topic(d.get("topic")) == topic_filter
+        ]
+    else:
+        topic_filter = "all"
+
     docs_by_grade = {
         grade: [d for d in docs if d.get("grade") == grade]
-        for grade in ALLOWED_GRADE_LEVELS
+        for grade in DOCUMENT_GRADE_LEVELS
+    }
+
+    hsg_docs_by_topic = {
+        topic: [
+            d for d in docs_by_grade.get(DOCUMENT_HSG_GRADE, [])
+            if normalize_document_topic(d.get("topic")) == topic
+        ]
+        for topic in hsg_topics
     }
 
     return render_template(
         "documents.html",
         docs_by_grade=docs_by_grade,
+        hsg_docs_by_topic=hsg_docs_by_topic,
+        hsg_topics=hsg_topics,
         current_grade=grade_filter,
         current_type=type_filter,
+        current_topic=topic_filter,
     )
 
 
@@ -1320,6 +1484,11 @@ def add_document():
             if not data.get("grade"):
                 return jsonify({"success": False, "message": "Vui lòng chọn lớp học"})
 
+            if str(data.get("grade")) not in DOCUMENT_GRADE_LEVELS:
+                return jsonify(
+                    {"success": False, "message": "Chỉ hỗ trợ tài liệu lớp 10, 11, 12 hoặc HSG"}
+                )
+
             if not data.get("doc_type"):
                 return jsonify(
                     {"success": False, "message": "Vui lòng chọn loại tài liệu"}
@@ -1331,6 +1500,11 @@ def add_document():
                 data["link_type"] = "drive"
             else:
                 data["link_type"] = data.get("link_type", "other")
+
+            if data.get("grade") == DOCUMENT_HSG_GRADE:
+                data["topic"] = normalize_document_topic(data.get("topic"))
+            else:
+                data["topic"] = str(data.get("topic") or "").strip()
 
             data["teacher_id"] = session["user_id"]
 
@@ -1368,6 +1542,16 @@ def edit_document(doc_id):
         try:
             data = request.get_json()
 
+            if data.get("grade") and str(data.get("grade")) not in DOCUMENT_GRADE_LEVELS:
+                return jsonify(
+                    {"success": False, "message": "Chỉ hỗ trợ tài liệu lớp 10, 11, 12 hoặc HSG"}
+                )
+
+            if data.get("grade") == DOCUMENT_HSG_GRADE:
+                data["topic"] = normalize_document_topic(data.get("topic"))
+            elif "topic" in data:
+                data["topic"] = str(data.get("topic") or "").strip()
+
             # Tự động nhận diện link_type nếu để auto
             if data.get("link_type") == "auto" or not data.get("link_type"):
                 url = data.get("url", "")
@@ -1404,6 +1588,9 @@ def update_progress():
 
         if not data.get("course_id") or not data.get("lesson_id"):
             return jsonify({"success": False, "message": "Dữ liệu không đầy đủ"})
+        course = db.get_course_by_id(data["course_id"])
+        if not course or str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
+            return jsonify({"success": False, "message": "Khóa học không thuộc lớp đang hỗ trợ"})
 
         db.update_progress(
             session["user_id"],
@@ -1422,7 +1609,11 @@ def update_progress():
 @app.route("/teacher/students_progress")
 @teacher_required
 def students_progress():
-    teacher_courses = db.get_courses_by_teacher(session["user_id"])
+    teacher_courses = [
+        course
+        for course in db.get_courses_by_teacher(session["user_id"])
+        if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
+    ]
     teacher_course_ids = [c["id"] for c in teacher_courses]
 
     all_progress = db._load_json(db.progress_file)
@@ -1460,7 +1651,11 @@ def students_progress():
 @app.route("/teacher/view_submissions")
 @teacher_required
 def view_submissions():
-    teacher_courses = db.get_courses_by_teacher(session["user_id"])
+    teacher_courses = [
+        course
+        for course in db.get_courses_by_teacher(session["user_id"])
+        if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
+    ]
     teacher_course_ids = [c["id"] for c in teacher_courses]
 
     try:
@@ -1501,6 +1696,8 @@ def view_submissions():
 @login_required
 def api_get_course(course_id):
     course = db.get_course_by_id(course_id)
+    if course and str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
+        return jsonify({"success": False, "error": "Course not supported"}), 404
     if course:
         return jsonify({"success": True, "course": course})
     return jsonify({"success": False, "error": "Course not found"}), 404
@@ -1525,25 +1722,31 @@ def internal_error(error):
 # THÊM VÀO ĐẦU FILE app.py (sau phần import)
 # ============================================================================
 
-# Danh sách môn học đầy đủ (10 môn)
+# Danh sách môn học được dùng cho đề thi
 SUBJECTS = {
-    "toan": {"name": "Toán", "icon": "🔢", "color": "#3498db"},
-    "anh": {"name": "Tiếng Anh", "icon": "🇬🇧", "color": "#e74c3c"},
-    "li": {"name": "Vật Lý", "icon": "⚡", "color": "#9b59b6"},
-    "hoa": {"name": "Hóa Học", "icon": "🧪", "color": "#1abc9c"},
-    "sinh": {"name": "Sinh Học", "icon": "🧬", "color": "#2ecc71"},
-    "su": {"name": "Lịch Sử", "icon": "📜", "color": "#f39c12"},
-    "dia": {"name": "Địa Lý", "icon": "🌍", "color": "#16a085"},
-    "nguvan": {"name": "Ngữ Văn", "icon": "📖", "color": "#c0392b"},
-    "gdcd": {"name": "GDCD", "icon": "⚖️", "color": "#8e44ad"},
-    "congnghe": {"name": "Công Nghệ", "icon": "🔧", "color": "#34495e"},
-    "tinhoc": {"name": "Tin Học", "icon": "💻", "color": "#2c3e50"},
+    "li": {"name": "Vật Lý", "icon": "⚡", "color": "#0064B7"},
 }
 
 
 def validate_subject(subject):
     """Kiểm tra môn học hợp lệ"""
     return subject in SUBJECTS
+
+
+def is_supported_exam(exam):
+    return str((exam or {}).get("grade", "")).strip() in ALLOWED_GRADE_LEVELS
+
+
+def supported_exam_ids():
+    ids = set()
+    for subject_code in SUBJECTS:
+        data = _load_subject_exam_data(subject_code)
+        ids.update(
+            exam.get("id")
+            for exam in data.get("exams", [])
+            if is_supported_exam(exam)
+        )
+    return ids
 
 
 def _load_subject_exam_data(subject):
@@ -1577,6 +1780,10 @@ def _normalize_teacher_exam_payload(payload):
     subject = (payload.get("subject") or "").strip()
     if not validate_subject(subject):
         raise ValueError("Môn học không hợp lệ")
+
+    grade = (payload.get("grade") or "").strip()
+    if grade not in ALLOWED_GRADE_LEVELS:
+        raise ValueError("Chỉ hỗ trợ tạo đề cho lớp 10, 11, 12")
 
     title = (payload.get("title") or "").strip()
     if not title:
@@ -1625,6 +1832,7 @@ def _normalize_teacher_exam_payload(payload):
 
     return subject, {
         "title": title,
+        "grade": grade,
         "time_limit": time_limit,
         "description": (payload.get("description") or "").strip(),
         "questions": normalized_questions,
@@ -1634,13 +1842,13 @@ def _normalize_teacher_exam_payload(payload):
 
 
 # ============================================================================
-# ROUTE 1: Trang chọn đề thi - ĐÃ CẬP NHẬT CHO 10 MÔN
+# ROUTE 1: Trang chọn đề thi Vật Lý 10-12
 # ============================================================================
 @app.route("/tracnghiem")
 @login_required
 def tracnghiem():
     """
-    Trang chọn đề thi trắc nghiệm - Hỗ trợ 10 môn học
+    Trang chọn đề thi trắc nghiệm môn Vật Lý
     """
     print("========= DEBUG TRACNGHIEM =========")
     print(f"User ID: {session.get('user_id')}")
@@ -1651,13 +1859,17 @@ def tracnghiem():
     try:
         all_exams = []
 
-        # Đọc đề thi từ TẤT CẢ các môn học (10 môn)
+        # Đọc đề thi từ các môn học được bật
         for subject_code, subject_info in SUBJECTS.items():
             json_file = readable_data_file(f"{subject_code}.json")
             try:
                 with open(json_file, "r", encoding="utf-8") as f:
                     exams_data = json.load(f)
-                    exams = exams_data.get("exams", [])
+                    exams = [
+                        exam
+                        for exam in exams_data.get("exams", [])
+                        if is_supported_exam(exam)
+                    ]
 
                     for exam in exams:
                         exam["subject"] = subject_code
@@ -1710,7 +1922,11 @@ def teacher_exams():
     exams_by_subject = {}
     for subject_code, subject_info in SUBJECTS.items():
         data = _load_subject_exam_data(subject_code)
-        exams = data.get("exams", [])
+        exams = [
+            exam
+            for exam in data.get("exams", [])
+            if is_supported_exam(exam)
+        ]
         for exam in exams:
             exam["subject"] = subject_code
             exam["subject_name"] = subject_info["name"]
@@ -1769,8 +1985,8 @@ def teacher_ai_generate_exam():
         question_count = int(payload.get("question_count") or 10)
         time_limit = int(payload.get("time_limit") or 30)
         grade = (payload.get("grade") or "").strip()
-        if grade and grade not in ALLOWED_GRADE_LEVELS:
-            return jsonify({"success": False, "message": "Chỉ hỗ trợ tạo đề cho lớp 6, 7, 8, 9"}), 400
+        if grade not in ALLOWED_GRADE_LEVELS:
+            return jsonify({"success": False, "message": "Chỉ hỗ trợ tạo đề cho lớp 10, 11, 12"}), 400
         subject_name = SUBJECTS[subject]["name"]
 
         exam = generate_teacher_exam(
@@ -1819,9 +2035,9 @@ def teacher_delete_exam():
 def lam_bai_tracnghiem(subject, exam_id):
     """
     Hiển thị đề trắc nghiệm để học sinh làm bài
-    ĐÃ CẬP NHẬT: Hỗ trợ 10 môn học
+    ĐÃ CẬP NHẬT: Chỉ hỗ trợ môn Vật Lý
     """
-    # Validate môn học (10 môn)
+    # Validate môn học
     if not validate_subject(subject):
         flash(" Môn học không hợp lệ", "danger")
         return redirect(url_for("tracnghiem"))
@@ -1836,7 +2052,7 @@ def lam_bai_tracnghiem(subject, exam_id):
 
             exam = next((e for e in exams if e["id"] == exam_id), None)
 
-            if not exam:
+            if not exam or not is_supported_exam(exam):
                 flash("Đề thi không tồn tại", "danger")
                 return redirect(url_for("tracnghiem"))
 
@@ -1960,7 +2176,7 @@ def lam_bai_tracnghiem(subject, exam_id):
 @login_required
 def api_check_exam_time(subject, exam_id):
     """
-    API kiểm tra thời gian còn lại - Hỗ trợ 10 môn
+    API kiểm tra thời gian còn lại
     """
     if not validate_subject(subject):
         return jsonify(
@@ -1991,7 +2207,7 @@ def api_check_exam_time(subject, exam_id):
             exams = exams_data.get("exams", [])
             exam = next((e for e in exams if e["id"] == exam_id), None)
 
-            if not exam:
+            if not exam or not is_supported_exam(exam):
                 return jsonify(
                     {
                         "success": False,
@@ -2096,7 +2312,7 @@ def nop_bai_tracnghiem():
                 (e for e in exams_data.get("exams", []) if e["id"] == exam_id), None
             )
 
-        if not exam:
+        if not exam or not is_supported_exam(exam):
             return jsonify({"success": False, "message": "Không tìm thấy đề thi"}), 404
 
         # Kiểm tra thời gian
@@ -2409,7 +2625,7 @@ def nop_bai_tracnghiem():
 @login_required
 def lich_su_tracnghiem():
     """
-    Hiển thị lịch sử làm bài - Hỗ trợ 10 môn học
+    Hiển thị lịch sử làm bài môn Vật Lý
     """
     try:
         user_id = session.get("user_id")
@@ -2417,7 +2633,14 @@ def lich_su_tracnghiem():
 
         all_results = read_json(results_file, [])
 
-        user_results = [r for r in all_results if r.get("user_id") == user_id]
+        active_exam_ids = supported_exam_ids()
+        user_results = [
+            r
+            for r in all_results
+            if r.get("user_id") == user_id
+            and r.get("subject") in SUBJECTS
+            and r.get("exam_id") in active_exam_ids
+        ]
         user_results.sort(key=lambda x: x.get("submitted_at", ""), reverse=True)
 
         # Thêm tên môn học và icon
@@ -2482,6 +2705,10 @@ def ket_qua_tracnghiem(subject, exam_id):
     try:
         if not validate_subject(subject):
             flash("Môn học không hợp lệ", "danger")
+            return redirect(url_for("tracnghiem"))
+
+        if exam_id not in supported_exam_ids():
+            flash("Đề thi không thuộc phạm vi Vật Lý lớp 10, 11, 12", "warning")
             return redirect(url_for("tracnghiem"))
 
         user_id = session.get("user_id")
@@ -2672,6 +2899,11 @@ def forum_normalize_question(post):
     post["role_label"] = forum_role_label(post.get("author_role", "student"))
     post["is_first_question"] = bool(post.get("is_first_question", False))
     return post
+
+
+def is_supported_forum_post(post):
+    post = forum_normalize_question(dict(post or {}))
+    return post.get("subject") in FORUM_SUBJECTS and post.get("grade") in FORUM_GRADES
 
 
 def forum_points_events():
@@ -2988,32 +3220,31 @@ def shop_asset_file_payload(file, item_type):
 
 
 def forum_user_stats(user_id):
-    posts = db.get_all_forum_posts()
-    comments = db._load_json(db.forum_comments_file)
+    posts = [
+        forum_normalize_question(dict(post))
+        for post in db.get_all_forum_posts()
+    ]
+    posts = [
+        post
+        for post in posts
+        if post.get("subject") in FORUM_SUBJECTS and post.get("grade") in FORUM_GRADES
+    ]
+    post_ids = {post.get("id") for post in posts}
+    comments = [
+        comment
+        for comment in db._load_json(db.forum_comments_file)
+        if comment.get("post_id") in post_ids
+    ]
     points = forum_points_events()
     reports = read_json(FORUM_REPORTS_FILE, [])
     user_points = [event for event in points if event.get("user_id") == user_id]
     month = forum_month_key()
-    posts_by_id = {post.get("id"): forum_normalize_question(dict(post)) for post in posts}
+    posts_by_id = {post.get("id"): post for post in posts}
     helped_subject_groups = {
-        "KHTN": 0,
-        "KHXH": 0,
-        "Ngoại Ngữ": 0,
-        "Nghệ Thuật": 0,
-        "KHCN": 0,
+        "Vật Lý": 0,
     }
     subject_groups = {
-        "Toán": "KHTN",
-        "Vật Lý": "KHTN",
-        "Hóa Học": "KHTN",
-        "Sinh Học": "KHTN",
-        "Ngữ Văn": "KHXH",
-        "Lịch Sử": "KHXH",
-        "Địa Lý": "KHXH",
-        "GDCD": "KHXH",
-        "Tiếng Anh": "Ngoại Ngữ",
-        "Công Nghệ": "KHCN",
-        "Tin Học": "KHCN",
+        "Vật Lý": "Vật Lý",
     }
     for comment in comments:
         if comment.get("author_id") != user_id:
@@ -3059,7 +3290,17 @@ def forum_user_stats(user_id):
 
 def forum_user_activity(user_id, limit=6):
     posts = [forum_normalize_question(dict(post)) for post in db.get_all_forum_posts()]
-    comments = db._load_json(db.forum_comments_file)
+    posts = [
+        post
+        for post in posts
+        if post.get("subject") in FORUM_SUBJECTS and post.get("grade") in FORUM_GRADES
+    ]
+    post_ids = {post.get("id") for post in posts}
+    comments = [
+        comment
+        for comment in db._load_json(db.forum_comments_file)
+        if comment.get("post_id") in post_ids
+    ]
     points = forum_points_events()
     posts_by_id = {post.get("id"): post for post in posts}
 
@@ -3275,8 +3516,21 @@ def chart_percent(value, total):
 
 def admin_dashboard_stats(reports):
     users = load_users()
-    posts = db.get_all_forum_posts()
-    comments = db._load_json(db.forum_comments_file)
+    posts = [
+        forum_normalize_question(dict(post))
+        for post in db.get_all_forum_posts()
+    ]
+    posts = [
+        post
+        for post in posts
+        if post.get("subject") in FORUM_SUBJECTS and post.get("grade") in FORUM_GRADES
+    ]
+    post_ids = {post.get("id") for post in posts}
+    comments = [
+        comment
+        for comment in db._load_json(db.forum_comments_file)
+        if comment.get("post_id") in post_ids
+    ]
     chat_messages = db.get_all_chat_messages()
     point_events = forum_points_events()
     active_users = online_user_records()
@@ -3316,8 +3570,7 @@ def admin_dashboard_stats(reports):
 
     subject_totals = {}
     for post in posts:
-        normalized = forum_normalize_question(dict(post))
-        subject = normalized.get("subject") or "Khác"
+        subject = post.get("subject") or "Khác"
         subject_totals[subject] = subject_totals.get(subject, 0) + 1
     max_subject = max(subject_totals.values(), default=1)
     subject_rows = [
@@ -3410,6 +3663,11 @@ def forum():
         posts = db.get_all_forum_posts()
 
     posts = [forum_normalize_question(post) for post in posts]
+    posts = [
+        post
+        for post in posts
+        if post.get("subject") in FORUM_SUBJECTS and post.get("grade") in FORUM_GRADES
+    ]
 
     if filter_subject != "all":
         posts = [p for p in posts if p.get("subject") == filter_subject]
@@ -3457,8 +3715,12 @@ def forum_post_detail(post_id):
         flash("Bài viết không tồn tại", "danger")
         return redirect(url_for("forum"))
 
-    db.increment_post_views(post_id)
     post = forum_normalize_question(post)
+    if not is_supported_forum_post(post):
+        flash("Bài viết không thuộc môn/lớp đang hỗ trợ", "warning")
+        return redirect(url_for("forum"))
+
+    db.increment_post_views(post_id)
     decorate_forum_author(post, post.get("author_id"))
 
     comments = db.get_comments_by_post(post_id)
@@ -3600,6 +3862,9 @@ def forum_edit_post(post_id):
     if not post:
         flash("Bài viết không tồn tại", "danger")
         return redirect(url_for("forum"))
+    if not is_supported_forum_post(post):
+        flash("Bài viết không thuộc môn/lớp đang hỗ trợ", "warning")
+        return redirect(url_for("forum"))
 
     if post["author_id"] != session["user_id"]:
         flash("Bạn không có quyền chỉnh sửa bài viết này", "danger")
@@ -3676,6 +3941,8 @@ def forum_delete_post(post_id):
 
     if not post:
         return jsonify({"success": False, "message": "Bài viết không tồn tại"})
+    if not is_supported_forum_post(post):
+        return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"})
 
     if post["author_id"] != session["user_id"]:
         return jsonify(
@@ -3707,6 +3974,9 @@ def forum_thank_answer(comment_id):
     comments, answer = forum_answer_by_id(comment_id)
     if not answer:
         return jsonify({"success": False, "message": "Không tìm thấy câu trả lời"}), 404
+    post = db.get_forum_post_by_id(answer.get("post_id"))
+    if not post or not is_supported_forum_post(post):
+        return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"}), 404
     if answer.get("author_id") == session["user_id"]:
         return jsonify({"success": False, "message": "Không thể tự cảm ơn câu trả lời của mình"}), 400
 
@@ -3731,6 +4001,9 @@ def forum_rate_answer(comment_id):
     comments, answer = forum_answer_by_id(comment_id)
     if not answer:
         return jsonify({"success": False, "message": "Không tìm thấy câu trả lời"}), 404
+    post = db.get_forum_post_by_id(answer.get("post_id"))
+    if not post or not is_supported_forum_post(post):
+        return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"}), 404
     if answer.get("author_id") == session["user_id"]:
         return jsonify({"success": False, "message": "Không thể tự chấm sao câu trả lời của mình"}), 400
 
@@ -3765,6 +4038,9 @@ def forum_add_answer_discussion(comment_id):
     comments, answer = forum_answer_by_id(comment_id)
     if not answer:
         return jsonify({"success": False, "message": "Không tìm thấy câu trả lời"}), 404
+    post = db.get_forum_post_by_id(answer.get("post_id"))
+    if not post or not is_supported_forum_post(post):
+        return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"}), 404
 
     content = request.form.get("content", "").strip()
     if not content:
@@ -3799,6 +4075,8 @@ def forum_add_comment(post_id):
 
         if not post:
             return jsonify({"success": False, "message": "Bài viết không tồn tại"})
+        if not is_supported_forum_post(post):
+            return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"})
 
         content = request.form.get("content", "").strip()
 
@@ -3874,6 +4152,9 @@ def forum_delete_comment(comment_id):
 
     if not comment:
         return jsonify({"success": False, "message": "Bình luận không tồn tại"})
+    post = db.get_forum_post_by_id(comment.get("post_id"))
+    if not post or not is_supported_forum_post(post):
+        return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"})
 
     if comment["author_id"] != session["user_id"] and not is_admin_account():
         return jsonify(
@@ -3904,6 +4185,8 @@ def forum_accept_answer(comment_id):
     post = db.get_forum_post_by_id(answer["post_id"])
     if not post:
         return jsonify({"success": False, "message": "Không tìm thấy câu hỏi"}), 404
+    if not is_supported_forum_post(post):
+        return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"}), 404
     if post.get("author_id") != session["user_id"]:
         return jsonify({"success": False, "message": "Chỉ người đặt câu hỏi mới được chọn câu hay nhất"}), 403
     if answer.get("author_id") == session["user_id"]:
@@ -3950,6 +4233,8 @@ def forum_verify_answer(comment_id):
     post = db.get_forum_post_by_id(answer.get("post_id"))
     if not post:
         return jsonify({"success": False, "message": "Không tìm thấy câu hỏi"}), 404
+    if not is_supported_forum_post(post):
+        return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"}), 404
     if answer.get("is_verified_answer"):
         return jsonify({"success": False, "message": "Câu trả lời này đã được đánh giá"}), 400
     if answer.get("author_id") == session.get("user_id"):
@@ -3991,6 +4276,8 @@ def forum_report():
             post = db.get_forum_post_by_id(target_id)
             if not post:
                 return jsonify({"success": False, "message": "Không tìm thấy câu hỏi"}), 404
+            if not is_supported_forum_post(post):
+                return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"}), 404
             reported_user_id = post.get("author_id")
             reported_username = post.get("author_name")
             post_id = post.get("id")
@@ -3999,6 +4286,9 @@ def forum_report():
             answer = next((c for c in comments if c.get("id") == target_id), None)
             if not answer:
                 return jsonify({"success": False, "message": "Không tìm thấy câu trả lời"}), 404
+            post = db.get_forum_post_by_id(answer.get("post_id"))
+            if not post or not is_supported_forum_post(post):
+                return jsonify({"success": False, "message": "Bài viết không thuộc môn/lớp đang hỗ trợ"}), 404
             reported_user_id = answer.get("author_id")
             reported_username = answer.get("author_name")
             post_id = answer.get("post_id")
@@ -4746,7 +5036,11 @@ def save_game_bank(bank):
 
 
 def game_topics():
-    return normalize_game_bank().get("topics", [])
+    return [
+        topic
+        for topic in normalize_game_bank().get("topics", [])
+        if topic.get("grade") in FORUM_GRADES
+    ]
 
 
 def find_game_topic(topic_id):
@@ -4789,7 +5083,7 @@ def teacher_add_game_question():
             return redirect(url_for("teacher_game_questions"))
 
         if grade not in FORUM_GRADES:
-            flash("Lớp không hợp lệ. Chỉ hỗ trợ lớp 6, 7, 8, 9", "danger")
+            flash("Lớp không hợp lệ. Chỉ hỗ trợ lớp 10, 11, 12", "danger")
             return redirect(url_for("teacher_game_questions"))
 
         if answer not in [option_a, option_b, option_c, option_d]:
@@ -4797,6 +5091,9 @@ def teacher_add_game_question():
             return redirect(url_for("teacher_game_questions"))
 
         bank = normalize_game_bank()
+        bank["topics"] = [
+            topic for topic in bank["topics"] if topic.get("grade") in FORUM_GRADES
+        ]
         topics = bank["topics"]
         topic = next(
             (
@@ -4848,6 +5145,9 @@ def teacher_delete_game_question():
         index = int(request.form.get("index", -1))
 
         bank = normalize_game_bank()
+        bank["topics"] = [
+            topic for topic in bank["topics"] if topic.get("grade") in FORUM_GRADES
+        ]
         topic = next((item for item in bank["topics"] if item.get("id") == topic_id), None)
 
         if topic and 0 <= index < len(topic.get("questions", [])):
@@ -5058,7 +5358,7 @@ def chat():
             ), 400
 
         if user_message and not image_data and is_quiz_request(user_message):
-            quiz = generate_math_quiz(user_message)
+            quiz = generate_physics_quiz(user_message)
             response = f"Mình đã tạo {len(quiz['questions'])} câu trắc nghiệm. Bạn làm trực tiếp bên dưới nhé."
             processed = {
                 "text": response,

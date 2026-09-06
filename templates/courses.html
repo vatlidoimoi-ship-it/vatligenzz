@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Danh sách khóa học - Học Vui THCS{% endblock %}
+{% block title %}Danh sách khóa học - Vật Lý THPT{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -13,10 +13,9 @@
         <input type="text" id="searchInput" placeholder=" Tìm kiếm khóa học..." onkeyup="searchCourses()">
         <select id="gradeSelect" onchange="filterCourses()">
             <option value="all">Tất cả lớp</option>
-            <option value="6">Lớp 6</option>
-            <option value="7">Lớp 7</option>
-            <option value="8">Lớp 8</option>
-            <option value="9">Lớp 9</option>
+            {% for grade in allowed_grade_levels %}
+            <option value="{{ grade }}">Lớp {{ grade }}</option>
+            {% endfor %}
         </select>
         <select id="sortSelect" onchange="sortCourses()">
             <option value="default">Sắp xếp mặc định</option>
@@ -169,8 +168,8 @@ function sortCourses() {
 
 #searchInput:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--phyedu-primary, #00C853);
+    box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.12);
 }
 
 #gradeSelect,
@@ -187,8 +186,8 @@ function sortCourses() {
 #gradeSelect:focus,
 #sortSelect:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--phyedu-primary, #00C853);
+    box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.12);
 }
 
 .courses-count {
@@ -197,7 +196,7 @@ function sortCourses() {
 }
 
 .courses-count strong {
-    color: #007bff;
+    color: var(--phyedu-primary-dark, #009624);
 }
 
 .courses-grid {
@@ -217,13 +216,33 @@ function sortCourses() {
     flex-direction: column;
 }
 
+.course-card:nth-child(4n + 1) {
+    background: linear-gradient(180deg, var(--phyedu-green-soft, #EAFBF1) 0%, #ffffff 100%);
+    border: 1px solid #BAE7CB;
+}
+
+.course-card:nth-child(4n + 2) {
+    background: linear-gradient(180deg, var(--phyedu-blue-soft, #EAF4FF) 0%, #ffffff 100%);
+    border: 1px solid #BBDDF8;
+}
+
+.course-card:nth-child(4n + 3) {
+    background: linear-gradient(180deg, var(--phyedu-orange-soft, #FFF4E6) 0%, #ffffff 100%);
+    border: 1px solid #FFD2A6;
+}
+
+.course-card:nth-child(4n) {
+    background: linear-gradient(180deg, var(--phyedu-yellow-soft, #FFF8D7) 0%, #ffffff 100%);
+    border: 1px solid #F5E18A;
+}
+
 .course-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .course-image {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-info, #0091EA) 100%);
     padding: 40px;
     text-align: center;
 }
@@ -241,9 +260,9 @@ function sortCourses() {
 
 .course-grade-badge {
     align-self: flex-start;
-    background: #e7f1ff;
-    color: #0b5ed7;
-    border: 1px solid #b6d4fe;
+    background: var(--phyedu-green-soft, #EAFBF1);
+    color: var(--phyedu-primary-dark, #009624);
+    border: 1px solid #BAE7CB;
     border-radius: 999px;
     padding: 4px 10px;
     font-size: 12px;
@@ -303,19 +322,53 @@ function sortCourses() {
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00), var(--phyedu-accent-light, #FF9100));
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, var(--phyedu-accent-light, #FF9100), var(--phyedu-accent, #FF6D00));
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 109, 0, 0.3);
 }
 
 .btn-block {
     display: block;
     width: 100%;
+}
+
+.course-card:nth-child(4n + 1) {
+    background: linear-gradient(135deg, #00A63E 0%, #007E20 100%);
+}
+
+.course-card:nth-child(4n + 2) {
+    background: linear-gradient(135deg, #0091EA 0%, #0064B7 100%);
+}
+
+.course-card:nth-child(4n + 3) {
+    background: linear-gradient(135deg, #FF6D00 0%, #C95A00 100%);
+}
+
+.course-card:nth-child(4n) {
+    background: linear-gradient(135deg, #B77900 0%, #8A6200 100%);
+}
+
+.course-card,
+.course-card h3,
+.course-card .course-description,
+.course-card .meta-item {
+    color: #ffffff;
+}
+
+.course-card .course-meta {
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .22);
+}
+
+.course-card .course-grade-badge {
+    background: rgba(255, 255, 255, .18);
+    border-color: rgba(255, 255, 255, .34);
+    color: #ffffff;
 }
 
 .empty-state {

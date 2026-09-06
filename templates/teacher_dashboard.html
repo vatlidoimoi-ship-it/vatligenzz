@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard Giáo viên - Học Vui THCS{% endblock %}
+{% block title %}Dashboard Giáo viên - Vật Lý THPT{% endblock %}
 
 {% block content %}
 <div class="container dashboard">
@@ -203,7 +203,7 @@ async function deleteCourse(courseId, courseTitle) {
 }
 
 .stat-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-info, #0091EA) 100%);
     color: white;
     padding: 25px;
     border-radius: 12px;
@@ -216,7 +216,7 @@ async function deleteCourse(courseId, courseTitle) {
 }
 
 .stat-card:nth-child(2) {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00) 0%, var(--phyedu-accent-light, #FF9100) 100%);
 }
 
 .stat-card:nth-child(3) {

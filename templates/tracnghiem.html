@@ -13,67 +13,25 @@
         </div>
     </div>
 
-    <!-- Tabs cho 10 môn học -->
+    <!-- Tabs môn học -->
     <ul class="nav nav-tabs custom-tabs mb-4" id="subjectTabs" role="tablist">
+        {% for subject_code, subject_info in subjects.items() %}
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="toan-tab" data-bs-toggle="tab" data-bs-target="#toan" type="button" role="tab">
-                <i class="fas fa-calculator"></i> Toán
+            <button class="nav-link {% if loop.first %}active{% endif %}" id="{{ subject_code }}-tab" data-bs-toggle="tab" data-bs-target="#{{ subject_code }}" type="button" role="tab">
+                <i class="fas fa-atom"></i> {{ subject_info.name }}
             </button>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="anh-tab" data-bs-toggle="tab" data-bs-target="#anh" type="button" role="tab">
-                <i class="fas fa-language"></i> Tiếng Anh
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="li-tab" data-bs-toggle="tab" data-bs-target="#li" type="button" role="tab">
-                <i class="fas fa-atom"></i> Vật Lý
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="hoa-tab" data-bs-toggle="tab" data-bs-target="#hoa" type="button" role="tab">
-                <i class="fas fa-flask"></i> Hóa Học
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="sinh-tab" data-bs-toggle="tab" data-bs-target="#sinh" type="button" role="tab">
-                <i class="fas fa-dna"></i> Sinh Học
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="su-tab" data-bs-toggle="tab" data-bs-target="#su" type="button" role="tab">
-                <i class="fas fa-landmark"></i> Lịch Sử
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="dia-tab" data-bs-toggle="tab" data-bs-target="#dia" type="button" role="tab">
-                <i class="fas fa-globe-asia"></i> Địa Lý
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="nguvan-tab" data-bs-toggle="tab" data-bs-target="#nguvan" type="button" role="tab">
-                <i class="fas fa-book-open"></i> Ngữ Văn
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="gdcd-tab" data-bs-toggle="tab" data-bs-target="#gdcd" type="button" role="tab">
-                <i class="fas fa-balance-scale"></i> GDCD
-            </button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="congnghe-tab" data-bs-toggle="tab" data-bs-target="#congnghe" type="button" role="tab">
-                <i class="fas fa-tools"></i> Công Nghệ
-            </button>
-        </li>
+        {% endfor %}
     </ul>
 
     <!-- Nội dung tabs -->
     <div class="tab-content" id="subjectTabContent">
-        <!-- Toán -->
-        <div class="tab-pane fade show active" id="toan" role="tabpanel">
-            {% if exams_by_subject['toan']|length > 0 %}
+        {% for subject_code, subject_info in subjects.items() %}
+        {% set exams = exams_by_subject.get(subject_code, []) %}
+        <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="{{ subject_code }}" role="tabpanel">
+            {% if exams|length > 0 %}
                 <div class="row">
-                    {% for exam in exams_by_subject['toan'] %}
+                    {% for exam in exams %}
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="exam-card h-100">
                             <div class="card-body">
@@ -86,7 +44,7 @@
                                 <p class="exam-card-info">
                                     <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
                                 </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='toan', exam_id=exam.id) }}" class="exam-btn w-100">
+                                <a href="{{ url_for('lam_bai_tracnghiem', subject=subject_code, exam_id=exam.id) }}" class="exam-btn w-100">
                                     <i class="fas fa-pencil-alt"></i> Làm bài
                                 </a>
                             </div>
@@ -96,298 +54,11 @@
                 </div>
             {% else %}
                 <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Toán
+                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn {{ subject_info.name }}
                 </div>
             {% endif %}
         </div>
-
-        <!-- Tiếng Anh -->
-        <div class="tab-pane fade" id="anh" role="tabpanel">
-            {% if exams_by_subject['anh']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['anh'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='anh', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Tiếng Anh
-                </div>
-            {% endif %}
-        </div>
-
-        <!-- Vật Lý -->
-        <div class="tab-pane fade" id="li" role="tabpanel">
-            {% if exams_by_subject['li']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['li'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='li', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Vật Lý
-                </div>
-            {% endif %}
-        </div>
-
-        <!-- Hóa Học -->
-        <div class="tab-pane fade" id="hoa" role="tabpanel">
-            {% if exams_by_subject['hoa']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['hoa'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='hoa', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Hóa Học
-                </div>
-            {% endif %}
-        </div>
-
-        <!-- Sinh Học -->
-        <div class="tab-pane fade" id="sinh" role="tabpanel">
-            {% if exams_by_subject['sinh']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['sinh'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='sinh', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Sinh Học
-                </div>
-            {% endif %}
-        </div>
-
-        <!-- Lịch Sử -->
-        <div class="tab-pane fade" id="su" role="tabpanel">
-            {% if exams_by_subject['su']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['su'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='su', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Lịch Sử
-                </div>
-            {% endif %}
-        </div>
-
-        <!-- Địa Lý -->
-        <div class="tab-pane fade" id="dia" role="tabpanel">
-            {% if exams_by_subject['dia']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['dia'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='dia', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Địa Lý
-                </div>
-            {% endif %}
-        </div>
-
-        <!-- Ngữ Văn -->
-        <div class="tab-pane fade" id="nguvan" role="tabpanel">
-            {% if exams_by_subject['nguvan']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['nguvan'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='nguvan', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Ngữ Văn
-                </div>
-            {% endif %}
-        </div>
-
-        <!-- GDCD -->
-        <div class="tab-pane fade" id="gdcd" role="tabpanel">
-            {% if exams_by_subject['gdcd']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['gdcd'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='gdcd', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn GDCD
-                </div>
-            {% endif %}
-        </div>
-
-        <!-- Công Nghệ -->
-        <div class="tab-pane fade" id="congnghe" role="tabpanel">
-            {% if exams_by_subject['congnghe']|length > 0 %}
-                <div class="row">
-                    {% for exam in exams_by_subject['congnghe'] %}
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="exam-card h-100">
-                            <div class="card-body">
-                                <h5 class="exam-card-title">
-                                    <i class="fas fa-file-alt"></i> {{ exam.title }}
-                                </h5>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
-                                </p>
-                                <p class="exam-card-info">
-                                    <i class="fas fa-clock"></i> Thời gian: <strong>{{ exam.time_limit }} phút</strong>
-                                </p>
-                                <a href="{{ url_for('lam_bai_tracnghiem', subject='congnghe', exam_id=exam.id) }}" class="exam-btn w-100">
-                                    <i class="fas fa-pencil-alt"></i> Làm bài
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="empty-state">
-                    <i class="fas fa-info-circle"></i> Chưa có đề thi nào cho môn Công Nghệ
-                </div>
-            {% endif %}
-        </div>
+        {% endfor %}
     </div>
 
     <!-- Nút xem lịch sử -->

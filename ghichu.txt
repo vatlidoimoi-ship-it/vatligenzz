@@ -1,0 +1,1196 @@
+GHI CHÚ MÔ TẢ GIAO DIỆN WEBSITE PHYEDU
+
+Mục đích tài liệu
+- Tài liệu này mô tả giao diện hiện tại của website PHYEDU theo từng trang.
+- Người đọc chỉ cần xem file này là hình dung được website có những màn hình nào, bố cục ra sao, màu sắc thế nào, chữ lớn nhỏ thế nào và mỗi trang dùng để làm gì.
+- Website hiện tại là LMS học Vật Lý cho học sinh lớp 10, 11, 12 và giáo viên.
+- Tên thương hiệu dùng thống nhất là PHYEDU.
+- Logo chính là icon vuông bo góc nền xanh, biểu tượng nguyên tử và chữ PHYEDU.
+- Bản web thường có trang chủ giới thiệu. Bản app/PWA mở vào đường dẫn /app để đi thẳng tới đăng nhập hoặc dashboard.
+
+1. Giao diện chung toàn website
+
+File nền: templates/base.html
+
+Bố cục chung
+- Website dùng layout có navbar cố định phía trên, nội dung nằm ở giữa trang và footer phía dưới.
+- Navbar luôn nằm trên cùng, có hiệu ứng sticky để khi cuộn trang vẫn nhìn thấy menu.
+- Nội dung chính nằm trong block content của từng template.
+- Phần lớn trang dùng container căn giữa, chiều rộng tối đa khoảng 1100-1400px tùy trang.
+- Các trang học tập dùng nhiều card trắng, bo góc, bóng đổ nhẹ và nền pastel.
+- Các trang quản trị dùng bố cục dashboard, nhiều panel và bảng thông tin hơn.
+
+Màu sắc chung
+- Navbar dùng gradient tím/hồng: tím nhạt, tím hồng, hồng.
+- Nền body mặc định là gradient pastel hồng, tím nhạt, xanh rất nhạt.
+- Card chính thường là trắng hoặc trắng trong suốt.
+- Màu chữ chính là xanh đen hoặc đen đậm.
+- Màu chữ phụ là xám xanh, thường giống #64748b, #667085 hoặc #6b7280.
+- Nút chính dùng xanh dương, tím hoặc gradient hồng/tím.
+- Nút nguy hiểm dùng đỏ/hồng.
+- Nút phụ dùng nền trắng, viền xám/xanh/tím.
+
+Font và kích cỡ chữ chung
+- Font chính: Segoe UI, Tahoma, Geneva, Verdana, Arial, sans-serif.
+- Logo navbar khoảng 1.55rem trên desktop, giảm còn khoảng 1.5rem hoặc nhỏ hơn trên mobile.
+- Icon logo navbar 44x44px, bo góc 10px; mobile còn khoảng 38x38px.
+- H1 trang lớn thường 2rem đến 6rem tùy trang.
+- H2 section thường 1.5rem đến 2.2rem.
+- H3 trong card thường 1.05rem đến 1.4rem.
+- Chữ mô tả thường 0.95rem đến 1.1rem, line-height rộng khoảng 1.5-1.7 để dễ đọc.
+- Nút thường cao 40-54px, font đậm 700-900.
+
+Navbar
+- Bên trái là logo gồm ảnh icon PHYEDU và chữ PHYEDU.
+- Bên phải là menu theo trạng thái đăng nhập.
+- Khi chưa đăng nhập, hiển thị nút Đăng nhập và Đăng ký.
+- Khi đã đăng nhập, hiển thị các link chức năng như khóa học, tài liệu, trắc nghiệm, diễn đàn, chat, shop, dashboard, thông báo và đăng xuất.
+- Giáo viên/admin có thêm các link quản lý.
+- Trên mobile, menu chuyển sang nút hamburger. Khi mở, menu trượt ra dạng danh sách dọc.
+- Các link hover có nền trắng mờ, bo góc và hiệu ứng nâng nhẹ.
+
+PWA và nút cài app
+- Có nút nổi "Cài app" ở góc dưới bên phải.
+- Nút dùng gradient tím/hồng, chữ trắng, icon tải xuống.
+- Nút chỉ hiện khi trình duyệt hỗ trợ cài PWA.
+- static/manifest.webmanifest đặt tên app là PHYEDU - Vật Lý THPT.
+- short_name là PHYEDU để hiện gọn trên màn hình điện thoại.
+- start_url là /app. Vì vậy app đã cài sẽ không mở trang chủ giới thiệu mà đi thẳng vào luồng sử dụng.
+- display là standalone để app mở giống ứng dụng riêng.
+- Icon app dùng static/icons/icon-192.png và static/icons/icon-512.png.
+- iOS dùng static/icons/apple-touch-icon.png.
+- Service worker nằm ở /service-worker.js, cache app shell, icon, CSS, JS và trang offline.
+
+2. Trang chủ web
+
+URL: /
+Template: templates/index.html
+Đối tượng: người mới vào web, học sinh, giáo viên, phụ huynh hoặc người xem thử hệ thống.
+
+Mục đích
+- Đây là trang giới thiệu PHYEDU.
+- Trang này chỉ nên xuất hiện rõ ở bản web.
+- Người dùng đã cài app/PWA không cần đi qua trang này; app mở /app để tới đăng nhập/dashboard.
+
+Bố cục tổng thể
+- Phần đầu là hero lớn chiếm gần hết màn hình đầu tiên.
+- Hero chia 2 cột trên desktop.
+- Cột trái là thông điệp thương hiệu, nút hành động và số liệu.
+- Cột phải là panel "Quy trình học tập".
+- Trên mobile, hero chuyển thành một cột, panel nằm dưới phần giới thiệu.
+
+Ảnh nền
+- Nền hero dùng ảnh static/anhnen.png.
+- Ảnh là minh họa hoạt hình chủ đề Vật Lý, có các nhà khoa học nổi tiếng và biểu tượng nguyên tử/công thức.
+- Ảnh được phủ lớp overlay xanh đen để chữ trắng dễ đọc.
+- Background đặt center / cover, nên ảnh tự lấp đầy vùng hero.
+
+Màu sắc
+- Overlay hero: xanh đen trong suốt, đậm hơn bên trái và nhạt hơn về bên phải.
+- Chữ chính trong hero màu trắng.
+- Dòng kicker màu xanh mint nhạt.
+- Dải màu dưới hero là gradient xanh ngọc, xanh dương, vàng.
+- Panel quy trình nền trắng hơi trong, có blur nhẹ.
+
+Kích cỡ chữ
+- Kicker "LMS Vật Lý..." khoảng 0.9rem, in hoa, font đậm 800.
+- H1 "PHYEDU" rất lớn, khoảng clamp 3.2rem đến 6rem, font 900.
+- Mô tả dưới H1 khoảng 1.05rem đến 1.28rem, line-height 1.7.
+- Tiêu đề panel khoảng 1.2rem đến 1.5rem.
+- Chữ trong từng bước quy trình khoảng 0.95rem đến 1rem.
+
+Nội dung hiển thị
+- Kicker: LMS Vật Lý cho học sinh lớp 10-12 và giáo viên.
+- H1: PHYEDU.
+- Mô tả: nền tảng học tập có bài giảng, bài tập, trợ lí AI và cộng đồng hỏi đáp.
+- Nếu chưa đăng nhập: có nút Đăng ký miễn phí và Đăng nhập.
+- Nếu đã đăng nhập: có nút Vào học ngay và Hỏi AI.
+- Có 3 thống kê: học sinh, khóa học, tài liệu.
+- Panel quy trình gồm 5 bước: Đăng ký tài khoản, Chọn khóa học phù hợp, Học và làm bài tập, Diễn đàn hỏi đáp, Nhận phản hồi từ AI.
+
+Các section phía dưới
+- Có hàng card truy cập nhanh tới Khóa học, Trắc nghiệm, Trợ lí AI, Diễn đàn.
+- Mỗi card có icon, title đậm, mô tả ngắn và hover nâng nhẹ.
+- Có section không gian học tập cho lớp 10, 11, 12 và công cụ học tập.
+- Có section bản đồ nội dung Vật Lý 10-12, hiển thị các khối nội dung và công thức.
+- Có section biểu đồ/hoạt động diễn đàn Vật Lý.
+- Có section workflow 4 bước: chọn nội dung, luyện tập, hỏi khi bí, ghi nhận.
+- Cuối trang có CTA khuyến khích tạo tài khoản hoặc vào học.
+
+3. Trang đăng nhập
+
+URL: /login
+Template: templates/login.html
+Đối tượng: học sinh, giáo viên, admin.
+
+Bố cục
+- Toàn trang là màn hình đăng nhập căn giữa.
+- Nền full viewport với gradient pastel hồng, tím và xanh nhạt.
+- Form nằm trong card ở giữa, card có hiệu ứng kính mờ.
+- Card có padding rộng, bo góc lớn, bóng đổ mềm.
+- Các trường được xếp dọc: tài khoản, mật khẩu, vai trò.
+- Dưới form có link chuyển sang đăng ký.
+
+Màu sắc
+- Nền dùng gradient nhẹ và có các vùng trang trí mờ.
+- Card nền trắng trong suốt, có blur.
+- Tiêu đề dùng gradient tím/hồng hoặc màu đậm nổi bật.
+- Input nền trắng/tím rất nhạt.
+- Border input chuyển sáng khi focus.
+- Nút Đăng nhập dùng gradient hoặc màu chính, chữ trắng.
+- Alert lỗi dùng đỏ/hồng nhạt.
+
+Kích cỡ chữ
+- H2 "Đăng nhập" khoảng 2rem đến 2.4rem, font 800-900.
+- Label khoảng 0.95rem, font 700.
+- Input khoảng 1rem, cao khoảng 48-54px.
+- Nút submit full width, cao khoảng 50px, font đậm.
+
+Tương tác
+- Có nút hiện/ẩn mật khẩu nằm bên phải ô mật khẩu.
+- Người dùng chọn vai trò học sinh/giáo viên/admin.
+- Nếu chọn sai vai trò so với tài khoản, hiển thị cảnh báo.
+- Khi đăng nhập thành công, điều hướng theo vai trò.
+
+4. Trang đăng ký
+
+URL: /register
+Template: templates/register.html
+Đối tượng: học sinh tự tạo tài khoản.
+
+Bố cục
+- Gần giống trang đăng nhập.
+- Form nằm giữa màn hình trong card trắng.
+- Các input xếp dọc, gồm username, email, password và xác nhận/thông tin liên quan nếu có.
+- Cuối form có nút Đăng ký full width và link quay lại đăng nhập.
+
+Màu sắc
+- Nền gradient pastel hồng/tím.
+- Card trắng, bo góc lớn, bóng đổ hồng/tím.
+- Input nền sáng, border tím/hồng khi focus.
+- Nút chính gradient hồng/tím, chữ trắng.
+
+Kích cỡ chữ
+- H2 "Đăng ký tài khoản học sinh" khoảng 2rem.
+- Label và input giống trang đăng nhập.
+- Nút submit khoảng 48-52px, font đậm.
+
+Nội dung
+- Trang nhấn mạnh đăng ký tài khoản học sinh.
+- Người dùng sau đăng ký thành công được chuyển đến dashboard học sinh.
+
+5. Trang vào app PWA
+
+URL: /app
+Template: không có template riêng, xử lý bằng route trong app.py.
+
+Mục đích
+- Đây là điểm vào riêng cho app đã cài.
+- Không hiển thị trang chủ marketing.
+- Nếu chưa đăng nhập thì chuyển tới /login.
+- Nếu đã đăng nhập thì chuyển tới dashboard đúng vai trò.
+
+Trải nghiệm
+- Người dùng bấm icon app PHYEDU trên màn hình chính sẽ thấy thẳng trang đăng nhập hoặc dashboard.
+- Cảm giác giống app thật hơn vì không phải đi qua hero giới thiệu.
+
+6. Dashboard học sinh
+
+URL: /student/dashboard
+Template: templates/student_dashboard.html
+Đối tượng: học sinh.
+
+Bố cục
+- Container chính có class dashboard, căn giữa.
+- Đầu trang là welcome section có lời chào học sinh.
+- Dưới welcome là lưới 4 stat card.
+- Tiếp theo là section khóa học của bạn.
+- Bên dưới là section khám phá khóa học.
+- Course card được xếp dạng grid, tự xuống hàng trên màn hình nhỏ.
+
+Màu sắc
+- Welcome section dùng gradient pastel hồng/tím/xanh.
+- Stat card nền trắng, có bóng đổ và icon lớn.
+- Các stat card có accent màu khác nhau để phân biệt.
+- Progress bar dùng màu nổi bật, nền track nhạt.
+- Nút chính xanh/tím, nút phụ trắng viền xám hoặc xanh.
+
+Kích cỡ chữ
+- H1 chào mừng khoảng 2rem đến 2.5rem, font 800-900.
+- Subtitle khoảng 1rem đến 1.1rem.
+- Số trong stat card khoảng 2rem, font 900.
+- Tiêu đề section khoảng 1.6rem đến 2rem.
+- Tiêu đề khóa học trong card khoảng 1.2rem.
+
+Nội dung
+- Chào mừng tên học sinh.
+- Thống kê số khóa học, khóa đã tham gia, khóa hoàn thành và tiến độ trung bình.
+- Khóa học của bạn hiển thị title, mô tả, badge hoàn thành, tiến độ phần trăm và số bài học đã học.
+- Khám phá khóa học hiển thị các khóa khác để học sinh vào xem.
+
+Tương tác
+- Bấm vào khóa học để xem chi tiết.
+- Progress bar cập nhật theo bài đã hoàn thành.
+- Empty state xuất hiện khi chưa có khóa học.
+
+7. Dashboard giáo viên
+
+URL: /teacher/dashboard
+Template: templates/teacher_dashboard.html
+Đối tượng: giáo viên.
+
+Bố cục
+- Đầu trang là welcome section với lời chào giáo viên.
+- Có 4 stat card thống kê.
+- Section "Khóa học của bạn" hiển thị các khóa giáo viên đã tạo.
+- Section "Quản lý học sinh" hiển thị các card chức năng quản lý.
+- Layout quản lý dùng grid, mỗi card là một lối vào chức năng.
+
+Màu sắc
+- Nền trang sáng, card trắng.
+- Welcome section dùng gradient nhẹ.
+- Card có border nhạt và hover nâng lên.
+- Nút tạo khóa học dùng màu chính.
+- Nút xóa dùng đỏ.
+- Badge trạng thái hoạt động dùng xanh; chưa có học sinh dùng màu nhạt hơn.
+
+Kích cỡ chữ
+- H1 khoảng 2rem.
+- Stat number khoảng 2rem.
+- Section h2 khoảng 1.6rem.
+- Course title khoảng 1.2rem.
+- Text phụ khoảng 0.9rem đến 1rem.
+
+Nội dung
+- Thống kê số khóa học, học sinh, bài học và số liệu quản lý.
+- Mỗi khóa học có tên, lớp, mô tả, số bài học, số học sinh và trạng thái.
+- Card quản lý gồm tiến độ học sinh, bài nộp, thêm tài liệu, đề trắc nghiệm, game, thông báo.
+
+Tương tác
+- Giáo viên có thể xem, chỉnh sửa, xóa khóa học.
+- Bấm card quản lý để vào từng trang nghiệp vụ.
+
+8. Trang danh sách khóa học
+
+URL: /courses
+Template: templates/courses.html
+Đối tượng: học sinh, giáo viên, admin.
+
+Bố cục
+- Header trang gồm H1 "Danh sách khóa học" và subtitle.
+- Có vùng filters phía trên danh sách.
+- Danh sách khóa học nằm trong grid card.
+- Mỗi card gồm ảnh/icon khóa học, badge lớp, title, mô tả, metadata và nút xem chi tiết.
+- Empty state xuất hiện khi không có khóa học.
+
+Màu sắc
+- Nền trang sáng.
+- Card trắng, border nhạt, bóng đổ nhẹ.
+- Badge lớp dùng màu nổi bật.
+- Nút "Xem chi tiết" dùng màu chính, chữ trắng.
+
+Kích cỡ chữ
+- H1 khoảng 2rem đến 2.5rem.
+- Subtitle khoảng 1rem.
+- Course title trong card khoảng 1.25rem.
+- Mô tả khoảng 0.95rem.
+- Nút khoảng 0.95rem, font 700.
+
+Nội dung
+- Chỉ hiển thị khóa học lớp 10, 11, 12.
+- Có filter theo tên/lớp/sắp xếp.
+- Metadata thể hiện giáo viên, số bài học hoặc thông tin liên quan.
+
+Tương tác
+- Tìm kiếm khóa học bằng ô search.
+- Lọc theo lớp.
+- Sắp xếp danh sách.
+- Bấm nút để vào chi tiết khóa học.
+
+9. Trang chi tiết khóa học
+
+URL: /course/<course_id>
+Template: templates/course_detail.html
+Đối tượng: học sinh, giáo viên.
+
+Bố cục
+- Đầu trang là course header với badge lớp, tên khóa học, mô tả và thông tin giáo viên.
+- Nếu là giáo viên sở hữu khóa, có nút chỉnh sửa.
+- Dưới header là danh sách bài học.
+- Mỗi bài học là một lesson item có số thứ tự, tiêu đề, video, tài liệu và câu hỏi.
+- Câu hỏi nằm trong form riêng theo từng bài.
+- Cuối trang có nút quay lại danh sách khóa học.
+
+Màu sắc
+- Header khóa học dùng card trắng hoặc gradient nhẹ.
+- Lesson item nền trắng, border nhạt.
+- Bài đã hoàn thành có trạng thái completed, check mark và badge.
+- Khu vực câu hỏi có nền rất nhạt để tách khỏi nội dung bài học.
+- Result card màu xanh nếu đạt, màu đỏ/hồng nếu chưa đạt.
+
+Kích cỡ chữ
+- H1 tên khóa khoảng 2rem.
+- H2 danh sách bài học khoảng 1.6rem.
+- H3 bài học khoảng 1.2rem.
+- Câu hỏi khoảng 1rem.
+- Badge và meta khoảng 0.85rem đến 0.95rem.
+
+Nội dung
+- Tên khóa học, lớp, mô tả, giáo viên.
+- Danh sách bài học gồm video YouTube nhúng, link tài liệu nếu có, câu hỏi trắc nghiệm/tự luận.
+- Học sinh nộp câu trả lời hoặc đánh dấu hoàn thành nếu bài không có câu hỏi.
+
+Tương tác
+- Video nhúng phát trực tiếp trên trang.
+- Học sinh chọn đáp án hoặc nhập câu trả lời.
+- Sau khi nộp, hiện điểm và phản hồi.
+- Có thể đánh dấu bài học hoàn thành.
+
+10. Trang tạo/chỉnh sửa khóa học
+
+URL: /teacher/create_course và /teacher/edit_course/<course_id>
+Template: templates/create_course.html
+Đối tượng: giáo viên.
+
+Bố cục
+- Form lớn chia thành nhiều section.
+- Section thông tin khóa học nằm trên cùng: tiêu đề, mô tả, lớp.
+- Section bài học cho phép thêm nhiều bài.
+- Mỗi bài học có tiêu đề, video URL, tài liệu URL, mô tả và danh sách câu hỏi.
+- Câu hỏi có khu vực loại câu hỏi, nội dung câu hỏi, đáp án, lựa chọn A/B/C/D nếu là trắc nghiệm.
+- Có toolbar ký hiệu Vật Lý/toán học để chèn ký hiệu vào input.
+- Nút lưu nằm cuối form.
+
+Màu sắc
+- Nền trang sáng.
+- Form section nền trắng, bo góc, border nhạt.
+- Header section dùng màu xanh đậm.
+- Button thêm bài/thêm câu dùng xanh hoặc tím.
+- Button xóa dùng đỏ.
+- Toolbar ký hiệu có các nút nhỏ nền trắng, hover xanh/tím nhạt.
+
+Kích cỡ chữ
+- H1 khoảng 2rem.
+- H3 section khoảng 1.25rem.
+- Label khoảng 0.95rem, font 700.
+- Input/textarea khoảng 1rem.
+- Nút lớn khoảng 1rem, font 800.
+
+Nội dung
+- Chỉ cho chọn lớp 10, 11, 12.
+- Mỗi khóa có thể có nhiều bài học.
+- Mỗi bài học có thể có nhiều câu hỏi.
+- Hỗ trợ câu hỏi trắc nghiệm và tự luận.
+
+Tương tác
+- Thêm/xóa bài học động bằng JavaScript.
+- Thêm/xóa câu hỏi động.
+- Chọn loại câu hỏi để hiện/ẩn phần đáp án A/B/C/D.
+- Toolbar ký hiệu giúp nhập công thức nhanh.
+- Submit bằng fetch, khi thành công chuyển về dashboard giáo viên.
+
+11. Trang bài tập
+
+URL: /exercises
+Template: templates/exercises.html
+Đối tượng: học sinh.
+
+Bố cục
+- Trang gom bài tập theo khóa học/bài học.
+- Đầu trang có tiêu đề và mô tả.
+- Danh sách bài tập hiển thị bằng card.
+- Card bài tập thể hiện tên khóa, tên bài, trạng thái và nút làm/nộp.
+- Nếu chưa có bài tập, hiển thị empty state.
+
+Màu sắc
+- Nền sáng.
+- Card trắng, bo góc, border nhạt.
+- Badge trạng thái dùng xanh cho đã làm, vàng/xám cho chưa làm.
+- Nút hành động dùng màu chính.
+
+Kích cỡ chữ
+- Tiêu đề trang khoảng 2rem.
+- Title card khoảng 1.1rem đến 1.25rem.
+- Mô tả và meta khoảng 0.9rem.
+
+Tương tác
+- Học sinh mở bài tập theo khóa.
+- Sau khi nộp, trạng thái và tiến độ được cập nhật.
+
+12. Trang kho tài liệu
+
+URL: /documents
+Template: templates/documents.html
+Đối tượng: học sinh, giáo viên.
+
+Bố cục
+- Header có H1 "Kho tài liệu Vật Lý" và subtitle.
+- Giáo viên/admin có nút thêm tài liệu.
+- Có filter lớp: tất cả, lớp 10, lớp 11, lớp 12.
+- Có filter loại tài liệu: tất cả, tài liệu, bài giảng, đề thi.
+- Tài liệu hiển thị theo grid card.
+- Mỗi card gồm badge loại, badge lớp, title, mô tả, loại link, ngày tạo và nhóm nút hành động.
+- Có modal xóa tài liệu và modal xem video.
+
+Màu sắc
+- Nền trang sáng.
+- Grade/type filter là nút pill, active dùng màu tím/xanh.
+- Card tài liệu nền trắng, border nhạt, hover nâng lên.
+- Badge loại tài liệu dùng màu riêng theo loại.
+- Modal video dùng nền phủ tối, player ở giữa.
+
+Kích cỡ chữ
+- H1 khoảng 2rem đến 2.4rem.
+- Grade title khoảng 1.5rem.
+- Title tài liệu khoảng 1.15rem.
+- Button action khoảng 0.9rem.
+
+Nội dung
+- Tài liệu chỉ thuộc lớp 10, 11, 12.
+- Hỗ trợ YouTube, Google Drive và link trực tiếp.
+- Nếu là YouTube thì có thể xem trong modal.
+- Nếu là Drive/link ngoài thì mở tab mới.
+
+Tương tác
+- Lọc theo lớp và loại.
+- Xem video trong modal full màn hình.
+- Giáo viên có thể sửa/xóa tài liệu.
+- Modal xóa có cảnh báo không thể hoàn tác.
+
+13. Trang thêm/chỉnh sửa tài liệu
+
+URL: /teacher/add_document và /teacher/edit_document/<doc_id>
+Template: templates/add_document.html
+Đối tượng: giáo viên.
+
+Bố cục
+- Header có tiêu đề "Thêm tài liệu mới" hoặc "Chỉnh sửa tài liệu".
+- Form gồm tên tài liệu, mô tả, lớp, loại tài liệu, URL và loại link.
+- Bên dưới có khu vực xem trước link.
+- Nút submit và nút quay lại nằm cuối form.
+
+Màu sắc
+- Container sáng, form card trắng.
+- Input có border xám nhạt, focus chuyển xanh/tím.
+- Nút chính xanh/tím, nút phụ xám.
+- Preview section nền trắng, border nhạt.
+
+Kích cỡ chữ
+- H1 khoảng 2rem.
+- Subtitle khoảng 1rem.
+- Label 0.95rem, font đậm.
+- Input/textarea 1rem.
+- Preview h3 khoảng 1.25rem.
+
+Tương tác
+- Khi nhập URL, trang tự xem trước YouTube hoặc Google Drive.
+- Submit hiển thị trạng thái "Đang xử lý".
+- Sau khi lưu thành công chuyển về kho tài liệu.
+
+14. Trang tiến độ học sinh
+
+URL: /teacher/students_progress
+Template: templates/student_progress.html
+Đối tượng: giáo viên.
+
+Bố cục
+- Header trang hiển thị tiêu đề theo dõi tiến độ.
+- Nội dung chính là bảng hoặc danh sách tiến độ theo học sinh/khóa học.
+- Mỗi dòng có tên học sinh, khóa học, số bài đã hoàn thành và phần trăm.
+- Có progress bar trực quan.
+
+Màu sắc
+- Nền sáng, table/card trắng.
+- Progress bar màu xanh/tím.
+- Text phụ xám.
+- Badge hoàn thành dùng xanh.
+
+Kích cỡ chữ
+- Tiêu đề trang khoảng 2rem.
+- Header bảng khoảng 0.9rem, font 700.
+- Nội dung bảng khoảng 0.95rem.
+
+15. Trang xem bài nộp
+
+URL: /teacher/view_submissions
+Template: templates/view_submissions.html
+Đối tượng: giáo viên.
+
+Bố cục
+- Header trang mô tả danh sách bài nộp.
+- Có bộ lọc hoặc nhóm theo khóa/bài nếu dữ liệu hỗ trợ.
+- Bài nộp hiển thị dạng bảng/card: học sinh, khóa học, bài học, câu trả lời, điểm, thời gian.
+- Empty state xuất hiện khi chưa có bài nộp.
+
+Màu sắc
+- Giao diện quản lý nền sáng.
+- Bảng/card trắng, border nhạt.
+- Điểm cao dùng xanh, điểm thấp dùng đỏ/vàng.
+- Button xem chi tiết hoặc quay lại dùng màu chính.
+
+Kích cỡ chữ
+- H1 khoảng 2rem.
+- Nội dung bảng khoảng 0.95rem.
+- Badge điểm khoảng 0.85rem, font đậm.
+
+16. Trang danh sách đề trắc nghiệm
+
+URL: /tracnghiem
+Template: templates/tracnghiem.html
+Đối tượng: học sinh, giáo viên.
+
+Bố cục
+- Container Bootstrap mt-4.
+- Header có title "Đề Trắc Nghiệm" và subtitle.
+- Có tab môn học, hiện tại chỉ còn Vật Lý.
+- Trong tab là grid đề thi, mỗi đề là một card.
+- Cuối trang có nút xem lịch sử làm bài.
+
+Màu sắc
+- Nền sáng.
+- Tab active dùng màu xanh/tím.
+- Exam card nền trắng, border nhạt, bóng đổ.
+- Nút "Làm bài" dùng gradient hoặc màu chính, chữ trắng.
+
+Kích cỡ chữ
+- Page title khoảng 2rem.
+- Subtitle khoảng 1rem.
+- Title đề trong card khoảng 1.1rem đến 1.25rem.
+- Thông tin số câu/thời gian khoảng 0.95rem.
+
+Nội dung
+- Chỉ hiển thị đề Vật Lý.
+- Đề có title, số câu hỏi, thời gian làm bài.
+- Empty state hiện khi chưa có đề.
+
+17. Trang làm bài trắc nghiệm
+
+URL: /tracnghiem/lam-bai/<subject>/<exam_id>
+Template: templates/baitap.html
+Đối tượng: học sinh.
+
+Bố cục
+- Trang làm bài dạng bài thi.
+- Đầu trang hiển thị tên đề, môn, lớp và thời gian.
+- Có khu vực câu hỏi và đáp án.
+- Có đồng hồ đếm ngược.
+- Có nút nộp bài.
+
+Màu sắc
+- Nền sáng hoặc gradient nhẹ.
+- Khung đề trắng, bo góc.
+- Đáp án là các lựa chọn dạng box/pill.
+- Đáp án được chọn có màu xanh/tím nổi bật.
+- Cảnh báo thời gian dùng vàng/đỏ khi gần hết giờ.
+
+Kích cỡ chữ
+- Tên đề khoảng 1.8rem đến 2.2rem.
+- Câu hỏi khoảng 1rem đến 1.1rem, font rõ.
+- Đáp án khoảng 0.95rem đến 1rem.
+- Timer font đậm, dễ nhìn.
+
+Tương tác
+- Học sinh chọn đáp án từng câu.
+- Timer tự chạy.
+- Nộp bài bằng nút submit.
+- Sau khi nộp chuyển sang trang kết quả.
+
+18. Trang kết quả trắc nghiệm
+
+URL: /tracnghiem/ket-qua/<subject>/<exam_id>
+Template: templates/ketqua.html
+Đối tượng: học sinh.
+
+Bố cục
+- Header kết quả hiển thị điểm và trạng thái.
+- Có card điểm số, phần trăm đúng, tổng câu.
+- Có progress/circle hoặc thanh tiến độ.
+- Có khu vực phân tích AI.
+- Có danh sách câu sai, đáp án của học sinh, đáp án đúng và giải thích.
+- Cuối trang có nút làm lại, quay về danh sách đề, xem lịch sử.
+
+Màu sắc
+- Card kết quả nền trắng, bóng đổ.
+- Điểm tốt dùng xanh, điểm thấp dùng đỏ/vàng.
+- AI analysis dùng nhiều card màu nhẹ: đánh giá, điểm mạnh, điểm yếu, kế hoạch học.
+- Câu sai dùng nền đỏ rất nhạt, đáp án đúng dùng xanh nhạt.
+
+Kích cỡ chữ
+- Điểm lớn có thể khoảng 2.5rem đến 4rem.
+- Title card khoảng 1.25rem.
+- Nội dung phân tích khoảng 0.95rem.
+- Button action khoảng 0.95rem, font 700-800.
+
+19. Trang lịch sử làm bài
+
+URL: /tracnghiem/lich-su
+Template: templates/lichsu_tracnghiem.html
+Đối tượng: học sinh.
+
+Bố cục
+- Header có title "Lịch Sử Làm Bài Trắc Nghiệm".
+- Có 4 stat card: tổng số bài, điểm trung bình, điểm cao nhất, điểm thấp nhất.
+- Có bảng danh sách bài đã làm.
+- Có section biểu đồ tiến bộ.
+- Empty state khi chưa có lịch sử.
+
+Màu sắc
+- Stat card trắng, border nhẹ, hover nâng lên.
+- Số thống kê dùng màu khác nhau: xanh dương, xanh lá, vàng, đỏ.
+- Bảng trắng, header nổi bật.
+- Score badge đổi màu theo điểm.
+
+Kích cỡ chữ
+- Page title khoảng 2rem.
+- Stat number khoảng 2rem.
+- Table text khoảng 0.95rem.
+- Action button nhỏ, icon mắt/làm lại.
+
+20. Trang giáo viên quản lý đề trắc nghiệm
+
+URL: /teacher/exams
+Template: templates/teacher_exams.html
+Đối tượng: giáo viên.
+
+Bố cục
+- Header có title "Quản lý đề trắc nghiệm" và link xem kho đề.
+- Nội dung chính chia thành tool grid.
+- Panel trái: tạo thủ công.
+- Panel phải: AI tạo bản nháp.
+- Bên dưới: danh sách đề hiện có.
+- Trong tạo thủ công có form thông tin đề và editor câu hỏi.
+
+Màu sắc
+- Nền trang xám rất nhạt.
+- Panel trắng, bo góc 8px, border nhạt.
+- Nút chính xanh dương.
+- Nút nhỏ nền trắng/xám nhạt.
+- Nút xóa đề dùng đỏ.
+
+Kích cỡ chữ
+- H1 khoảng 2rem.
+- H2 panel khoảng 1.3rem đến 1.5rem.
+- H3 câu hỏi khoảng 1.1rem.
+- Input/textarea khoảng 0.95rem.
+
+Tương tác
+- Thêm/xóa câu hỏi động.
+- Nhờ AI tạo đề, sau đó đổ dữ liệu vào builder.
+- Lưu đề bằng fetch.
+- Xóa đề hiện có.
+
+21. Trang diễn đàn hỏi đáp
+
+URL: /forum
+Template: templates/forum.html
+Đối tượng: học sinh, giáo viên, admin.
+
+Bố cục
+- Trang chia 2 cột trên desktop.
+- Cột trái là danh sách câu hỏi.
+- Cột phải là sidebar hồ sơ mini và top tháng.
+- Thanh công cụ trên cùng có filter lớp, môn, trạng thái/tìm kiếm tùy dữ liệu.
+- Có nút "Đặt câu hỏi".
+- Mỗi câu hỏi là card có avatar, meta, title, excerpt, file đính kèm và nút trả lời.
+
+Màu sắc
+- Nền trang xám xanh rất nhạt.
+- Question card nền trắng, border nhạt.
+- Badge đã trả lời/đã giải đáp/lần đầu hỏi dùng màu riêng.
+- Nút đặt câu hỏi dùng xanh dương.
+- Sidebar card nền trắng, shadow nhẹ.
+
+Kích cỡ chữ
+- Title câu hỏi khoảng 1.1rem đến 1.25rem.
+- Excerpt khoảng 0.95rem.
+- Meta và badge khoảng 0.8rem đến 0.9rem.
+- Sidebar h3 khoảng 1.1rem.
+
+22. Trang đặt/sửa câu hỏi diễn đàn
+
+URL: /forum/create và /forum/edit/<post_id>
+Template: templates/forum_create_post.html
+Đối tượng: học sinh, giáo viên, admin.
+
+Bố cục
+- Một card lớn nằm giữa trang.
+- Header có title "Đặt câu hỏi mới" hoặc "Sửa câu hỏi".
+- Form gồm môn, lớp, tiêu đề, nội dung và file đính kèm.
+- Có khu vực hiện file hiện tại khi sửa.
+- Cuối form có nút hủy và nút đăng/cập nhật.
+
+Màu sắc
+- Nền sáng.
+- Card trắng, bo góc, bóng đổ nhẹ.
+- Input/textarea border xám nhạt, focus xanh.
+- Nút submit dùng xanh.
+- Nút hủy dạng link/nút phụ.
+
+Kích cỡ chữ
+- H1 khoảng 1.8rem đến 2rem.
+- Label 0.95rem, font đậm.
+- Textarea cao lớn để nhập câu hỏi.
+
+23. Trang chi tiết câu hỏi diễn đàn
+
+URL: /forum/post/<post_id>
+Template: templates/forum_post_detail.html
+Đối tượng: học sinh, giáo viên, admin.
+
+Bố cục
+- Có link quay lại danh sách.
+- Card câu hỏi chính ở trên.
+- Bên dưới là section câu trả lời.
+- Mỗi câu trả lời là một answer item.
+- Cuối trang có form trả lời.
+- Có modal báo cáo vi phạm.
+
+Màu sắc
+- Card nền trắng, border nhạt.
+- Câu trả lời hay nhất có viền/accent nổi bật.
+- Câu trả lời đã đánh giá/xác thực có badge riêng.
+- Nút cảm ơn/rating dùng màu xanh/vàng.
+- Modal báo cáo dùng nền phủ tối, hộp trắng ở giữa.
+
+Kích cỡ chữ
+- H1 câu hỏi khoảng 1.7rem.
+- H2 section câu trả lời khoảng 1.3rem.
+- Nội dung câu hỏi/câu trả lời khoảng 1rem, line-height rộng.
+- Badge nhỏ khoảng 0.8rem.
+
+24. Trang hồ sơ diễn đàn
+
+URL: /profile và /profile/<user_id>
+Template: templates/forum_profile.html
+Đối tượng: mọi tài khoản.
+
+Bố cục
+- Trang dạng profile shell.
+- Card hồ sơ lớn ở đầu gồm avatar, tên, vai trò, danh hiệu, kim cương và thống kê.
+- Có section chỉnh sửa hồ sơ nếu là chính chủ.
+- Có section hoạt động gần đây, câu trả lời xác thực, kho vật phẩm và danh sách câu hỏi.
+
+Màu sắc
+- Nền sáng.
+- Profile card trắng, bo góc lớn, shadow.
+- Avatar có thể có khung trang trí từ shop.
+- Badge vai trò/danh hiệu dùng màu nổi.
+- Inventory card nền trắng/xanh nhạt.
+
+Kích cỡ chữ
+- Tên người dùng H1 khoảng 2rem.
+- Badge 0.8rem đến 0.9rem.
+- Section h2 khoảng 1.3rem.
+- Text hoạt động khoảng 0.95rem.
+
+25. Trang câu trả lời xác thực
+
+URL: /profile/<user_id>/verified
+Template: templates/forum_verified_answers.html
+Đối tượng: người xem hồ sơ.
+
+Bố cục
+- Header có tên user và link quay lại hồ sơ.
+- Danh sách câu trả lời xác thực hiển thị bằng card.
+- Mỗi card có title câu hỏi, nội dung tóm tắt, thời gian và link xem câu hỏi.
+- Empty state nếu chưa có câu trả lời xác thực.
+
+Màu sắc
+- Nền sáng.
+- Card trắng, border nhạt.
+- Accent xanh cho trạng thái xác thực.
+
+26. Trang bảng xếp hạng hỏi đáp
+
+URL: /forum/leaderboard
+Template: templates/forum_leaderboard.html
+Đối tượng: cộng đồng diễn đàn.
+
+Bố cục
+- Header có title "Bảng xếp hạng tháng" và link quay lại hỏi đáp.
+- Section top 5 hiển thị card lớn.
+- Bên dưới là bảng top 20.
+- Mỗi dòng có thứ hạng, avatar, username và điểm.
+
+Màu sắc
+- Nền sáng.
+- Top card trắng, shadow.
+- Top 1/2/3 có icon cúp/huy chương nổi bật.
+- Điểm dùng màu vàng/xanh.
+
+27. Trang shop kim cương
+
+URL: /shop
+Template: templates/shop.html
+Đối tượng: học sinh, giáo viên.
+
+Bố cục
+- Header có title "Shop kim cương", mô tả và balance box.
+- Danh sách vật phẩm hiển thị dạng grid card.
+- Mỗi shop card có icon vật phẩm, tên, mô tả, giá, trạng thái sở hữu/trang bị và nút hành động.
+- Empty state khi chưa có vật phẩm.
+
+Màu sắc
+- Header/card nền trắng.
+- Balance box có icon kim cương, màu xanh/tím.
+- Item card trắng, border nhạt.
+- Nút đổi vật phẩm dùng xanh, nút trang bị dùng tím/xanh.
+
+28. Trang admin quản lý shop
+
+URL: /admin/shop
+Template: templates/admin_shop.html
+Đối tượng: admin.
+
+Bố cục
+- Header quản lý shop có link sang kiểm duyệt và xem shop.
+- Grid chính gồm panel tạo vật phẩm và panel trao thưởng top 5 tháng.
+- Bên dưới là panel danh sách vật phẩm.
+- Form tạo vật phẩm có tên, mô tả, loại, giá, class CSS và upload asset.
+- Danh sách vật phẩm dạng row/table.
+
+Màu sắc
+- Nền admin sáng/xám nhạt.
+- Panel trắng, border nhạt, bo góc 8px.
+- Header chữ xanh đậm.
+- Trạng thái active dùng xanh, inactive dùng xám/đỏ nhạt.
+
+29. Trang admin kiểm duyệt diễn đàn
+
+URL: /admin/forum-reports
+Template: templates/admin_forum_reports.html
+Đối tượng: admin.
+
+Bố cục
+- Header "Dashboard quản trị" và các link hành động.
+- Metric grid gồm nhiều card thống kê.
+- Analytics grid gồm biểu đồ hoạt động 7 ngày, cơ cấu tài khoản, môn hỏi nhiều, tình trạng report, user online.
+- Status tabs lọc report: chờ xử lý, đã xử lý, bỏ qua, tất cả.
+- Khu vực chính chia report list và ban panel.
+
+Màu sắc
+- Nền admin xám sáng.
+- Metric card trắng, có accent màu xanh, xanh lá, vàng, hồng, indigo, slate.
+- Chart card trắng, border nhạt.
+- Bar chart dùng thanh màu xanh.
+- Status badge dùng màu theo trạng thái.
+- Ban panel có cảnh báo màu đỏ/vàng.
+
+30. Trang thông báo của người dùng
+
+URL: /notifications
+Template: templates/notifications.html
+Đối tượng: học sinh, giáo viên, admin.
+
+Bố cục
+- Trang hiển thị danh sách thông báo.
+- Mỗi thông báo có tiêu đề/nội dung, thời gian, người gửi và trạng thái đã đọc/chưa đọc.
+- Empty state khi không có thông báo.
+
+Màu sắc
+- Nền sáng.
+- Notification item nền trắng.
+- Thông báo chưa đọc có nền nhạt hoặc viền nổi bật.
+- Text thời gian màu xám.
+
+31. Trang gửi thông báo
+
+URL: /notifications/send
+Template: templates/send_notifications.html
+Đối tượng: giáo viên, admin.
+
+Bố cục
+- Form gửi thông báo trong card.
+- Có trường chọn người nhận/nhóm người nhận, tiêu đề và nội dung.
+- Có nút gửi.
+
+Màu sắc
+- Card trắng, border nhạt.
+- Input/textarea nền trắng.
+- Nút gửi dùng màu chính.
+
+32. Trang chat trao đổi chung
+
+URL: /chat
+Template: templates/chat_room.html
+Đối tượng: học sinh, giáo viên.
+
+Bố cục
+- Giao diện giống ứng dụng chat.
+- Container full height.
+- Chat card gồm header, body tin nhắn và footer nhập tin.
+- Header hiển thị "Chat Trao Đổi Chung" và số người online.
+- Body cuộn dọc, tin nhắn của mình nằm bên phải, người khác nằm bên trái.
+- Footer có preview trả lời nếu đang reply, input và nút gửi.
+
+Màu sắc
+- Chat card trắng, bo góc.
+- Header dùng gradient hoặc màu xanh/tím.
+- Bubble của mình và người khác khác màu.
+- Badge giáo viên "GV" có màu riêng.
+- Nút gửi là hình tròn/nút xanh.
+
+33. Trang chatbot AI
+
+URL: /chatbot
+Template: templates/chatbot.html
+Đối tượng: học sinh, giáo viên.
+
+Bố cục
+- Giao diện chatbot có khung chat chính.
+- Header giới thiệu trợ lí AI Vật Lý.
+- Chat box hiển thị message user và message AI.
+- Dưới cùng có input nhập câu hỏi, upload ảnh nếu hỗ trợ và nút gửi.
+- Có thể hiển thị quiz do AI tạo ngay trong chat.
+
+Màu sắc
+- Nền trang pastel/sáng.
+- Khung chat trắng, bo góc lớn.
+- Message user và AI dùng 2 màu bubble khác nhau.
+- Nút gửi dùng màu xanh/tím.
+- Quiz card dùng nền trắng/xanh nhạt.
+
+34. Trang sảnh game
+
+URL: /enter_nickname
+Template: templates/nickname.html
+Đối tượng: học sinh.
+
+Bố cục
+- Trang sảnh chọn chủ đề game.
+- Có title "Sảnh game - PHYEDU".
+- Hiển thị danh sách chủ đề theo lớp.
+- Người dùng nhập nickname hoặc dùng username hiện tại.
+- Có nút bắt đầu chơi.
+
+Màu sắc
+- Giao diện game tươi hơn các trang quản lý.
+- Nền gradient hoặc màu sáng.
+- Card chủ đề trắng, hover nổi.
+- Nút bắt đầu dùng màu nổi bật.
+
+35. Trang chơi game
+
+URL: /game
+Template: templates/game.html
+Đối tượng: học sinh.
+
+Bố cục
+- Trang standalone, không nhất thiết dùng base layout.
+- Có nav game trên cùng: PHYEDU Game, link sảnh game và dashboard.
+- Main game wrapper chứa game container.
+- Game container hiển thị chủ đề, người chơi, timer, câu hỏi, đáp án và điểm.
+- Sau khi hoàn thành, container đổi sang màn kết quả.
+
+Màu sắc
+- Nền game có gradient tối/sáng nổi bật.
+- Container trắng hoặc panel nổi, bo góc.
+- Đáp án đúng chuyển xanh, sai chuyển đỏ.
+- Timer nổi bật để tạo cảm giác trò chơi.
+
+36. Trang bảng xếp hạng game
+
+URL: /leaderboard
+Template: templates/leaderboard.html
+Đối tượng: học sinh.
+
+Bố cục
+- Trang độc lập với main board.
+- Header có H1 "Bảng xếp hạng".
+- Bảng hiển thị thứ hạng, tên người chơi và điểm.
+- Có medal cho top 1, 2, 3.
+- Có nút chơi tiếp.
+
+Màu sắc
+- Nền sáng hoặc gradient nhẹ.
+- Board/card trắng, bo góc.
+- Medal vàng/bạc/đồng.
+- Nút chính xanh/tím.
+
+37. Trang giáo viên quản lý câu hỏi game
+
+URL: /teacher/game_questions
+Template: templates/teacher_game_questions.html
+Đối tượng: giáo viên.
+
+Bố cục
+- Hero quản lý game ở đầu trang.
+- Panel thêm câu hỏi gồm form grid.
+- Panel chủ đề hiện có hiển thị topic card.
+- Mỗi topic card chứa danh sách question card.
+- Mỗi câu hỏi có các option pill, đáp án đúng được đánh dấu.
+
+Màu sắc
+- Nền sáng.
+- Hero có gradient xanh/tím.
+- Panel trắng, border nhạt.
+- Submit button màu xanh.
+- Delete button màu đỏ.
+- Option đúng có nền xanh nhạt.
+
+38. Trang 404
+
+URL: route lỗi 404
+Template: templates/404.html
+Đối tượng: mọi người dùng.
+
+Bố cục
+- Trang lỗi đơn giản, căn giữa.
+- Có thông báo không tìm thấy trang.
+- Có nút quay về trang chủ hoặc dashboard.
+
+Màu sắc
+- Nền sáng.
+- Nội dung trong card hoặc vùng trung tâm.
+- Màu nhấn xanh/tím.
+
+39. Trang offline PWA
+
+URL: /static/offline.html
+File: static/offline.html
+Đối tượng: người dùng đã cài PWA hoặc truy cập khi mất mạng.
+
+Bố cục
+- Trang căn giữa toàn màn hình.
+- Một card trắng nằm giữa.
+- Có H1 "PHYEDU đang offline", mô tả và nút tải lại.
+
+Màu sắc
+- Nền gradient pastel hồng, tím, xanh nhạt.
+- Card trắng, border tím nhạt, bóng đổ mềm.
+- H1 màu tím.
+- Nút tải lại dùng gradient tím/hồng, chữ trắng.
+
+40. Website hướng dẫn cài app
+
+Folder: huong-dan-cai-app
+File chính: huong-dan-cai-app/index.html
+Server test hiện tại: http://127.0.0.1:5500
+
+Mục đích
+- Đây là web tĩnh riêng để hướng dẫn học sinh/giáo viên cài PHYEDU thành app.
+- Có thể deploy riêng hoặc gắn vào web chính thành /install.
+
+Bố cục
+- Topbar có logo PHYEDU và menu neo: Thiết bị, Kiểm tra, Lỗi thường gặp.
+- Hero đầu trang dùng ảnh minh họa cài app.
+- Section nhập link web giúp copy domain PHYEDU.
+- Section hướng dẫn cài đặt dùng tab: iPhone/iPad, Android, Máy tính.
+- Section checklist PWA có các checkbox.
+- Section lỗi thường gặp dùng details/summary dạng accordion.
+- Footer đơn giản.
+
+Màu sắc
+- Nền tổng thể xám xanh rất nhạt.
+- Topbar trắng, border dưới nhạt.
+- Hero phủ overlay xanh đen trên ảnh.
+- Nút chính xanh dương.
+- Tab active nền trắng, có shadow nhẹ.
+- Card hướng dẫn trắng, border nhạt.
+
+41. Ghi chú responsive
+
+Desktop
+- Trang chủ dùng 2 cột hero.
+- Dashboard và danh sách dùng grid nhiều cột.
+- Diễn đàn dùng 2 cột: danh sách + sidebar.
+- Quản trị dùng nhiều panel song song.
+
+Tablet
+- Grid giảm số cột.
+- Card vẫn giữ padding vừa phải.
+- Section header có thể xuống dòng.
+
+Mobile
+- Navbar chuyển hamburger.
+- Hero trang chủ chuyển một cột.
+- H1 giảm kích cỡ để không tràn.
+- Card khóa học/tài liệu/diễn đàn chuyển một cột.
+- Button thường full width hoặc tự wrap.
+- Bảng quản lý nên được bọc trong vùng cuộn ngang nếu nội dung dài.
+
+42. Ghi chú trạng thái trống và lỗi
+
+Empty state
+- Các trang danh sách đều nên có trạng thái trống rõ ràng.
+- Empty state thường gồm icon, tiêu đề, mô tả và nút hành động nếu phù hợp.
+- Ví dụ: chưa có khóa học, chưa có tài liệu, chưa có đề thi, chưa có câu hỏi, chưa có vật phẩm.
+
+Loading state
+- Form lưu tài liệu hiển thị "Đang xử lý".
+- Form đăng câu hỏi hiển thị "Đang lưu".
+- AI tạo đề hiển thị trạng thái trong dòng status.
+- Modal video có spinner trước khi iframe hiện.
+
+Danger state
+- Xóa tài liệu, xóa khóa học, xóa đề, xóa câu hỏi dùng màu đỏ.
+- Modal xóa cần cảnh báo hành động không thể hoàn tác.
+
+43. Ghi chú nội dung thương hiệu
+
+Tên web/app
+- Dùng PHYEDU ở navbar, title, trang chủ, manifest, offline page và trang hướng dẫn cài app.
+- Không dùng lại tên EduPath.
+
+Chủ đề học tập
+- Tất cả nội dung chính tập trung Vật Lý THPT.
+- Lớp hỗ trợ: 10, 11, 12.
+- Không hiển thị các môn khác trong giao diện người dùng.
+
+Logo
+- Navbar dùng logo nhỏ 44x44px kèm chữ PHYEDU.
+- PWA icon dùng icon 192x192 và 512x512.
+- iOS dùng apple-touch-icon 180x180.
+- Khi đã cài app, icon trên màn hình chính là logo PHYEDU.
+
+Ảnh nền trang chủ
+- Trang chủ hiện dùng static/anhnen.png.
+- Ảnh này là minh họa vật lý hoạt hình, phù hợp cho landing page của web.
+- Vì ảnh nhiều chi tiết, cần giữ overlay tối để chữ trắng vẫn rõ.
+
+44. Các file giao diện quan trọng
+
+- templates/base.html: layout chung, navbar, footer, PWA install button.
+- templates/index.html: trang chủ web.
+- templates/login.html: đăng nhập.
+- templates/register.html: đăng ký học sinh.
+- templates/student_dashboard.html: dashboard học sinh.
+- templates/teacher_dashboard.html: dashboard giáo viên.
+- templates/courses.html: danh sách khóa học.
+- templates/course_detail.html: chi tiết khóa học và bài học.
+- templates/create_course.html: tạo/chỉnh sửa khóa học.
+- templates/exercises.html: bài tập.
+- templates/documents.html: kho tài liệu.
+- templates/add_document.html: thêm/chỉnh sửa tài liệu.
+- templates/student_progress.html: tiến độ học sinh.
+- templates/view_submissions.html: bài nộp.
+- templates/tracnghiem.html: danh sách đề trắc nghiệm.
+- templates/baitap.html: màn làm bài trắc nghiệm.
+- templates/ketqua.html: kết quả trắc nghiệm.
+- templates/lichsu_tracnghiem.html: lịch sử làm bài.
+- templates/teacher_exams.html: giáo viên quản lý đề.
+- templates/forum.html: danh sách hỏi đáp.
+- templates/forum_create_post.html: đặt/sửa câu hỏi.
+- templates/forum_post_detail.html: chi tiết câu hỏi và trả lời.
+- templates/forum_profile.html: hồ sơ diễn đàn.
+- templates/forum_verified_answers.html: câu trả lời xác thực.
+- templates/forum_leaderboard.html: bảng xếp hạng hỏi đáp.
+- templates/shop.html: shop kim cương.
+- templates/admin_shop.html: admin quản lý shop.
+- templates/admin_forum_reports.html: admin kiểm duyệt/report.
+- templates/notifications.html: danh sách thông báo.
+- templates/send_notifications.html: gửi thông báo.
+- templates/chat_room.html: chat trao đổi chung.
+- templates/chatbot.html: chatbot AI.
+- templates/nickname.html: sảnh game.
+- templates/game.html: chơi game.
+- templates/leaderboard.html: bảng xếp hạng game.
+- templates/teacher_game_questions.html: giáo viên quản lý câu hỏi game.
+- static/manifest.webmanifest: cấu hình PWA.
+- static/service-worker.js: cache/offline PWA.
+- static/offline.html: trang offline.
+- static/icons/logo-phyedu.png: logo web.
+- static/icons/icon-192.png: icon PWA 192.
+- static/icons/icon-512.png: icon PWA 512.
+- static/icons/apple-touch-icon.png: icon iOS.
+- static/anhnen.png: ảnh nền trang chủ.

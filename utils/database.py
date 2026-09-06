@@ -133,9 +133,7 @@ class Database:
         return next((d for d in docs if d['id'] == doc_id), None)
     
     def add_document(self, doc_data):
-        """
-         Thêm tài liệu cho THCS (lớp 6, 7, 8, 9)
-        """
+        """Thêm tài liệu học tập cho các lớp đang được hệ thống hỗ trợ."""
         documents = self.get_all_documents()
         doc_id = f"doc_{len(documents) + 1}"
         
@@ -149,11 +147,12 @@ class Database:
             'link_type': doc_data.get('link_type', 'other'),
             'url': url,
             'description': doc_data.get('description', ''),
+            'topic': doc_data.get('topic', ''),
             'teacher_id': doc_data.get('teacher_id'),  # THÊM DÒNG NÀY
             'created_at': datetime.now().isoformat()
         }
         
-        print(f"💾 LƯU TÀI LIỆU: ID={new_doc['id']}, Title={new_doc['title']}, Grade={new_doc['grade']}, Type={new_doc['doc_type']}, Teacher={new_doc['teacher_id']}")
+        print(f"[SAVE DOCUMENT] ID={new_doc['id']}, Title={new_doc['title']}, Grade={new_doc['grade']}, Type={new_doc['doc_type']}, Topic={new_doc['topic']}, Teacher={new_doc['teacher_id']}")
         
         documents.append(new_doc)
         self._save_json(self.documents_file, documents)
@@ -164,7 +163,7 @@ class Database:
         for i, doc in enumerate(docs):
             if doc['id'] == doc_id:
                 # Cập nhật các trường được phép
-                updatable_fields = ['title', 'grade', 'doc_type', 'link_type', 'url', 'description']
+                updatable_fields = ['title', 'grade', 'doc_type', 'link_type', 'url', 'description', 'topic']
                 for field in updatable_fields:
                     if field in doc_data:
                         docs[i][field] = doc_data[field]

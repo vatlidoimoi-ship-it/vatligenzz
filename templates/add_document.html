@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Thêm tài liệu - Học Tin THCS{% endblock %}
+{% block title %}Thêm tài liệu - Vật Lý THPT{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="page-header">
         <h1>{% if edit_mode %}🖊️ Chỉnh sửa tài liệu{% else %}➕ Thêm tài liệu mới{% endif %}</h1>
-        <p class="subtitle">{% if edit_mode %}Cập nhật thông tin tài liệu: {{ doc.title }}{% else %}Thêm video YouTube hoặc tài liệu Google Drive cho học sinh THCS{% endif %}</p>
+        <p class="subtitle">{% if edit_mode %}Cập nhật thông tin tài liệu: {{ doc.title }}{% else %}Thêm video YouTube hoặc tài liệu Google Drive cho học sinh lớp 10-12 và HSG{% endif %}</p>
     </div>
 
     <form id="addDocumentForm">
@@ -16,10 +16,10 @@
                 📝 Tiêu đề tài liệu: 
                 <span class="required">*</span>
             </label>
-            <input type="text" id="docTitle" placeholder="VD: Hệ phương trình bậc nhất hai ẩn - Lớp 9" value="{{ doc.title if edit_mode else '' }}" required>
+            <input type="text" id="docTitle" placeholder="VD: Định luật Ôm - Lớp 10" value="{{ doc.title if edit_mode else '' }}" required>
         </div>
 
-        <!-- LỚP HỌC - CẬP NHẬT CHO THCS -->
+        <!-- LỚP HỌC -->
         <div class="form-group">
             <label for="docGrade">
                 📚 Lớp học: 
@@ -27,11 +27,31 @@
             </label>
             <select id="docGrade" required>
                 <option value="">Chọn lớp học</option>
-                <option value="6" {% if edit_mode and doc.grade == '6' %}selected{% endif %}>📘 Lớp 6</option>
-                <option value="7" {% if edit_mode and doc.grade == '7' %}selected{% endif %}>📗 Lớp 7</option>
-                <option value="8" {% if edit_mode and doc.grade == '8' %}selected{% endif %}>🧡 Lớp 8</option>
-                <option value="9" {% if edit_mode and doc.grade == '9' %}selected{% endif %}>📕 Lớp 9</option>
+                {% for grade in document_grade_levels %}
+                <option value="{{ grade }}" {% if edit_mode and doc.grade == grade %}selected{% endif %}>{{ document_grade_labels.get(grade, 'Lớp ' ~ grade) }}{% if grade == 'hsg' %} - Học sinh giỏi{% endif %}</option>
+                {% endfor %}
             </select>
+        </div>
+
+        <!-- CHỦ ĐỀ HSG -->
+        <div class="form-group hsg-topic-group" id="hsgTopicGroup">
+            <label for="docTopic">
+                🧭 Chủ đề HSG:
+                <span class="required hsg-required">*</span>
+            </label>
+            <input
+                type="text"
+                id="docTopic"
+                list="hsgTopicList"
+                placeholder="VD: Cơ học nâng cao"
+                value="{{ doc.topic if edit_mode and doc.topic else '' }}"
+            >
+            <datalist id="hsgTopicList">
+                {% for topic in hsg_topic_suggestions %}
+                <option value="{{ topic }}"></option>
+                {% endfor %}
+            </datalist>
+            <small class="form-hint">Dùng để nhóm tài liệu HSG theo từng chủ đề khi học sinh truy cập.</small>
         </div>
 
         <!-- LOẠI TÀI LIỆU -->
@@ -73,7 +93,7 @@
         <!-- MÔ TẢ -->
         <div class="form-group">
             <label for="docDescription">✍️ Mô tả:</label>
-            <textarea id="docDescription" rows="5" placeholder="Mô tả ngắn gọn về nội dung tài liệu, phù hợp với học sinh THCS...">{{ doc.description if edit_mode else '' }}</textarea>
+            <textarea id="docDescription" rows="5" placeholder="Mô tả ngắn gọn về nội dung tài liệu Vật Lý, phù hợp với học sinh lớp 10-12...">{{ doc.description if edit_mode else '' }}</textarea>
         </div>
 
         <!-- NÚT BẤM -->
@@ -99,6 +119,17 @@ const urlInput = document.getElementById('docUrl');
 const typeSelect = document.getElementById('docType');
 const previewSection = document.getElementById('previewSection');
 const previewContent = document.getElementById('previewContent');
+const gradeSelect = document.getElementById('docGrade');
+const hsgTopicGroup = document.getElementById('hsgTopicGroup');
+const topicInput = document.getElementById('docTopic');
+
+function syncHsgTopicField() {
+    const isHsg = gradeSelect.value === 'hsg';
+    hsgTopicGroup.classList.toggle('visible', isHsg);
+    topicInput.required = isHsg;
+}
+
+gradeSelect.addEventListener('change', syncHsgTopicField);
 
 // Tự động nhận diện loại link khi nhập URL
 urlInput.addEventListener('input', function() {
@@ -162,6 +193,7 @@ document.getElementById('addDocumentForm').addEventListener('submit', async func
     const docTypeCategory = document.getElementById('docTypeCategory').value;
     const url = document.getElementById('docUrl').value.trim();
     const type = document.getElementById('docType').value;
+    const topic = topicInput.value.trim();
     const description = document.getElementById('docDescription').value.trim();
     
     // Validation
@@ -179,12 +211,18 @@ document.getElementById('addDocumentForm').addEventListener('submit', async func
         alert('⚠️ Vui lòng chọn loại tài liệu!');
         return;
     }
+
+    if (grade === 'hsg' && !topic) {
+        alert('⚠️ Vui lòng nhập chủ đề cho tài liệu HSG!');
+        return;
+    }
     
     // Chuẩn bị dữ liệu
     const data = {
         title: title,
         url: url,
         grade: grade,
+        topic: topic,
         doc_type: docTypeCategory,
         link_type: type === 'auto' ? detectType(url) : type,
         description: description
@@ -224,6 +262,7 @@ document.getElementById('addDocumentForm').addEventListener('submit', async func
 
 // Gọi preview nếu đang ở chế độ sửa
 window.addEventListener('DOMContentLoaded', () => {
+    syncHsgTopicField();
     const url = urlInput.value.trim();
     const type = typeSelect.value;
     if (url && type !== 'auto') {
@@ -262,7 +301,7 @@ function detectType(url) {
     text-align: center;
     margin-bottom: 40px;
     padding: 30px 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-info, #0091EA) 100%);
     border-radius: 15px;
     color: white;
 }
@@ -312,8 +351,8 @@ function detectType(url) {
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    border-color: var(--phyedu-primary, #00C853);
+    box-shadow: 0 0 0 4px rgba(0, 200, 83, 0.14);
 }
 
 .form-hint {
@@ -328,6 +367,23 @@ function detectType(url) {
     resize: vertical;
     min-height: 120px;
     line-height: 1.6;
+}
+
+.hsg-topic-group {
+    display: none;
+    background: #EAF4FF;
+    border: 2px solid #8BCBFF;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.hsg-topic-group.visible {
+    display: block;
+}
+
+.hsg-topic-group label,
+.hsg-topic-group .form-hint {
+    color: #12324A;
 }
 
 /* NÚT BẤM */
@@ -350,14 +406,14 @@ function detectType(url) {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00) 0%, var(--phyedu-accent-light, #FF9100) 100%);
     color: white;
     flex: 1;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 16px rgba(255, 109, 0, 0.32);
 }
 
 .btn-secondary {
@@ -375,7 +431,7 @@ function detectType(url) {
     margin-top: 40px;
     padding: 25px;
     background: white;
-    border: 3px solid #667eea;
+    border: 3px solid var(--phyedu-primary, #00C853);
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }

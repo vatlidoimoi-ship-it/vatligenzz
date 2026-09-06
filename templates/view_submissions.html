@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Bài nộp học sinh - Vui Học THCS{% endblock %}
+{% block title %}Bài nộp học sinh - Vật Lý THPT{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -200,7 +200,7 @@ window.onclick = function(event) {
 }
 
 .stat-box {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-primary, #00C853) 0%, var(--phyedu-info, #0091EA) 100%);
     color: white;
     padding: 25px;
     border-radius: 12px;
@@ -208,7 +208,7 @@ window.onclick = function(event) {
 }
 
 .stat-box:nth-child(2) {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00) 0%, var(--phyedu-accent-light, #FF9100) 100%);
 }
 
 .stat-box:nth-child(3) {
@@ -294,7 +294,7 @@ window.onclick = function(event) {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--phyedu-accent, #FF6D00) 0%, var(--phyedu-accent-light, #FF9100) 100%);
     color: white;
     display: flex;
     align-items: center;
