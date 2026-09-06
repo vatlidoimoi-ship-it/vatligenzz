@@ -167,7 +167,7 @@ def sync_file_to_remote(local_path, remote_path=None):
         remote_path = remote_path or _supabase_key_for(local_path)
         if not remote_path:
             return
-        with open(local_path, "r", encoding="utf-8") as f:
+        with open(local_path, "r", encoding="utf-8-sig") as f:
             _supabase_upsert_json(remote_path, json.load(f))
         return
 
@@ -210,7 +210,7 @@ def read_json(path, default=None):
 
     try:
         with _lock_for(path):
-            with open(path, "r", encoding="utf-8") as f:
+            with open(path, "r", encoding="utf-8-sig") as f:
                 return json.load(f)
     except (json.JSONDecodeError, FileNotFoundError):
         return [] if default is None else default

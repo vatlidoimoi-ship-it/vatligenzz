@@ -1863,7 +1863,7 @@ def tracnghiem():
         for subject_code, subject_info in SUBJECTS.items():
             json_file = readable_data_file(f"{subject_code}.json")
             try:
-                with open(json_file, "r", encoding="utf-8") as f:
+                with open(json_file, "r", encoding="utf-8-sig") as f:
                     exams_data = json.load(f)
                     exams = [
                         exam
@@ -2046,7 +2046,7 @@ def lam_bai_tracnghiem(subject, exam_id):
     json_file = readable_data_file(f"{subject}.json")
 
     try:
-        with open(json_file, "r", encoding="utf-8") as f:
+        with open(json_file, "r", encoding="utf-8-sig") as f:
             exams_data = json.load(f)
             exams = exams_data.get("exams", [])
 
@@ -2202,7 +2202,7 @@ def api_check_exam_time(subject, exam_id):
 
     try:
         json_file = readable_data_file(f"{subject}.json")
-        with open(json_file, "r", encoding="utf-8") as f:
+        with open(json_file, "r", encoding="utf-8-sig") as f:
             exams_data = json.load(f)
             exams = exams_data.get("exams", [])
             exam = next((e for e in exams if e["id"] == exam_id), None)
@@ -2306,7 +2306,7 @@ def nop_bai_tracnghiem():
 
         # Load đề thi
         json_file = readable_data_file(f"{subject}.json")
-        with open(json_file, "r", encoding="utf-8") as f:
+        with open(json_file, "r", encoding="utf-8-sig") as f:
             exams_data = json.load(f)
             exam = next(
                 (e for e in exams_data.get("exams", []) if e["id"] == exam_id), None
