@@ -38,6 +38,12 @@
                                 <h5 class="exam-card-title">
                                     <i class="fas fa-file-alt"></i> {{ exam.title }}
                                 </h5>
+                                {% if exam.grade %}
+                                <p class="exam-card-info"><strong>Lớp {{ exam.grade }}</strong>{% if exam.batch_id == 'word11-20x20-v1' %} · Bộ đề theo tài liệu Word{% endif %}</p>
+                                {% endif %}
+                                {% if exam.description %}
+                                <p class="exam-card-info">{{ exam.description }}</p>
+                                {% endif %}
                                 <p class="exam-card-info">
                                     <i class="fas fa-question-circle"></i> Số câu hỏi: <strong>{{ exam.questions|length }}</strong>
                                 </p>
