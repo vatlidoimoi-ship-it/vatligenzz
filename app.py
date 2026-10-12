@@ -688,7 +688,8 @@ def install_guide_asset(filename):
 @app.route("/tam-li-huong-nghiep")
 @login_required
 def career_guidance():
-    return render_template("career_guidance.html")
+    assessment_catalog = read_json(readable_data_file("career_assessments.json"), {})
+    return render_template("career_guidance.html", assessment_catalog=assessment_catalog)
 
 
 @app.route("/api/career-guidance/chat", methods=["POST"])

@@ -25,7 +25,7 @@ endblock %} {% block content %}
     <div class="doc-meta">
         <span class="link-type"
             >{% if doc.link_type == 'youtube' %}🎥 YouTube{% elif
-            doc.link_type == 'drive' %}☁️ Google Drive{% else %}🔗
+            doc.link_type == 'drive' %}☁️ Google Drive{% elif doc.link_type == 'file' %}📄 {{ doc.file_format or 'File' }}{% if doc.file_size %} · {{ '%.1f'|format(doc.file_size / 1048576) }} MB{% endif %}{% else %}🔗
             Link{% endif %}</span
         >
         <span class="doc-date"
@@ -46,8 +46,10 @@ endblock %} {% block content %}
         <a
             href="{{ doc.url }}"
             target="_blank"
+            rel="noopener noreferrer"
+            {% if doc.link_type == 'file' %}download{% endif %}
             class="btn btn-primary btn-action"
-            >{% if doc.link_type == 'drive' %}📥 Tải tài liệu{% else
+            >{% if doc.link_type in ['drive', 'file'] %}📥 Tải tài liệu{% else
             %}👁️ Xem tài liệu{% endif %}</a
         >
         {% endif %} {% if session.role == 'teacher' and

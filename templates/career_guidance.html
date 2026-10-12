@@ -3,7 +3,28 @@
 {% block title %}Tâm lí - hướng nghiệp - PHYEDU{% endblock %}
 
 {% block content %}
-<div class="advisor-shell">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/career-explore.css') }}">
+<div class="care-page" id="carePage">
+    <nav class="care-nav" aria-label="Tư vấn học đường">
+        <a class="care-wordmark" href="{{ url_for('career_guidance') }}"><span class="care-mark">✳</span> PHYEDU <span>Care</span></a>
+        <div class="care-switch"><button type="button" id="exploreTab" aria-pressed="true">Khám phá bản thân</button><button type="button" id="chatTab" aria-pressed="false">Trò chuyện cùng AI <span aria-hidden="true">↗</span></button></div>
+    </nav>
+    <section id="explorePanel" class="care-explore" aria-label="Các gói khám phá bản thân">
+        <header class="care-hero">
+            <div><p class="care-eyebrow"><span></span> MỘT CHÚT THẤU HIỂU, MỘT BƯỚC TRƯỞNG THÀNH</p>
+            <h1>Hiểu mình hơn.<br><em>Chọn hướng đi riêng.</em></h1>
+            <p>Không cần có ngay mọi câu trả lời. Bắt đầu từ sở thích, tính cách<br class="care-desktop-break"> hay đơn giản là cảm xúc của bạn hôm nay.</p></div>
+            <aside class="care-hero-note"><span aria-hidden="true">✦</span><p>Bạn không phải một<br><strong>kết quả trắc nghiệm.</strong></p><small>Mỗi khám phá chỉ là một điểm bắt đầu.</small></aside>
+        </header>
+        <div class="care-catalog-heading"><div><p class="care-eyebrow">GÓC KHÁM PHÁ CỦA BẠN</p><h2>Hôm nay, bạn muốn hiểu điều gì?</h2></div><span id="packageCount">05 gói khám phá</span></div>
+        <div class="care-filters" aria-label="Lọc gói khám phá">
+            <button type="button" data-filter="all" aria-pressed="true">Tất cả</button><button type="button" data-filter="career" aria-pressed="false">Hướng nghiệp</button><button type="button" data-filter="personality" aria-pressed="false">Hiểu bản thân</button><button type="button" data-filter="wellbeing" aria-pressed="false">Sức khỏe tinh thần</button>
+        </div>
+        <div class="care-grid" id="packageGrid"></div>
+        <noscript><p>Bật JavaScript để xem các gói câu hỏi và trò chuyện với AI.</p></noscript>
+        <div class="care-bottom-note"><span aria-hidden="true">♡</span><p><strong>Không có đáp án đúng hay sai.</strong> Hãy trả lời theo điều gần với bạn nhất. Câu trả lời trắc nghiệm chỉ nằm trong bộ nhớ của trang và mất khi tải lại; kết quả chỉ chuyển sang chat khi bạn chủ động chọn và gửi.</p></div>
+    </section>
+<div class="advisor-shell" id="chatPanel" hidden>
     <aside class="advisor-sidebar" aria-label="Lịch sử tư vấn">
         <div class="sidebar-brand">
             <span class="brand-dot"><i class="fa-solid fa-comments"></i></span>
@@ -28,7 +49,7 @@
                 <h1>Tâm lí - hướng nghiệp</h1>
                 <p>Bot tư vấn học đường cho học sinh lớp 10, 11, 12</p>
             </div>
-            <span class="online-pill"><i class="fa-solid fa-circle"></i> Đang sẵn sàng</span>
+            <button class="care-chat-reset" id="mobileNewChatBtn" type="button">Cuộc trò chuyện mới</button>
         </div>
 
         <div class="messages" id="messages">
@@ -54,6 +75,13 @@
         </form>
     </section>
 </div>
+</div>
+<dialog class="care-dialog" id="assessmentDialog" aria-labelledby="assessmentTitle">
+    <div class="care-dialog-top"><span>PHYEDU Care · Khám phá bản thân</span><button type="button" id="closeAssessment" aria-label="Đóng bài khám phá">✕</button></div>
+    <div id="assessmentContent"></div>
+</dialog>
+<script type="application/json" id="assessmentCatalog">{{ assessment_catalog|tojson }}</script>
+<script type="module" src="{{ url_for('static', filename='js/career-explore.mjs') }}"></script>
 
 <script>
 const messagesEl = document.getElementById('messages');
@@ -63,6 +91,8 @@ const sendBtn = document.getElementById('sendBtn');
 const newChatBtn = document.getElementById('newChatBtn');
 const promptRow = document.getElementById('promptRow');
 let chatHistory = [];
+let pendingChat = null;
+let chatGeneration = 0;
 
 function escapeHTML(value) {
     return String(value || '').replace(/[&<>"']/g, char => ({
@@ -116,7 +146,10 @@ function autoResize() {
 
 async function sendMessage(text) {
     const message = text.trim();
-    if (!message) return;
+    if (!message || pendingChat) return;
+    const generation = chatGeneration;
+    const controller = new AbortController();
+    pendingChat = controller;
 
     appendMessage('user', message);
     inputEl.value = '';
@@ -129,10 +162,12 @@ async function sendMessage(text) {
     try {
         const response = await fetch('/api/career-guidance/chat', {
             method: 'POST',
+            signal: controller.signal,
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({message, history: chatHistory})
         });
         const data = await response.json();
+        if (generation !== chatGeneration) return;
         typingEl.remove();
 
         if (!data.success) {
@@ -145,11 +180,15 @@ async function sendMessage(text) {
         chatHistory.push({role: 'model', content: data.response});
         chatHistory = chatHistory.slice(-10);
     } catch (error) {
+        if (generation !== chatGeneration || error.name === 'AbortError') return;
         typingEl.remove();
         appendMessage('bot', 'Kết nối đang gặp lỗi. Bạn thử gửi lại sau một chút nhé.');
     } finally {
-        sendBtn.disabled = false;
-        inputEl.focus();
+        if (generation === chatGeneration) {
+            pendingChat = null;
+            sendBtn.disabled = false;
+            inputEl.focus();
+        }
     }
 }
 
@@ -172,11 +211,22 @@ promptRow.addEventListener('click', event => {
     sendMessage(button.dataset.prompt);
 });
 
-newChatBtn.addEventListener('click', () => {
+function resetChat() {
+    chatGeneration += 1;
+    if (pendingChat) pendingChat.abort();
+    pendingChat = null;
+    sendBtn.disabled = false;
     chatHistory = [];
     messagesEl.innerHTML = '';
     appendMessage('bot', 'Mình đã mở cuộc trò chuyện mới. Bạn muốn bắt đầu từ chuyện học tập, cảm xúc hay định hướng nghề nghiệp?');
     promptRow.classList.remove('compact');
+    inputEl.focus();
+}
+newChatBtn.addEventListener('click', resetChat);
+document.getElementById('mobileNewChatBtn').addEventListener('click', resetChat);
+document.addEventListener('care:share', event => {
+    inputEl.value = event.detail;
+    autoResize();
     inputEl.focus();
 });
 

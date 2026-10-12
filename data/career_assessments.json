@@ -1,0 +1,695 @@
+{
+  "version": 1,
+  "packages": [
+    {
+      "id": "holland",
+      "title": "Holland / RIASEC",
+      "subtitle": "Tìm hướng đi mang dấu ấn của bạn",
+      "category": "career",
+      "tag": "Hướng nghiệp",
+      "duration": "5–7 phút",
+      "image": "holland",
+      "description": "Khám phá 6 nhóm sở thích qua những hoạt động bạn muốn thử.",
+      "note": "30 câu do PHYEDU biên soạn theo mô hình RIASEC; không phải O*NET Interest Profiler hay bài Holland chuẩn hóa. Kết quả phản ánh sở thích tự báo cáo, không đo năng lực và không quyết định ngành học.",
+      "instruction": "Nếu có cơ hội, bạn thích làm hoạt động này đến mức nào? Chọn theo sở thích, không dựa trên việc bạn đã giỏi hay chưa.",
+      "source": [
+        "Tham khảo mô hình: O*NET Interest Profiler",
+        "https://www.onetcenter.org/IP.html"
+      ],
+      "options": [
+        "Rất không thích",
+        "Không thích",
+        "Chưa rõ / bình thường",
+        "Thích",
+        "Rất thích"
+      ],
+      "min": 1,
+      "items": [
+        {
+          "dimension": "R",
+          "reverse": false,
+          "text": "Lắp ráp một mô hình hoặc thiết bị."
+        },
+        {
+          "dimension": "R",
+          "reverse": false,
+          "text": "Sửa một đồ dùng đơn giản."
+        },
+        {
+          "dimension": "R",
+          "reverse": false,
+          "text": "Chăm sóc cây trồng ngoài trời."
+        },
+        {
+          "dimension": "R",
+          "reverse": false,
+          "text": "Thực hành với dụng cụ trong xưởng."
+        },
+        {
+          "dimension": "R",
+          "reverse": false,
+          "text": "Tìm hiểu cách vận hành một chiếc máy."
+        },
+        {
+          "dimension": "I",
+          "reverse": false,
+          "text": "Làm thí nghiệm để kiểm tra một giả thuyết."
+        },
+        {
+          "dimension": "I",
+          "reverse": false,
+          "text": "Tìm nguyên nhân của một hiện tượng tự nhiên."
+        },
+        {
+          "dimension": "I",
+          "reverse": false,
+          "text": "Phân tích dữ liệu để tìm quy luật."
+        },
+        {
+          "dimension": "I",
+          "reverse": false,
+          "text": "Giải một bài toán có nhiều bước suy luận."
+        },
+        {
+          "dimension": "I",
+          "reverse": false,
+          "text": "Đọc về một khám phá khoa học mới."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Thiết kế hình ảnh cho một sự kiện."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Viết truyện, thơ hoặc kịch bản."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Chơi nhạc hoặc sáng tác giai điệu."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Chụp ảnh và thử cách kể chuyện bằng hình."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Sáng tạo một sản phẩm có phong cách riêng."
+        },
+        {
+          "dimension": "S",
+          "reverse": false,
+          "text": "Giúp một bạn hiểu bài học."
+        },
+        {
+          "dimension": "S",
+          "reverse": false,
+          "text": "Lắng nghe người khác chia sẻ khó khăn."
+        },
+        {
+          "dimension": "S",
+          "reverse": false,
+          "text": "Tham gia hoạt động hỗ trợ cộng đồng."
+        },
+        {
+          "dimension": "S",
+          "reverse": false,
+          "text": "Hướng dẫn một nhóm em nhỏ làm hoạt động."
+        },
+        {
+          "dimension": "S",
+          "reverse": false,
+          "text": "Giúp thành viên mới hòa nhập với tập thể."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Thuyết trình để thuyết phục một nhóm."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Tổ chức và điều phối một sự kiện."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Giới thiệu một ý tưởng kinh doanh."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Đại diện nhóm trao đổi với người khác."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Dẫn dắt nhóm hoàn thành một mục tiêu."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Sắp xếp tài liệu theo một hệ thống rõ ràng."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Kiểm tra số liệu để tìm sai sót."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Lập bảng theo dõi thu chi."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Quản lý lịch và danh sách công việc."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Nhập và phân loại thông tin cẩn thận."
+        }
+      ]
+    },
+    {
+      "id": "big-five",
+      "title": "Big Five",
+      "subtitle": "Hiểu những sắc thái trong tính cách",
+      "category": "personality",
+      "tag": "Hiểu bản thân",
+      "duration": "8–10 phút",
+      "image": "big-five",
+      "description": "Nhìn lại 5 khía cạnh tính cách với bộ 50 câu dựa trên IPIP.",
+      "note": "Bản dịch tham khảo của PHYEDU từ 50 câu IPIP Big-Five Factor Markers (phạm vi công cộng). Bản tiếng Việt này chưa được thẩm định cho học sinh Việt Nam. Điểm không phải thứ hạng so với người khác, không có tính cách tốt hay xấu.",
+      "instruction": "Chọn mức độ đúng với cách bạn thường sống và hành động, không phải hình ảnh bạn mong muốn trở thành.",
+      "source": [
+        "IPIP: 50 câu và khóa chấm gốc",
+        "https://ipip.ori.org/newBigFive5broadKey.htm"
+      ],
+      "options": [
+        "Rất không đúng với mình",
+        "Khá không đúng",
+        "Ở giữa / tùy tình huống",
+        "Khá đúng",
+        "Rất đúng với mình"
+      ],
+      "min": 1,
+      "items": [
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Mình làm cho các buổi gặp gỡ trở nên sôi nổi."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Mình cảm thấy thoải mái khi ở cùng mọi người."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Mình chủ động bắt chuyện."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Mình nói chuyện với nhiều người khác nhau trong các buổi gặp gỡ."
+        },
+        {
+          "dimension": "E",
+          "reverse": false,
+          "text": "Mình không ngại trở thành tâm điểm chú ý."
+        },
+        {
+          "dimension": "E",
+          "reverse": true,
+          "text": "Mình không nói nhiều."
+        },
+        {
+          "dimension": "E",
+          "reverse": true,
+          "text": "Mình thường đứng ngoài sự chú ý."
+        },
+        {
+          "dimension": "E",
+          "reverse": true,
+          "text": "Mình có ít điều để nói."
+        },
+        {
+          "dimension": "E",
+          "reverse": true,
+          "text": "Mình không thích thu hút sự chú ý về mình."
+        },
+        {
+          "dimension": "E",
+          "reverse": true,
+          "text": "Mình ít nói khi ở cạnh người lạ."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Mình quan tâm đến mọi người."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Mình đồng cảm với cảm xúc của người khác."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Mình là người mềm lòng."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Mình dành thời gian cho người khác."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Mình cảm nhận được cảm xúc của người khác."
+        },
+        {
+          "dimension": "A",
+          "reverse": false,
+          "text": "Mình làm người khác cảm thấy thoải mái."
+        },
+        {
+          "dimension": "A",
+          "reverse": true,
+          "text": "Mình không thực sự quan tâm đến người khác."
+        },
+        {
+          "dimension": "A",
+          "reverse": true,
+          "text": "Mình xúc phạm người khác."
+        },
+        {
+          "dimension": "A",
+          "reverse": true,
+          "text": "Mình không quan tâm đến vấn đề của người khác."
+        },
+        {
+          "dimension": "A",
+          "reverse": true,
+          "text": "Mình ít để tâm đến người khác."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Mình luôn chuẩn bị sẵn sàng."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Mình chú ý đến chi tiết."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Mình làm ngay những việc cần làm."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Mình thích sự ngăn nắp."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Mình làm theo thời gian biểu."
+        },
+        {
+          "dimension": "C",
+          "reverse": false,
+          "text": "Mình đòi hỏi sự chính xác trong công việc."
+        },
+        {
+          "dimension": "C",
+          "reverse": true,
+          "text": "Mình để đồ đạc lung tung."
+        },
+        {
+          "dimension": "C",
+          "reverse": true,
+          "text": "Mình làm mọi thứ lộn xộn."
+        },
+        {
+          "dimension": "C",
+          "reverse": true,
+          "text": "Mình thường quên cất đồ về đúng chỗ."
+        },
+        {
+          "dimension": "C",
+          "reverse": true,
+          "text": "Mình né tránh trách nhiệm của mình."
+        },
+        {
+          "dimension": "S",
+          "reverse": false,
+          "text": "Phần lớn thời gian mình cảm thấy thư thái."
+        },
+        {
+          "dimension": "S",
+          "reverse": false,
+          "text": "Mình hiếm khi cảm thấy buồn bã."
+        },
+        {
+          "dimension": "S",
+          "reverse": true,
+          "text": "Mình dễ bị căng thẳng."
+        },
+        {
+          "dimension": "S",
+          "reverse": true,
+          "text": "Mình hay lo lắng về mọi việc."
+        },
+        {
+          "dimension": "S",
+          "reverse": true,
+          "text": "Mình dễ bị xáo trộn tinh thần."
+        },
+        {
+          "dimension": "S",
+          "reverse": true,
+          "text": "Mình dễ cảm thấy buồn bực."
+        },
+        {
+          "dimension": "S",
+          "reverse": true,
+          "text": "Tâm trạng của mình thay đổi nhiều."
+        },
+        {
+          "dimension": "S",
+          "reverse": true,
+          "text": "Mình thường có những biến động tâm trạng."
+        },
+        {
+          "dimension": "S",
+          "reverse": true,
+          "text": "Mình dễ cáu kỉnh."
+        },
+        {
+          "dimension": "S",
+          "reverse": true,
+          "text": "Mình thường cảm thấy buồn bã."
+        },
+        {
+          "dimension": "O",
+          "reverse": false,
+          "text": "Mình có vốn từ phong phú."
+        },
+        {
+          "dimension": "O",
+          "reverse": false,
+          "text": "Mình có trí tưởng tượng sống động."
+        },
+        {
+          "dimension": "O",
+          "reverse": false,
+          "text": "Mình có những ý tưởng xuất sắc."
+        },
+        {
+          "dimension": "O",
+          "reverse": false,
+          "text": "Mình nhanh chóng hiểu vấn đề."
+        },
+        {
+          "dimension": "O",
+          "reverse": false,
+          "text": "Mình sử dụng những từ ngữ khó."
+        },
+        {
+          "dimension": "O",
+          "reverse": false,
+          "text": "Mình dành thời gian suy ngẫm về mọi việc."
+        },
+        {
+          "dimension": "O",
+          "reverse": false,
+          "text": "Mình có nhiều ý tưởng."
+        },
+        {
+          "dimension": "O",
+          "reverse": true,
+          "text": "Mình khó hiểu những ý tưởng trừu tượng."
+        },
+        {
+          "dimension": "O",
+          "reverse": true,
+          "text": "Mình không quan tâm đến những ý tưởng trừu tượng."
+        },
+        {
+          "dimension": "O",
+          "reverse": true,
+          "text": "Mình không có trí tưởng tượng tốt."
+        }
+      ]
+    },
+    {
+      "id": "mbti",
+      "title": "Xu hướng tính cách",
+      "subtitle": "Khám phá 4 cặp xu hướng",
+      "category": "personality",
+      "tag": "Tham khảo MBTI",
+      "duration": "3–5 phút",
+      "image": "mbti",
+      "description": "Tìm hiểu cách bạn nạp năng lượng, tiếp nhận thông tin và lựa chọn.",
+      "note": "16 câu tự biên soạn để suy ngẫm về bốn cặp xu hướng thường được nhắc đến cùng MBTI. Đây không phải công cụ MBTI® chính thức, không được chuẩn hóa và không xác định loại tính cách hay nghề phù hợp.",
+      "instruction": "Chọn điều gần với bạn trong đa số tình huống. Bạn có thể có cả hai xu hướng và thay đổi theo hoàn cảnh.",
+      "source": [
+        "Tìm hiểu công cụ MBTI chính thức",
+        "https://www.myersbriggs.org/my-mbti-personality-type/myers-briggs-overview/"
+      ],
+      "options": [
+        "Rất không đúng với mình",
+        "Khá không đúng",
+        "Ở giữa / tùy tình huống",
+        "Khá đúng",
+        "Rất đúng với mình"
+      ],
+      "min": 1,
+      "items": [
+        {
+          "dimension": "EI",
+          "reverse": false,
+          "text": "Sau một ngày học, mình thích trò chuyện với nhiều người để lấy lại năng lượng."
+        },
+        {
+          "dimension": "EI",
+          "reverse": false,
+          "text": "Mình thường suy nghĩ thành lời khi trao đổi."
+        },
+        {
+          "dimension": "EI",
+          "reverse": true,
+          "text": "Mình thích có khoảng thời gian yên tĩnh một mình để nạp năng lượng."
+        },
+        {
+          "dimension": "EI",
+          "reverse": true,
+          "text": "Mình thường suy nghĩ kỹ một mình trước khi phát biểu."
+        },
+        {
+          "dimension": "SN",
+          "reverse": false,
+          "text": "Mình thích bắt đầu học bằng ví dụ thực tế cụ thể."
+        },
+        {
+          "dimension": "SN",
+          "reverse": false,
+          "text": "Mình chú ý đến các chi tiết có thể quan sát được."
+        },
+        {
+          "dimension": "SN",
+          "reverse": true,
+          "text": "Mình thích hình dung các khả năng chưa xảy ra."
+        },
+        {
+          "dimension": "SN",
+          "reverse": true,
+          "text": "Mình thích tìm ý nghĩa và mối liên hệ phía sau thông tin."
+        },
+        {
+          "dimension": "TF",
+          "reverse": false,
+          "text": "Khi chọn phương án, mình ưu tiên tính nhất quán của lập luận."
+        },
+        {
+          "dimension": "TF",
+          "reverse": false,
+          "text": "Mình thích so sánh ưu nhược điểm bằng tiêu chí rõ ràng."
+        },
+        {
+          "dimension": "TF",
+          "reverse": true,
+          "text": "Khi quyết định, mình ưu tiên tác động lên cảm xúc của mọi người."
+        },
+        {
+          "dimension": "TF",
+          "reverse": true,
+          "text": "Mình thường cân nhắc các giá trị cá nhân trước khi chọn."
+        },
+        {
+          "dimension": "JP",
+          "reverse": false,
+          "text": "Mình thích có kế hoạch rõ ràng trước khi bắt đầu."
+        },
+        {
+          "dimension": "JP",
+          "reverse": false,
+          "text": "Mình thấy dễ chịu khi quyết định đã được chốt."
+        },
+        {
+          "dimension": "JP",
+          "reverse": true,
+          "text": "Mình thích để ngỏ kế hoạch để thay đổi theo tình huống."
+        },
+        {
+          "dimension": "JP",
+          "reverse": true,
+          "text": "Mình thích ứng biến khi có cơ hội mới."
+        }
+      ]
+    },
+    {
+      "id": "who-5",
+      "title": "WHO-5",
+      "subtitle": "Dành một phút lắng nghe mình",
+      "category": "wellbeing",
+      "tag": "Sức khỏe tinh thần",
+      "duration": "1–2 phút",
+      "image": "who-5",
+      "description": "5 câu nhìn lại sự khỏe mạnh tinh thần trong hai tuần gần đây.",
+      "note": "Bản dịch tham khảo của PHYEDU, chưa được thẩm định cho học sinh Việt Nam. Đây là công cụ tự nhìn lại, không chẩn đoán bệnh. Bạn có thể dừng bất cứ lúc nào. WHO không bảo trợ PHYEDU.",
+      "instruction": "Trong HAI TUẦN vừa qua, bạn cảm thấy như mô tả dưới đây trong bao nhiêu thời gian?",
+      "source": [
+        "WHO-5, World Health Organization (2024)",
+        "https://www.who.int/publications/m/item/WHO-UCN-MSD-MHE-2024.01"
+      ],
+      "license": "© WHO 2024. World Health Organization. The World Health Organization-Five Well-Being Index (WHO-5). Geneva: WHO; 2024. Bản dịch này được chia sẻ theo CC BY-NC-SA 3.0 IGO (chỉ sử dụng phi thương mại). This translation was not created by the World Health Organization (WHO). WHO is not responsible for the content or accuracy of this translation. The original English edition shall be the binding and authentic edition.",
+      "options": [
+        "Không lúc nào",
+        "Một vài lúc",
+        "Ít hơn nửa thời gian",
+        "Hơn nửa thời gian",
+        "Hầu hết thời gian",
+        "Mọi lúc"
+      ],
+      "min": 0,
+      "items": [
+        {
+          "text": "Mình cảm thấy vui vẻ và tinh thần phấn chấn.",
+          "dimension": "wellbeing"
+        },
+        {
+          "text": "Mình cảm thấy bình tĩnh và thư giãn.",
+          "dimension": "wellbeing"
+        },
+        {
+          "text": "Mình cảm thấy năng động và tràn đầy sức sống.",
+          "dimension": "wellbeing"
+        },
+        {
+          "text": "Mình thức dậy cảm thấy sảng khoái và được nghỉ ngơi đầy đủ.",
+          "dimension": "wellbeing"
+        },
+        {
+          "text": "Cuộc sống hằng ngày của mình có nhiều điều khiến mình hứng thú.",
+          "dimension": "wellbeing"
+        }
+      ]
+    },
+    {
+      "id": "dass-21",
+      "title": "DASS-21",
+      "subtitle": "Hiểu cảm xúc, tìm đúng hỗ trợ",
+      "category": "wellbeing",
+      "tag": "Cùng chuyên viên",
+      "duration": "Tìm hiểu",
+      "image": "dass-21",
+      "description": "Tìm hiểu về trầm cảm, lo âu, căng thẳng và cách tìm hỗ trợ phù hợp.",
+      "note": "DASS-21 gồm 21 câu về trải nghiệm trong tuần qua. Theo FAQ 9 và 21 của đơn vị phát triển, công cụ không được triển khai trên website công cộng để người dùng tự làm và nhận diễn giải. PHYEDU không mở bài test DASS-21 tự chấm.",
+      "source": [
+        "Điều kiện triển khai DASS — FAQ 9, 21",
+        "https://www2.psy.unsw.edu.au/dass/DASSFAQ.htm"
+      ],
+      "items": []
+    }
+  ],
+  "dimensions": {
+    "holland": {
+      "R": [
+        "Kỹ thuật",
+        "Thử lắp mô hình, hoạt động kỹ thuật hoặc chăm sóc cây; tìm hiểu cơ khí, kỹ thuật, nông nghiệp."
+      ],
+      "I": [
+        "Nghiên cứu",
+        "Thử một thí nghiệm hoặc dự án dữ liệu; tìm hiểu khoa học tự nhiên, công nghệ, nghiên cứu."
+      ],
+      "A": [
+        "Nghệ thuật",
+        "Thử thiết kế, viết hoặc làm video; tìm hiểu mỹ thuật, truyền thông, thiết kế."
+      ],
+      "S": [
+        "Xã hội",
+        "Thử hướng dẫn học tập hoặc tình nguyện; tìm hiểu giáo dục, công tác xã hội, các nghề hỗ trợ con người."
+      ],
+      "E": [
+        "Quản lý",
+        "Thử tổ chức hoạt động nhóm; tìm hiểu quản trị, kinh doanh, điều phối dự án."
+      ],
+      "C": [
+        "Nghiệp vụ",
+        "Thử quản lý ngân sách hoặc dữ liệu của nhóm; tìm hiểu kế toán, hành chính, vận hành."
+      ]
+    },
+    "big-five": {
+      "E": [
+        "Hướng ngoại",
+        "Mức độ thiên về tương tác và hoạt động xã hội."
+      ],
+      "A": [
+        "Hòa hợp",
+        "Mức độ thiên về đồng cảm và hợp tác."
+      ],
+      "C": [
+        "Tận tâm",
+        "Mức độ thiên về tổ chức, chuẩn bị và trách nhiệm."
+      ],
+      "S": [
+        "Ổn định cảm xúc",
+        "Mức độ tự báo cáo sự bình ổn trước các tác động; không phải đánh giá bệnh lý."
+      ],
+      "O": [
+        "Trí tuệ / tưởng tượng",
+        "Sở thích với ý tưởng, suy ngẫm và tưởng tượng; không phải điểm IQ."
+      ]
+    },
+    "mbti": {
+      "EI": [
+        "Hướng ngoại ↔ Hướng nội",
+        "Hai cách nạp năng lượng: tương tác với người khác hoặc có không gian riêng."
+      ],
+      "SN": [
+        "Cụ thể ↔ Khả năng",
+        "Hai cách tiếp cận thông tin: chi tiết thực tế hoặc bức tranh và khả năng."
+      ],
+      "TF": [
+        "Lý lẽ ↔ Giá trị",
+        "Hai trọng tâm khi cân nhắc: lập luận nhất quán hoặc tác động đến con người."
+      ],
+      "JP": [
+        "Kế hoạch ↔ Linh hoạt",
+        "Hai cách tổ chức: định trước hoặc để ngỏ và thích ứng."
+      ]
+    }
+  }
+}

@@ -1,0 +1,92 @@
+/* Scoped overrides also restore page scrolling when the legacy chat is hidden. */
+body:has(.care-page) {overflow: auto !important; background: #f5f7f6;}
+body:has(.care-page) .main-content {padding: 0; background: #f5f7f6;}
+.care-page {--ink: #193d39; --muted: #657873; --green: #245c4d; color: var(--ink); max-width: 1440px; margin: auto; padding: 0 5%; font-family: inherit;}
+.care-page [hidden] {display: none !important;}
+.care-nav {display: flex; align-items: center; justify-content: space-between; padding: 23px 0; border-bottom: 1px solid #dce5df; gap: 18px; background: transparent;}
+.care-nav a {padding: 0;}
+.care-nav a:hover {background: transparent;}
+.care-wordmark {display: flex; align-items: center; gap: 7px; color: var(--ink); font-size: 19px; font-weight: 850; text-decoration: none;}
+.care-wordmark > span:last-child {font-weight: 400;}
+.care-mark {font-size: 35px; color: #477c68; margin-right: 5px;}
+.care-switch {display: flex; padding: 5px; border: 1px solid #dde5df; border-radius: 14px; background: #edf1ed; gap: 4px;}
+.care-switch button,.care-filters button {border: 0; background: transparent; color: #586b65; padding: 10px 17px; border-radius: 10px; font: inherit; font-size: 13px; font-weight: 650; cursor: pointer;}
+.care-switch button[aria-pressed="true"] {background: white; color: #204e40; box-shadow: 0 2px 6px #213d3910;}
+.care-switch button span {margin-left: 12px;}
+.care-hero {display: flex; align-items: center; justify-content: space-between; padding: 57px 0 46px; gap: 32px; background: transparent; color: var(--ink); margin: 0;}
+.care-eyebrow {font-size: 10px; letter-spacing: 1.7px; font-weight: 750; color: #637c70; margin: 0 0 17px;}
+.care-eyebrow > span {display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #83a187; margin-right: 8px;}
+.care-hero h1 {font-size: clamp(32px,4vw,54px); line-height: 1.22; font-weight: 760; letter-spacing: -1.8px; margin: 0 0 21px; color: var(--ink); text-align: left;}
+.care-hero h1 em {font-family: Georgia, 'Times New Roman', serif; color: #6c876a; font-weight: 400;}
+.care-hero > div > p:last-child {font-size: 15px; line-height: 1.85; color: var(--muted); margin: 0;}
+.care-hero-note {width: 250px; flex-shrink: 0; padding: 25px; transform: rotate(3deg); background: #eaf0e6; border: 1px solid #dbe5d5; border-radius: 22px; box-shadow: 6px 8px 0 #e7eae1;}
+.care-hero-note > span {display: block; font-size: 44px; line-height: 1; color: #779270; margin-bottom: 18px;}
+.care-hero-note p {font-size: 18px; line-height: 1.6; margin-bottom: 9px;}
+.care-hero-note small {font-size: 11px; color: #6c7a65;}
+.care-catalog-heading {display: flex; align-items: end; justify-content: space-between; gap: 20px;}
+.care-catalog-heading .care-eyebrow {margin-bottom: 9px;}
+.care-catalog-heading h2 {font-size: 23px; letter-spacing: -.5px; font-weight: 730; margin: 0; color: var(--ink);}
+.care-catalog-heading > span {font-size: 12px; color: var(--muted); white-space: nowrap;}
+.care-filters {display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0;}
+.care-filters button {border: 1px solid #dce4de; background: #fff; border-radius: 25px; padding: 9px 17px; font-size: 12px;}
+.care-filters button[aria-pressed="true"] {background: var(--green); border-color: var(--green); color: white;}
+.care-grid {display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 26px; perspective: 1200px;}
+.care-card {--accent: #53786f; position: relative; background: white; border: 1px solid #dfe7e1; border-radius: 22px; overflow: hidden; box-shadow: 0 5px 0 #dfe7e180, 0 12px 25px #22463708; transform-style: preserve-3d; transition: transform .22s, box-shadow .22s; display: flex; flex-direction: column;}
+.care-card[data-id="big-five"] {--accent: #806d9c;}
+.care-card[data-id="mbti"] {--accent: #ac7661;}
+.care-card[data-id="who-5"] {--accent: #738b54;}
+.care-card[data-id="dass-21"] {--accent: #7c7a9e;}
+.care-card:focus-within {box-shadow: 0 8px 0 #dfe7e180, 0 20px 35px #22463716;}
+.care-card-art {position: relative; aspect-ratio: 1200/670; overflow: hidden; background: #ecf1ed;}
+.care-card-art img {width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s;}
+.care-card-tag {position: absolute; top: 13px; left: 13px; background: #fffffff0; border: 1px solid #ffffffaa; border-radius: 20px; color: #3b4d45; padding: 6px 10px; font-size: 10px; font-weight: 700; backdrop-filter: blur(10px);}
+.care-card-number {position: absolute; top: 13px; right: 13px; color: #344c44; background: #ffffffdf; border-radius: 50%; width: 28px; height: 28px; display: grid; place-items: center; font-size: 10px;}
+.care-card-body {padding: 22px; display: flex; flex-direction: column; flex: 1;}
+.care-card-body h3 {font-size: 23px; font-weight: 750; margin: 0 0 6px; color: #253e36; letter-spacing: -.7px;}
+.care-card-subtitle {font-size: 12px; font-weight: 650; color: var(--accent); margin: 0 0 12px;}
+.care-card-description {color: #6c7974; font-size: 13px; line-height: 1.75; margin: 0 0 18px;}
+.care-card-foot {display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #edf0ec; padding-top: 15px; gap: 10px; margin-top: auto;}
+.care-card-foot small {font-size: 11px; color: #74817a;}
+.care-card-foot button {border: 0; color: var(--accent); background: transparent; padding: 7px 0 7px 10px; font-size: 12px; font-weight: 750; cursor: pointer;}
+.care-card-foot button span {display: inline-grid; place-items: center; border-radius: 50%; background: #eff3ef; height: 27px; width: 27px; margin-left: 7px;}
+.care-bottom-note {display: flex; gap: 13px; align-items: center; margin: 30px 0 40px; padding: 20px 25px; background: #eaf0e8; border-radius: 15px;}
+.care-bottom-note > span {font-size: 32px; color: #648065;}
+.care-bottom-note p {font-size: 12px; line-height: 1.8; color: #637566; margin: 0;}
+.care-bottom-note strong {color: #365640;}
+.care-page .advisor-shell {height: min(800px, calc(100dvh - 190px)); min-height: 440px; margin: 20px 0; border: 1px solid #dce5df; border-radius: 20px; overflow: hidden;}
+.care-chat-reset {border: 1px solid #cddbd1; background: #f4f8f3; color: #315445; padding: 8px 12px; border-radius: 10px; font-size: 12px; cursor: pointer;}
+.care-dialog {color: #243f36; background: #fafcf9; border: 1px solid #dae4d8; border-radius: 24px; width: min(740px,calc(100% - 24px)); max-height: calc(100dvh - 32px); padding: 0; box-shadow: 0 25px 100px #102e3c40;}
+.care-dialog::backdrop {background: #102e3c80; backdrop-filter: blur(5px);}
+.care-dialog-top {display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 15px 23px; border-bottom: 1px solid #e0e7de; font-size: 12px; color: #6b7e70; background: #fafcf9; position: sticky; top: 0; z-index: 2;}
+.care-dialog-top button {border: 0; background: #edf2e9; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; color: #385341;}
+#assessmentContent {padding: 27px;}
+.care-dialog h2 {font-size: 27px; font-weight: 750; color: #243f36; margin: 0 0 18px;}
+.care-dialog p {font-size: 14px; line-height: 1.8;}
+.care-dialog .care-disclosure {padding: 16px 18px; border-radius: 14px; background: #edf2e9; font-size: 13px;}
+.care-dialog a {color: #356b57;}
+.care-dialog .care-source {font-size: 12px; margin: 16px 0;}
+.care-dialog details {font-size: 12px; line-height: 1.7; margin: 16px 0; overflow-wrap: anywhere;}
+.care-dialog summary {cursor: pointer; font-weight: 650;}
+.care-action {background: #285c49; color: white; border: 1px solid #285c49; border-radius: 12px; padding: 12px 18px; font: inherit; font-size: 13px; font-weight: 650; cursor: pointer;}
+.care-action.secondary {color: #3e5d4b; background: white; border-color: #cddccc;}
+.care-action:disabled {opacity: .45; cursor: not-allowed;}
+.care-actions {display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; margin-top: 24px;}
+.care-question {border: 0; padding: 0; margin: 24px 0 0; min-width: 0;}
+.care-question legend {font-size: 21px; font-weight: 650; margin-bottom: 18px; float: none; line-height: 1.6;}
+.care-option {display: flex; align-items: center; gap: 12px; border: 1px solid #d8e3d4; border-radius: 12px; padding: 13px 16px; margin: 9px 0; background: white; cursor: pointer; font-size: 14px;}
+.care-option:has(input:checked) {border-color: #477b5c; background: #eaf3e6; box-shadow: 0 0 0 1px #477b5c;}
+.care-option input {accent-color: #316844; width: 18px; height: 18px; flex-shrink: 0;}
+.care-progress-label {display: flex; justify-content: space-between; color: #657d68; font-size: 12px; margin: 10px 0;}
+.care-dialog progress {display: block; width: 100%; height: 7px; accent-color: #648768;}
+.care-result-row {background: white; border: 1px solid #e2e9df; padding: 16px; border-radius: 13px; margin: 12px 0;}
+.care-result-label {display: flex; justify-content: space-between; gap: 15px; font-size: 14px; font-weight: 700;}
+.care-result-row p {font-size: 12px; color: #6a7b6b; margin: 9px 0 0;}
+.care-meter {height: 7px; background: #e9efe6; border-radius: 10px; margin-top: 10px; overflow: hidden;}
+.care-meter span {display: block; height: 100%; background: #77966e; border-radius: inherit;}
+.care-help {border-left: 3px solid #b8a47b; background: #f5f0e5; padding: 14px 17px; margin-top: 20px; border-radius: 0 12px 12px 0;}
+.care-page button:focus-visible,.care-dialog button:focus-visible,.care-dialog a:focus-visible,.care-page a:focus-visible {outline: 3px solid #408365; outline-offset: 4px;}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {.care-card:hover {transform: translateY(-7px) rotateX(2deg) rotateY(-2deg); box-shadow: 0 8px 0 #dfe7e180, 0 24px 35px #22463718;} .care-card:hover img {transform: scale(1.035);}}
+@media (prefers-reduced-motion: reduce) {.care-card,.care-card-art img {transition: none;}}
+@media (max-width: 992px) {body:has(.care-page) .nav-menu:not(.active) {display: none;}}
+@media (max-width: 1000px) {.care-grid {grid-template-columns: repeat(2,minmax(0,1fr));} .care-hero-note {width: 220px;} .care-page .advisor-shell {grid-template-columns: 1fr;}}
+@media (max-width: 640px) {.care-page {padding: 0 18px;} .care-nav {align-items: flex-start; flex-direction: column; padding: 15px 0;} .care-switch {width: 100%;} .care-switch button {flex: 1; padding: 9px 8px; font-size: 12px;} .care-hero {padding: 33px 0; gap: 0;} .care-hero-note {display: none;} .care-hero h1 {font-size: 36px; letter-spacing: -1px;} .care-hero > div > p:last-child {font-size: 13px;} .care-eyebrow {font-size: 9px; letter-spacing: 1px;} .care-desktop-break {display: none;} .care-catalog-heading {align-items: start; flex-direction: column; gap: 10px;} .care-catalog-heading h2 {font-size: 21px;} .care-filters {gap: 7px; margin: 19px 0;} .care-filters button {padding: 8px 12px; font-size: 11px;} .care-grid {grid-template-columns: 1fr; gap: 22px;} .care-card-body {padding: 20px;} .care-bottom-note {padding: 16px; align-items: start;} #assessmentContent {padding: 20px;} .care-dialog h2 {font-size: 23px;} .care-question legend {font-size: 18px;} .care-dialog-top {padding: 12px 16px;} .care-page .advisor-shell {height: calc(100dvh - 235px); min-height: 420px;} .care-page .advisor-chat .advisor-topbar {gap: 10px;} .care-page .composer textarea {min-width: 0;}}
