@@ -1,6 +1,19 @@
 {% extends "base.html" %} {% block title %}Kho tài liệu - Vật Lý THPT{%
 endblock %} {% block content %}
 {% macro document_card(doc) %}
+{% if doc.link_type == 'video_lesson' %}
+<article class="document-card lecture-video-card">
+    <a class="lecture-cover" href="{{ url_for('video_library.watch', lesson_id=doc.id, origin='documents', grade=current_grade, kind=current_type) }}">
+        <img src="{{ url_for('static', filename=doc.poster) }}" width="1280" height="720" loading="lazy" alt="{{ doc.title }}">
+        <span class="lecture-play" aria-hidden="true">▶</span>
+        <span class="lecture-duration">{{ (doc.duration / 60)|int }}:{{ '%02d'|format((doc.duration % 60)|int) }}</span>
+    </a>
+    <div class="doc-header"><span class="doc-type-badge lecture">Video bài giảng</span><span class="doc-grade-badge grade-{{ doc.grade }}">Lớp {{ doc.grade }}</span></div>
+    <h3 class="doc-title">{{ doc.title }}</h3>
+    <p class="doc-description">{{ doc.group }} · Có thuyết minh và hình minh họa</p>
+    <div class="doc-actions"><a class="btn btn-primary btn-action" href="{{ url_for('video_library.watch', lesson_id=doc.id, origin='documents', grade=current_grade, kind=current_type) }}">▶ Xem bài giảng</a></div>
+</article>
+{% else %}
 <div class="document-card">
     <div class="doc-header">
         <span class="doc-type-badge {{ doc.doc_type }}">
@@ -70,11 +83,12 @@ endblock %} {% block content %}
         {% endif %}
     </div>
 </div>
+{% endif %}
 {% endmacro %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/video-navigation.css', v='1') }}">
 <div class="container">
     <div class="page-header">
         <h1>📚 Kho tài liệu Vật Lý</h1>
-        <a class="btn btn-primary" href="{{ url_for('video_library.index') }}">▶ Video bài giảng có minh họa</a>
         <p class="subtitle">
             Tài liệu, bài giảng, đề thi theo lớp 10, 11, 12 và chuyên đề HSG
         </p>

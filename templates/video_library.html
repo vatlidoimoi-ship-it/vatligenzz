@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Video bài giảng · Vật lí{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/video-navigation.css', v='1') }}">
 <div class="container" style="max-width:1200px;padding:28px 16px">
-  <a href="{{ url_for('documents') }}">← Kho tài liệu</a>
+  {% set back_href = url_for('teacher_videos.studio') if session.role == 'teacher' else url_for('documents', type='lecture') %}
+  {% set back_text = 'Tạo video bài giảng' if session.role == 'teacher' else 'Bài giảng trong kho tài liệu' %}
+  {% include 'partials/video_back.html' %}
   <h1>Video bài giảng</h1>
   <p>{{ lessons|length }} bài giải có thuyết minh và hình minh họa · Vật lí 11</p>
   <label for="lesson-filter">Chủ đề</label>

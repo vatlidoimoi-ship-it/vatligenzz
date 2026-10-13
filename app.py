@@ -1374,7 +1374,8 @@ def documents():
     topic_filter = request.args.get("topic", "all").strip()
 
     docs = []
-    for doc in db.get_all_documents():
+    from utils.video_library import published_video_documents
+    for doc in db.get_all_documents() + published_video_documents():
         if doc.get("grade") not in DOCUMENT_GRADE_LEVELS:
             continue
         clean_doc = dict(doc)

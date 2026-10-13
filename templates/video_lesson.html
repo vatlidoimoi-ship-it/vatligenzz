@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}{{ lesson.title }} · Video bài giảng{% endblock %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/video-navigation.css', v='1') }}">
 <div class="container" style="max-width:1080px;padding:28px 16px">
-  <a href="{{ url_for('video_library.index') }}">← Video bài giảng</a>
+  {% set back_href = back_url %}{% set back_text = back_label %}
+  {% include 'partials/video_back.html' %}
   <p>{{ lesson.id|upper }} · {{ lesson.group }}</p>
   <h1>{{ lesson.title }}</h1>
   <video id="lesson-player" controls playsinline preload="none" poster="{{ url_for('static', filename=lesson.poster) }}" style="width:100%;aspect-ratio:16/9;background:#102235;border-radius:18px" data-source="{{ url_for('video_library.play', lesson_id=lesson.id) }}"></video>
