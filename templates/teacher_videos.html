@@ -15,6 +15,7 @@
 <div class="container" id="video-studio" data-csrf="{{ video_csrf }}" style="max-width:1100px;padding:28px 16px">
   <a href="{{ url_for('teacher_dashboard') }}">← Trang giáo viên</a>
   <h1>Tạo video bài giảng</h1>
+  <p><a class="btn btn-secondary" href="{{ url_for('video_library.index') }}">Xem kho video bài giảng</a></p>
   <p>Nhập đề Vật lí, duyệt lời giải và lời đọc, sau đó dựng video có thuyết minh.</p>
   <form id="video-create">
     <label for="video-problem">Nội dung đề bài</label>

@@ -996,7 +996,7 @@ def sanitize_script_for_render(script, original_problem="", subject=None):
         script = enrich_physics_from_problem(script, subject)
     else:
         script = enrich_geometry_from_problem(script)
-    if history_subject:
+    if history_subject or script.get("include_full_solution") is False:
         added_full_solution = False
     else:
         script, added_full_solution = ensure_full_solution_slide(script)

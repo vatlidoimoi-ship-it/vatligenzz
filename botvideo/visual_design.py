@@ -29,7 +29,32 @@ def physics_svg(diagram, theme):
         return f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="3"' + (' marker-end="url(#arrow)"' if arrow else '') + (' stroke-dasharray="5 5"' if dash else '') + '/>'
     content = []
     caption = ''
-    if kind == 'wave':
+    if kind == 'pendulum':
+        try:
+            angle = float(diagram.get('angle_deg', 6))
+        except (TypeError, ValueError):
+            return ''
+        if not math.isfinite(angle) or not 0 < angle <= 10:
+            return ''
+        a = math.radians(angle)
+        x, y = 200 + 235 * math.sin(a), 55 + 235 * math.cos(a)
+        content += [line(145,45,255,45), line(200,55,200,315,muted,dash=True),
+                    line(200,55,x,y,accent),
+                    f'<circle cx="200" cy="55" r="5" fill="{ink}"/>',
+                    f'<circle cx="{x}" cy="{y}" r="13" fill="{accent}"/>',
+                    text(176,79,'O'),text(269,174,labels.get('length','ℓ')),
+                    text(287,246,f'α₀ = {angle:g}°' if diagram.get('show_angle', True) else 'Góc nhỏ'),text(162,318,'VTCB',muted,18),
+                    text(210,30,'Con lắc đơn',ink,24)]
+        caption = 'Dây không dãn · bỏ qua ma sát'
+    elif kind == 'spring':
+        content += [line(40,95,40,220),line(40,205,380,205,muted),
+                    f'<path d="M40 155 L60 155 L70 135 L90 175 L110 135 L130 175 L150 135 L170 175 L190 135 L210 155 L230 155" fill="none" stroke="{accent}" stroke-width="3"/>',
+                    f'<rect x="230" y="125" width="65" height="80" rx="8" fill="{theme["accent_light"]}" stroke="{ink}" stroke-width="3"/>',
+                    text(260,174,labels.get('mass','m'),size=18),text(145,103,labels.get('stiffness','k'),size=20),
+                    line(215,235,215,275,muted,dash=True),line(75,265,370,265,muted,True),
+                    text(215,298,'O',muted),text(370,298,'x',muted),text(210,50,'Con lắc lò xo',size=24)]
+        caption = 'Sơ đồ ngang · O là vị trí cân bằng'
+    elif kind == 'wave':
         # Two complete spatial periods; amplitude is equilibrium-to-crest.
         points = ' '.join(f'{x:.2f},{160-65*math.sin(2*math.pi*(x-40)/160):.2f}' for x in range(40,361,2))
         content += [line(30,160,380,160,muted,True), text(375,188,'x',muted),

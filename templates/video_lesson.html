@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{ lesson.title }} · Video bài giảng{% endblock %}
+{% block content %}
+<div class="container" style="max-width:1080px;padding:28px 16px">
+  <a href="{{ url_for('video_library.index') }}">← Video bài giảng</a>
+  <p>{{ lesson.id|upper }} · {{ lesson.group }}</p>
+  <h1>{{ lesson.title }}</h1>
+  <video id="lesson-player" controls playsinline preload="none" poster="{{ url_for('static', filename=lesson.poster) }}" style="width:100%;aspect-ratio:16/9;background:#102235;border-radius:18px" data-source="{{ url_for('video_library.play', lesson_id=lesson.id) }}"></video>
+  <button id="lesson-play" class="btn btn-primary" type="button">▶ Phát video có tiếng</button>
+  <a class="btn btn-secondary" href="{{ url_for('video_library.play', lesson_id=lesson.id) }}" target="_blank" rel="noopener">Mở MP4</a>
+  <p id="lesson-status" role="status"></p>
+  {% if lesson.source %}
+  <details style="margin:24px 0"><summary>Đề gốc và nguồn tài liệu</summary>
+    <p>{{ lesson.source.file }}</p><blockquote>{{ lesson.source.quote }}</blockquote>
+    <p>Lời giải được biên soạn cho video; ký hiệu và cách diễn đạt được trình bày lại cho dễ theo dõi.</p>
+  </details>
+  {% endif %}
+</div>
+<script src="{{ url_for('static', filename='video_library.js', v='1') }}" defer></script>
+{% endblock %}

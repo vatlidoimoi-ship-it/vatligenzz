@@ -1,0 +1,272 @@
+[
+  {
+    "id": "vl-01",
+    "title": "Đọc chu kì từ phương trình",
+    "group": "Dao động",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101301/result.mp4",
+    "duration": 35.3,
+    "size_bytes": 636141,
+    "poster": "video_posters/vl-01.png"
+  },
+  {
+    "id": "vl-02",
+    "title": "Tìm li độ tại một thời điểm",
+    "group": "Dao động",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101302/result.mp4",
+    "duration": 33.6,
+    "size_bytes": 614560,
+    "poster": "video_posters/vl-02.png"
+  },
+  {
+    "id": "vl-03",
+    "title": "Tốc độ khi biết li độ",
+    "group": "Dao động",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101303/result.mp4",
+    "duration": 33.5,
+    "size_bytes": 588333,
+    "poster": "video_posters/vl-03.png"
+  },
+  {
+    "id": "vl-04",
+    "title": "Gia tốc luôn hướng về cân bằng",
+    "group": "Dao động",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101304/result.mp4",
+    "duration": 31.7,
+    "size_bytes": 591594,
+    "poster": "video_posters/vl-04.png"
+  },
+  {
+    "id": "vl-05",
+    "title": "Chia cơ năng thành động năng và thế năng",
+    "group": "Dao động",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101305/result.mp4",
+    "duration": 40.6,
+    "size_bytes": 757194,
+    "poster": "video_posters/vl-05.png"
+  },
+  {
+    "id": "vl-06",
+    "title": "Con lắc đơn dài 25 cm",
+    "group": "Con lắc đơn",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101306/result.mp4",
+    "duration": 34.8,
+    "size_bytes": 643534,
+    "poster": "video_posters/vl-06.png"
+  },
+  {
+    "id": "vl-07",
+    "title": "Tìm chiều dài từ chu kì",
+    "group": "Con lắc đơn",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101307/result.mp4",
+    "duration": 33.1,
+    "size_bytes": 591036,
+    "poster": "video_posters/vl-07.png"
+  },
+  {
+    "id": "vl-08",
+    "title": "Đếm dao động trong hai phút",
+    "group": "Con lắc đơn",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101308/result.mp4",
+    "duration": 32.4,
+    "size_bytes": 638197,
+    "poster": "video_posters/vl-08.png"
+  },
+  {
+    "id": "vl-09",
+    "title": "Tốc độ cực đại của con lắc đơn",
+    "group": "Con lắc đơn",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101309/result.mp4",
+    "duration": 37.6,
+    "size_bytes": 708884,
+    "poster": "video_posters/vl-09.png"
+  },
+  {
+    "id": "vl-10",
+    "title": "Tăng chiều dài thì chu kì đổi thế nào?",
+    "group": "Con lắc đơn",
+    "grade": "11",
+    "source": null,
+    "object_key": "2026101310/result.mp4",
+    "duration": 33.7,
+    "size_bytes": 645646,
+    "poster": "video_posters/vl-10.png"
+  },
+  {
+    "id": "vl-11",
+    "title": "Tốc độ sóng từ hai gợn liên tiếp",
+    "group": "Sóng · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx",
+      "paragraph_index": 1195,
+      "quote": "Trong thí nghiệm hình 8.1, cần rung dao động với tần số 50 Hz. Người ta đo được bán kính của 2 gợn sóng hình tròn liên tiếp lần lượt bằng 12,4cm và 14,3cm. Tính tốc độ truyền sóng.",
+      "sha256": "6763def329b53ff3a8bfe9a80de7300de8ef892933bdc0fd878f18900219aba5"
+    },
+    "object_key": "2026101311/result.mp4",
+    "duration": 34.9,
+    "size_bytes": 654918,
+    "poster": "video_posters/vl-11.png"
+  },
+  {
+    "id": "vl-12",
+    "title": "Phao nhô lên sáu lần: có mấy chu kì?",
+    "group": "Sóng · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx",
+      "paragraph_index": 1228,
+      "quote": "(SGK - CTST) Một bạn học sinh đang câu cá trên hồ nước. Khi có sóng đi qua, bạn quan sát thấy phao câu cá nhô lên cao 6 lần trong 4 s. Biết tốc độ truyền sóng là 0,5 m/s. Tính khoảng cách giữa hai đỉnh sóng liên tiếp.",
+      "sha256": "6763def329b53ff3a8bfe9a80de7300de8ef892933bdc0fd878f18900219aba5"
+    },
+    "object_key": "2026101312/result.mp4",
+    "duration": 33.9,
+    "size_bytes": 634377,
+    "poster": "video_posters/vl-12.png"
+  },
+  {
+    "id": "vl-13",
+    "title": "Tốc độ từ phương trình sóng",
+    "group": "Sóng · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx",
+      "paragraph_index": 1243,
+      "quote": "(SBT – CTST) Sóng nước truyền trên một mặt hồ có phương trình: u = 3,2cos(8,5t – 0,5x) ( x được tính bằng cm, t được tính bằng s). Tính tốc độ của sóng truyền trên mặt hồ.",
+      "sha256": "6763def329b53ff3a8bfe9a80de7300de8ef892933bdc0fd878f18900219aba5"
+    },
+    "object_key": "2026101313/result.mp4",
+    "duration": 36.5,
+    "size_bytes": 669548,
+    "poster": "video_posters/vl-13.png"
+  },
+  {
+    "id": "vl-14",
+    "title": "Năm gợn lồi liên tiếp",
+    "group": "Sóng · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx",
+      "paragraph_index": 1315,
+      "quote": " Tại một điểm trên mặt chất lỏng có một nguồn dao động với tần số 120 Hz, tạo ra sóng ổn định trên mặt chất lỏng. Xét 5 gợn lồi liên tiếp trên một phương truyền sóng, ở về một phía so với nguồn, gợn thứ nhất cách gợn thứ năm 0,5 m. Tốc độ truyền sóng là bao nhiêu?",
+      "sha256": "6763def329b53ff3a8bfe9a80de7300de8ef892933bdc0fd878f18900219aba5"
+    },
+    "object_key": "2026101314/result.mp4",
+    "duration": 33.4,
+    "size_bytes": 592985,
+    "poster": "video_posters/vl-14.png"
+  },
+  {
+    "id": "vl-15",
+    "title": "Sóng đi được bốn xen ti mét",
+    "group": "Sóng · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx",
+      "paragraph_index": 1340,
+      "quote": "Đầu A của một sợi dây cao su căng thẳng nằm ngang, được làm cho dao động điều hòa theo phương thẳng đứng với tần số f = 0,5 Hz. Trong thời gian 8 (s) sóng đã đi được 4 cm dọc theo dây. Tốc độ truyền sóng v và bước sóng λ có giá trị là bao nhiêu?    ",
+      "sha256": "6763def329b53ff3a8bfe9a80de7300de8ef892933bdc0fd878f18900219aba5"
+    },
+    "object_key": "2026101315/result.mp4",
+    "duration": 34.6,
+    "size_bytes": 670014,
+    "poster": "video_posters/vl-15.png"
+  },
+  {
+    "id": "vl-16",
+    "title": "Đo điện trở bằng định luật Ôm",
+    "group": "Mạch điện · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx",
+      "paragraph_index": 2750,
+      "quote": "(SBT-CD) Cường độ dòng điện đi qua một vật dẫn là 6,3 A khi hiệu điện thế giữa hai đầu vật dẫn là 12 V. Tính điện trở của vật dẫn.",
+      "sha256": "08021c73616a6f45137cfcd9ea0d1c6bd4879baf0bc44ddd7e7a65d7a95c71e8"
+    },
+    "object_key": "2026101316/result.mp4",
+    "duration": 29.1,
+    "size_bytes": 506613,
+    "poster": "video_posters/vl-16.png"
+  },
+  {
+    "id": "vl-17",
+    "title": "Dòng điện qua điện trở ba ôm",
+    "group": "Mạch điện · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx",
+      "paragraph_index": 3214,
+      "quote": "(SBT-CD) Đặt hiệu điện thế 6 V vào hai đầu điện trở 3Ω. Cường độ dòng điện chạy qua điện trở là",
+      "sha256": "08021c73616a6f45137cfcd9ea0d1c6bd4879baf0bc44ddd7e7a65d7a95c71e8"
+    },
+    "object_key": "2026101317/result.mp4",
+    "duration": 25.6,
+    "size_bytes": 423264,
+    "poster": "video_posters/vl-17.png"
+  },
+  {
+    "id": "vl-18",
+    "title": "Điện lượng đi qua trong một giây",
+    "group": "Mạch điện · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx",
+      "paragraph_index": 3251,
+      "quote": "(SBT-CD) Đặt một hiệu điện thế 12 V vào giữa hai đầu một điện trở 4,0Ω thì lượng điện tích chạy qua điện trở trong mỗi giây là",
+      "sha256": "08021c73616a6f45137cfcd9ea0d1c6bd4879baf0bc44ddd7e7a65d7a95c71e8"
+    },
+    "object_key": "2026101318/result.mp4",
+    "duration": 28.3,
+    "size_bytes": 498485,
+    "poster": "video_posters/vl-18.png"
+  },
+  {
+    "id": "vl-19",
+    "title": "Công suất và nhiệt lượng trên điện trở",
+    "group": "Mạch điện · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx",
+      "paragraph_index": 5748,
+      "quote": "Đặt một hiệu điện thế 12 V vào hai đầu một điện trở 8 Ω. Công suất toả nhiệt trên điện trở và nhiệt lượng toả ra trên điện trở sau 1 phút.",
+      "sha256": "08021c73616a6f45137cfcd9ea0d1c6bd4879baf0bc44ddd7e7a65d7a95c71e8"
+    },
+    "object_key": "2026101319/result.mp4",
+    "duration": 30.9,
+    "size_bytes": 559182,
+    "poster": "video_posters/vl-19.png"
+  },
+  {
+    "id": "vl-20",
+    "title": "Tìm hai điện trở từ hai cách mắc",
+    "group": "Mạch điện · từ tài liệu",
+    "grade": "11",
+    "source": {
+      "file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx",
+      "paragraph_index": 5854,
+      "quote": "Có hai điện trở mắc giữa hai điểm có hiệu điện thế 12 V. Khi R1 nối tiếp R2 thì công suất của mạch là 4 W. Khi R1 mắc song song R2 thì công suất mạch là 18 W. Giá trị của điện trở R1 và R2 là",
+      "sha256": "08021c73616a6f45137cfcd9ea0d1c6bd4879baf0bc44ddd7e7a65d7a95c71e8"
+    },
+    "object_key": "2026101320/result.mp4",
+    "duration": 43.6,
+    "size_bytes": 770129,
+    "poster": "video_posters/vl-20.png"
+  }
+]

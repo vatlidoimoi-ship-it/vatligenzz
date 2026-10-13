@@ -5548,6 +5548,8 @@ def logout_old():
 
 from utils.teacher_videos import register_teacher_videos
 register_teacher_videos(app, get_user_by_id)
+from utils.video_library import register_video_library
+register_video_library(app, get_user_by_id)
 
 ##############
 if __name__ == "__main__":
