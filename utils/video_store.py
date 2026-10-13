@@ -2,6 +2,7 @@
 import os
 from urllib.parse import quote
 import requests
+from .http_client import http_session
 
 
 class VideoStore:
@@ -19,7 +20,7 @@ class VideoStore:
         if not self.ready:
             raise RuntimeError('Chưa cấu hình Supabase cho video.')
         headers = {**self.headers, **kwargs.pop('headers', {})}
-        response = requests.request(method, self.base + path, headers=headers, timeout=kwargs.pop('timeout', 30), **kwargs)
+        response = http_session().request(method, self.base + path, headers=headers, timeout=kwargs.pop('timeout', 30), **kwargs)
         if not response.ok:
             raise RuntimeError(f'Kho video chưa sẵn sàng (HTTP {response.status_code}).')
         return response

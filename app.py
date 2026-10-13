@@ -496,12 +496,14 @@ def gift_status_payload(user_id):
 
 @app.before_request
 def track_online_user():
+    if request.endpoint == 'static' or request.path.startswith(('/static/', '/health/')) or request.path == '/service-worker.js':
+        return
     user_id = session.get("user_id")
     if not user_id:
         return
 
     now = datetime.now()
-    user = get_user_by_id(user_id)
+    user = get_user_by_id(user_id) if not session.get('username') or not session.get('role') else None
     ONLINE_USERS[user_id] = {
         "user_id": user_id,
         "username": session.get("username") or (user.get("username") if user else "Unknown"),

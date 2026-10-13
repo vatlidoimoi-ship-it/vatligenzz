@@ -2,9 +2,13 @@ import json
 import os
 import shutil
 import threading
+import copy
+import time
 from pathlib import Path
 
 import requests
+from flask import g, has_request_context, request
+from .http_client import http_session
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -71,6 +75,20 @@ else:
 FORUM_UPLOAD_URL_PREFIX = "/uploads/forum"
 _json_locks = {}
 _json_locks_guard = threading.Lock()
+_catalog_cache = {}
+_catalog_cache_lock = threading.Lock()
+# Only reference catalogs may be briefly shared across GET requests. User roles,
+# balances, messages and results are always refreshed for each request.
+_CATALOG_KEYS = {'data/documents.json', 'data/courses.json',
+                 'data/li.json', 'data/career_assessments.json'}
+_CATALOG_TTL = 30
+
+def _request_reads():
+    if not has_request_context():
+        return None
+    if not hasattr(g, '_supabase_reads'):
+        g._supabase_reads = {}
+    return g._supabase_reads
 
 
 def _supabase_headers(prefer=None):
@@ -106,7 +124,17 @@ def _supabase_key_for(local_path):
 
 
 def _supabase_get_json(remote_key):
-    response = requests.get(
+    reads = _request_reads()
+    if reads is not None and remote_key in reads:
+        return copy.deepcopy(reads[remote_key])
+    shared = has_request_context() and request.method in {'GET', 'HEAD'} and remote_key in _CATALOG_KEYS
+    if shared:
+        with _catalog_cache_lock:
+            cached = _catalog_cache.get(remote_key)
+        if cached is not None and time.monotonic() < cached[0]:
+            reads[remote_key] = copy.deepcopy(cached[1])
+            return copy.deepcopy(cached[1])
+    response = http_session().get(
         _supabase_table_url(),
         headers=_supabase_headers(),
         params={"key": f"eq.{remote_key}", "select": "value"},
@@ -114,13 +142,17 @@ def _supabase_get_json(remote_key):
     )
     response.raise_for_status()
     rows = response.json()
-    if not rows:
-        return None
-    return rows[0].get("value")
+    value = rows[0].get('value') if rows else None
+    if reads is not None:
+        reads[remote_key] = copy.deepcopy(value)
+    if shared:
+        with _catalog_cache_lock:
+            _catalog_cache[remote_key] = (time.monotonic() + _CATALOG_TTL, copy.deepcopy(value))
+    return value
 
 
 def _supabase_upsert_json(remote_key, value):
-    response = requests.post(
+    response = http_session().post(
         _supabase_table_url(),
         headers=_supabase_headers("resolution=merge-duplicates,return=minimal"),
         params={"on_conflict": "key"},
@@ -128,6 +160,11 @@ def _supabase_upsert_json(remote_key, value):
         timeout=30,
     )
     response.raise_for_status()
+    with _catalog_cache_lock:
+        _catalog_cache.pop(remote_key, None)
+    reads = _request_reads()
+    if reads is not None:
+        reads[remote_key] = copy.deepcopy(value)
 
 
 def _write_local_json(path, value):
@@ -205,7 +242,6 @@ def read_json(path, default=None):
         if remote_path:
             value = _supabase_get_json(remote_path)
             if value is not None:
-                _write_local_json(path, value)
                 return value
 
     try:
