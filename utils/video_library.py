@@ -59,4 +59,15 @@ def register_video_library(app, get_user, store=None, catalog_path=None):
             return 'Kho video đang bận. Bạn vui lòng thử lại sau.', 503
 
     app.register_blueprint(bp)
+    @app.get('/health/video-library')
+    def library_health():
+        # Check the actual published object, rather than only checking env vars.
+        items = lessons()
+        if not items:
+            return {'ready': False, 'reason': 'empty_catalog'}, 503
+        try:
+            store.signed_url(items[0]['object_key'])
+            return {'ready': True, 'lessons': len(items)}, 200
+        except RuntimeError as error:
+            return {'ready': False, 'reason': str(error)}, 503
     return bp
