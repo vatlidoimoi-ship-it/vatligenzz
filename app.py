@@ -5546,6 +5546,9 @@ def logout_old():
     return redirect("/login")
 
 
+from utils.teacher_videos import register_teacher_videos
+register_teacher_videos(app, get_user_by_id)
+
 ##############
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)

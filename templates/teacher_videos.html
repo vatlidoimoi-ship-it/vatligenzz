@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Tạo video bài giảng · Giáo viên{% endblock %}
+{% block content %}
+<style>
+  #video-studio form, #video-studio #video-output { background:#fff; color:#203047; border:1px solid #d9e4ee; border-radius:16px; padding:22px; margin:20px 0; box-shadow:0 6px 20px #18395008; }
+  #video-studio h1 { margin:12px 0; }
+  #video-studio h2 { margin:26px 0 12px; }
+  #video-studio label { display:block; font-weight:600; margin:10px 0 6px; }
+  #video-studio textarea, #video-studio select { padding:12px; border:1px solid #bccddd; border-radius:8px; font:inherit; background:#fff; color:#203047; }
+  #video-studio textarea:focus, #video-studio select:focus { outline:2px solid #1987c9; outline-offset:2px; }
+  #video-studio button { margin-top:10px; }
+  #video-studio #video-message { padding:8px 0; }
+  @media(max-width:600px) { #video-studio form { padding:14px; } #video-studio .btn { white-space:normal; } }
+</style>
+<div class="container" id="video-studio" data-csrf="{{ video_csrf }}" style="max-width:1100px;padding:28px 16px">
+  <a href="{{ url_for('teacher_dashboard') }}">← Trang giáo viên</a>
+  <h1>Tạo video bài giảng</h1>
+  <p>Nhập đề Vật lí, duyệt lời giải và lời đọc, sau đó dựng video có thuyết minh.</p>
+  <form id="video-create">
+    <label for="video-problem">Nội dung đề bài</label>
+    <textarea id="video-problem" rows="7" minlength="15" maxlength="12000" required placeholder="Dán đề bài và đầy đủ các lựa chọn hoặc dữ kiện…" style="width:100%"></textarea>
+    <button class="btn btn-primary" type="submit">Tạo kịch bản</button>
+  </form>
+  <p id="video-message" role="status" aria-live="polite"></p>
+  <section id="video-current" hidden>
+    <h2 id="video-job-title">Tác vụ hiện tại</h2>
+    <p id="video-job-note"></p>
+    <progress id="video-progress" max="100" value="0" style="width:100%"></progress>
+    <form id="video-editor" hidden>
+      <p>Kiểm tra đáp án, công thức và lời đọc trước khi dựng. Chữ trên slide và lời thuyết minh có thể khác nhau.</p>
+      <label for="video-theme">Mẫu thiết kế</label>
+      <select id="video-theme">{% for value, label in themes.items() %}<option value="{{ value }}">{{ label }}</option>{% endfor %}</select>
+      <div id="video-steps"></div>
+      <button type="submit" class="btn btn-primary">Dựng video có giọng đọc</button>
+    </form>
+    <div id="video-output" hidden>
+      <video id="teacher-result-video" controls playsinline preload="metadata" style="width:100%;border-radius:12px"></video>
+      <button type="button" class="btn btn-primary" id="video-sound">🔊 Phát có tiếng</button>
+      <a class="btn btn-secondary" id="video-download" target="_blank" rel="noopener">Mở / tải MP4</a>
+    </div>
+  </section>
+  <h2>Video của bạn</h2>
+  <p>Kịch bản và video hoàn tất được lưu lại để mở ở lần đăng nhập sau.</p>
+  <div id="video-history">Đang tải…</div>
+</div>
+<script src="{{ url_for('static', filename='teacher_videos.js') }}" defer></script>
+{% endblock %}

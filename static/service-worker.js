@@ -1,4 +1,4 @@
-const CACHE_NAME = "phyedu-pwa-v6";
+const CACHE_NAME = "phyedu-pwa-v7";
 const APP_SHELL = [
   "/",
   "/app",
@@ -37,6 +37,11 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+  // Teacher drafts and signed video redirects must never survive in offline cache.
+  if (url.pathname === "/teacher/videos" || url.pathname.startsWith("/teacher/videos/")) {
+    event.respondWith(fetch(request, { cache: "no-store" }));
+    return;
+  }
 
   if (request.mode === "navigate") {
     event.respondWith(
