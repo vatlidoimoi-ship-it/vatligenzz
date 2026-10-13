@@ -172,6 +172,9 @@ DAILY_PHYSICS_QUESTIONS = [
 
 @app.after_request
 def prevent_stale_html_cache(response):
+    # Public image assets may be reused without a round trip on each page.
+    if request.endpoint == "static" and response.status_code == 200 and response.mimetype.startswith("image/"):
+        response.headers["Cache-Control"] = "public, max-age=86400"
     if response.content_type.startswith("text/html"):
         response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
         response.headers["Pragma"] = "no-cache"

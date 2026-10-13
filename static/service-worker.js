@@ -1,4 +1,4 @@
-const CACHE_NAME = "phyedu-pwa-v8";
+const CACHE_NAME = "phyedu-pwa-v9";
 const APP_SHELL = [
   "/",
   "/app",
@@ -9,7 +9,7 @@ const APP_SHELL = [
   "/static/icons/icon-192.png",
   "/static/icons/icon-512.png",
   "/static/icons/apple-touch-icon.png",
-  "/static/icons/logo-phyedu.png",
+  "/static/icons/logo-phyedu-88-v1.webp",
   "/static/offline.html"
 ];
 

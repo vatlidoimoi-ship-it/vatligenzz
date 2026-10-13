@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="PHYEDU">
     <title>{% block title %}PHYEDU{% endblock %}</title>
+    {% block image_preloads %}{% endblock %}
     
     <link rel="manifest" href="{{ url_for('static', filename='manifest.webmanifest') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/icon-192.png') }}">
@@ -1027,7 +1028,7 @@
     <nav class="navbar">
         <div class="container">
             <a href="{{ url_for('index') }}" class="logo" aria-label="PHYEDU">
-                <img class="logo-img" src="{{ url_for('static', filename='icons/logo-phyedu.png') }}" alt="" width="44" height="44">
+                <img class="logo-img" src="{{ url_for('static', filename='icons/logo-phyedu-88-v1.webp') }}" alt="" width="44" height="44">
                 <span class="logo-text">PHYEDU</span>
             </a>
             

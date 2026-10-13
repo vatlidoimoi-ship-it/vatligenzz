@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block image_preloads %}
+<link rel="preload" as="image" href="{{ url_for('static', filename='home-hero-v1.webp') }}" media="(min-width: 769px)" fetchpriority="high">
+<link rel="preload" as="image" href="{{ url_for('static', filename='home-hero-mobile-v1.webp') }}" media="(max-width: 768px)" fetchpriority="high">
+{% endblock %}
 
 {% block title %}PHYEDU - Học tập thông minh{% endblock %}
 
@@ -26,7 +30,10 @@ body {
     padding: 76px 0 58px;
     background:
         linear-gradient(90deg, rgba(5, 16, 20, .52) 0%, rgba(5, 16, 20, .34) 42%, rgba(5, 16, 20, .04) 100%),
-        url("{{ url_for('static', filename='anhnen.png') }}") center / cover;
+        var(--hero-image, url("{{ url_for('static', filename='home-hero-v1.webp') }}")) center / cover;
+}
+@media (max-width: 768px) {
+    .home-hero { --hero-image: url("{{ url_for('static', filename='home-hero-mobile-v1.webp') }}"); }
 }
 .home-hero::after {
     content: "";
