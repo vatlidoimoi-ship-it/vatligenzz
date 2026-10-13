@@ -5,6 +5,11 @@
   const el = id => document.getElementById(id);
   const base = '/teacher/videos';
   let current = null, timer = null, revision = 0;
+  let previewUrl = null;
+  function scriptPayload() {
+    return {design_template:el('video-theme').value,
+      steps:Array.from(el('video-steps').children).map(fieldset => Object.fromEntries(Array.from(fieldset.querySelectorAll('textarea')).map(node => [node.name,node.value])))};
+  }
   const active = new Set(['queued_draft', 'drafting', 'queued', 'processing']);
   const labels = {queued_draft:'Chờ tạo kịch bản',drafting:'Đang tạo kịch bản',script_ready:'Chờ duyệt',queued:'Chờ dựng',processing:'Đang dựng',complete:'Hoàn tất',error:'Chưa hoàn tất'};
   const message = text => { el('video-message').textContent = text; };
@@ -18,8 +23,12 @@
   }
   function editor(script) {
     el('video-steps').replaceChildren();
+    el('video-preview-step').replaceChildren();
+    el('video-slide-preview').hidden = true;
     el('video-theme').value = script.design_template || 'studio';
     script.steps.forEach((step, i) => {
+      const option = document.createElement('option'); option.value = i; option.textContent = `Bước ${i + 1}: ${step.title || ''}`;
+      el('video-preview-step').append(option);
       const fieldset = document.createElement('fieldset');
       fieldset.style.cssText = 'margin:18px 0;padding:16px;border:1px solid #cad5e2;border-radius:12px';
       const legend = document.createElement('legend'); legend.textContent = `Bước ${i + 1}`; fieldset.append(legend);
@@ -102,6 +111,23 @@
     const video = el('teacher-result-video'); video.muted = false; video.volume = 1;
     try { await video.play(); message('Đã bật tiếng.'); }
     catch (error) { message('Không phát được. Thử mở / tải MP4 bằng nút bên cạnh.'); }
+  });
+  el('video-preview-button').addEventListener('click', async () => {
+    const button = el('video-preview-button'); button.disabled = true;
+    const selectedJob = current.id;
+    try {
+      message('Đang tạo ảnh xem trước…');
+      const response = await fetch(`${base}/jobs/${selectedJob}/preview`, {method:'POST',
+        headers:{'Content-Type':'application/json','X-CSRF-Token':root.dataset.csrf},
+        body:JSON.stringify({...scriptPayload(),preview_index:Number(el('video-preview-step').value)})});
+      if (!response.ok) { const data = await response.json(); throw new Error(data.error || 'Không tạo được preview.'); }
+      const blob = await response.blob();
+      if (current.id !== selectedJob) return;
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = URL.createObjectURL(blob); el('video-slide-preview').src = previewUrl;
+      el('video-slide-preview').hidden = false; message('Đây là bố cục với nội dung hiện tại. Bạn có thể sửa rồi xem lại.');
+    } catch (error) { message(error.message); }
+    finally { button.disabled = false; }
   });
   history();
 })();

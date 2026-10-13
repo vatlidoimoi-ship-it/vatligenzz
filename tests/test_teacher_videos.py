@@ -109,6 +109,25 @@ class TeacherVideoTests(unittest.TestCase):
             self.assertEqual(self.post('/jobs/1234567890/render', self.script).status_code, 503)
         self.assertEqual(self.store.get('1234567890')['value']['status'], 'script_ready')
 
+    def test_preview_uses_edited_script_without_encoder(self):
+        from botvideo import core
+        payload = copy.deepcopy(self.script)
+        payload['steps'][0]['title'] = 'Tiêu đề đã chỉnh'
+        payload['preview_index'] = 0
+        def fake_image(html, png):
+            self.assertIn('Tiêu đề đã chỉnh', html.read_text(encoding='utf-8'))
+            png.write_bytes(b'\x89PNG\r\n\x1a\n')
+            return True
+        with patch.object(core, 'render_scene_png_with_playwright', side_effect=fake_image), \
+             patch.object(core, 'safe_render_job') as encoder:
+            response = self.post('/jobs/1234567890/preview', payload)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.mimetype, 'image/png')
+            encoder.assert_not_called()
+        self.assertEqual(self.store.get('1234567890')['value']['status'], 'script_ready')
+        self.login('t2')
+        self.assertEqual(self.post('/jobs/1234567890/preview',payload).status_code,404)
+
     def test_private_play_requires_complete(self):
         self.assertEqual(self.client.get('/teacher/videos/jobs/1234567890/play').status_code, 404)
         row = self.store.get('1234567890')

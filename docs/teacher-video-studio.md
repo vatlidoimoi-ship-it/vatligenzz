@@ -25,7 +25,9 @@ chức năng Lịch sử của ứng dụng botvideo độc lập.
 - Máy chủ khởi động tự chuẩn bị ffmpeg/ffprobe qua `static-ffmpeg` nếu chưa có PATH;
   tải Chromium nền nếu cần. Trong lúc khởi tạo, API render trả 503 để không nhận tác vụ
   thiếu công cụ. Máy chủ thiếu thư viện hệ thống Chromium dùng renderer PIL với font
-  Noto Sans tiếng Việt đi kèm; công thức phức tạp nên dùng môi trường có Chromium.
+  Noto Sans tiếng Việt đi kèm. Từ bản thiết kế mới, luồng dựng HTML sẽ dừng nếu
+  Chromium lỗi, không âm thầm đổi sang sơ đồ PIL thiếu chính xác. Cần cài các thư
+  viện Chromium của hệ điều hành nếu host thiếu chúng.
 - Mặc định `TTS_PROVIDER=gtts`, `RENDER_WORKERS=1`, một thread encoder; có thể chỉnh env.
   Edge TTS vẫn có trong engine nhưng không phải lựa chọn mặc định do lỗi âm thanh ở lần kiểm tra.
 - `VIDEO_WORKER_ENABLED=0` tắt worker khi chạy các phép kiểm tra tích hợp.
@@ -42,3 +44,22 @@ Kiểm tra trình duyệt: mở studio, đọc lịch sử, sửa lời thuyết
 bố cục desktop/mobile. Không xác nhận render thật trên Render vì ba lượt thử đã
 được dùng hết trong đợt rà soát trước. Engine gốc có video cuối đã kiểm tra ở
 thư mục botvideo ngoài repository.
+
+## Nâng cấp thiết kế slide
+
+- AI chia mỗi bước thành một ý chính, chữ slide ngắn hơn lời đọc và công thức riêng.
+- Font Noto Sans thống nhất; tiêu đề 42 px, chữ 25–28 px, công thức 32 px trước khi
+  tự co. Ngưỡng thấp nhất của khối chữ chính là 22 px; kiểm tra tràn chữ trước khi
+  chụp ảnh/dựng, báo lỗi khi cần người dùng chia nội dung.
+- Lựa chọn A–D thành thẻ, công thức trong khung, sơ đồ ở cột riêng. Chữ xuất hiện
+  từng khối nhưng giữ kích thước bố cục để tránh nhảy dòng.
+- SVG hỗ trợ mạch một điện trở hoặc hai điện trở nối tiếp/song song; lực có hướng
+  chỉ định; sóng hình sin theo vị trí; thấu kính hội tụ với vật ngoài tiêu điểm;
+  sơ đồ nhận nhiệt. Không vẽ các trường hợp thiếu dữ kiện/ngoài phạm vi hỗ trợ.
+- Không đổi đơn vị ngầm khi suy luận sơ đồ; không tự vẽ N, P hay ampe kế.
+- Giáo viên chọn bước và bấm **Xem slide trước khi dựng** để kiểm tra nội dung đang
+  chỉnh. API preview có cùng kiểm tra chủ sở hữu và CSRF; tạo PNG, không tạo audio/MP4.
+- Đã kiểm tra năm ảnh preview bằng Chromium: không tràn khối chữ, font chính ≥22 px,
+  KaTeX không báo lỗi. Có kiểm thử riêng hình học sơ đồ và bảo vệ endpoint preview.
+- Độ đúng của dữ kiện do AI suy ra vẫn cần giáo viên duyệt; không hứa tự vẽ đúng
+  mọi dạng bài hoặc mọi mạch phức tạp.

@@ -31,6 +31,10 @@
       <label for="video-theme">Mẫu thiết kế</label>
       <select id="video-theme">{% for value, label in themes.items() %}<option value="{{ value }}">{{ label }}</option>{% endfor %}</select>
       <div id="video-steps"></div>
+      <label for="video-preview-step">Xem thử bố cục</label>
+      <select id="video-preview-step" aria-label="Chọn bước xem trước"></select>
+      <button type="button" id="video-preview-button" class="btn btn-secondary">Xem slide trước khi dựng</button>
+      <img id="video-slide-preview" hidden alt="Ảnh xem trước slide với nội dung và mẫu đang chọn" style="width:100%;margin:16px 0;border-radius:12px">
       <button type="submit" class="btn btn-primary">Dựng video có giọng đọc</button>
     </form>
     <div id="video-output" hidden>
@@ -43,5 +47,5 @@
   <p>Kịch bản và video hoàn tất được lưu lại để mở ở lần đăng nhập sau.</p>
   <div id="video-history">Đang tải…</div>
 </div>
-<script src="{{ url_for('static', filename='teacher_videos.js') }}" defer></script>
+<script src="{{ url_for('static', filename='teacher_videos.js', v='design2') }}" defer></script>
 {% endblock %}

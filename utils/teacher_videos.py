@@ -10,8 +10,11 @@ import shutil
 import threading
 import time
 import uuid
+import tempfile
+import io
+from pathlib import Path
 
-from flask import Blueprint, jsonify, redirect, render_template, request, session, url_for
+from flask import Blueprint, jsonify, redirect, render_template, request, session, url_for, send_file
 from .video_store import VideoStore
 
 ID = re.compile(r'^[0-9a-f]{10}$')
@@ -61,6 +64,7 @@ def register_teacher_videos(app, get_user, store=None, start_worker=True):
     store = store or VideoStore()
     bp = Blueprint('teacher_videos', __name__, url_prefix='/teacher/videos')
     wake = threading.Event()
+    preview_lock = threading.Lock()
 
     @bp.after_request
     def private_response(response):
@@ -159,6 +163,34 @@ def register_teacher_videos(app, get_user, store=None, start_worker=True):
             return jsonify(error='Tác vụ vừa thay đổi. Hãy tải lại.'), 409
         wake.set()
         return jsonify(job=public(updated)), 202
+
+    @bp.post('/jobs/<job_id>/preview')
+    @protected
+    def preview(job_id):
+        row = own_row(job_id)
+        if not row or not row['value'].get('script'):
+            return jsonify(error='Không tìm thấy kịch bản.'), 404
+        payload = request.get_json(silent=True)
+        try:
+            script = validated_script(payload, row['value']['script'])
+            index = payload.get('preview_index', 0)
+            if type(index) is not int or not 0 <= index < len(script['steps']):
+                raise ValueError('Bước xem trước không hợp lệ.')
+        except ValueError as error:
+            return jsonify(error=str(error)), 400
+        if not preview_lock.acquire(blocking=False):
+            return jsonify(error='Đang tạo ảnh xem trước. Vui lòng thử lại sau vài giây.'), 429
+        try:
+            from botvideo import core
+            with tempfile.TemporaryDirectory(prefix='video-preview-') as directory:
+                html, png = Path(directory)/'scene.html', Path(directory)/'scene.png'
+                core.render_scene_html(script['steps'][index], index, html, script['design_template'])
+                if not core.render_scene_png_with_playwright(html, png):
+                    return jsonify(error='Chưa tạo được preview. Hãy rút gọn chữ nếu slide dài; nếu vẫn lỗi, máy chủ cần kiểm tra trình dựng Chromium.'), 503
+                image = io.BytesIO(png.read_bytes())
+            return send_file(image, mimetype='image/png')
+        finally:
+            preview_lock.release()
 
     @bp.get('/jobs/<job_id>/play')
     @protected

@@ -16,6 +16,7 @@ from html import escape
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+from .visual_design import physics_svg, polish_html, slide_markup
 
 from .media_tools import (
     concat_scene_videos,
@@ -1297,6 +1298,13 @@ def ask_gemini(problem, subject, image_path=None):
     - Với sóng/dao động, ưu tiên diagram.type = "wave"; giữ chu kì T, tần số f, bước sóng λ, biên độ A.
     - Với nhiệt học, ưu tiên diagram.type = "heat"; giữ Q, m, c, Δt, nhiệt độ và đơn vị.
     - Mỗi step nên có diagram nếu có thể. Diagram chỉ dùng schema đơn giản: {"type":"force|motion|circuit|optics|wave|heat","labels":{"m":"m = 2 kg","F":"F = 10 N","U":"U = 12 V","I":"I = 2 A","R":"R = 6 Ω"}}.
+    - Sơ đồ phải khớp đề, không bịa lực hoặc tự giả định cách mắc mạch. Nếu thiếu dữ kiện để vẽ, diagram = null.
+    - Mạch điện: thêm topology = "single", "series" hoặc "parallel". series/parallel chỉ hỗ trợ đúng hai điện trở, thêm resistors = ["R₁ = ... Ω", "R₂ = ... Ω"]. Mạch hỗn hợp/phức tạp: diagram = null.
+    - Lực/chuyển động: bắt buộc có vectors = [{"label":"F = ... N","direction":"right|left|up|down"}]. Chỉ vẽ vectơ đề cho hoặc đã suy ra có giải thích; tối đa một vectơ mỗi hướng. Không tự thêm N/P khi chưa có điều kiện mặt đỡ/trọng lực.
+    - Quang học: chỉ vẽ thấu kính hội tụ với vật ngoài tiêu điểm, thêm focal_length và object_distance là số dương CÙNG ĐƠN VỊ; object_distance > focal_length. Các trường hợp khác: diagram = null.
+    - wave là sóng hình sin theo vị trí x, không dùng cho đồ thị dao động theo thời gian hoặc con lắc. heat chỉ dùng khi mô tả hệ nhận nhiệt Q.
+    - Bố cục: một ý chính mỗi bước. slide_text nên có 2-4 dòng ngắn (tổng dưới 320 ký tự khi có sơ đồ), công thức đặt riêng trong latex. Không nhắc lại một công thức cả ở slide_text lẫn latex.
+    - Bước mở đầu giữ đầy đủ câu hỏi và lựa chọn nếu là trắc nghiệm. Bước kết luận ghi rõ đáp án, đơn vị và điều kiện áp dụng. Narration giải thích dài hơn phần chữ trên slide.
     """
 
     prompt = f"""Bạn là giáo viên giảng dạy môn {subject_label}. Hãy đọc đề bài bằng text và/hoặc ảnh, giải đúng và đủ như một video bài giảng.
@@ -1527,8 +1535,11 @@ def infer_physics_diagram_from_text(text, subject=None):
     labels = {}
 
     def capture(label, pattern, unit):
-        match = re.search(pattern, source, re.IGNORECASE)
-        if match:
+        match = re.search(pattern, source)
+        # Do not silently relabel grams as kilograms or milliamps as amps.
+        units = {'kg': r'kg$', 'N': r'N$', 'm/s^2': r'm/s(?:\^?2|²)$',
+                 'm/s': r'm/s$', 'V': r'V$', 'A': r'A$', 'Ω': r'(?:Ω|ohm|ôm)$'}
+        if match and re.search(units[unit], match.group(0)):
             labels[label] = f"{label} = {match.group(1).replace(',', '.')} {unit}".strip()
 
     capture("m", r"\bm\s*=\s*(-?\d+(?:[.,]\d+)?)\s*(?:kg|ki\s*lô\s*gam)?", "kg")
@@ -1540,13 +1551,17 @@ def infer_physics_diagram_from_text(text, subject=None):
     capture("R", r"\bR\s*=\s*(-?\d+(?:[.,]\d+)?)\s*(?:Ω|ohm|ôm)?", "Ω")
 
     if any(token in lower for token in ["mạch", "mach", "điện", "dien", "dòng điện", "dong dien", "hiệu điện thế", "hieu dien the", "điện trở", "dien tro", "ampe", "vôn", "von", "ôm", "ohm"]):
-        return {"type": "circuit", "labels": labels}
+        if any(word in lower for word in ['song song', 'nối tiếp', 'hỗn hợp', 'tụ điện', 'cuộn cảm', 'điện trường']):
+            return None  # Topology must come from an explicit validated diagram.
+        if re.search(r'(?:hai|ba|bốn|2|3|4)\s+điện trở|R[₁₂12]', source, re.IGNORECASE):
+            return None
+        return {"type": "circuit", "topology": "single", "labels": labels} if 'R' in labels else None
     if any(token in lower for token in ["gương", "guong", "thấu kính", "thau kinh", "tia sáng", "tia sang", "quang", "tiêu cự", "tieu cu", "ảnh ảo", "anh ao", "ảnh thật", "anh that"]):
         return {"type": "optics", "labels": labels}
-    if any(token in lower for token in ["sóng", "song", "dao động", "dao dong", "tần số", "tan so", "chu kì", "chu ky", "biên độ", "bien do", "con lắc", "con lac"]):
+    if any(token in lower for token in ["bước sóng", "sóng hình sin", "sóng cơ", "sóng điện từ"]):
         return {"type": "wave", "labels": labels}
     if any(token in lower for token in ["nhiệt", "nhiet", "nhiệt lượng", "nhiet luong", "truyền nhiệt", "truyen nhiet", "nhiệt dung", "nhiet dung", "nhiệt độ", "nhiet do"]):
-        return {"type": "heat", "labels": labels}
+        return {"type": "heat", "labels": labels} if 'nhận nhiệt' in lower else None
     if any(token in lower for token in ["rơi", "roi", "ném", "nem", "chuyển động", "chuyen dong", "vận tốc", "van toc", "gia tốc", "gia toc"]):
         return {"type": "motion", "labels": labels}
     if any(token in lower for token in ["trọng lực", "ma sát", "hợp lực", "lực kéo", "lực đẩy"]) or "F" in labels:
@@ -1740,77 +1755,7 @@ def apply_history_assets(script, assets):
 
 
 def physics_diagram_svg_markup(diagram):
-    diagram = diagram or {}
-    diagram_type = str(diagram.get("type") or "force").lower()
-    labels = diagram.get("labels") if isinstance(diagram.get("labels"), dict) else {}
-
-    def label_text(name, fallback):
-        return escape(str(labels.get(name) or fallback))
-
-    if diagram_type == "circuit":
-        return f'''
-        <svg class="geometry-svg physics-svg" viewBox="0 0 420 320" role="img" aria-label="Sơ đồ mạch điện">
-          <rect x="54" y="62" width="312" height="188" rx="18" fill="#F7FBFB" stroke="#2B4C7E" stroke-width="8"/>
-          <line x1="82" y1="130" x2="82" y2="182" stroke="#2B4C7E" stroke-width="7"/>
-          <line x1="104" y1="112" x2="104" y2="200" stroke="#2B4C7E" stroke-width="7"/>
-          <path d="M178 62 l16 26 l16 -52 l16 52 l16 -52 l16 52 l16 -26" fill="none" stroke="#3AAFA9" stroke-width="7" stroke-linejoin="round"/>
-          <circle cx="292" cy="250" r="30" fill="#DEF2F1" stroke="#2B4C7E" stroke-width="7"/>
-          <text x="280" y="260" font-size="30" font-weight="700" fill="#2B4C7E">A</text>
-          <text x="74" y="228" font-size="24" font-weight="700" fill="#1F2937">{label_text("U", "U")}</text>
-          <text x="186" y="124" font-size="24" font-weight="700" fill="#1F2937">{label_text("R", "R")}</text>
-          <text x="302" y="210" font-size="24" font-weight="700" fill="#1F2937">{label_text("I", "I")}</text>
-        </svg>'''
-
-    if diagram_type == "optics":
-        return '''
-        <svg class="geometry-svg physics-svg" viewBox="0 0 420 320" role="img" aria-label="Sơ đồ quang học">
-          <line x1="38" y1="160" x2="382" y2="160" stroke="#94A3B8" stroke-width="4" stroke-dasharray="10 8"/>
-          <path d="M210 48 C176 100 176 220 210 272 C244 220 244 100 210 48Z" fill="#DEF2F1" stroke="#2B4C7E" stroke-width="7"/>
-          <line x1="64" y1="100" x2="210" y2="160" stroke="#EF4444" stroke-width="7" stroke-linecap="round"/>
-          <line x1="210" y1="160" x2="356" y2="98" stroke="#EF4444" stroke-width="7" stroke-linecap="round"/>
-          <line x1="64" y1="220" x2="210" y2="160" stroke="#3AAFA9" stroke-width="7" stroke-linecap="round"/>
-          <line x1="210" y1="160" x2="356" y2="222" stroke="#3AAFA9" stroke-width="7" stroke-linecap="round"/>
-          <text x="190" y="36" font-size="24" font-weight="700" fill="#2B4C7E">L</text>
-          <text x="84" y="84" font-size="22" font-weight="700" fill="#1F2937">tia tới</text>
-          <text x="270" y="84" font-size="22" font-weight="700" fill="#1F2937">tia ló</text>
-        </svg>'''
-
-    if diagram_type == "wave":
-        return '''
-        <svg class="geometry-svg physics-svg" viewBox="0 0 420 320" role="img" aria-label="Sơ đồ sóng">
-          <line x1="38" y1="160" x2="382" y2="160" stroke="#94A3B8" stroke-width="4"/>
-          <path d="M40 160 C75 76 110 76 145 160 S215 244 250 160 S320 76 380 160" fill="none" stroke="#3AAFA9" stroke-width="9" stroke-linecap="round"/>
-          <line x1="145" y1="160" x2="145" y2="78" stroke="#EF4444" stroke-width="5" stroke-dasharray="8 7"/>
-          <text x="152" y="112" font-size="24" font-weight="700" fill="#EF4444">A</text>
-          <line x1="146" y1="276" x2="250" y2="276" stroke="#2B4C7E" stroke-width="5"/>
-          <path d="M146 276 l14 -9 v18z M250 276 l-14 -9 v18z" fill="#2B4C7E"/>
-          <text x="187" y="306" font-size="24" font-weight="700" fill="#2B4C7E">λ</text>
-        </svg>'''
-
-    if diagram_type == "heat":
-        return '''
-        <svg class="geometry-svg physics-svg" viewBox="0 0 420 320" role="img" aria-label="Sơ đồ nhiệt học">
-          <rect x="112" y="82" width="196" height="164" rx="16" fill="#DEF2F1" stroke="#2B4C7E" stroke-width="7"/>
-          <path d="M124 250 C160 226 190 226 228 250 S292 274 306 250" fill="none" stroke="#3AAFA9" stroke-width="9"/>
-          <path d="M164 76 C148 48 180 44 164 18 M220 76 C204 48 236 44 220 18 M276 76 C260 48 292 44 276 18" fill="none" stroke="#EF4444" stroke-width="7" stroke-linecap="round"/>
-          <text x="142" y="178" font-size="26" font-weight="700" fill="#1F2937">Q = mcΔt</text>
-        </svg>'''
-
-    return f'''
-    <svg class="geometry-svg physics-svg" viewBox="0 0 420 320" role="img" aria-label="Sơ đồ lực và chuyển động">
-      <line x1="50" y1="236" x2="370" y2="236" stroke="#94A3B8" stroke-width="6" stroke-linecap="round"/>
-      <rect x="142" y="146" width="122" height="72" rx="10" fill="#DEF2F1" stroke="#2B4C7E" stroke-width="7"/>
-      <text x="164" y="190" font-size="24" font-weight="700" fill="#1F2937">{label_text("m", "m")}</text>
-      <line x1="264" y1="182" x2="356" y2="182" stroke="#EF4444" stroke-width="8" stroke-linecap="round"/>
-      <path d="M356 182 l-22 -13 v26z" fill="#EF4444"/>
-      <text x="286" y="166" font-size="24" font-weight="700" fill="#EF4444">{label_text("F", "F")}</text>
-      <line x1="204" y1="146" x2="204" y2="72" stroke="#3AAFA9" stroke-width="7" stroke-linecap="round"/>
-      <path d="M204 72 l-13 22 h26z" fill="#3AAFA9"/>
-      <text x="216" y="102" font-size="24" font-weight="700" fill="#3AAFA9">N</text>
-      <line x1="204" y1="218" x2="204" y2="286" stroke="#2B4C7E" stroke-width="7" stroke-linecap="round"/>
-      <path d="M204 286 l-13 -22 h26z" fill="#2B4C7E"/>
-      <text x="216" y="272" font-size="24" font-weight="700" fill="#2B4C7E">P</text>
-    </svg>'''
+    return physics_svg(diagram, get_design_template('studio'))
 
 
 def visual_items(visual, keys=("items", "nodes", "events")):
@@ -1947,7 +1892,7 @@ def scene_visual_markup(scene, theme=None):
     if isinstance(scene.get("visual"), dict):
         return history_visual_svg_markup(scene.get("visual"), theme, scene)
     if isinstance(scene.get("diagram"), dict):
-        return physics_diagram_svg_markup(scene.get("diagram"))
+        return physics_svg(scene.get("diagram"), theme)
     return geometry_svg_markup(scene.get("geometry") or {})
 
 
@@ -2810,6 +2755,13 @@ def history_scene_html(scene, index, template_id="history_archive"):
 
 
 def scene_html(scene, index, template_id="studio"):
+    html = _scene_html_base(scene, index, template_id)
+    if str(template_id).startswith('history_') or is_history_subject(scene.get('subject')):
+        return html
+    return polish_html(html, get_design_template(template_id), scene)
+
+
+def _scene_html_base(scene, index, template_id="studio"):
     if str(template_id or "").startswith("history_") or is_history_subject(scene.get("subject")) or scene.get("image_ref"):
         return history_scene_html(scene, index, template_id=template_id)
     theme = get_design_template(template_id)
@@ -2830,9 +2782,9 @@ def scene_html(scene, index, template_id="studio"):
     has_formula = "true" if latex else "false"
     layout = str(scene.get("layout") or "")
     is_full_solution = layout == "full_solution"
-    narration = full_solution_markup(scene) if is_full_solution else escape(scene_display_text(scene) or " ")
+    narration = full_solution_markup(scene) if is_full_solution else slide_markup(scene_display_text(scene) or " ")
     layout_class = " full-solution" if layout == "full_solution" else ""
-    has_visual = bool(scene.get("geometry") or scene.get("diagram") or scene.get("visual"))
+    has_visual = bool(scene.get("geometry") or scene.get("visual") or (scene.get("diagram") and visual))
     if not has_visual and not is_full_solution:
         layout_class += " text-only"
     visual_html = "" if is_full_solution or not has_visual else f'<aside class="visual">{visual}</aside>'
@@ -3079,8 +3031,8 @@ def scene_html(scene, index, template_id="studio"):
       for (const node of nodes) {{
         let size = parseFloat(getComputedStyle(node).fontSize);
         let guard = 0;
-        while ((node.scrollHeight > node.clientHeight || node.scrollWidth > node.clientWidth) && size > 15 && guard < 28) {{
-          size -= 1.5;
+        while ((node.scrollHeight > node.clientHeight + 2 || node.scrollWidth > node.clientWidth + 2) && size > 22 && guard < 28) {{
+          size = Math.max(22, size - 1.5);
           node.style.fontSize = size + 'px';
           guard += 1;
         }}
@@ -3104,6 +3056,17 @@ def render_scene_html(scene, index, output_path, template_id="studio"):
     output_path.write_text(scene_html(scene, index, template_id=template_id), encoding="utf-8")
 
 
+def check_slide_layout(page):
+    issues = page.evaluate("""() => {
+      if (!document.querySelector('main[data-kind]')) return [];
+      return [...document.querySelectorAll('.fit-text,.formula')]
+        .filter(n => n.clientHeight && (n.scrollHeight > n.clientHeight + 2 || n.scrollWidth > n.clientWidth + 2))
+        .map(n => n.className);
+    }""")
+    if issues:
+        raise ValueError('Slide quá nhiều chữ/công thức. Hãy rút gọn hoặc chia thành nhiều bước.')
+
+
 def render_scene_png_with_playwright(html_path, output_path):
     if importlib.util.find_spec("playwright") is None:
         return False
@@ -3117,6 +3080,8 @@ def render_scene_png_with_playwright(html_path, output_path):
                 page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
                 page.goto(html_path.resolve().as_uri(), wait_until="domcontentloaded", timeout=15000)
                 page.wait_for_timeout(1200)
+                page.evaluate('document.fonts.ready')
+                check_slide_layout(page)
                 page.screenshot(path=str(output_path), type="png")
             finally:
                 browser.close()
@@ -3825,6 +3790,8 @@ def render_history_scene_frame(scene, index, output_path, reveal_ratio=1.0, temp
 
 
 def render_scene_frame(scene, index, output_path, reveal_ratio=1.0, template_id="studio"):
+    if scene.get('diagram'):
+        raise RuntimeError('Slide có sơ đồ Vật lí cần trình dựng HTML để giữ đúng hình học và ký hiệu.')
     if str(template_id or "").startswith("history_") or is_history_subject(scene.get("subject")) or scene.get("image_ref"):
         render_history_scene_frame(scene, index, output_path, reveal_ratio=reveal_ratio, template_id=template_id)
         return
@@ -3982,12 +3949,15 @@ def render_typewriter_frames_with_playwright(html_path, scene, index, frame_dir,
                 page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
                 page.goto(html_path.resolve().as_uri(), wait_until="domcontentloaded", timeout=15000)
                 page.wait_for_timeout(1200)
+                page.evaluate('document.fonts.ready')
+                check_slide_layout(page)
                 for frame_index in range(frame_count):
                     if frame_index >= text_done_frame:
                         reveal = 1.0
                     else:
                         reveal = frame_index / text_done_frame
                     payload = {
+                        "reveal": reveal,
                         "narration": reveal_by_units(narration_units, reveal),
                         "latex": reveal_latex_lines_for_html(full_latex, reveal),
                         "keepMarkup": is_full_solution,
@@ -3999,7 +3969,13 @@ def render_typewriter_frames_with_playwright(html_path, scene, index, frame_dir,
                           document.querySelectorAll('.fit-text, .formula').forEach((node) => {
                             node.style.fontSize = '';
                           });
-                          if (narration && !payload.keepMarkup) narration.textContent = payload.narration || ' ';
+                          if (narration && !payload.keepMarkup) {
+                            const units = narration.querySelectorAll('.slide-unit');
+                            if (units.length) {
+                              const count = Math.ceil(payload.reveal * units.length);
+                              units.forEach((node, i) => node.style.visibility = i < count ? 'visible' : 'hidden');
+                            } else narration.textContent = payload.narration || ' ';
+                          }
                           if (formula) {
                             formula.dataset.latex = payload.latex || '';
                             if (typeof window.renderFormula === 'function') window.renderFormula();
@@ -4044,6 +4020,8 @@ def render_scene_video_typewriter(ffmpeg_bin, scene, index, frame_dir, mp3_path,
         )
 
     if not rendered_frames:
+        if html_frames_enabled:
+            raise RuntimeError('Trình dựng HTML/Chromium chưa sẵn sàng. Dừng để tránh video sai bố cục hoặc sơ đồ.')
         shutil.rmtree(frame_dir, ignore_errors=True)
         frame_dir.mkdir(parents=True, exist_ok=True)
         for frame_index in range(frame_count):
