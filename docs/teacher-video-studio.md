@@ -2,6 +2,10 @@
 
 Đường dẫn: `/teacher/videos`, có thẻ trên dashboard giáo viên.
 
+Cập nhật 20/10/2026: admin có thể quản lý video toàn hệ thống. Video hoàn tất
+có form xuất bản theo tên/lớp/chủ đề và nút gỡ xuất bản. Xem
+[quyền học vụ và xuất bản video](admin-academics-video-publication.md).
+
 1. Đăng nhập tài khoản giáo viên, dán đề Vật lí có đầy đủ dữ kiện.
 2. Chờ AI tạo kịch bản. Chỉnh từng tiêu đề, chữ trên slide, lời đọc, công thức.
 3. Chọn một trong năm mẫu rồi bấm dựng video.

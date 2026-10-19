@@ -165,8 +165,12 @@
 // ========== BIẾN TOÀN CỤC ==========
 let remainingTime = {{ remaining_time }};
 let timerInterval;
-const subject = "{{ subject }}";
-const examId = "{{ exam.id }}";
+const subject = {{ subject|tojson }};
+const examId = {{ exam.id|tojson }};
+const deadline = Date.now() + remainingTime * 1000;
+let examSubmitting = false;
+let examSubmitted = false;
+let expiredAnswers = null;
 
 console.log("=== EXAM INFO ===");
 console.log("Subject:", subject);
@@ -192,7 +196,7 @@ document.querySelectorAll('.essay-textarea').forEach(textarea => {
 // ========== COUNTDOWN TIMER ==========
 function startTimer() {
     timerInterval = setInterval(() => {
-        remainingTime--;
+        remainingTime = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
         updateTimerDisplay();
         
         if (remainingTime === 300) {
@@ -203,9 +207,7 @@ function startTimer() {
         if (remainingTime <= 0) {
             clearInterval(timerInterval);
             showNotification('⏰ Hết giờ! Đang tự động nộp bài...', 'danger');
-            setTimeout(() => {
-                autoSubmit();
-            }, 1500);
+            autoSubmit();
         }
     }, 1000);
 }
@@ -255,13 +257,17 @@ function collectAnswers() {
 
 // ========== ĐẾM SỐ CÂU CHƯA LÀM ==========
 function countUnanswered() {
-    const { answers } = collectAnswers();
-    return Object.values(answers).filter(a => a === '').length;
+    const names = new Set([...document.querySelectorAll('input[type="radio"]')].map(input => input.name));
+    const { answers, essays } = collectAnswers();
+    return [...names].filter(name => !answers[name.replace('question_', '')]).length
+        + Object.values(essays).filter(answer => !answer).length;
 }
 
 // ========== NỘP BÀI ==========
 async function submitExam() {
-    const { answers, essays } = collectAnswers();
+    if (examSubmitting || examSubmitted) return;
+    examSubmitting = true;
+    const { answers, essays } = expiredAnswers || collectAnswers();
     
     console.log('📤 SUBMITTING EXAM');
     console.log('Subject:', subject);
@@ -304,6 +310,8 @@ async function submitExam() {
         console.log('✅ Result:', data);
         
         if (data.success) {
+            examSubmitted = true;
+            clearInterval(timerInterval);
             sessionStorage.setItem('examResult', JSON.stringify(data.result));
             showNotification('✅ Nộp bài thành công!', 'success');
             
@@ -321,12 +329,20 @@ async function submitExam() {
         showNotification('Lỗi kết nối: ' + error.message, 'danger');
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
+    } finally {
+        examSubmitting = false;
+        if (!examSubmitted) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        }
     }
 }
 
 // ========== TỰ ĐỘNG NỘP BÀI KHI HẾT GIỜ ==========
 function autoSubmit() {
     clearInterval(timerInterval);
+    expiredAnswers = collectAnswers();
+    document.querySelectorAll('input[type="radio"], .essay-textarea').forEach(input => input.disabled = true);
     document.getElementById('submitBtn').disabled = true;
     console.log('⏰ Auto-submit triggered');
     submitExam();
@@ -348,13 +364,12 @@ document.getElementById('submitBtn').addEventListener('click', function() {
         }
     }
     
-    clearInterval(timerInterval);
     submitExam();
 });
 
 // ========== CẢNH BÁO KHI RỜI TRANG ==========
 window.addEventListener('beforeunload', function(e) {
-    if (remainingTime > 0) {
+    if (!examSubmitted && remainingTime > 0) {
         e.preventDefault();
         e.returnValue = '';
     }

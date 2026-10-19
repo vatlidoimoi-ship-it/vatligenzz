@@ -84,7 +84,7 @@ def _run_with_gemini_key(operation):
 
 _configure_gemini_key(0)
 MODEL_NAME = 'gemini-2.5-flash'
-CHAT_MAX_OUTPUT_TOKENS = int(os.getenv('GEMINI_CHAT_MAX_OUTPUT_TOKENS', '900'))
+CHAT_MAX_OUTPUT_TOKENS = int(os.getenv('GEMINI_CHAT_MAX_OUTPUT_TOKENS', '1800'))
 IMAGE_MAX_OUTPUT_TOKENS = int(os.getenv('GEMINI_IMAGE_MAX_OUTPUT_TOKENS', '1600'))
 JSON_MAX_OUTPUT_TOKENS = int(os.getenv('GEMINI_JSON_MAX_OUTPUT_TOKENS', '1100'))
 
@@ -639,10 +639,20 @@ def chat_with_career_guidance(user_message, chat_history=None):
                 }
             )
 
-            if chat_history:
-                chat = model.start_chat(history=chat_history)
-                return _response_text(chat.send_message(user_message))
-            return _response_text(model.generate_content(user_message))
+            chat = model.start_chat(history=chat_history or [])
+            response = chat.send_message(user_message)
+            answer = _response_text(response)
+            # Gemini may return partial text when the output token budget is reached.
+            # Continue within the same chat so the user receives a complete thought.
+            for _ in range(2):
+                candidates = getattr(response, 'candidates', None) or []
+                reason = getattr(candidates[0], 'finish_reason', None) if candidates else None
+                if 'MAX_TOKENS' not in str(reason):
+                    break
+                response = chat.send_message('Tiếp tục câu trả lời ngay từ chỗ vừa dừng, kết thúc trọn ý. Không lặp lại nội dung đã viết.')
+                continuation = _response_text(response)
+                answer += ' ' + continuation if answer and continuation else continuation
+            return answer
 
         return _run_with_gemini_key(send_message)
 

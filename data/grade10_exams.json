@@ -1,0 +1,937 @@
+{
+  "exams": [
+    {
+      "id": "exam_li10_intro_01",
+      "title": "Vật lí 10 · Làm quen với Vật lí: đối tượng và mục tiêu",
+      "grade": "10",
+      "time_limit": 15,
+      "description": "9 câu từ tài liệu Word bài 1.",
+      "topic": "Làm quen với Vật lí: đối tượng và mục tiêu",
+      "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+      "source_sha256": "4975408ae77efabe954bbd4a857d13c8cb8ba0af0f2b9abc1410c19d0736fa0b",
+      "batch_id": "word10-intro-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "question": "Lĩnh vực nghiên cứu nào sau đây là của Vật lí?",
+          "options": {
+            "A": "Nghiên cứu về sự thay đổi của các chất khi kết hợp với nhau.",
+            "B": "Nghiên cứu sự phát minh và phát triển của các vi khuẩn.",
+            "C": "Nghiên cứu về các dạng chuyển động và các dạng năng lượng khác nhau.",
+            "D": "Nghiên cứu về sự hình thành và phát triển của các tầng lớp, giai cấp trong xã hội."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 653,
+          "source_quote": "Câu 1. Lĩnh vực nghiên cứu nào sau đây là của Vật lí?",
+          "id": 1,
+          "number": 1,
+          "source_question": 1,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: Nghiên cứu về các dạng chuyển động và các dạng năng lượng khác nhau.."
+        },
+        {
+          "question": "Biểu hiện nào sau đây không phải là biểu hiện của phát triển năng lực vật lí?",
+          "options": {
+            "A": "Có được kiến thức, kĩ năng cơ bản về vật lí.",
+            "B": "Vận dụng được kiến thức, kĩ năng để khám phá, giải quyết các vấn đề có liên quan trong học tập cũng như trong cuộc sống.",
+            "C": "Nhận biết được năng lực, sở trường của bản thân, định hướng nghề nghiệp.",
+            "D": "Nhận biết được hạn chế của bản thân để tìm cách khắc phục."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 658,
+          "source_quote": "Câu 2. Biểu hiện nào sau đây không phải là biểu hiện của phát triển năng lực vật lí?",
+          "id": 2,
+          "number": 2,
+          "source_question": 2,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là D: Nhận biết được hạn chế của bản thân để tìm cách khắc phục.."
+        },
+        {
+          "question": "Đối tượng nghiên cứu của Vật lí là gì?",
+          "options": {
+            "A": "Các dạng vận động và tương tác của vật chất.",
+            "B": "Nghiên cứu về nhiệt động lực học.",
+            "C": "Qui luật tương tác của các dạng năng lượng.",
+            "D": "Các dạng vận động của vật chất và năng lượng."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 663,
+          "source_quote": "Câu 3. Đối tượng nghiên cứu của Vật lí là gì?",
+          "id": 3,
+          "number": 3,
+          "source_question": 3,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là D: Các dạng vận động của vật chất và năng lượng.."
+        },
+        {
+          "question": "Đối tượng nghiên cứu nào sau đây không thuộc lĩnh vực Vật lí?",
+          "options": {
+            "A": "vật chất và sự vận động, năng lượng.",
+            "B": "Vũ trụ (các hành tinh, ngôi sao...)",
+            "C": "Trái Đất.",
+            "D": "Các chất và sự biến đổi các chất, phương trình phản ứng của các chất trong tự nhiên."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 668,
+          "source_quote": "Câu 4. Đối tượng nghiên cứu nào sau đây không thuộc lĩnh vực Vật lí?",
+          "id": 4,
+          "number": 4,
+          "source_question": 4,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là D: Các chất và sự biến đổi các chất, phương trình phản ứng của các chất trong tự nhiên.."
+        },
+        {
+          "question": "Đối tượng nghiên cứu nào sau đây thuộc lĩnh vực Vật lí?",
+          "options": {
+            "A": "Dòng điện không đổi.",
+            "B": "Hiện tượng quang hợp.",
+            "C": "Sự sinh trưởng và phát triển của các loài trong thế giới tự nhiên.",
+            "D": "Sự cấu tạo và biến đổi các chất."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 673,
+          "source_quote": "Câu 5. Đối tượng nghiên cứu nào sau đây thuộc lĩnh vực Vật lí?",
+          "id": 5,
+          "number": 5,
+          "source_question": 5,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Dòng điện không đổi.."
+        },
+        {
+          "question": "Chọn câu trả lời đúng nhất. Mục tiêu của Vật lí là",
+          "options": {
+            "A": "Khám phá ra các qui luật chuyển động.",
+            "B": "Khám phá ra qui luật tổng quát nhất chi phối sự vận động của vật chất và năng lượng, cũng như tương tác giữa chúng ở cấp độ vi mô và vĩ mô.",
+            "C": "Khám phá năng lượng của vật chất ở nhiều cấp độ.",
+            "D": "Khám phá ra qui luật chi phối sự vận động của vật chất."
+          },
+          "correct_answer": "B",
+          "source_paragraph": 678,
+          "source_quote": "Câu 6. Chọn câu trả lời đúng nhất. Mục tiêu của Vật lí là",
+          "id": 6,
+          "number": 6,
+          "source_question": 6,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là B: Khám phá ra qui luật tổng quát nhất chi phối sự vận động của vật chất và năng lượng, cũng như tương tác giữa chúng ở cấp độ vi mô và vĩ mô.."
+        },
+        {
+          "question": "Chọn phát biểu chưa chính xác. Học tốt môn Vật lí ở trường phổ thông sẽ giúp bạn",
+          "options": {
+            "A": "Hình thành kiến thức, kĩ năng cốt lõi về mô hình vật lí, năng lượng và sóng, lực và trường.",
+            "B": "Vận dụng kiến thức để khám phá, giải quyết vấn đề dưới góc độ vật lí, phù hợp với yêu cầu phát triển bền vững xã hội và bảo vệ môi trường.",
+            "C": "Nhận biết được năng lực, sở trường từ đó có kế hoạch, định hướng nghề nghiệp phát triển bản thân.",
+            "D": "Trở thành nhà lãnh đạo vĩ đại."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 683,
+          "source_quote": "Câu 7. Chọn phát biểu chưa chính xác. Học tốt môn Vật lí ở trường phổ thông sẽ giúp bạn",
+          "id": 7,
+          "number": 7,
+          "source_question": 7,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là D: Trở thành nhà lãnh đạo vĩ đại.."
+        },
+        {
+          "question": "Cấp độ vi mô là.",
+          "options": {
+            "A": "cấp độ dùng để mô phỏng vật chất bé nhỏ.",
+            "B": "cấp độ to, nhỏ phụ thuộc vào qui mô khảo sát.",
+            "C": "cấp độ mô phỏng tầm rộng lớn hay rất lớn của vật chất.",
+            "D": "cấp độ tinh vi khi khảo sát một hiện tượng vật lí."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 687,
+          "source_quote": "Câu 8. Cấp độ vi mô là.",
+          "id": 8,
+          "number": 8,
+          "source_question": 8,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: cấp độ dùng để mô phỏng vật chất bé nhỏ.."
+        },
+        {
+          "question": "Cấp độ vĩ mô là.",
+          "options": {
+            "A": "cấp độ dùng để mô phỏng vật chất bé nhỏ.",
+            "B": "cấp độ to, nhỏ phụ thuộc vào qui mô khảo sát.",
+            "C": "cấp độ mô phỏng tầm rộng lớn hay rất lớn của vật chất.",
+            "D": "cấp độ tinh vi khi khảo sát một hiện tượng vật lí."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 692,
+          "source_quote": "Câu 9. Cấp độ vĩ mô là.",
+          "id": 9,
+          "number": 9,
+          "source_question": 9,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: cấp độ mô phỏng tầm rộng lớn hay rất lớn của vật chất.."
+        }
+      ]
+    },
+    {
+      "id": "exam_li10_intro_02",
+      "title": "Vật lí 10 · Quá trình phát triển của Vật lí",
+      "grade": "10",
+      "time_limit": 15,
+      "description": "8 câu từ tài liệu Word bài 1.",
+      "topic": "Quá trình phát triển của Vật lí",
+      "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+      "source_sha256": "4975408ae77efabe954bbd4a857d13c8cb8ba0af0f2b9abc1410c19d0736fa0b",
+      "batch_id": "word10-intro-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "question": "Quá trình phát triển của vật lí được chia thành bao nhiêu giai đoạn?",
+          "options": {
+            "A": "3",
+            "B": "4",
+            "C": "2",
+            "D": "5"
+          },
+          "correct_answer": "A",
+          "source_paragraph": 721,
+          "source_quote": "Câu 1. Quá trình phát triển của vật lí được chia thành bao nhiêu giai đoạn?",
+          "id": 1,
+          "number": 1,
+          "source_question": 1,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: 3."
+        },
+        {
+          "question": "Các nhà vật lí dùng phương pháp thực nghiệm để tìm hiểu thế giới tự nhiên trong khoảng thời gian nào?",
+          "options": {
+            "A": "Từ năm 350 TCN đến năm 1831.",
+            "B": "Từ năm 1900 đến nay.",
+            "C": "Từ thế kỉ XVII đến cuối thế kỉ XIX.",
+            "D": "Từ cuối thế kỉ XIX đến nay."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 726,
+          "source_quote": "Câu 3. Các nhà vật lí dùng phương pháp thực nghiệm để tìm hiểu thế giới tự nhiên trong khoảng thời gian nào?",
+          "id": 2,
+          "number": 2,
+          "source_question": 3,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: Từ thế kỉ XVII đến cuối thế kỉ XIX.."
+        },
+        {
+          "question": "Sự kiện nào sau đây xảy ra vào năm 1831?",
+          "options": {
+            "A": "Galilei làm thí nghiệm tại tháp nghiên Pisa.",
+            "B": "Joule tìm ra các định luật nhiệt động lực học.",
+            "C": "Faraday tìm ra hiện tượng cảm ứng điện từ.",
+            "D": "Einstein xây dựng thuyết tương đối."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 732,
+          "source_quote": "Câu 5. Sự kiện nào sau đây xảy ra vào năm 1831?",
+          "id": 3,
+          "number": 3,
+          "source_question": 5,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: Faraday tìm ra hiện tượng cảm ứng điện từ.."
+        },
+        {
+          "question": "Sự kiện nào sau đây xảy ra vào năm 1600?",
+          "options": {
+            "A": "Galilei làm thí nghiệm tại tháp nghiên Pisa.",
+            "B": "Joule tìm ra các định luật nhiệt động lực học.",
+            "C": "Faraday tìm ra hiện tượng cảm ứng điện từ.",
+            "D": "Einstein xây dựng thuyết tương đối."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 735,
+          "source_quote": "Câu 6. Sự kiện nào sau đây xảy ra vào năm 1600?",
+          "id": 4,
+          "number": 4,
+          "source_question": 6,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Galilei làm thí nghiệm tại tháp nghiên Pisa.."
+        },
+        {
+          "question": "Sự kiện nào sau đây xảy ra vào năm 1687?",
+          "options": {
+            "A": "Galilei làm thí nghiệm tại tháp nghiên Pisa.",
+            "B": "Joule tìm ra các định luật nhiệt động lực học.",
+            "C": "Newton công bố các nguyên lí toán của triết học tự nhiên.",
+            "D": "Einstein xây dựng thuyết tương đối."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 738,
+          "source_quote": "Câu 7. Sự kiện nào sau đây xảy ra vào năm 1687?",
+          "id": 5,
+          "number": 5,
+          "source_question": 7,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: Newton công bố các nguyên lí toán của triết học tự nhiên.."
+        },
+        {
+          "question": "Máy hơi nước ra đời trong cuộc cách mạng công nghiệp lần thứ mấy",
+          "options": {
+            "A": "Lần thứ nhất",
+            "B": "Lần thứ hai",
+            "C": "Lần thứ ba",
+            "D": "Lần thứ tư"
+          },
+          "correct_answer": "A",
+          "source_paragraph": 746,
+          "source_quote": "Câu 9. Máy hơi nước ra đời trong cuộc cách mạng công nghiệp lần thứ mấy",
+          "id": 6,
+          "number": 6,
+          "source_question": 9,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Lần thứ nhất."
+        },
+        {
+          "question": "Đặc trưng của cuộc cách mạng công nghiệp lần thứ nhất là",
+          "options": {
+            "A": "Thay thế sức lực cơ bắp bằng máy móc",
+            "B": "Sử dụng các thiết bị điện trong mọi lĩnh vực của đời sống",
+            "C": "Tự động hóa các quá trình sản xuất",
+            "D": "Sử dụng trí tuện nhân tạo, robot và internet toàn cầu"
+          },
+          "correct_answer": "A",
+          "source_paragraph": 749,
+          "source_quote": "Câu 10: Đặc trưng của cuộc cách mạng công nghiệp lần thứ nhất là",
+          "id": 7,
+          "number": 7,
+          "source_question": 10,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Thay thế sức lực cơ bắp bằng máy móc."
+        },
+        {
+          "question": "Các nhà triết học tìm hiểu thế giới tự nhiên dựa trên quan sát và suy luận chủ quan thể hiện ở nội dung nào sau đây?",
+          "options": {
+            "A": "Vật nặng bao giờ cũng rơi nhanh hơn vật nhẹ.",
+            "B": "Hiện tượng ánh sáng làm bật các electron ra khỏi kim loại.",
+            "C": "Cái lông chim và hòn bi rơi nhanh như nhau trong ống hút hết không khí.",
+            "D": "Hiện tượng cầu vồng."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 754,
+          "source_quote": "Câu 11: Các nhà triết học tìm hiểu thế giới tự nhiên dựa trên quan sát và suy luận chủ quan thể hiện ở nội dung nào sau đây?",
+          "id": 8,
+          "number": 8,
+          "source_question": 11,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Vật nặng bao giờ cũng rơi nhanh hơn vật nhẹ.."
+        }
+      ]
+    },
+    {
+      "id": "exam_li10_intro_03",
+      "title": "Vật lí 10 · Vai trò của Vật lí trong đời sống",
+      "grade": "10",
+      "time_limit": 15,
+      "description": "8 câu từ tài liệu Word bài 1.",
+      "topic": "Vai trò của Vật lí trong đời sống",
+      "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+      "source_sha256": "4975408ae77efabe954bbd4a857d13c8cb8ba0af0f2b9abc1410c19d0736fa0b",
+      "batch_id": "word10-intro-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "question": "Ý nào dưới đây không phải là vai trò của khoa học tự nhiên trong đời sống?",
+          "options": {
+            "A": "Mở rộng sản xuất, phát triển kinh tế.",
+            "B": "Bảo vệ môi trường, ứng phó với biến đổi khí hậu.",
+            "C": "Bảo vệ sức khỏe và cuộc sống của con người.",
+            "D": "Định hướng tư tưởng, phát triển hệ thống chính trị."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 772,
+          "source_quote": "Câu 1. Ý nào dưới đây không phải là vai trò của khoa học tự nhiên trong đời sống?",
+          "id": 1,
+          "number": 1,
+          "source_question": 1,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là D: Định hướng tư tưởng, phát triển hệ thống chính trị.."
+        },
+        {
+          "question": "Kết luận nào sau đây là sai khi nói về ảnh hưởng của vật lí đến một số lĩnh vực trong đời sống và kĩ thuật?",
+          "options": {
+            "A": "Vật lí có ảnh hưởng mạnh mẽ và có tác dụng làm thay đổi mọi lĩnh vực hoạt động của con người.",
+            "B": "Vật lí đem lại cho con người những lợi ích tuyệt vời và không gây ra một ảnh hưởng xấu nào.",
+            "C": "Kiến thức vật lí trong các phân ngành được áp dụng kết hợp để tạo ra kết quả tối ưu.",
+            "D": "Vật lí là cơ sở của khoa học tự nhiên và công nghệ."
+          },
+          "correct_answer": "B",
+          "source_paragraph": 777,
+          "source_quote": "Câu 2. Kết luận nào sau đây là sai khi nói về ảnh hưởng của vật lí đến một số lĩnh vực trong đời sống và kĩ thuật?",
+          "id": 2,
+          "number": 2,
+          "source_question": 2,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là B: Vật lí đem lại cho con người những lợi ích tuyệt vời và không gây ra một ảnh hưởng xấu nào.."
+        },
+        {
+          "question": "Thiết bị nào sau đây có ứng dụng kiến thức về nhiệt là chủ yếu?",
+          "options": {
+            "A": "Điện thoại.",
+            "B": "Nhiệt kế.",
+            "C": "Cân điện tử.",
+            "D": "Ti vi."
+          },
+          "correct_answer": "B",
+          "source_paragraph": 782,
+          "source_quote": "Câu 3. Thiết bị nào sau đây có ứng dụng kiến thức về nhiệt là chủ yếu?",
+          "id": 3,
+          "number": 3,
+          "source_question": 3,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là B: Nhiệt kế.."
+        },
+        {
+          "question": "Cơ chế của các phản ứng hóa học được giải thích dựa trên kiến thức thuộc lĩnh vực nào của Vật lí?",
+          "options": {
+            "A": "Nhiệt học.",
+            "B": "Cơ học.",
+            "C": "Lượng tử.",
+            "D": "Quang học."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 784,
+          "source_quote": "Câu 4. Cơ chế của các phản ứng hóa học được giải thích dựa trên kiến thức thuộc lĩnh vực nào của Vật lí?",
+          "id": 4,
+          "number": 4,
+          "source_question": 4,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: Lượng tử.."
+        },
+        {
+          "question": "Kiến thức về từ trường Trái Đất được dùng để giải thích đặc điểm nào của loài chim di trú?",
+          "options": {
+            "A": "Xác định hướng bay.",
+            "B": "Làm tổ.",
+            "C": "Sinh sản.",
+            "D": "Kiếm ăn."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 786,
+          "source_quote": "Câu 5. Kiến thức về từ trường Trái Đất được dùng để giải thích đặc điểm nào của loài chim di trú?",
+          "id": 5,
+          "number": 5,
+          "source_question": 5,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Xác định hướng bay.."
+        },
+        {
+          "question": "Hoạt động y tế nào dưới đây không sử dụng các thành tựu của vật lí?",
+          "options": {
+            "A": "Chụp X - quang.",
+            "B": "Chữa tật khúc xạ của mắt bằng laze.",
+            "C": "Lấy thuốc theo đơn.",
+            "D": "Xạ trị."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 791,
+          "source_quote": "Câu 7. Hoạt động y tế nào dưới đây không sử dụng các thành tựu của vật lí?",
+          "id": 6,
+          "number": 6,
+          "source_question": 7,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: Lấy thuốc theo đơn.."
+        },
+        {
+          "question": "Thành tựu vật lí nào sau đây không thuộc cuộc cách mạng khoa học lần thứ tư?",
+          "options": {
+            "A": "Động cơ hơi nước.",
+            "B": "Điện thoại.",
+            "C": "Ô tô không người lái.",
+            "D": "Rôbốt."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 794,
+          "source_quote": "Câu 8. Thành tựu vật lí nào sau đây không thuộc cuộc cách mạng khoa học lần thứ tư?",
+          "id": 7,
+          "number": 7,
+          "source_question": 8,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Động cơ hơi nước.."
+        },
+        {
+          "question": "Thành tựu nghiên cứu nào sau đây của Vật lí được coi là có vai trò quan trọng trong việc mở đầu cho cuộc cách mạng công nghệ lần thứ hai?",
+          "options": {
+            "A": "Nghiên cứu về lực vạn vật hấp dẫn.",
+            "B": "Nghiên cứu về nhiệt động lực học.",
+            "C": "Nghiên cứu về cảm ứng điện từ.",
+            "D": "Nghiên cứu về thuyết tương đối."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 797,
+          "source_quote": "Câu 9. Thành tựu nghiên cứu nào sau đây của Vật lí được coi là có vai trò quan trọng trong việc mở đầu cho cuộc cách mạng công nghệ lần thứ hai?",
+          "id": 8,
+          "number": 8,
+          "source_question": 9,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: Nghiên cứu về cảm ứng điện từ.."
+        }
+      ]
+    },
+    {
+      "id": "exam_li10_intro_04",
+      "title": "Vật lí 10 · Phương pháp nghiên cứu Vật lí",
+      "grade": "10",
+      "time_limit": 15,
+      "description": "8 câu từ tài liệu Word bài 1.",
+      "topic": "Phương pháp nghiên cứu Vật lí",
+      "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+      "source_sha256": "4975408ae77efabe954bbd4a857d13c8cb8ba0af0f2b9abc1410c19d0736fa0b",
+      "batch_id": "word10-intro-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "question": "Các hiện tượng vật lí nào sau đây liên quan đến phương pháp thực nghiệm.",
+          "options": {
+            "A": "Ô tô khi chạy đường dài có thể xem ô tô như là một chất điểm.",
+            "B": "Thả rơi một vật từ trên cao xuống mặt đất.",
+            "C": "Quả địa cầu là mô hình thu nhỏ của Trái đất.",
+            "D": "Để biểu diễn đường truyền của ánh sáng người ta dùng tia sáng."
+          },
+          "correct_answer": "B",
+          "source_paragraph": 818,
+          "source_quote": "Câu 2. Các hiện tượng vật lí nào sau đây liên quan đến phương pháp thực nghiệm.",
+          "id": 1,
+          "number": 1,
+          "source_question": 2,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là B: Thả rơi một vật từ trên cao xuống mặt đất.."
+        },
+        {
+          "question": "Các hiện tượng vật lí nào sau đây không liên quan đến phương pháp thực nghiệm.",
+          "options": {
+            "A": "Tính toán quỹ đạo chuyển động của Mặt trăng dựa vào toán học.",
+            "B": "Thả rơi một vật từ trên cao xuống mặt đất.",
+            "C": "Kiểm tra sự thay đổi nhiệt độ trong quá trình nóng chảy hoặc bay hơi của một chất.",
+            "D": "Ném một quả bóng lên trên cao"
+          },
+          "correct_answer": "A",
+          "source_paragraph": 823,
+          "source_quote": "Câu 3. Các hiện tượng vật lí nào sau đây không liên quan đến phương pháp thực nghiệm.",
+          "id": 2,
+          "number": 2,
+          "source_question": 3,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Tính toán quỹ đạo chuyển động của Mặt trăng dựa vào toán học.."
+        },
+        {
+          "question": "Các hiện tượng vật lí nào sau đây liên quan đến phương pháp lí thuyết.",
+          "options": {
+            "A": "Ô tô khi chạy đường dài có thể xem ô tô như là một chất điểm.",
+            "B": "Thả rơi một vật từ trên cao xuống mặt đất.",
+            "C": "Kiểm tra sự thay đổi nhiệt độ trong quá trình nóng chảy hoặc bay hơi của một chất.",
+            "D": "Ném một quả bóng lên trên cao"
+          },
+          "correct_answer": "A",
+          "source_paragraph": 828,
+          "source_quote": "Câu 4. Các hiện tượng vật lí nào sau đây liên quan đến phương pháp lí thuyết.",
+          "id": 3,
+          "number": 3,
+          "source_question": 4,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Ô tô khi chạy đường dài có thể xem ô tô như là một chất điểm.."
+        },
+        {
+          "question": "Các hiện tượng vật lí nào sau đây không liên quan đến phương pháp lí thuyết.",
+          "options": {
+            "A": "Tính toán quỹ đạo chuyển động của Sao Hỏa dựa vào toán học.",
+            "B": "Quả địa cầu là mô hình thu nhỏ của Trái đất.",
+            "C": "Biểu diễn đường truyền ánh sáng qua thấu kính.",
+            "D": "Ném một quả bóng lên trên cao."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 833,
+          "source_quote": "Câu 5. Các hiện tượng vật lí nào sau đây không liên quan đến phương pháp lí thuyết.",
+          "id": 4,
+          "number": 4,
+          "source_question": 5,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là D: Ném một quả bóng lên trên cao.."
+        },
+        {
+          "question": "Có bao nhiêu bước trong phương pháp thực nghiệm?",
+          "options": {
+            "A": "1",
+            "B": "3",
+            "C": "4",
+            "D": "5"
+          },
+          "correct_answer": "D",
+          "source_paragraph": 838,
+          "source_quote": "Câu 6. Có bao nhiêu bước trong phương pháp thực nghiệm?",
+          "id": 5,
+          "number": 5,
+          "source_question": 6,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là D: 5."
+        },
+        {
+          "question": "Các phương pháp nghiên cứu nào sau đây thường dùng trong lĩnh vực Vật lí.",
+          "options": {
+            "A": "Phương pháp thực nghiệm và phương pháp mô hình.",
+            "B": "Phương pháp thực nghiệm, phương pháp mô hình và phương pháp quan sát – suy luận",
+            "C": "Phương pháp mô hình và phương pháp quan sát – suy luận",
+            "D": "Phương pháp thực nghiệm và phương pháp quan sát – suy luận"
+          },
+          "correct_answer": "A",
+          "source_paragraph": 840,
+          "source_quote": "Câu 7. Các phương pháp nghiên cứu nào sau đây thường dùng trong lĩnh vực Vật lí.",
+          "id": 6,
+          "number": 6,
+          "source_question": 7,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là A: Phương pháp thực nghiệm và phương pháp mô hình.."
+        },
+        {
+          "question": "Các loại mô hình nào sau đây thương được dùng trong trường phôt thông",
+          "options": {
+            "A": "Mô hình vật chất",
+            "B": "Mô hình lí thuyết",
+            "C": "Mô hình toán học",
+            "D": "Cả ba mô hình trên"
+          },
+          "correct_answer": "D",
+          "source_paragraph": 845,
+          "source_quote": "Câu 8. Các loại mô hình nào sau đây thương được dùng trong trường phôt thông",
+          "id": 7,
+          "number": 7,
+          "source_question": 8,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là D: Cả ba mô hình trên."
+        },
+        {
+          "question": "Phương pháp thực nghiệm gồm các bước nào sau đây?",
+          "options": {
+            "A": "Quan sát, suy luận, kết luận",
+            "B": "Xác định đối tượng nghiên cứu, xây dựng mô hình, kiểm tra mô hình, điều chỉnh mô hình, kết luận.",
+            "C": "Xác định vấn đề nghiên cứu, quan sát thu thập thông tin, đưa ra dự đoán, thí nghiệm kiểm tra, kết luận.",
+            "D": "Xác định đối tượng nghiên cứu, quan sát thu thập thông tin, đưa ra dự đoán, kết luận."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 850,
+          "source_quote": "Câu 9: Phương pháp thực nghiệm gồm các bước nào sau đây?",
+          "id": 8,
+          "number": 8,
+          "source_question": 9,
+          "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
+          "explanation": "Theo tài liệu bài 1, đáp án là C: Xác định vấn đề nghiên cứu, quan sát thu thập thông tin, đưa ra dự đoán, thí nghiệm kiểm tra, kết luận.."
+        }
+      ]
+    },
+    {
+      "id": "exam_li10_safety_01",
+      "title": "Vật lí 10 · Quy tắc an toàn trong phòng thực hành",
+      "grade": "10",
+      "time_limit": 25,
+      "description": "16 câu từ tài liệu Word bài 2.",
+      "topic": "Quy tắc an toàn trong phòng thực hành",
+      "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+      "source_sha256": "d1dafdc5c680d31127f87aa1ece7267ef800686972c2d363b3b07631d53f6093",
+      "batch_id": "word10-intro-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "question": "Khi nói về những quy tắc an toàn khi làm việc với phóng xạ, phát biểu nào sau đây là sai?",
+          "options": {
+            "A": "Giảm thời gian tiếp xúc với nguồn phóng xạ.",
+            "B": "Tăng khoảng cách từ ta đến nguồn phóng xạ.",
+            "C": "Đảm bảo che chắn những cơ quan trọng yếu của cơ thể.",
+            "D": "Mang áo phòng hộ và không cần đeo mặt nạ."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 422,
+          "source_quote": "Câu 1: Khi nói về những quy tắc an toàn khi làm việc với phóng xạ, phát biểu nào sau đây là sai?",
+          "id": 1,
+          "number": 1,
+          "source_question": 1,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là D: Mang áo phòng hộ và không cần đeo mặt nạ.."
+        },
+        {
+          "question": "Chọn đáp án sai. Cần tuân thủ các biển báo an toàn trong phòng thực hành nhằm mục đích",
+          "options": {
+            "A": "tạo ra nhiều sản phẩm mang lại lợi nhuận",
+            "B": "hạn chế các trường hợp nguy hiểm như: đứt tay, ngộ độc,…",
+            "C": "tránh được các tổn thất về tài sản nếu không làm theo hướng dẫn.",
+            "D": "chống cháy, nổ."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 427,
+          "source_quote": "Câu 2: Chọn đáp án sai. Cần tuân thủ các biển báo an toàn trong phòng thực hành nhằm mục đích",
+          "id": 2,
+          "number": 2,
+          "source_question": 2,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là A: tạo ra nhiều sản phẩm mang lại lợi nhuận."
+        },
+        {
+          "question": "Chọn đáp án sai khi nói về những quy tắc an toàn trong phòng thí nghiệm:",
+          "options": {
+            "A": "Đọc kĩ hướng dẫn sử dụng thiết bị và quan sát các chỉ dẫn, các kí hiệu trên các thiết bị thí nghiệm.",
+            "B": "Tắt công tắc nguồn thiết bị điện sau khi cắm hoặc tháo thiết bị điện.",
+            "C": "Kiểm tra cẩn thận thiết bị, phương tiện, dụng cụ thí nghiệm trước khi sử dụng.",
+            "D": "Chỉ tiến hành thí nghiệm khi được sự cho phép của giáo viên hướng dẫn thí nghiệm."
+          },
+          "correct_answer": "B",
+          "source_paragraph": 432,
+          "source_quote": "Câu 3: Chọn đáp án sai khi nói về những quy tắc an toàn trong phòng thí nghiệm:",
+          "id": 3,
+          "number": 3,
+          "source_question": 3,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là B: Tắt công tắc nguồn thiết bị điện sau khi cắm hoặc tháo thiết bị điện.."
+        },
+        {
+          "question": "Chọn đáp án sai khi nói về những quy tắc an toàn trong phòng thí nghiệm:",
+          "options": {
+            "A": "Tiếp xúc với các vật và các thiết bị thí nghiệm có nhiệt độ cao ngay khi có dụng cụ bảo hộ.",
+            "B": "Tắt công tắc nguồn thiết bị điện trước khi cắm hoặc tháo thiết bị điện.",
+            "C": "Chỉ cắm phích cắm của thiết bị điện vào ổ cắm khi hiệu điện thế của nguồn điện tương ứng với hiệu điện thế định mức của dụng cụ.",
+            "D": "Phải bố trí dây điện gọn gàng, không bị vướng khi qua lại."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 437,
+          "source_quote": "Câu 4: Chọn đáp án sai khi nói về những quy tắc an toàn trong phòng thí nghiệm:",
+          "id": 4,
+          "number": 4,
+          "source_question": 4,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là A: Tiếp xúc với các vật và các thiết bị thí nghiệm có nhiệt độ cao ngay khi có dụng cụ bảo hộ.."
+        },
+        {
+          "question": "Chọn đáp án sai khi nói về những quy tắc an toàn trong phòng thí nghiệm:",
+          "options": {
+            "A": "Không tiếp xúc trực tiếp với các vật và các thiết bị thí nghiệm có nhiệt độ cao khi không có dụng cụ bảo hộ.",
+            "B": "Không để nước cũng như các dung dịch dẫn điện, dung dịch dễ cháy gần thiết bị điện.",
+            "C": "Được phép tiến hành thí nghiệm khi đã mang đồ bảo hộ.",
+            "D": "Giữ khoảng cách an toàn khi tiến hành thí nghiệm nung nóng các vật, thí nghiệm có các vật bắn ra, tia laser."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 442,
+          "source_quote": "Câu 5: Chọn đáp án sai khi nói về những quy tắc an toàn trong phòng thí nghiệm:",
+          "id": 5,
+          "number": 5,
+          "source_question": 5,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là C: Được phép tiến hành thí nghiệm khi đã mang đồ bảo hộ.."
+        },
+        {
+          "question": "Chọn đáp án đúng khi nói về những quy tắc an toàn trong phòng thí nghiệm:",
+          "options": {
+            "A": "Tắt công tắc nguồn thiết bị điện sau khi cắm hoặc tháo thiết bị điện.",
+            "B": "Tuyệt đối không tiếp xúc với các vật và các thiết bị thí nghiệm có nhiệt độ cao ngay khi có dụng cụ bảo hộ.",
+            "C": "Được phép tiến hành thí nghiệm khi đã mang đồ bảo hộ.",
+            "D": "Phải vệ sinh, sắp xếp gọn gàng, các thiết bị và dụng cụ thí nghiệm, bỏ chất thải thí nghiệm vào đúng nơi quy định sau khi tiến hành thí nghiệm."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 447,
+          "source_quote": "Câu 6: Chọn đáp án đúng khi nói về những quy tắc an toàn trong phòng thí nghiệm:",
+          "id": 6,
+          "number": 6,
+          "source_question": 6,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là D: Phải vệ sinh, sắp xếp gọn gàng, các thiết bị và dụng cụ thí nghiệm, bỏ chất thải thí nghiệm vào đúng nơi quy định sau khi tiến hành thí nghiệm.."
+        },
+        {
+          "question": "Kí hiệu DC hoặc dấu “-” mang ý nghĩa là",
+          "options": {
+            "A": "dòng điện 1 chiều.",
+            "B": "dòng điện xoay chiều.",
+            "C": "cực dương.",
+            "D": "cực âm."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 452,
+          "source_quote": "Câu 7: Kí hiệu DC hoặc dấu “-” mang ý nghĩa là",
+          "id": 7,
+          "number": 7,
+          "source_question": 7,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là A: dòng điện 1 chiều.."
+        },
+        {
+          "question": "Kí hiệu AC hoặc dấu “~” mang ý nghĩa là",
+          "options": {
+            "A": "dòng điện 1 chiều",
+            "B": "dòng điện xoay chiều.",
+            "C": "cực dương",
+            "D": "cực âm."
+          },
+          "correct_answer": "B",
+          "source_paragraph": 455,
+          "source_quote": "Câu 8: Kí hiệu AC hoặc dấu “~” mang ý nghĩa là",
+          "id": 8,
+          "number": 8,
+          "source_question": 8,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là B: dòng điện xoay chiều.."
+        },
+        {
+          "question": "Kí hiệu “+” hoặc màu đỏ mang ý nghĩa là",
+          "options": {
+            "A": "đầu vào.",
+            "B": "đầu ra.",
+            "C": "cực dương.",
+            "D": "cực âm."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 458,
+          "source_quote": "Câu 9: Kí hiệu “+” hoặc màu đỏ mang ý nghĩa là",
+          "id": 9,
+          "number": 9,
+          "source_question": 9,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là C: cực dương.."
+        },
+        {
+          "question": "Kí hiệu “–” hoặc màu xanh mang ý nghĩa là",
+          "options": {
+            "A": "đầu vào.",
+            "B": "đầu ra.",
+            "C": "cực dương.",
+            "D": "cực âm."
+          },
+          "correct_answer": "D",
+          "source_paragraph": 461,
+          "source_quote": "Câu 10: Kí hiệu “–” hoặc màu xanh mang ý nghĩa là",
+          "id": 10,
+          "number": 10,
+          "source_question": 10,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là D: cực âm.."
+        },
+        {
+          "question": "Kí hiệu “Input (I)” mang ý nghĩa là",
+          "options": {
+            "A": "đầu vào.",
+            "B": "đầu ra.",
+            "C": "cực dương.",
+            "D": "cực âm."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 464,
+          "source_quote": "Câu 11: Kí hiệu “Input (I)” mang ý nghĩa là",
+          "id": 11,
+          "number": 11,
+          "source_question": 11,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là A: đầu vào.."
+        },
+        {
+          "question": "Kí hiệu “Output” mang ý nghĩa là",
+          "options": {
+            "A": "đầu vào.",
+            "B": "đầu ra.",
+            "C": "cực dương.",
+            "D": "cực âm."
+          },
+          "correct_answer": "B",
+          "source_paragraph": 467,
+          "source_quote": "Câu 12: Kí hiệu “Output” mang ý nghĩa là",
+          "id": 12,
+          "number": 12,
+          "source_question": 12,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là B: đầu ra.."
+        },
+        {
+          "question": "Khi gặp sự cố mất an toàn trong phòng thực hành, học sinh cần",
+          "options": {
+            "A": "báo cáo ngay với giáo viên trong phòng thực hành.",
+            "B": "tự xử lí và không báo với giáo viên.",
+            "C": "nhờ bạn xử lí sử cố.",
+            "D": "tiếp tục làm thí nghiệm."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 544,
+          "source_quote": "Câu 35 : Khi gặp sự cố mất an toàn trong phòng thực hành, học sinh cần",
+          "id": 13,
+          "number": 13,
+          "source_question": 35,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là A: báo cáo ngay với giáo viên trong phòng thực hành.."
+        },
+        {
+          "question": "Trong bài thực hành có sử dụng mạch điện nhưng khi lắp ráp xong mạch điện, báo cáo giáo viên phụ trách rồi cắm vào nguồn điện nhưng mạch không vào điện thì học sinh cần",
+          "options": {
+            "A": "kiểm tra lại mạch điện.",
+            "B": "ngắt mạch điện ra khỏi nguồn sau đó kiểm tra mạch điện và nguồn điện.",
+            "C": "kiểm tra nguồn điện.",
+            "D": "ngắt mạch điện ra khỏi nguồn."
+          },
+          "correct_answer": "B",
+          "source_paragraph": 549,
+          "source_quote": "Câu 36: Trong bài thực hành có sử dụng mạch điện nhưng khi lắp ráp xong mạch điện, báo cáo giáo viên phụ trách rồi cắm vào nguồn điện nhưng mạch không vào điện thì học sinh cần",
+          "id": 14,
+          "number": 14,
+          "source_question": 36,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là B: ngắt mạch điện ra khỏi nguồn sau đó kiểm tra mạch điện và nguồn điện.."
+        },
+        {
+          "question": "Trong các hoạt động dưới đây, hoạt động nào tuân thủ theo nguyên tác an toàn khi làm việc với các nguồn phóng xạ",
+          "options": {
+            "A": "sử dụng phương tiện phòng hộ cá nhân như quần áo phòng hộ, găng tay, mũ, áo chì.",
+            "B": "ăn uống, trang điểm trong phòng nơi chó chất phóng xạ.",
+            "C": "đổ rác thải phóng xạ ra khu vực rác thải sinh hoạt.",
+            "D": "tiếp xúc trục tiếp với chất phóng xạ."
+          },
+          "correct_answer": "A",
+          "source_paragraph": 564,
+          "source_quote": "Câu 39: Trong các hoạt động dưới đây, hoạt động nào tuân thủ theo nguyên tác an toàn khi làm việc với các nguồn phóng xạ",
+          "id": 15,
+          "number": 15,
+          "source_question": 39,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là A: sử dụng phương tiện phòng hộ cá nhân như quần áo phòng hộ, găng tay, mũ, áo chì.."
+        },
+        {
+          "question": "Hoạt động nào sau đây không thực hiện đúng quy tắc an toàn trong phòng thực hành?",
+          "options": {
+            "A": "Đeo găng tay khi làm thí nghiệm.",
+            "B": "Không ăn uống, đùa nghịch trong phòng thí nghiệm.",
+            "C": "Để hóa chất không đúng nơi quy định sau khi làm xong thí nghiệm.",
+            "D": "Làm thí nghiệm theo sự hướng dẫn của giáo viên."
+          },
+          "correct_answer": "C",
+          "source_paragraph": 569,
+          "source_quote": "Câu 40: Hoạt động nào sau đây không thực hiện đúng quy tắc an toàn trong phòng thực hành?",
+          "id": 16,
+          "number": 16,
+          "source_question": 40,
+          "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
+          "explanation": "Theo tài liệu bài 2, đáp án là C: Để hóa chất không đúng nơi quy định sau khi làm xong thí nghiệm.."
+        }
+      ]
+    }
+  ]
+}

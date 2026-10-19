@@ -895,7 +895,8 @@
             .nav-menu {
                 position: fixed;
                 top: 0;
-                right: -100%;
+                right: 0;
+                display: none;
                 width: 320px;
                 height: 100vh;
                 background: linear-gradient(180deg, #004F91 0%, #0064B7 58%, #0091EA 100%);
@@ -911,6 +912,7 @@
 
             .nav-menu.active {
                 right: 0;
+                display: flex;
             }
 
             .nav-menu li {
@@ -1047,7 +1049,8 @@
                         </a>
                         <div class="dropdown-menu-custom">
                             <a href="{{ url_for('documents') }}">Tài liệu</a>
-                            <a href="{{ url_for('exercises') }}">Tiến độ</a>
+                            <a href="{{ url_for('exercises') }}">Bài tập &amp; kết quả</a>
+                            <a href="{{ url_for('video_library.index') }}">Video bài giảng</a>
                             <a href="{{ url_for('tracnghiem') }}">Trắc nghiệm</a>
                             <a href="{{ url_for('enter_nickname') }}">Game</a>
                         </div>
@@ -1070,6 +1073,7 @@
                     <li><a href="{{ url_for('chatbot') }}">Trợ lí AI</a></li>
                     {% if is_admin_session %}
                         <li><a href="{{ url_for('admin_home') }}">Admin</a></li>
+                        <li><a href="{{ url_for('teacher_dashboard') }}">Học vụ</a></li>
                     {% elif session.role == 'teacher' %}
                         <li><a href="{{ url_for('teacher_dashboard') }}">Dashboard</a></li>
                     {% else %}
@@ -1190,7 +1194,11 @@
         menuOverlay.addEventListener('click', toggleMenu);
 
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (event) => {
+                if (link.classList.contains('dropdown-toggle')) {
+                    event.preventDefault();
+                    return;
+                }
                 if (window.innerWidth <= 992) {
                     toggleMenu();
                 }

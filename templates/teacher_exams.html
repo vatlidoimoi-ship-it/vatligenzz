@@ -130,7 +130,9 @@
                     <p>{{ exam.description|default('') }}</p>
                     <div class="exam-actions">
                         <a href="/tracnghiem/lam-bai/{{ subject_code }}/{{ exam.id }}" target="_blank">Xem đề</a>
+                        {% if is_admin_session or exam.created_by == session.user_id %}
                         <button type="button" onclick="deleteExam('{{ subject_code }}', '{{ exam.id }}', this)">Xóa</button>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}

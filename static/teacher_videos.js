@@ -54,9 +54,20 @@
     el('video-editor').hidden = !editable;
     if (editable && resetEditor) editor(job.script);
     el('video-output').hidden = job.status !== 'complete';
+    el('video-publication').hidden = job.status !== 'complete';
     if (job.status === 'complete') {
       el('teacher-result-video').src = job.video_url;
       el('video-download').href = job.video_url;
+      const publication = job.publication || {};
+      el('video-publish-title').value = publication.title || (job.problem || '').slice(0, 180);
+      el('video-publish-grade').value = publication.grade || '';
+      el('video-publish-group').value = publication.group || '';
+      el('video-publish-description').value = publication.description || '';
+      el('video-publication-status').textContent = publication.published ? 'Đã xuất bản cho học sinh.' : 'Video riêng, học sinh chưa xem được.';
+      el('video-publish-button').textContent = publication.published ? 'Lưu thay đổi' : 'Xuất bản';
+      el('video-unpublish').hidden = !publication.published;
+      el('video-published-link').hidden = !publication.published;
+      if (job.lesson_url) el('video-published-link').href = job.lesson_url;
     }
     clearTimeout(timer);
     if (active.has(job.status)) poll(job.id, revision);
@@ -83,7 +94,7 @@
       result.items.forEach(job => {
         const button = document.createElement('button'); button.type = 'button'; button.className = 'btn btn-secondary';
         button.style.cssText = 'display:block;text-align:left;margin:10px 0;width:100%';
-        button.textContent = `${labels[job.status] || job.status} · ${(job.problem || '').slice(0,100)}`;
+        button.textContent = `${labels[job.status] || job.status}${job.publication?.published ? ' · Đã xuất bản' : ''} · ${(job.problem || '').slice(0,100)}`;
         button.addEventListener('click', async () => {
           revision++; clearTimeout(timer); const selectedRevision = revision;
           try { const data = await api(`/jobs/${job.id}`); if (revision === selectedRevision) show(data.job); }
@@ -128,6 +139,32 @@
       el('video-slide-preview').hidden = false; message('Đây là bố cục với nội dung hiện tại. Bạn có thể sửa rồi xem lại.');
     } catch (error) { message(error.message); }
     finally { button.disabled = false; }
+  });
+  async function publishVideo(published) {
+    const jobId = current.id;
+    const selectedRevision = revision;
+    const buttons = el('video-publication').querySelectorAll('button');
+    buttons.forEach(button => button.disabled = true);
+    try {
+      const data = await api(`/jobs/${jobId}/publication`, {
+        published, title: el('video-publish-title').value,
+        grade: el('video-publish-grade').value, group: el('video-publish-group').value,
+        description: el('video-publish-description').value
+      });
+      if (revision === selectedRevision) {
+        show(data.job);
+        message(published ? 'Video đã xuất hiện trong kho học sinh.' : 'Đã gỡ khỏi kho học sinh. Bản video riêng vẫn được giữ.');
+      }
+      history();
+    } catch (error) { message(error.message); }
+    finally { buttons.forEach(button => button.disabled = false); }
+  }
+  el('video-publication').addEventListener('submit', event => {
+    event.preventDefault();
+    if (!el('video-publish-button').disabled) publishVideo(true);
+  });
+  el('video-unpublish').addEventListener('click', () => {
+    if (confirm('Gỡ video này khỏi kho học sinh?')) publishVideo(false);
   });
   history();
 })();

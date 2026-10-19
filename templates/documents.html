@@ -65,8 +65,7 @@ endblock %} {% block content %}
             >{% if doc.link_type in ['drive', 'file'] %}📥 Tải tài liệu{% else
             %}👁️ Xem tài liệu{% endif %}</a
         >
-        {% endif %} {% if session.role == 'teacher' and
-        doc.get('teacher_id') == session.user_id %}
+        {% endif %} {% if doc.link_type != 'video_lesson' and (is_admin_session or (session.role == 'teacher' and doc.get('teacher_id') == session.user_id)) %}
         <a
             href="{{ url_for('edit_document', doc_id=doc.id) }}"
             class="btn btn-secondary btn-action"
@@ -92,7 +91,7 @@ endblock %} {% block content %}
         <p class="subtitle">
             Tài liệu, bài giảng, đề thi theo lớp 10, 11, 12 và chuyên đề HSG
         </p>
-        {% if session.role == 'teacher' %}
+        {% if session.role in ['teacher', 'admin'] %}
         <a href="{{ url_for('add_document') }}" class="btn btn-primary"
             >➕ Thêm tài liệu mới</a
         >
@@ -188,7 +187,7 @@ endblock %} {% block content %}
             <div class="empty-icon">🔭</div>
             <h3>Chưa có tài liệu nào</h3>
             <p>Hiện tại chưa có tài liệu nào trong hệ thống.</p>
-            {% if session.role == 'teacher' %}<a
+            {% if session.role in ['teacher', 'admin'] %}<a
                 href="{{ url_for('add_document') }}"
                 class="btn btn-primary"
                 >➕ Thêm tài liệu đầu tiên</a
@@ -218,7 +217,7 @@ endblock %} {% block content %}
             <div class="empty-icon">🔭</div>
             <h3>Chưa có tài liệu HSG</h3>
             <p>Chưa có tài liệu HSG trong chủ đề này.</p>
-            {% if session.role == 'teacher' %}<a
+            {% if session.role in ['teacher', 'admin'] %}<a
                 href="{{ url_for('add_document') }}"
                 class="btn btn-primary"
                 >➕ Thêm tài liệu HSG đầu tiên</a
@@ -244,7 +243,7 @@ endblock %} {% block content %}
             <div class="empty-icon">🔭</div>
             <h3>Chưa có tài liệu nào</h3>
             <p>Chưa có tài liệu cho {{ document_grade_labels.get(current_grade, 'lớp ' ~ current_grade) }} trong danh mục này.</p>
-            {% if session.role == 'teacher' %}<a
+            {% if session.role in ['teacher', 'admin'] %}<a
                 href="{{ url_for('add_document') }}"
                 class="btn btn-primary"
                 >➕ Thêm tài liệu đầu tiên</a

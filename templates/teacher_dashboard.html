@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard Giáo viên - Vật Lý THPT{% endblock %}
+{% block title %}Quản lý học vụ - Vật Lý THPT{% endblock %}
 
 {% block content %}
 <div class="container dashboard">
     <div class="welcome-section">
-        <h1>Chào mừng, Giáo viên {{ username }}! </h1>
+        <h1>{{ 'Quản lý học vụ toàn hệ thống' if is_admin_session else 'Trang giáo viên' }}</h1>
+        {% if is_admin_session %}<a href="{{ url_for('admin_home') }}">← Dashboard quản trị</a>{% endif %}
         <p class="subtitle">Quản lý khóa học và theo dõi tiến độ học sinh</p>
     </div>
 
@@ -13,28 +14,23 @@
         <div class="stat-card">
             <div class="stat-icon"></div>
             <h3>{{ courses|length }}</h3>
-            <p>Khóa học của bạn</p>
+            <p>{{ 'Tất cả khóa học' if is_admin_session else 'Khóa học của bạn' }}</p>
         </div>
         <div class="stat-card">
             <div class="stat-icon"></div>
-            <h3>100</h3>
-            <p>Học sinh</p>
+            <h3>{{ student_count }}</h3>
+            <p>Tài khoản đã học</p>
         </div>
         <div class="stat-card">
             <div class="stat-icon"></div>
             <h3>{{ courses|sum(attribute='total_lessons') }}</h3>
             <p>Tổng bài học</p>
         </div>
-        <div class="stat-card">
-            <div class="stat-icon"></div>
-            <h3>67</h3>
-            <p>Tài khoản đang hoạt động</p>
-        </div>
     </div>
 
     <section class="dashboard-section">
         <div class="section-header">
-            <h2> Khóa học của bạn</h2>
+            <h2>{{ 'Tất cả khóa học' if is_admin_session else 'Khóa học của bạn' }}</h2>
             <a href="{{ url_for('create_course') }}" class="btn btn-primary">
                 ➕ Tạo khóa học mới
             </a>
@@ -76,7 +72,7 @@
                     <a href="{{ url_for('edit_course', course_id=item.course.id) }}" class="btn btn-secondary btn-small">
                          Sửa
                     </a>
-                    <button onclick="deleteCourse('{{ item.course.id }}', '{{ item.course.title }}')" class="btn btn-danger btn-small">
+                    <button data-course-id="{{ item.course.id }}" data-course-title="{{ item.course.title }}" onclick="deleteCourse(this.dataset.courseId, this.dataset.courseTitle)" class="btn btn-danger btn-small">
                          Xóa
                     </button>
                 </div>
@@ -125,6 +121,10 @@
                 <div class="management-icon">📁</div>
                 <h4>Thêm tài liệu</h4>
                 <p>Tải lên video và tài liệu học tập mới</p>
+                <span class="arrow">→</span>
+            </a>
+            <a href="{{ url_for('documents') }}" class="management-card">
+                <h4>Quản lý tài liệu</h4><p>Xem, chỉnh sửa và xóa tài liệu theo quyền của bạn</p>
                 <span class="arrow">→</span>
             </a>
 

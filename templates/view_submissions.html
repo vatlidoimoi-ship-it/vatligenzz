@@ -46,7 +46,7 @@
                             <p class="course-name">{{ sub.course_title }}</p>
                         </div>
                     </div>
-                    <span class="submission-badge">Đã nộp</span>
+                    <span class="submission-badge">{% if sub.score is not none %}Điểm: {{ sub.score }}/100{% else %}Chờ chấm điểm{% endif %}</span>
                 </div>
                 
                 <div class="submission-meta">
@@ -71,13 +71,20 @@
                 </div>
                 
                 <div class="action-buttons">
-                    <button onclick="viewDetail('{{ sub.student_name }}', '{{ sub.course_title }}', '{{ sub.exercise_id }}')" class="btn btn-primary btn-small">
+                    <button data-detail='{{ sub|tojson }}' onclick="viewDetail(this)" class="btn btn-primary btn-small">
                          Xem chi tiết
                     </button>
-                    <button onclick="gradeSubmission('{{ sub.student_name }}', '{{ sub.exercise_id }}')" class="btn btn-success btn-small">
-                         Chấm điểm
-                    </button>
                 </div>
+                <form class="grade-form" data-submission-id="{{ sub.id }}">
+                    <label>Điểm (0–100)
+                        <input name="score" type="number" min="0" max="100" step="0.1" required value="{{ sub.score if sub.score is not none else '' }}">
+                    </label>
+                    <label>Nhận xét
+                        <textarea name="feedback" maxlength="3000">{{ sub.feedback }}</textarea>
+                    </label>
+                    <button type="submit" class="btn btn-success btn-small">Lưu điểm</button>
+                    <p class="grade-status" role="status"></p>
+                </form>
             </div>
             {% endfor %}
         </div>
@@ -124,39 +131,57 @@ function filterSubmissions() {
     });
 }
 
-function viewDetail(studentName, courseTitle, exerciseId) {
+function viewDetail(button) {
+    const sub = JSON.parse(button.dataset.detail);
+    const studentName = sub.student_name;
     const modal = document.getElementById('detailModal');
     const title = document.getElementById('modalTitle');
     const content = document.getElementById('modalContent');
     
     title.textContent = `Bài nộp của ${studentName}`;
-    content.innerHTML = `
-        <div class="detail-info">
-            <p><strong>Học sinh:</strong> ${studentName}</p>
-            <p><strong>Khóa học:</strong> ${courseTitle}</p>
-            <p><strong>Bài tập:</strong> ${exerciseId}</p>
-        </div>
-        <div class="detail-note">
-            <p>Chi tiết đầy đủ được hiển thị trong card bên trên.</p>
-        </div>
-    `;
+    content.replaceChildren();
+    const lines = [`Khóa học: ${sub.course_title}`, `Bài tập: ${sub.exercise_id}`,
+        ...Object.entries(sub.answers).map(([key, answer]) => `Câu ${Number(key) + 1}: ${answer}`),
+        `Điểm: ${sub.score ?? 'Chờ chấm'}`, `Nhận xét: ${sub.feedback || ''}`];
+    lines.forEach(line => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = line;
+        content.appendChild(paragraph);
+    });
     
     modal.style.display = 'block';
 }
 
-function gradeSubmission(studentName, exerciseId) {
-    const score = prompt(`Nhập điểm cho bài của ${studentName} (0-100):`);
-    
-    if (score !== null && score !== '') {
-        const numScore = parseFloat(score);
-        if (isNaN(numScore) || numScore < 0 || numScore > 100) {
-            alert('Điểm không hợp lệ! Vui lòng nhập số từ 0-100.');
-            return;
+document.querySelectorAll('.grade-form').forEach(form => {
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const button = form.querySelector('button');
+        if (button.disabled) return;
+        button.disabled = true;
+        const status = form.querySelector('.grade-status');
+        status.textContent = 'Đang lưu...';
+        try {
+            const score = Number(form.elements.score.value);
+            const feedback = form.elements.feedback.value;
+            const response = await fetch(`/teacher/submissions/${encodeURIComponent(form.dataset.submissionId)}/grade`, {
+                method: 'POST', headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({score, feedback})
+            });
+            const result = await response.json();
+            if (!response.ok || !result.success) throw new Error(result.message || 'Không lưu được điểm');
+            status.textContent = result.message;
+            const card = form.closest('.submission-card');
+            card.querySelector('.submission-badge').textContent = `Điểm: ${result.score}/100`;
+            const detail = card.querySelector('[data-detail]');
+            const sub = JSON.parse(detail.dataset.detail);
+            detail.dataset.detail = JSON.stringify({...sub, score: result.score, feedback});
+        } catch (error) {
+            status.textContent = error.message;
+        } finally {
+            button.disabled = false;
         }
-        
-        alert(`Đã chấm điểm ${numScore} cho bài của ${studentName}.\n\nChức năng lưu điểm sẽ được bổ sung sau.`);
-    }
-}
+    });
+});
 
 function closeModal() {
     document.getElementById('detailModal').style.display = 'none';
@@ -171,6 +196,9 @@ window.onclick = function(event) {
 </script>
 
 <style>
+.grade-form { display: grid; gap: 10px; margin-top: 12px; }
+.grade-form label { display: grid; gap: 4px; }
+.grade-form input, .grade-form textarea { width: 100%; box-sizing: border-box; padding: 8px; }
 .container {
     max-width: 1200px;
     margin: 0 auto;

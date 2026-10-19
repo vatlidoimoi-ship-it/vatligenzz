@@ -17,6 +17,9 @@ import re
 import sys
 from werkzeug.utils import secure_filename
 import uuid
+import copy
+import threading
+import math
 from PIL import Image, UnidentifiedImageError
 
 for output_stream in (sys.stdout, sys.stderr):
@@ -70,6 +73,10 @@ HOME_STATS_CACHE_SECONDS = 60
 _home_stats_cache = {"expires_at": None, "value": None}
 QUESTIONS_FILE = writable_state_file("questions.json", {"topics": []})
 SCORES_FILE = writable_state_file("scores.json", [])
+GAME_ATTEMPTS_FILE = writable_state_file("game_attempts.json", {})
+GAME_LOCK = threading.RLock()
+SUBMISSION_LOCK = threading.RLock()
+EXAM_SUBMISSION_GRACE_SECONDS = 10
 FORUM_POINTS_FILE = writable_data_file("forum_points.json", [])
 FORUM_REPORTS_FILE = writable_data_file("forum_reports.json", [])
 FORUM_BANS_FILE = writable_data_file("forum_bans.json", [])
@@ -235,7 +242,8 @@ def normalize_document_topic(value):
 
 
 def sanitize_course_payload(course_data):
-    clean_data = dict(course_data or {})
+    clean_data = {key: value for key, value in (course_data or {}).items()
+                  if key in {"title", "description", "grade", "lessons"}}
     grade = str(clean_data.get("grade", "")).strip()
     clean_data["grade"] = grade if grade in ALLOWED_GRADE_LEVELS else ""
     lessons = []
@@ -246,6 +254,18 @@ def sanitize_course_payload(course_data):
         lessons.append(clean_lesson)
     clean_data["lessons"] = lessons
     return clean_data
+
+
+def public_course(course):
+    """Only the owner may receive the teacher's answer key."""
+    result = copy.deepcopy(course)
+    if not can_manage_learning(course.get('teacher_id')):
+        for lesson in result.get('lessons', []):
+            lesson['questions'] = [
+                {key: value for key, value in q.items() if key in {'question', 'options', 'type', 'id'}}
+                for q in lesson.get('questions', [])
+            ]
+    return result
 
 
 def login_required(f):
@@ -267,8 +287,8 @@ def teacher_required(f):
             return redirect(url_for("login"))
 
         user = get_user_by_id(session["user_id"])
-        if not user or user["role"] != "teacher":
-            flash("Chỉ giáo viên mới có quyền truy cập trang này", "danger")
+        if not user or user.get("role") not in {"teacher", "admin"}:
+            flash("Chỉ giáo viên hoặc quản trị viên được quản lý học vụ", "danger")
             return redirect(url_for("index"))
         return f(*args, **kwargs)
 
@@ -281,6 +301,16 @@ def is_admin_account(user=None):
     if not user:
         return False
     return user.get("role") == "admin"
+
+
+def can_manage_learning(owner_id):
+    user = get_user_by_id(session.get('user_id')) if session.get('user_id') else None
+    return bool(user) and (user.get('role') == 'admin' or (
+        user.get('role') == 'teacher' and owner_id is not None and str(owner_id) == str(user['id'])))
+
+
+def managed_courses():
+    return db.get_all_courses() if is_admin_account() else db.get_courses_by_teacher(session['user_id'])
 
 
 def admin_required(f):
@@ -1080,7 +1110,7 @@ def student_dashboard():
 def teacher_dashboard():
     my_courses = [
         course
-        for course in db.get_courses_by_teacher(session["user_id"])
+        for course in managed_courses()
         if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
     ]
 
@@ -1100,7 +1130,9 @@ def teacher_dashboard():
         )
 
     return render_template(
-        "teacher_dashboard.html", courses=course_stats, username=session.get("username")
+        "teacher_dashboard.html", courses=course_stats, username=session.get("username"),
+        student_count=len({p["user_id"] for p in db._load_json(db.progress_file)
+                           if p.get("course_id") in {c["id"] for c in my_courses}})
     )
 
 
@@ -1141,12 +1173,12 @@ def course_detail(course_id):
     completed_lessons = progress["completed_lessons"] if progress else []
 
     is_teacher = (
-        session.get("role") == "teacher" and course["teacher_id"] == session["user_id"]
+        can_manage_learning(course["teacher_id"])
     )
 
     return render_template(
         "course_detail.html",
-        course=course,
+        course=public_course(course),
         completed_lessons=completed_lessons,
         is_teacher=is_teacher,
     )
@@ -1207,7 +1239,7 @@ def edit_course(course_id):
         flash("Khóa học không thuộc lớp đang hỗ trợ", "warning")
         return redirect(url_for("teacher_dashboard"))
 
-    if course["teacher_id"] != session["user_id"]:
+    if not can_manage_learning(course["teacher_id"]):
         flash("Bạn không có quyền chỉnh sửa khóa học này", "danger")
         return redirect(url_for("teacher_dashboard"))
 
@@ -1244,7 +1276,7 @@ def delete_course(course_id):
     if str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
         return jsonify({"success": False, "message": "Khóa học không thuộc lớp đang hỗ trợ"})
 
-    if course["teacher_id"] != session["user_id"]:
+    if not can_manage_learning(course["teacher_id"]):
         return jsonify(
             {"success": False, "message": "Bạn không có quyền xóa khóa học này"}
         )
@@ -1276,7 +1308,7 @@ def exercises():
                         "course_title": course["title"],
                         "lesson_id": lesson["id"],
                         "lesson_title": lesson["title"],
-                        "questions": questions,
+                        "questions": [{k: v for k, v in q.items() if k in {'question', 'options', 'type', 'id'}} for q in questions],
                     }
                 )
 
@@ -1302,7 +1334,9 @@ def exercises():
 @login_required
 def submit_exercise():
     try:
-        data = request.get_json()
+        data = request.get_json(silent=True)
+        if not isinstance(data, dict) or not isinstance(data.get('answers'), dict) or any(not isinstance(v, str) for v in data['answers'].values()):
+            return jsonify(success=False, message='Câu trả lời không hợp lệ'), 400
 
         if (
             not data.get("course_id")
@@ -1315,6 +1349,10 @@ def submit_exercise():
         if not course or str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
             return jsonify({"success": False, "message": "Khóa học không thuộc lớp đang hỗ trợ"})
 
+        lesson = next((item for item in course.get('lessons', []) if item.get('id') == data['lesson_id']), None)
+        if not lesson or not lesson.get('questions'):
+            return jsonify(success=False, message='Bài tập không tồn tại'), 404
+
         submission_data = {
             "course_id": data["course_id"],
             "exercise_id": data["lesson_id"],
@@ -1322,46 +1360,29 @@ def submit_exercise():
             "submitted_at": datetime.now().isoformat(),
         }
 
-        submission_id = db.save_exercise_submission(session["user_id"], submission_data)
-
-        if course:
-            lesson = next(
-                (l for l in course.get("lessons", []) if l["id"] == data["lesson_id"]),
-                None,
-            )
-            if lesson:
-                questions = lesson.get("questions", [])
-                correct = 0
-                total = len(questions)
-
-                for i, q in enumerate(questions):
-                    user_answer = data["answers"].get(str(i), "").strip()
-                    correct_answer = q.get("correct_answer", "").strip()
-
-                    if user_answer and correct_answer:
-                        if normalize_choice_answer(user_answer) == normalize_choice_answer(correct_answer):
-                            correct += 1
-
-                score = round((correct / total * 100) if total > 0 else 0, 1)
-
-                return jsonify(
-                    {
-                        "success": True,
-                        "submission_id": submission_id,
-                        "score": score,
-                        "correct": correct,
-                        "total": total,
-                        "message": "Nộp bài thành công",
-                    }
-                )
-
-        return jsonify(
-            {
-                "success": True,
-                "submission_id": submission_id,
-                "message": "Nộp bài thành công",
-            }
-        )
+        questions = lesson['questions']
+        auto_grade = all(str(q.get('correct_answer') or '').strip() for q in questions)
+        submission_data['grading_status'] = 'automatic' if auto_grade else 'pending'
+        result = {}
+        if auto_grade:
+            correct = 0
+            for index, question in enumerate(questions):
+                answer = data['answers'].get(str(index), '').strip()
+                expected = str(question['correct_answer']).strip()
+                if question.get('options'):
+                    matches = normalize_choice_answer(answer) == normalize_choice_answer(expected)
+                else:
+                    matches = answer.casefold() == expected.casefold()
+                correct += int(bool(answer) and matches)
+            result = {'score': round(correct / len(questions) * 100, 1),
+                      'correct': correct, 'total': len(questions)}
+            submission_data.update(result, graded_at=datetime.now().isoformat(), graded_by='automatic')
+        with SUBMISSION_LOCK:
+            submission_id = db.save_exercise_submission(session['user_id'], submission_data)
+            if result.get('score', 0) >= 70:
+                db.update_progress(session['user_id'], course['id'], lesson['id'], True)
+        return jsonify(success=True, submission_id=submission_id,
+                       message='Nộp bài thành công', **result)
 
     except Exception as e:
         return jsonify({"success": False, "message": f"Lỗi: {str(e)}"})
@@ -1380,7 +1401,13 @@ def documents():
 
     docs = []
     from utils.video_library import published_video_documents
-    for doc in db.get_all_documents() + published_video_documents():
+    try:
+        videos = published_video_documents(app.extensions['teacher_videos']['store'])
+    except RuntimeError:
+        from utils.video_catalog import curated_lessons
+        videos = [dict(item, doc_type='lecture', link_type='video_lesson', description=item['group']) for item in curated_lessons()]
+        flash('Chưa tải được video mới xuất bản. Bạn có thể thử lại sau.', 'warning')
+    for doc in db.get_all_documents() + videos:
         if doc.get("grade") not in DOCUMENT_GRADE_LEVELS:
             continue
         clean_doc = dict(doc)
@@ -1450,7 +1477,7 @@ def delete_document(doc_id):
             return jsonify({"success": False, "message": "Tài liệu không tồn tại"})
 
         # Kiểm tra quyền: chỉ giáo viên tạo tài liệu mới được xóa
-        if doc.get("teacher_id") != session["user_id"]:
+        if not can_manage_learning(doc.get("teacher_id")):
             return jsonify(
                 {"success": False, "message": "Bạn không có quyền xóa tài liệu này"}
             )
@@ -1541,7 +1568,7 @@ def edit_document(doc_id):
         flash("Tài liệu không tồn tại", "danger")
         return redirect(url_for("documents"))
 
-    if doc.get("teacher_id") != session["user_id"]:
+    if not can_manage_learning(doc.get("teacher_id")):
         flash("Bạn không có quyền chỉnh sửa tài liệu này", "danger")
         return redirect(url_for("documents"))
 
@@ -1569,6 +1596,7 @@ def edit_document(doc_id):
                 else:
                     data["link_type"] = "other"
 
+            data = {key: value for key, value in data.items() if key in {"title", "grade", "doc_type", "link_type", "url", "description", "topic"}}
             success = db.update_document(doc_id, data)
 
             if success:
@@ -1591,13 +1619,18 @@ def edit_document(doc_id):
 @login_required
 def update_progress():
     try:
-        data = request.get_json()
+        data = request.get_json(silent=True) or {}
 
         if not data.get("course_id") or not data.get("lesson_id"):
             return jsonify({"success": False, "message": "Dữ liệu không đầy đủ"})
         course = db.get_course_by_id(data["course_id"])
         if not course or str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
             return jsonify({"success": False, "message": "Khóa học không thuộc lớp đang hỗ trợ"})
+
+        if not any(lesson.get('id') == data['lesson_id'] for lesson in course.get('lessons', [])):
+            return jsonify(success=False, message='Bài học không tồn tại'), 404
+        if type(data.get('completed', True)) is not bool:
+            return jsonify(success=False, message='Trạng thái không hợp lệ'), 400
 
         db.update_progress(
             session["user_id"],
@@ -1618,7 +1651,7 @@ def update_progress():
 def students_progress():
     teacher_courses = [
         course
-        for course in db.get_courses_by_teacher(session["user_id"])
+        for course in managed_courses()
         if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
     ]
     teacher_course_ids = [c["id"] for c in teacher_courses]
@@ -1660,7 +1693,7 @@ def students_progress():
 def view_submissions():
     teacher_courses = [
         course
-        for course in db.get_courses_by_teacher(session["user_id"])
+        for course in managed_courses()
         if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS
     ]
     teacher_course_ids = [c["id"] for c in teacher_courses]
@@ -1686,9 +1719,12 @@ def view_submissions():
         if student and course:
             submissions_with_details.append(
                 {
+                    "id": sub['id'],
                     "student_name": student["username"],
                     "course_title": course["title"],
                     "exercise_id": sub.get("exercise_id"),
+                    "score": sub.get('score'),
+                    "feedback": sub.get('feedback', ''),
                     "answers": sub.get("answers", {}),
                     "submitted_at": sub.get("submitted_at", "Không rõ"),
                 }
@@ -1699,6 +1735,35 @@ def view_submissions():
     )
 
 
+@app.post('/teacher/submissions/<submission_id>/grade')
+@teacher_required
+def grade_submission(submission_id):
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        return jsonify(success=False, message='Dữ liệu không hợp lệ'), 400
+    score = payload.get('score')
+    feedback = payload.get('feedback', '')
+    if type(score) not in (int, float) or not math.isfinite(score) or not 0 <= score <= 100:
+        return jsonify(success=False, message='Điểm phải từ 0 đến 100'), 400
+    if not isinstance(feedback, str) or len(feedback) > 3000:
+        return jsonify(success=False, message='Nhận xét tối đa 3.000 ký tự'), 400
+    with SUBMISSION_LOCK:
+        submissions = db._load_json(db.submissions_file)
+        submission = next((s for s in submissions if s.get('id') == submission_id), None)
+        course = db.get_course_by_id(submission.get('course_id')) if submission else None
+        if not course or not can_manage_learning(course.get('teacher_id')):
+            return jsonify(success=False, message='Không tìm thấy bài nộp thuộc khóa học của bạn'), 404
+        lesson = next((l for l in course.get('lessons', []) if l.get('id') == submission.get('exercise_id')), None)
+        if not lesson:
+            return jsonify(success=False, message='Bài học không còn tồn tại'), 404
+        submission.update(score=round(score, 1), feedback=feedback.strip(), grading_status='teacher',
+                          graded_by=session['user_id'], graded_at=datetime.now().isoformat())
+        db._save_json(db.submissions_file, submissions)
+        if score >= 70:
+            db.update_progress(submission['user_id'], course['id'], lesson['id'], True)
+    return jsonify(success=True, score=submission['score'], message='Đã lưu điểm và nhận xét')
+
+
 @app.route("/api/course/<course_id>")
 @login_required
 def api_get_course(course_id):
@@ -1706,7 +1771,7 @@ def api_get_course(course_id):
     if course and str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS:
         return jsonify({"success": False, "error": "Course not supported"}), 404
     if course:
-        return jsonify({"success": True, "course": course})
+        return jsonify({"success": True, "course": public_course(course)})
     return jsonify({"success": False, "error": "Course not found"}), 404
 
 
@@ -1897,9 +1962,9 @@ def tracnghiem():
         # Nhóm theo môn học
         exams_by_subject = {}
         for subject_code in SUBJECTS.keys():
-            exams_by_subject[subject_code] = [
+            exams_by_subject[subject_code] = sorted([
                 e for e in all_exams if e["subject"] == subject_code
-            ]
+            ], key=lambda exam: (int(exam.get('grade') or 99), exam.get('title', '')))
 
         print(f"Total exams: {len(all_exams)}")
         for subject_code, subject_info in SUBJECTS.items():
@@ -1910,6 +1975,7 @@ def tracnghiem():
             "tracnghiem.html",
             exams_by_subject=exams_by_subject,
             subjects=SUBJECTS,
+            initial_grade=request.args.get('grade', 'all') if request.args.get('grade', 'all') in {'all', '10', '11', '12'} else 'all',
             username=session.get("username"),
         )
 
@@ -2024,6 +2090,9 @@ def teacher_delete_exam():
 
         data = _load_subject_exam_data(subject)
         before_count = len(data.get("exams", []))
+        exam = next((e for e in data.get('exams', []) if e.get('id') == exam_id), None)
+        if exam and not can_manage_learning(exam.get('created_by')):
+            return jsonify(success=False, message='Bạn chỉ được xóa đề do mình tạo'), 403
         data["exams"] = [exam for exam in data.get("exams", []) if exam.get("id") != exam_id]
         if len(data["exams"]) == before_count:
             return jsonify({"success": False, "message": "Không tìm thấy đề cần xóa"}), 404
@@ -2328,7 +2397,7 @@ def nop_bai_tracnghiem():
             start_time = datetime.fromisoformat(session[session_key])
             elapsed_seconds = (datetime.now() - start_time).total_seconds()
 
-            if elapsed_seconds > (time_limit * 60):
+            if elapsed_seconds < 0 or elapsed_seconds > (time_limit * 60 + EXAM_SUBMISSION_GRACE_SECONDS):
                 session.pop(session_key, None)
                 return jsonify({"success": False, "message": "⏰ Hết thời gian!"}), 403
         except:
@@ -2541,50 +2610,9 @@ def nop_bai_tracnghiem():
         essay_final = result["essay"]["weighted_score"] if result["essay"] else 0
         result["total_score"] = round(mc_final + essay_final, 2)
 
-        # ========== XÓA SESSION ==========
-        session.pop(session_key, None)
-        session.modified = True
-
-        # ⭐⭐⭐ TẠO PHÂN TÍCH AI ⭐⭐⭐
+        # Scoring must be persisted before any optional AI work or session cleanup.
+        # A slow AI provider must never prevent the student from seeing the grade.
         ai_analysis = None
-
-        # Chỉ tạo AI analysis nếu có câu sai
-        if result.get("wrong_answers") and len(result["wrong_answers"]) > 0:
-            try:
-                print("🤖 Đang tạo phân tích AI...")
-
-                from utils.gemini_api import analyze_exam_results
-
-                subject_info = SUBJECTS.get(subject, {})
-
-                # Chuẩn bị dữ liệu cho AI
-                analysis_data = {
-                    "subject": subject,
-                    "subject_name": subject_info.get("name", subject),
-                    "exam_title": exam.get("title", ""),
-                    "total_score": result["total_score"],
-                    "correct_count": result["multiple_choice"]["correct_count"]
-                    if result.get("multiple_choice")
-                    else 0,
-                    "total_questions": result["multiple_choice"]["total_questions"]
-                    if result.get("multiple_choice")
-                    else 0,
-                    "wrong_answers": result["wrong_answers"],
-                }
-
-                # Gọi AI để phân tích
-                ai_analysis = analyze_exam_results(analysis_data)
-
-                if ai_analysis:
-                    print("✅ Đã tạo phân tích AI thành công")
-                else:
-                    print("⚠️ Không thể tạo phân tích AI")
-
-            except Exception as e:
-                print(f"❌ Lỗi AI: {e}")
-                ai_analysis = None
-        else:
-            print("⚠️ Không có câu sai, bỏ qua phân tích AI")
 
         # ========== LƯU KẾT QUẢ ==========
         results_file = writable_data_file("exam_results.json")
@@ -2604,12 +2632,15 @@ def nop_bai_tracnghiem():
                 "exam_id": exam_id,
                 "exam_title": exam.get("title", ""),
                 "result": result,
-                "ai_analysis": ai_analysis,  # ⭐ THÊM AI ANALYSIS
+                "ai_analysis": ai_analysis,
                 "submitted_at": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
             }
         )
 
         write_json(results_file, all_results)
+
+        session.pop(session_key, None)
+        session.modified = True
 
         return jsonify(
             {"success": True, "result": result, "message": "Nộp bài thành công"}
@@ -2623,6 +2654,47 @@ def nop_bai_tracnghiem():
 
         traceback.print_exc()
         return jsonify({"success": False, "message": f"Lỗi: {str(e)}"}), 500
+
+
+# Optional feedback is requested from the result page, after the score is saved.
+@app.post('/tracnghiem/phan-tich/<subject>/<exam_id>')
+@login_required
+def phan_tich_tracnghiem(subject, exam_id):
+    if not validate_subject(subject) or exam_id not in supported_exam_ids():
+        return jsonify(success=False, message='Không tìm thấy đề thi'), 404
+    results_file = writable_data_file('exam_results.json')
+    records = read_json(results_file, [])
+    record = next((row for row in reversed(records)
+                   if row.get('user_id') == session.get('user_id')
+                   and row.get('subject') == subject and row.get('exam_id') == exam_id), None)
+    if not record:
+        return jsonify(success=False, message='Không tìm thấy kết quả'), 404
+    if record.get('ai_analysis'):
+        return jsonify(success=True)
+    result = record.get('result') or {}
+    if not result.get('wrong_answers'):
+        return jsonify(success=False, message='Bài làm không có câu sai'), 400
+    from utils.gemini_api import analyze_exam_results
+    mc = result.get('multiple_choice') or {}
+    analysis = analyze_exam_results({
+        'subject': subject, 'subject_name': SUBJECTS[subject]['name'],
+        'exam_title': record.get('exam_title', ''),
+        'total_score': result.get('total_score', 0),
+        'correct_count': mc.get('correct_count', 0),
+        'total_questions': mc.get('total_questions', 0),
+        'wrong_answers': result['wrong_answers'],
+    })
+    if not analysis:
+        return jsonify(success=False, message='Chưa tạo được phân tích. Hãy thử lại sau.'), 503
+    records = read_json(results_file, [])
+    for row in reversed(records):
+        if (row.get('user_id') == session.get('user_id') and
+                row.get('subject') == subject and row.get('exam_id') == exam_id and
+                row.get('submitted_at') == record.get('submitted_at')):
+            row['ai_analysis'] = analysis
+            write_json(results_file, records)
+            return jsonify(success=True)
+    return jsonify(success=False, message='Kết quả đã thay đổi; tải lại trang.'), 409
 
 
 # ============================================================================
@@ -2657,6 +2729,11 @@ def lich_su_tracnghiem():
             result["subject_name"] = subject_info["name"]
             result["subject_icon"] = subject_info["icon"]
             result["subject_color"] = subject_info.get("color", "#95a5a6")
+            details = result.get("result") or {}
+            multiple_choice = details.get("multiple_choice") or {}
+            result["score"] = details.get("total_score", result.get("score", 0))
+            result["correct_count"] = multiple_choice.get("correct_count", result.get("correct_count", 0))
+            result["total_questions"] = multiple_choice.get("total_questions", result.get("total_questions", 0))
 
         print(f"User {user_id} có {len(user_results)} bài đã làm")
 
@@ -4921,6 +4998,10 @@ def send_chat_message():
         data = request.get_json()
         content = data.get("content", "").strip()
         reply_to = data.get("reply_to")
+        if reply_to:
+            parent = db.get_chat_message_by_id(reply_to)
+            if not parent or db.is_ai_message(parent):
+                return jsonify(success=False, message='Tin nhắn trả lời không tồn tại'), 404
 
         if not content:
             return jsonify(
@@ -5203,78 +5284,103 @@ def game():
     return render_template("game.html", topic=topic, username=session.get("username"))
 
 
+def game_locked(function):
+    @wraps(function)
+    def wrapped(*args, **kwargs):
+        with GAME_LOCK:
+            return function(*args, **kwargs)
+    return wrapped
+
+
 @app.route("/get_questions")
 @login_required
+@game_locked
 def get_questions():
     topic = find_game_topic(session.get("game_topic_id", ""))
-    questions = [dict(question) for question in (topic or {}).get("questions", [])]
+    if not topic:
+        return jsonify(error='Chủ đề không tồn tại'), 404
+    questions = copy.deepcopy(topic.get('questions', []))
     random.shuffle(questions)
+    questions = questions[:20]
     for q in questions:
-        q["options"] = list(q.get("options", []))
-        random.shuffle(q["options"])
-    return jsonify(questions[:20])
+        random.shuffle(q['options'])
+    attempts = read_json(GAME_ATTEMPTS_FILE, {})
+    now = datetime.now()
+    attempts = {key: value for key, value in attempts.items()
+                if value.get('created_at', '') > (now - timedelta(hours=2)).isoformat()}
+    attempt = {'id': uuid.uuid4().hex, 'topic_id': topic['id'], 'questions': questions,
+               'next': 0, 'score': 0, 'created_at': now.isoformat(), 'opened_at': now.isoformat()}
+    attempts[str(session['user_id'])] = attempt
+    write_json(GAME_ATTEMPTS_FILE, attempts)
+    session['game_attempt_id'] = attempt['id']
+    return jsonify([{k: v for k, v in q.items() if k in {'question', 'options', 'difficulty'}} for q in questions])
+
+
+def current_game_attempt(attempts):
+    attempt = attempts.get(str(session['user_id']))
+    if not attempt or attempt['id'] != session.get('game_attempt_id') or attempt['topic_id'] != session.get('game_topic_id'):
+        return None
+    if datetime.now() - datetime.fromisoformat(attempt['created_at']) > timedelta(hours=2):
+        return None
+    return attempt
+
+
+@app.post('/game/answer')
+@login_required
+@game_locked
+def game_answer():
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        return jsonify(error='Dữ liệu không hợp lệ'), 400
+    attempts = read_json(GAME_ATTEMPTS_FILE, {})
+    attempt = current_game_attempt(attempts)
+    if not attempt:
+        return jsonify(error='Lượt chơi đã hết hạn. Hãy bắt đầu lại.'), 409
+    index = payload.get('index')
+    if type(index) is not int or index != attempt['next'] or index >= len(attempt['questions']):
+        return jsonify(error='Câu hỏi đã trả lời hoặc không hợp lệ'), 409
+    question = attempt['questions'][index]
+    answer = payload.get('answer')
+    if answer is not None and answer not in question['options']:
+        return jsonify(error='Lựa chọn không hợp lệ'), 400
+    elapsed = (datetime.now() - datetime.fromisoformat(attempt['opened_at'])).total_seconds()
+    correct = answer == question['answer'] and elapsed <= 22
+    attempt['score'] += int(correct)
+    attempt['next'] += 1
+    attempt['opened_at'] = datetime.now().isoformat()
+    write_json(GAME_ATTEMPTS_FILE, attempts)
+    return jsonify(correct=correct, answer=question['answer'], score=attempt['score'])
 
 
 @app.route("/submit_score", methods=["POST"])
 @login_required
+@game_locked
 def submit_score():
-    topic_id = session.get("game_topic_id")
-    topic = find_game_topic(topic_id)
-    payload_data = request.get_json(silent=True) or {}
-    try:
-        score = max(0, int(payload_data.get("score") or 0))
-        total = max(0, int(payload_data.get("total") or 0))
-    except (TypeError, ValueError):
-        return jsonify({"status": "error", "message": "Invalid score"}), 400
-
+    attempts = read_json(GAME_ATTEMPTS_FILE, {})
+    attempt = current_game_attempt(attempts)
+    if not attempt or attempt['next'] != len(attempt['questions']) or not attempt['questions']:
+        return jsonify(status='error', message='Lượt chơi chưa hoàn tất hoặc đã hết hạn'), 409
+    topic = find_game_topic(attempt['topic_id'])
     if not topic:
-        return jsonify({"status": "error", "message": "No topic found"})
-
-    scores = read_json(SCORES_FILE, [])
-    now = datetime.now().strftime("%d/%m/%Y %H:%M")
-
-    existing = next(
-        (
-            s
-            for s in scores
-            if s.get("user_id") == session["user_id"]
-            and s.get("topic_id") == topic_id
-        ),
-        None,
-    )
-
-    payload = {
-        "user_id": session["user_id"],
-        "username": session.get("username", "Người chơi"),
-        "score": score,
-        "total": total,
-        "time": now,
-        "topic_id": topic_id,
-        "topic_title": topic.get("title", ""),
-        "grade": topic.get("grade", ""),
-    }
-
-    if existing:
-        if score > int(existing.get("score", 0)) or (
-            score == int(existing.get("score", 0)) and total > int(existing.get("total", 0))
-        ):
+        return jsonify(status='error', message='Chủ đề không tồn tại'), 404
+    score, total = attempt['score'], len(attempt['questions'])
+    if not attempt.get('saved'):
+        scores = read_json(SCORES_FILE, [])
+        existing = next((s for s in scores if s.get('user_id') == session['user_id']
+                         and s.get('topic_id') == topic['id']), None)
+        payload = {'user_id': session['user_id'], 'username': session.get('username', 'Người chơi'),
+                   'score': score, 'total': total, 'time': datetime.now().strftime('%d/%m/%Y %H:%M'),
+                   'topic_id': topic['id'], 'topic_title': topic['title'], 'grade': topic['grade']}
+        if existing is None:
+            scores.append(payload)
+        elif (score, total) > (int(existing.get('score', 0)), int(existing.get('total', 0))):
             existing.update(payload)
-    else:
-        scores.append(payload)
-
-    filtered = [s for s in scores if s.get("topic_id") == topic_id]
-    top50 = sorted(
-        filtered,
-        key=lambda x: (int(x.get("score", 0)), int(x.get("total", 0))),
-        reverse=True,
-    )[:50]
-
-    others = [s for s in scores if s.get("topic_id") != topic_id]
-    final_scores = others + top50
-
-    write_json(SCORES_FILE, final_scores)
-
-    return jsonify({"status": "ok"})
+        ranked = sorted([s for s in scores if s.get('topic_id') == topic['id']],
+                        key=lambda s: (int(s.get('score', 0)), int(s.get('total', 0))), reverse=True)[:50]
+        write_json(SCORES_FILE, [s for s in scores if s.get('topic_id') != topic['id']] + ranked)
+        attempt['saved'] = True
+        write_json(GAME_ATTEMPTS_FILE, attempts)
+    return jsonify(status='ok', score=score, total=total)
 
 
 @app.route("/leaderboard")
@@ -5453,7 +5559,7 @@ def get_chat_history():
     """
     try:
         user_id = session["user_id"]
-        messages = db.get_all_chat_messages()
+        messages = db.get_all_chat_messages(include_ai=True)
 
         # Filter AI chat records cua user. Chat room messages share the same file.
         user_messages = [
@@ -5555,7 +5661,7 @@ def logout_old():
 from utils.teacher_videos import register_teacher_videos
 register_teacher_videos(app, get_user_by_id)
 from utils.video_library import register_video_library
-register_video_library(app, get_user_by_id)
+register_video_library(app, get_user_by_id, store=app.extensions['teacher_videos']['store'])
 
 ##############
 if __name__ == "__main__":

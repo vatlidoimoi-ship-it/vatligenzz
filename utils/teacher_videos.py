@@ -80,8 +80,8 @@ def register_teacher_videos(app, get_user, store=None, start_worker=True):
                 if request.path.endswith('/videos'):
                     return redirect(url_for('login'))
                 return jsonify(error='Vui lòng đăng nhập.'), 401
-            if user.get('role') != 'teacher':
-                return jsonify(error='Chỉ giáo viên được tạo video.'), 403
+            if user.get('role') not in {'teacher', 'admin'}:
+                return jsonify(error='Chỉ giáo viên hoặc quản trị viên được quản lý video.'), 403
             if request.method == 'POST':
                 token = request.headers.get('X-CSRF-Token', '')
                 if not token or not hmac.compare_digest(token, session.get('video_csrf', '')):
@@ -93,7 +93,8 @@ def register_teacher_videos(app, get_user, store=None, start_worker=True):
         if not ID.fullmatch(job_id):
             return None
         row = store.get(job_id)
-        return row if row and row['value'].get('owner_id') == str(session['user_id']) else None
+        user = get_user(session['user_id'])
+        return row if row and (row['value'].get('owner_id') == str(session['user_id']) or user.get('role') == 'admin') else None
 
     @bp.errorhandler(RuntimeError)
     def storage_error(error):
@@ -109,7 +110,8 @@ def register_teacher_videos(app, get_user, store=None, start_worker=True):
     @bp.get('/jobs')
     @protected
     def listing():
-        rows = store.list(owner=str(session['user_id']))
+        user = get_user(session['user_id'])
+        rows = store.list(owner=None if user.get('role') == 'admin' else str(session['user_id']))
         return jsonify(items=[public(row['value'], include_script=False) for row in rows])
 
     @bp.post('/jobs')
@@ -154,7 +156,7 @@ def register_teacher_videos(app, get_user, store=None, start_worker=True):
             script = validated_script(request.get_json(silent=True), job['script'])
         except ValueError as error:
             return jsonify(error=str(error)), 400
-        for existing in store.list(owner=str(session['user_id'])):
+        for existing in store.list(owner=job['owner_id']):
             if existing['value']['id'] != job_id and existing['value'].get('status') in ACTIVE:
                 return jsonify(error='Bạn đang có tác vụ khác chạy.'), 409
         updated = {**job, 'script': script, 'status': 'queued', 'progress': 0,
@@ -202,9 +204,41 @@ def register_teacher_videos(app, get_user, store=None, start_worker=True):
         response.headers['Cache-Control'] = 'no-store'
         return response
 
+    @bp.post('/jobs/<job_id>/publication')
+    @protected
+    def publication(job_id):
+        row = own_row(job_id)
+        if not row:
+            return jsonify(error='Không tìm thấy video.'), 404
+        job = row['value']
+        if job.get('status') != 'complete' or not job.get('object_key'):
+            return jsonify(error='Chỉ xuất bản video đã dựng và lưu thành công.'), 409
+        payload = request.get_json(silent=True)
+        if not isinstance(payload, dict) or type(payload.get('published')) is not bool:
+            return jsonify(error='Trạng thái xuất bản không hợp lệ.'), 400
+        metadata = dict(job.get('publication') or {})
+        if payload['published']:
+            for field, label, limit in [('title', 'Tên bài', 180), ('group', 'Chủ đề', 120), ('description', 'Mô tả', 1500)]:
+                value = payload.get(field, '')
+                if not isinstance(value, str) or len(value) > limit or (field != 'description' and not value.strip()):
+                    return jsonify(error=f'{label} không hợp lệ (tối đa {limit} ký tự).'), 400
+                metadata[field] = value.strip()
+            if not isinstance(payload.get('grade'), str) or payload['grade'] not in {'10', '11', '12'}:
+                return jsonify(error='Chọn lớp 10, 11 hoặc 12.'), 400
+            metadata['grade'] = payload['grade']
+            metadata.setdefault('published_at', now())
+        metadata.update(published=payload['published'], updated_at=now(), updated_by=str(session['user_id']))
+        updated = {**job, 'publication': metadata, 'updated_at': now()}
+        if not store.change(row, updated):
+            return jsonify(error='Video vừa thay đổi. Hãy tải lại trước khi xuất bản.'), 409
+        return jsonify(job=public(updated))
+
     def public(job, include_script=True):
         fields = ['id', 'problem', 'status', 'progress', 'note', 'created_at', 'duration_seconds']
         result = {key: job.get(key) for key in fields}
+        result['publication'] = job.get('publication') or {'published': False}
+        if result['publication'].get('published'):
+            result['lesson_url'] = '/video-lessons/teacher-' + job['id']
         if include_script and job.get('script'):
             result['script'] = job['script']
         if job.get('status') == 'complete':

@@ -20,9 +20,12 @@ BANK = ROOT / 'data/docx_exams_grade11.json'
 
 
 class WordExamTests(unittest.TestCase):
+    bank_path = BANK
+    grade = '11'
+
     @classmethod
     def setUpClass(cls):
-        cls.exams = json.loads(BANK.read_text(encoding='utf-8'))['exams']
+        cls.exams = json.loads(cls.bank_path.read_text(encoding='utf-8'))['exams']
 
     def test_matrix_and_unique_content(self):
         self.assertEqual(len(self.exams), 20)
@@ -68,10 +71,11 @@ class WordExamTests(unittest.TestCase):
         stored = []
         scope = {'app': app, 'request': request, 'session': session, 'jsonify': jsonify,
                  'login_required': lambda f: f, 'validate_subject': lambda s: s == 'li',
-                 'is_supported_exam': lambda e: e.get('grade') == '11',
-                 'readable_data_file': lambda _: str(BANK), 'writable_data_file': lambda _: 'test-only',
+                 'is_supported_exam': lambda e: e.get('grade') == self.grade,
+                 'readable_data_file': lambda _: str(self.bank_path), 'writable_data_file': lambda _: 'test-only',
                  'read_json': lambda *_: [], 'write_json': lambda _, rows: stored.extend(rows),
-                 'SUBJECTS': {'li': {'name': 'Vật Lý'}}, 'datetime': datetime, 'json': json}
+                 'SUBJECTS': {'li': {'name': 'Vật Lý'}}, 'datetime': datetime, 'json': json,
+                 'EXAM_SUBMISSION_GRACE_SECONDS': 10}
         tree = ast.parse((ROOT / 'app.py').read_text(encoding='utf-8'))
         node = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'nop_bai_tracnghiem')
         exec(compile(ast.Module(body=[node], type_ignores=[]), 'actual_submission_handler', 'exec'), scope)

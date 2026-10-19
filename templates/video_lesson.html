@@ -5,8 +5,9 @@
 <div class="container" style="max-width:1080px;padding:28px 16px">
   {% set back_href = back_url %}{% set back_text = back_label %}
   {% include 'partials/video_back.html' %}
-  <p>{{ lesson.id|upper }} · {{ lesson.group }}</p>
+  <p>Lớp {{ lesson.grade }} · {{ lesson.group }}</p>
   <h1>{{ lesson.title }}</h1>
+  {% if lesson.description %}<p>{{ lesson.description }}</p>{% endif %}
   <video id="lesson-player" controls playsinline preload="none" poster="{{ url_for('static', filename=lesson.poster) }}" style="width:100%;aspect-ratio:16/9;background:#102235;border-radius:18px" data-source="{{ url_for('video_library.play', lesson_id=lesson.id) }}"></video>
   <button id="lesson-play" class="btn btn-primary" type="button">▶ Phát video có tiếng</button>
   <a class="btn btn-secondary" href="{{ url_for('video_library.play', lesson_id=lesson.id) }}" target="_blank" rel="noopener">Mở MP4</a>
@@ -18,5 +19,5 @@
   </details>
   {% endif %}
 </div>
-<script src="{{ url_for('static', filename='video_library.js', v='1') }}" defer></script>
+<script src="{{ url_for('static', filename='video_library.js', v='2') }}" defer></script>
 {% endblock %}

@@ -1,15 +1,14 @@
 """Published lessons for signed-in students and teachers; MP4s remain private."""
-import json
 from pathlib import Path
 from flask import Blueprint, abort, redirect, render_template, session, url_for, request
 from .video_store import VideoStore
 
-CATALOG = Path(__file__).resolve().parents[1] / 'data/video_lessons.json'
+from .video_catalog import CATALOG, all_lessons, find_lesson
 
-def published_video_documents():
-    rows = json.loads(CATALOG.read_text(encoding='utf-8')) if CATALOG.exists() else []
+def published_video_documents(store=None):
+    rows = all_lessons(store)
     return [dict(item, doc_type='lecture', link_type='video_lesson',
-                 description=item['group']) for item in rows]
+                 description=item.get('description') or item['group']) for item in rows]
 
 def register_video_library(app, get_user, store=None, catalog_path=None):
     store = store or VideoStore()
@@ -17,7 +16,11 @@ def register_video_library(app, get_user, store=None, catalog_path=None):
     bp = Blueprint('video_library', __name__, url_prefix='/video-lessons')
 
     def lessons():
-        return json.loads(path.read_text(encoding='utf-8')) if path.exists() else []
+        return all_lessons(store, path)
+
+    @bp.errorhandler(RuntimeError)
+    def unavailable(error):
+        return 'Kho video đang bận. Bạn vui lòng thử lại sau.', 503
 
     @bp.before_request
     def require_login():
@@ -35,7 +38,7 @@ def register_video_library(app, get_user, store=None, catalog_path=None):
 
     @bp.get('/<lesson_id>')
     def watch(lesson_id):
-        lesson = next((item for item in lessons() if item['id'] == lesson_id), None)
+        lesson = find_lesson(lesson_id, store, path)
         if not lesson:
             abort(404)
         back_url = url_for('video_library.index')
@@ -50,7 +53,7 @@ def register_video_library(app, get_user, store=None, catalog_path=None):
 
     @bp.get('/<lesson_id>/play')
     def play(lesson_id):
-        lesson = next((item for item in lessons() if item['id'] == lesson_id), None)
+        lesson = find_lesson(lesson_id, store, path)
         if not lesson:
             abort(404)
         try:
@@ -62,12 +65,12 @@ def register_video_library(app, get_user, store=None, catalog_path=None):
     @app.get('/health/video-library')
     def library_health():
         # Check the actual published object, rather than only checking env vars.
-        items = lessons()
-        if not items:
-            return {'ready': False, 'reason': 'empty_catalog'}, 503
         try:
+            items = lessons()
+            if not items:
+                return {'ready': False, 'reason': 'empty_catalog'}, 503
             store.signed_url(items[0]['object_key'])
             return {'ready': True, 'lessons': len(items)}, 200
         except RuntimeError as error:
-            return {'ready': False, 'reason': str(error)}, 503
+            return {'ready': False, 'reason': 'storage_unavailable'}, 503
     return bp

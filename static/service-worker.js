@@ -1,8 +1,5 @@
-const CACHE_NAME = "phyedu-pwa-v9";
+const CACHE_NAME = "phyedu-pwa-v10";
 const APP_SHELL = [
-  "/",
-  "/app",
-  "/login",
   "/static/manifest.webmanifest",
   "/static/css/style.css",
   "/static/js/main.js",
@@ -46,12 +43,9 @@ self.addEventListener("fetch", (event) => {
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-          return response;
-        })
-        .catch(() => caches.match(request).then((cached) => cached || caches.match("/static/offline.html")))
+        // Pages may contain private chat, grades, and another account's session.
+        // Keep only the public offline page rather than caching authenticated HTML.
+        .catch(() => caches.match("/static/offline.html"))
     );
     return;
   }

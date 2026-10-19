@@ -32,15 +32,38 @@ class VideoStore:
 
     def list(self, owner=None, status=None):
         params = {'key': 'like.' + self.prefix + '*', 'select': 'value,updated_at',
-                  'order': 'updated_at.desc', 'limit': '100'}
+                  'order': 'updated_at.desc,key.asc', 'limit': '100'}
         if owner is not None:
             params['value->>owner_id'] = 'eq.' + str(owner)
         if status:
             params['value->>status'] = 'eq.' + status
-        return self.call('GET', '/rest/v1/' + self.table, params=params).json()
+        rows = []
+        while True:
+            page = self.call('GET', '/rest/v1/' + self.table,
+                             params={**params, 'offset': str(len(rows))}).json()
+            rows.extend(page)
+            if len(page) < 100:
+                return rows
 
     def create(self, value):
         self.call('POST', '/rest/v1/' + self.table, json={'key': self.prefix + value['id'], 'value': value})
+
+    def list_published(self):
+        """Read only public metadata, without truncating catalogs over 100 jobs."""
+        if not self.ready:
+            return []
+        items = []
+        while True:
+            rows = self.call('GET', '/rest/v1/' + self.table, params={
+                'key': 'like.' + self.prefix + '*',
+                'value->>status': 'eq.complete',
+                'value->publication->>published': 'eq.true',
+                'select': 'id:value->>id,status:value->>status,owner_id:value->>owner_id,object_key:value->>object_key,duration_seconds:value->duration_seconds,publication:value->publication',
+                'order': 'key.asc', 'limit': '100', 'offset': str(len(items)),
+            }).json()
+            items.extend(rows)
+            if len(rows) < 100:
+                return items
 
     def change(self, row, value):
         rows = self.call('PATCH', '/rest/v1/' + self.table,

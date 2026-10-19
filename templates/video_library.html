@@ -3,11 +3,15 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/video-navigation.css', v='1') }}">
 <div class="container" style="max-width:1200px;padding:28px 16px">
-  {% set back_href = url_for('teacher_videos.studio') if session.role == 'teacher' else url_for('documents', type='lecture') %}
-  {% set back_text = 'Tạo video bài giảng' if session.role == 'teacher' else 'Bài giảng trong kho tài liệu' %}
+  {% set back_href = url_for('teacher_videos.studio') if session.role in ['teacher', 'admin'] else url_for('documents', type='lecture') %}
+  {% set back_text = 'Quản lý video bài giảng' if session.role in ['teacher', 'admin'] else 'Bài giảng trong kho tài liệu' %}
   {% include 'partials/video_back.html' %}
   <h1>Video bài giảng</h1>
-  <p>{{ lessons|length }} bài giải có thuyết minh và hình minh họa · Vật lí 11</p>
+  <p>{{ lessons|length }} video bài giảng Vật lí lớp 10–12</p>
+  <label for="lesson-grade">Lớp</label>
+  <select id="lesson-grade" style="padding:10px;border-radius:8px;margin:12px">
+    <option value="">Tất cả</option><option value="10">Lớp 10</option><option value="11">Lớp 11</option><option value="12">Lớp 12</option>
+  </select>
   <label for="lesson-filter">Chủ đề</label>
   <select id="lesson-filter" style="padding:10px;border-radius:8px;margin:12px">
     <option value="">Tất cả</option>
@@ -15,12 +19,12 @@
   </select>
   <div class="lesson-grid">
     {% for lesson in lessons %}
-    <a class="lesson-card" href="{{ url_for('video_library.watch', lesson_id=lesson.id) }}" data-group="{{ lesson.group }}">
+    <a class="lesson-card" href="{{ url_for('video_library.watch', lesson_id=lesson.id) }}" data-group="{{ lesson.group }}" data-grade="{{ lesson.grade }}">
       <img src="{{ url_for('static', filename=lesson.poster) }}" loading="lazy" width="1280" height="720" alt="Ảnh bìa {{ lesson.title }}">
       <div class="lesson-card-body">
-        <small>{{ lesson.id|upper }} · {{ lesson.group }}</small>
+        <small>Lớp {{ lesson.grade }} · {{ lesson.group }}</small>
         <h2>{{ lesson.title }}</h2>
-        <p>{{ (lesson.duration / 60)|int }}:{{ '%02d'|format((lesson.duration % 60)|int) }} · {{ '%.2f'|format(lesson.size_bytes / 1000000) }} MB</p>
+        <p>{{ (lesson.duration / 60)|int }}:{{ '%02d'|format((lesson.duration % 60)|int) }}{% if lesson.size_bytes %} · {{ '%.2f'|format(lesson.size_bytes / 1000000) }} MB{% endif %}</p>
         <span>Xem bài giải →</span>
       </div>
     </a>
@@ -34,5 +38,5 @@
 .lesson-card:hover{transform:translateY(-5px);box-shadow:0 16px 35px #132e4620}.lesson-card:focus-visible{outline:3px solid #008b89;outline-offset:4px}
 .lesson-card img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}.lesson-card-body{padding:18px}.lesson-card h2{font-size:1.2rem;line-height:1.45;margin:10px 0}.lesson-card small{color:#496779}.lesson-card span{font-weight:700;color:#087d82}.lesson-card[hidden]{display:none}
 </style>
-<script src="{{ url_for('static', filename='video_library.js', v='1') }}" defer></script>
+<script src="{{ url_for('static', filename='video_library.js', v='2') }}" defer></script>
 {% endblock %}

@@ -23,7 +23,8 @@
                 <span> Bài: {{ ex.lesson_title }}</span>
             </div>
             
-            <button onclick="openExercise('{{ ex.course_id }}', '{{ ex.lesson_id }}', {{ ex.questions|tojson|safe }})" 
+            <button type="button" data-exercise='{{ ex|tojson }}'
+                    onclick="openExerciseFromButton(this)"
                     class="btn btn-primary">
                  Làm bài
             </button>
@@ -49,7 +50,8 @@
                     <strong>Khóa: {{ sub.course_id }}</strong>
                     <span class="submission-time">{{ sub.submitted_at[:19] if sub.submitted_at else 'N/A' }}</span>
                 </div>
-                <span class="submission-status">✓ Đã nộp</span>
+                <span class="submission-status">{% if sub.score is defined and sub.score is not none %}Điểm: {{ sub.score }}/100{% else %}Chờ chấm điểm{% endif %}</span>
+                {% if sub.feedback %}<p>{{ sub.feedback }}</p>{% endif %}
             </div>
             {% endfor %}
         </div>
@@ -84,6 +86,17 @@
 let currentCourseId = null;
 let currentLessonId = null;
 let currentQuestions = [];
+let submittingExercise = false;
+
+function openExerciseFromButton(button) {
+    const exercise = JSON.parse(button.dataset.exercise);
+    openExercise(exercise.course_id, exercise.lesson_id, exercise.questions);
+}
+
+function escapeExerciseText(value) {
+    return String(value ?? '').replace(/[&<>"']/g, character =>
+        ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[character]));
+}
 
 function openExercise(courseId, lessonId, questions) {
     currentCourseId = courseId;
@@ -106,8 +119,8 @@ function openExercise(courseId, lessonId, questions) {
             q.options.forEach(opt => {
                 optionsHtml += `
                     <label class="option-label">
-                        <input type="radio" name="question_${index}" value="${opt}" required>
-                        <span>${opt}</span>
+                        <input type="radio" name="question_${index}" value="${escapeExerciseText(opt)}" required>
+                        <span>${escapeExerciseText(opt)}</span>
                     </label>
                 `;
             });
@@ -124,7 +137,7 @@ function openExercise(courseId, lessonId, questions) {
         
         questionDiv.innerHTML = `
             <div class="question-number">Câu ${index + 1}</div>
-            <p class="question-text">${q.question}</p>
+            <p class="question-text">${escapeExerciseText(q.question)}</p>
             ${optionsHtml}
         `;
         
@@ -143,6 +156,7 @@ function closeExerciseModal() {
 
 document.getElementById('exerciseForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+    if (submittingExercise) return;
     
     const formData = new FormData(this);
     const answers = {};
@@ -157,6 +171,9 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
         return;
     }
     
+    submittingExercise = true;
+    const submitButton = this.querySelector('[type="submit"]');
+    submitButton.disabled = true;
     try {
         const response = await fetch('/submit_exercise', {
             method: 'POST',
@@ -214,6 +231,9 @@ document.getElementById('exerciseForm').addEventListener('submit', async functio
     } catch (error) {
         alert('Có lỗi xảy ra: ' + error.message);
         console.error(error);
+    } finally {
+        submittingExercise = false;
+        submitButton.disabled = false;
     }
 });
 

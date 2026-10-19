@@ -188,7 +188,7 @@
         <strong>🎮 PHYEDU Game</strong>
         <div class="nav-actions">
             <a href="{{ url_for('enter_nickname') }}">Sảnh game</a>
-            <a href="{{ url_for('student_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('index') }}">Dashboard</a>
         </div>
     </nav>
 
@@ -264,6 +264,7 @@
         async function loadQuestions() {
             try {
                 const res = await fetch("{{ url_for('get_questions') }}");
+                if (!res.ok) throw new Error("Không tải được câu hỏi");
                 questions = await res.json();
                 if (!questions || questions.length === 0) {
                     document.getElementById("question-box").innerHTML = "<p class='question-text'>Chủ đề này chưa có câu hỏi.</p>";
@@ -287,18 +288,34 @@
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
                     if (!answered) {
-                        revealAnswer();
-                        setTimeout(nextQuestion, 900);
+                        submitGameAnswer(null);
                     }
                 }
             }, 1000);
         }
 
-        function revealAnswer() {
-            const q = questions[currentIndex];
-            document.querySelectorAll('.option').forEach(btn => {
-                if (btn.dataset.value === q.answer) btn.classList.add('correct');
-            });
+        async function submitGameAnswer(answer) {
+            if (answered) return;
+            answered = true;
+            clearInterval(countdown);
+            try {
+                const response = await fetch('/game/answer', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({index: currentIndex, answer})
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || 'Không gửi được câu trả lời');
+                score = result.score;
+                document.getElementById('score-box').textContent = `Điểm: ${score}`;
+                document.querySelectorAll('.option').forEach(button => {
+                    button.disabled = true;
+                    if (button.dataset.value === result.answer) button.classList.add('correct');
+                    else if (button.dataset.value === answer) button.classList.add('wrong');
+                });
+                setTimeout(nextQuestion, 850);
+            } catch (error) {
+                document.getElementById('question-box').textContent = error.message + ' Hãy tải lại trang để bắt đầu lượt mới.';
+            }
         }
 
         function nextQuestion() {
@@ -311,8 +328,11 @@
             fetch("{{ url_for('submit_score') }}", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({score, total: questions.length})
-            }).finally(() => {
+                body: JSON.stringify({})
+            }).then(async response => {
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || "Không lưu được điểm");
+                score = result.score;
                 const percent = questions.length ? Math.round(score / questions.length * 100) : 0;
                 document.getElementById("game-container").innerHTML = `
                     <div class="result-box">
@@ -323,10 +343,17 @@
                         <div class="result-actions">
                             <a href="{{ url_for('leaderboard') }}">Bảng xếp hạng</a>
                             <a href="{{ url_for('enter_nickname') }}" class="secondary">Chơi chủ đề khác</a>
-                            <a href="{{ url_for('student_dashboard') }}" class="secondary">Dashboard</a>
+                            <a href="{{ url_for('index') }}" class="secondary">Dashboard</a>
                         </div>
                     </div>
                 `;
+            }).catch(error => {
+                const box = document.getElementById('game-container');
+                box.textContent = error.message;
+                const retry = document.createElement('button');
+                retry.textContent = 'Thử lưu lại';
+                retry.onclick = finishGame;
+                box.appendChild(retry);
             });
         }
 
@@ -353,20 +380,7 @@
                 btn.className = "option";
                 btn.dataset.value = opt;
                 btn.textContent = opt;
-                btn.onclick = () => {
-                    if (answered) return;
-                    answered = true;
-                    clearInterval(countdown);
-                    if (opt === q.answer) {
-                        score += 1;
-                        btn.classList.add('correct');
-                        document.getElementById("score-box").textContent = `Điểm: ${score}`;
-                    } else {
-                        btn.classList.add('wrong');
-                        revealAnswer();
-                    }
-                    setTimeout(nextQuestion, 850);
-                };
+                btn.onclick = () => submitGameAnswer(opt);
                 optionsContainer.appendChild(btn);
             });
             renderMath(box);

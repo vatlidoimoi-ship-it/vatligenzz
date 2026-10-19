@@ -1,4 +1,5 @@
 import os
+import uuid
 from datetime import datetime
 from utils.storage import read_json, writable_data_file, write_json
 
@@ -82,7 +83,7 @@ class Database:
         submissions = self._load_json(self.submissions_file)
         
         submission = {
-            'id': f"sub_{len(submissions) + 1}",
+            'id': 'sub_' + uuid.uuid4().hex,
             'user_id': user_id,
             'course_id': submission_data.get('course_id'),
             'exercise_id': submission_data['exercise_id'],
@@ -90,6 +91,9 @@ class Database:
             'submitted_at': submission_data.get('submitted_at', datetime.now().isoformat())
         }
         
+        for field in ('score', 'correct', 'total', 'grading_status', 'graded_at', 'graded_by', 'feedback'):
+            if field in submission_data:
+                submission[field] = submission_data[field]
         submissions.append(submission)
         self._save_json(self.submissions_file, submissions)
         return submission['id']
@@ -112,6 +116,8 @@ class Database:
         if progress:
             if completed and lesson_id not in progress['completed_lessons']:
                 progress['completed_lessons'].append(lesson_id)
+            elif not completed and lesson_id in progress['completed_lessons']:
+                progress['completed_lessons'].remove(lesson_id)
             progress['last_updated'] = timestamp
         else:
             progress = {
@@ -356,8 +362,16 @@ class Database:
                 self._save_json(self.forum_posts_file, posts)
                 break
     
-    def get_all_chat_messages(self):
+    @staticmethod
+    def is_ai_message(message):
+        return message.get('channel') == 'ai' or any(
+            field in message for field in ('response', 'processed', 'quiz', 'quiz_result')
+        )
+
+    def get_all_chat_messages(self, include_ai=False):
         messages = self._load_json(self.chat_messages_file)
+        if not include_ai:
+            messages = [m for m in messages if not self.is_ai_message(m)]
         messages.sort(key=lambda x: x.get('created_at', ''))
         return messages
 
@@ -367,10 +381,11 @@ class Database:
 
     def add_chat_message(self, message_data):
         messages = self._load_json(self.chat_messages_file)
-        message_id = f"msg_{len(messages) + 1:06d}"
+        message_id = 'msg_' + uuid.uuid4().hex
         
         new_message = {
             'id': message_id,
+            'channel': 'ai' if self.is_ai_message(message_data) else 'room',
             'content': message_data['content'],
             'author_id': message_data['author_id'],
             'author_name': message_data['author_name'],

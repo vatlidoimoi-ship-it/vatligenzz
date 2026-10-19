@@ -1,13 +1,16 @@
 (() => {
   const filter = document.getElementById('lesson-filter');
-  if (filter) filter.addEventListener('change', () => {
+  const grade = document.getElementById('lesson-grade');
+  function filterLessons() {
     let visible = 0;
     document.querySelectorAll('.lesson-card').forEach(card => {
-      card.hidden = Boolean(filter.value && card.dataset.group !== filter.value);
+      card.hidden = Boolean((filter.value && card.dataset.group !== filter.value) || (grade?.value && card.dataset.grade !== grade.value));
       if (!card.hidden) visible++;
     });
     document.getElementById('lesson-empty').hidden = visible > 0;
-  });
+  }
+  if (filter) filter.addEventListener('change', filterLessons);
+  if (grade) grade.addEventListener('change', filterLessons);
   const video = document.getElementById('lesson-player');
   if (!video) return;
   const status = document.getElementById('lesson-status');

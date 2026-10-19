@@ -74,6 +74,28 @@
     </div>
 
     <!-- ⭐⭐⭐ PHẦN PHÂN TÍCH AI - ĐÃ CẢI TIẾN ⭐⭐⭐ -->
+    {% if not ai_analysis and result.wrong_answers %}
+    <div class="row mb-4"><div class="col-12">
+        <button type="button" class="btn btn-outline-primary" id="request-ai-analysis">Phân tích câu sai bằng AI</button>
+        <span id="ai-analysis-status" role="status" class="ms-2"></span>
+    </div></div>
+    <script>
+    document.getElementById('request-ai-analysis').addEventListener('click', async function () {
+        this.disabled = true;
+        const status = document.getElementById('ai-analysis-status');
+        status.textContent = 'Đang phân tích; điểm của bạn đã được lưu.';
+        try {
+            const response = await fetch({{ url_for('phan_tich_tracnghiem', subject=result.subject, exam_id=result.exam_id)|tojson }}, {method: 'POST'});
+            const data = await response.json();
+            if (!response.ok || !data.success) throw new Error(data.message || 'Chưa tạo được phân tích.');
+            window.location.reload();
+        } catch (error) {
+            status.textContent = error.message;
+            this.disabled = false;
+        }
+    });
+    </script>
+    {% endif %}
     {% if ai_analysis %}
     <div class="row mb-4">
         <div class="col-12">
