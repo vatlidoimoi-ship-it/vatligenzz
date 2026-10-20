@@ -283,6 +283,35 @@ class RoleFlowTests(unittest.TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertLess(page.data.index(b'April exam'), page.data.index(b'March exam'))
 
+    def test_admin_overview_counts_learning_activity_by_month_and_grade(self):
+        self.seed_exam()
+        web.db._save_json(web.db.progress_file, [{
+            'user_id': 'student', 'course_id': 'course_a',
+            'completed_lessons': ['lesson_a'], 'last_updated': '2026-07-15T10:00:00',
+        }])
+        web.db._save_json(web.db.submissions_file, [{
+            'id': 'sub_a', 'user_id': 'student', 'course_id': 'course_a',
+            'exercise_id': 'lesson_a', 'submitted_at': '2026-07-15T10:00:00',
+        }])
+        web.write_json(web.writable_data_file('exam_results.json'), [
+            {'user_id': 'student', 'subject': 'li', 'exam_id': 'exam_test',
+             'submitted_at': '15/03/2026 09:00:00'},
+            {'user_id': 'teacher', 'subject': 'li', 'exam_id': 'exam_test',
+             'submitted_at': '20/10/2026 09:00:00'},
+        ])
+        stats = web.admin_dashboard_stats()
+        self.assertEqual(stats['exam_attempts'], 1)
+        self.assertEqual(stats['submissions'], 1)
+        self.assertEqual(stats['completed_lessons'], 1)
+        self.assertEqual(stats['grade_rows'][0]['attempts'], 1)
+        self.assertEqual(stats['reporting_window'], 'T3/2026 – T9/2026')
+        self.assertEqual(stats['monthly_rows'][0]['exams'], 1)
+        self.assertEqual(stats['monthly_rows'][4]['submissions'], 1)
+        self.login('admin')
+        page = self.client.get('/admin/forum-reports')
+        self.assertEqual(page.status_code, 200)
+        self.assertIn('Hoạt động theo tháng'.encode(), page.data)
+
     def test_admin_manages_courses_and_documents_without_taking_ownership(self):
         self.login('admin')
         for path in ['/teacher/dashboard', '/teacher/edit_course/course_a', '/teacher/add_document',

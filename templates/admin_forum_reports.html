@@ -5,9 +5,10 @@
 {% block content %}
 <div class="admin-page">
     <header class="admin-header">
-        <div>
-            <h1>Dashboard quản trị</h1>
-            <p>{{ counts.pending }} báo cáo chờ xử lý · {{ stats.online_students }} học sinh online · {{ counts.active_bans }} tài khoản đang bị chặn</p>
+        <div class="admin-heading">
+            <span class="eyebrow">TRUNG TÂM QUẢN TRỊ</span>
+            <h1>Tổng quan vận hành</h1>
+            <p>Dữ liệu học tập {{ stats.reporting_window }} <span class="heading-divider">·</span> <span class="live-mark"></span> {{ stats.online_total }} người đang online</p>
         </div>
         <div class="admin-header-actions">
             <a href="{{ url_for('teacher_dashboard') }}">Quản lý học vụ</a>
@@ -19,119 +20,120 @@
 
     <section class="metric-grid">
         <article class="metric-card accent-blue">
+            <span class="metric-icon" aria-hidden="true">◎</span>
             <span>Tổng tài khoản</span>
             <strong>{{ stats.total_users }}</strong>
-            <em>{{ stats.teachers }} giáo viên · {{ stats.students }} học sinh</em>
+            <em>{{ stats.students }} học sinh · {{ stats.teachers }} giáo viên · {{ stats.admins }} admin</em>
         </article>
         <article class="metric-card accent-green">
-            <span>Học sinh online</span>
-            <strong>{{ stats.online_students }}</strong>
-            <em>{{ stats.online_total }} người đang hoạt động</em>
+            <span class="metric-icon" aria-hidden="true">▦</span>
+            <span>Lớp học</span>
+            <strong>{{ stats.courses }}</strong>
+            <em>{{ stats.enrolled_students }} học sinh đã vào lớp</em>
         </article>
         <article class="metric-card accent-amber">
-            <span>Câu hỏi diễn đàn</span>
-            <strong>{{ stats.questions }}</strong>
-            <em>{{ stats.answers }} câu trả lời</em>
+            <span class="metric-icon" aria-hidden="true">✎</span>
+            <span>Lượt làm đề</span>
+            <strong>{{ stats.exam_attempts }}</strong>
+            <em>Kết quả trắc nghiệm đã lưu</em>
         </article>
-        <article class="metric-card accent-danger">
-            <span>Báo cáo vi phạm</span>
-            <strong>{{ counts.pending }}</strong>
-            <em>{{ stats.resolved_rate }}% đã xử lý</em>
+        <article class="metric-card accent-violet">
+            <span class="metric-icon" aria-hidden="true">▤</span>
+            <span>Bài tập đã nộp</span>
+            <strong>{{ stats.submissions }}</strong>
+            <em>Bài nộp trong các lớp học</em>
         </article>
         <article class="metric-card accent-highlight">
-            <span>Kim cương đã trao</span>
-            <strong>{{ stats.total_diamonds }}</strong>
-            <em>Bảng xếp hạng theo tháng</em>
+            <span class="metric-icon" aria-hidden="true">✓</span>
+            <span>Lượt hoàn thành bài</span>
+            <strong>{{ stats.completed_lessons }}</strong>
+            <em>Theo tiến độ học sinh</em>
         </article>
         <article class="metric-card accent-slate">
-            <span>Chat AI</span>
-            <strong>{{ stats.ai_chat_count }}</strong>
-            <em>{{ stats.chat_messages }} bản ghi chat</em>
+            <span class="metric-icon" aria-hidden="true">▣</span>
+            <span>Tài liệu</span>
+            <strong>{{ stats.documents }}</strong>
+            <em>Trong kho lớp 10, 11, 12</em>
         </article>
     </section>
 
     <section class="analytics-grid">
-        <article class="chart-card wide">
+        <article class="chart-card activity-panel">
             <div class="card-title">
-                <h2>Hoạt động 7 ngày</h2>
-                <span>Câu hỏi · trả lời · báo cáo</span>
+                <div>
+                    <span class="section-kicker">XU HƯỚNG HỌC TẬP</span>
+                    <h2>Hoạt động theo tháng</h2>
+                </div>
+                <span>{{ stats.reporting_window }}</span>
             </div>
+            <div class="chart-legend"><span><i class="legend-exams"></i> Lượt làm đề</span><span><i class="legend-submissions"></i> Bài tập đã nộp</span></div>
             <div class="activity-chart">
-                {% for row in stats.daily_rows %}
-                <div class="day-bar">
-                    <div class="bar-track">
-                        <div class="bar-fill" style="height: {{ row.height }}%"></div>
-                    </div>
+                {% for row in stats.monthly_rows %}
+                <div class="month-column" title="{{ row.label }}/{{ row.year }}: {{ row.exams }} lượt làm đề, {{ row.submissions }} bài nộp">
                     <strong>{{ row.total }}</strong>
+                    <div class="month-track">
+                        <span class="month-segment submissions" style="height: {{ row.submission_percent }}%"></span>
+                        <span class="month-segment exams" style="height: {{ row.exam_percent }}%"></span>
+                    </div>
                     <span>{{ row.label }}</span>
                 </div>
                 {% endfor %}
             </div>
+            <p class="chart-note">Mỗi cột là tổng số lần làm đề và bài tập đã nộp trong tháng.</p>
         </article>
 
-        <article class="chart-card">
+        <article class="chart-card role-panel">
             <div class="card-title">
-                <h2>Cơ cấu tài khoản</h2>
-                <span>Theo vai trò</span>
+                <div><span class="section-kicker">NGƯỜI DÙNG</span><h2>Cơ cấu tài khoản</h2></div>
             </div>
-            <div class="progress-list">
+            <div class="role-donut" style="--student-arc: {{ stats.student_arc }}%; --teacher-arc: {{ stats.teacher_arc }}%" role="img" aria-label="{{ stats.students }} học sinh, {{ stats.teachers }} giáo viên, {{ stats.admins }} quản trị viên">
+                <div><strong>{{ stats.total_users }}</strong><span>tài khoản</span></div>
+            </div>
+            <div class="role-legend">
                 {% for row in stats.role_rows %}
-                <div class="progress-row">
-                    <div><span>{{ row.label }}</span><b>{{ row.value }}</b></div>
-                    <div class="progress-track"><span style="width: {{ row.percent }}%"></span></div>
-                </div>
+                <div class="role-row role-{{ loop.index }}"><span>{{ row.label }}</span><strong>{{ row.value }}</strong></div>
                 {% endfor %}
             </div>
         </article>
 
-        <article class="chart-card">
+        <article class="chart-card grade-panel">
             <div class="card-title">
-                <h2>Môn hỏi nhiều</h2>
-                <span>Top chuyên mục</span>
+                <div><span class="section-kicker">THEO KHỐI LỚP</span><h2>Phân bố học tập</h2></div>
+                <span>Học sinh · làm đề · nộp bài</span>
             </div>
-            <div class="progress-list">
-                {% for row in stats.subject_rows %}
-                <div class="progress-row">
-                    <div><span>{{ row.label }}</span><b>{{ row.value }}</b></div>
-                    <div class="progress-track"><span style="width: {{ row.percent }}%"></span></div>
-                </div>
-                {% else %}
-                <p class="muted">Chưa có dữ liệu môn học.</p>
+            <div class="grade-table">
+                <div class="grade-table-head"><span>Khối</span><span>Học sinh</span><span>Làm đề</span><span>Nộp bài</span></div>
+                {% for row in stats.grade_rows %}
+                <div class="grade-table-row"><strong>{{ row.label }}</strong><span>{{ row.students }}</span><span>{{ row.attempts }}</span><span>{{ row.submissions }}</span></div>
                 {% endfor %}
             </div>
         </article>
 
-        <article class="chart-card">
+        <article class="chart-card flow-panel">
             <div class="card-title">
-                <h2>Tình trạng report</h2>
-                <span>Luồng kiểm duyệt</span>
+                <div><span class="section-kicker">HÀNH TRÌNH HỌC TẬP</span><h2>Từ lớp học đến kết quả</h2></div>
             </div>
-            <div class="progress-list report-progress">
-                {% for row in stats.report_rows %}
-                <div class="progress-row">
-                    <div><span>{{ row.label }}</span><b>{{ row.value }}</b></div>
-                    <div class="progress-track"><span style="width: {{ row.percent }}%"></span></div>
-                </div>
-                {% endfor %}
+            <div class="learning-flow">
+                <div><span class="flow-step">01</span><strong>{{ stats.enrolled_students }}</strong><span>Học sinh vào lớp</span></div>
+                <div><span class="flow-step">02</span><strong>{{ stats.submissions }}</strong><span>Lượt nộp bài</span></div>
+                <div><span class="flow-step">03</span><strong>{{ stats.exam_attempts }}</strong><span>Lượt làm đề</span></div>
+                <div><span class="flow-step">04</span><strong>{{ stats.completed_lessons }}</strong><span>Lượt hoàn thành</span></div>
             </div>
+            <p class="chart-note">Các số liệu là tổng bản ghi theo từng bước, không phải tỷ lệ chuyển đổi.</p>
         </article>
 
-        <article class="chart-card online-card">
+        <article class="chart-card operations-panel">
             <div class="card-title">
-                <h2>Đang online</h2>
-                <span>Hoạt động gần đây</span>
+                <div><span class="section-kicker">VẬN HÀNH</span><h2>Diễn đàn và kiểm duyệt</h2></div>
+                <span>Trạng thái hiện tại</span>
             </div>
-            <div class="online-list">
-                {% for user in stats.active_users %}
-                <div class="online-row">
-                    <span class="online-dot"></span>
-                    <strong>{{ user.username }}</strong>
-                    <em>{{ user.role }}</em>
-                </div>
-                {% else %}
-                <p class="muted">Chưa có user hoạt động gần đây.</p>
-                {% endfor %}
+            <div class="operations-grid">
+                <div><strong>{{ stats.questions }}</strong><span>Câu hỏi diễn đàn</span></div>
+                <div><strong>{{ stats.answers }}</strong><span>Câu trả lời</span></div>
+                <div><strong>{{ counts.pending }}</strong><span>Báo cáo chờ xử lý</span></div>
+                <div><strong>{{ counts.active_bans }}</strong><span>Tài khoản bị chặn</span></div>
             </div>
+            <p class="chart-note">Online: {{ stats.online_total }} người đang truy cập trong cửa sổ hoạt động gần đây.</p>
         </article>
     </section>
 
@@ -620,6 +622,145 @@ button {
     .activity-chart {
         gap: 6px;
     }
+}
+/* Admin overview */
+body:has(.admin-page) { background: #f3f6fb; }
+body:has(.admin-page)::before { display: none; }
+.main-content.auth-notebook:has(.admin-page) { background: #f3f6fb; }
+body:has(.admin-page) .gift-float-btn { display: none; }
+.admin-page { max-width: 1440px; padding: 32px 24px 64px; color: #15233c; }
+.admin-header {
+    align-items: flex-start;
+    background: #102746;
+    border: 0;
+    border-radius: 20px;
+    box-shadow: 0 14px 30px rgba(21, 45, 79, .12);
+    color: #fff;
+    gap: 24px;
+    padding: 30px 34px;
+    margin-bottom: 22px;
+}
+.admin-header h1 { font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -.035em; margin: 6px 0 8px; text-align: left; }
+.admin-header p { color: #c9d8ea; font-size: .94rem; margin: 0; }
+.eyebrow, .section-kicker { color: #5e88bd; font-size: .72rem; font-weight: 900; letter-spacing: .13em; }
+.admin-header .eyebrow { color: #83c5ff; }
+.heading-divider { margin: 0 7px; opacity: .5; }
+.live-mark { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #58d49c; margin-right: 4px; }
+.admin-header-actions { justify-content: flex-end; max-width: 580px; }
+.admin-header-actions a {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 9px;
+    color: #eef6ff;
+    font-size: .83rem;
+    font-weight: 700;
+    padding: 10px 12px;
+    white-space: nowrap;
+}
+.admin-header-actions a:hover { background: rgba(255,255,255,.2); color: #fff; }
+.metric-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+.metric-card {
+    border: 1px solid #e1e8f0;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(30, 54, 86, .045);
+    min-height: 142px;
+    padding: 20px 22px;
+}
+.metric-card::before { inset: 18px auto 18px 0; width: 4px; border-radius: 0 5px 5px 0; }
+.metric-card > span:not(.metric-icon) { display: block; color: #50627b; font-size: .88rem; }
+.metric-card .metric-icon { float: right; color: #426eaa; background: #edf4ff; border-radius: 10px; font-size: 1.2rem; line-height: 1; padding: 9px 11px; }
+.metric-card strong { color: #102746; font-size: 2.1rem; font-variant-numeric: tabular-nums; letter-spacing: -.04em; margin: 12px 0 8px; }
+.metric-card em { color: #74849a; font-size: .81rem; }
+.accent-green .metric-icon { color: #15856b; background: #e8f7f1; }
+.accent-amber .metric-icon { color: #bd740f; background: #fff4de; }
+.accent-violet::before { background: #7c65c8; }
+.accent-violet .metric-icon { color: #7659bc; background: #f1edfc; }
+.accent-highlight .metric-icon { color: #c18b03; background: #fff8da; }
+.accent-slate .metric-icon { color: #53647b; background: #edf1f5; }
+.analytics-grid { grid-template-columns: minmax(0, 1.65fr) minmax(320px, 1fr); gap: 16px; margin-bottom: 22px; }
+.chart-card {
+    border: 1px solid #e1e8f0;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(30, 54, 86, .045);
+    min-height: 0;
+    padding: 23px 25px;
+}
+.chart-card.wide { grid-column: auto; }
+.card-title { align-items: center; margin-bottom: 20px; }
+.card-title h2 { color: #102746; font-size: 1.16rem; letter-spacing: -.02em; margin: 5px 0 0; }
+.card-title > span { color: #7a8ba1; font-size: .78rem; font-weight: 600; }
+.chart-legend { display: flex; gap: 18px; flex-wrap: wrap; color: #63738a; font-size: .78rem; margin: -3px 0 16px; }
+.chart-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.chart-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; }
+.legend-exams { background: #347fc7; }
+.legend-submissions { background: #76c9b2; }
+.activity-chart { height: 235px; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.month-column { display: grid; grid-template-rows: 20px 1fr 20px; gap: 7px; min-width: 0; text-align: center; }
+.month-column strong { color: #193452; font-size: .78rem; font-variant-numeric: tabular-nums; }
+.month-column > span { color: #657992; font-size: .79rem; font-weight: 700; }
+.month-track { background: repeating-linear-gradient(to top, #f4f7fa 0, #f4f7fa 1px, #fff 1px, #fff 25%); border-bottom: 1px solid #d9e2ec; border-radius: 7px 7px 0 0; display: flex; flex-direction: column-reverse; justify-content: flex-start; overflow: hidden; }
+.month-segment { display: block; width: 100%; min-height: 0; }
+.month-segment.exams { background: #347fc7; border-radius: 4px 4px 0 0; }
+.month-segment.submissions { background: #76c9b2; }
+.chart-note { color: #8190a3; font-size: .77rem; line-height: 1.5; margin: 14px 0 0; }
+.role-panel { display: flex; flex-direction: column; }
+.role-donut { background: conic-gradient(#347fc7 0 var(--student-arc), #76c9b2 var(--student-arc) var(--teacher-arc), #e6a74c var(--teacher-arc) 100%); border-radius: 50%; display: grid; height: 166px; margin: 0 auto 20px; place-items: center; width: 166px; }
+.role-donut > div { align-items: center; background: #fff; border-radius: 50%; display: flex; flex-direction: column; height: 116px; justify-content: center; width: 116px; }
+.role-donut strong { color: #102746; font-size: 1.8rem; line-height: 1; }
+.role-donut span { color: #7b8da3; font-size: .78rem; margin-top: 5px; }
+.role-legend { display: grid; gap: 10px; margin-top: auto; }
+.role-row { align-items: center; display: flex; justify-content: space-between; font-size: .85rem; }
+.role-row span { color: #50627b; display: inline-flex; align-items: center; gap: 8px; }
+.role-row span::before { background: #347fc7; border-radius: 50%; content: ''; height: 8px; width: 8px; }
+.role-2 span::before { background: #76c9b2; }
+.role-3 span::before { background: #e6a74c; }
+.role-row strong { color: #193452; }
+.grade-table { border: 1px solid #e7edf4; border-radius: 10px; overflow: hidden; }
+.grade-table-head, .grade-table-row { align-items: center; display: grid; grid-template-columns: 1.1fr repeat(3, 1fr); gap: 10px; padding: 12px 15px; }
+.grade-table-head { background: #f4f7fb; color: #73849a; font-size: .76rem; font-weight: 800; }
+.grade-table-row { border-top: 1px solid #e7edf4; color: #344c68; font-size: .9rem; font-variant-numeric: tabular-nums; }
+.grade-table-row strong { color: #153a66; }
+.grade-table-head span:not(:first-child), .grade-table-row span { text-align: right; }
+.learning-flow { display: grid; gap: 10px; grid-template-columns: repeat(4, 1fr); }
+.learning-flow > div { background: #f4f8fd; border: 1px solid #e3edf8; border-radius: 10px; display: flex; flex-direction: column; min-height: 126px; padding: 14px; }
+.learning-flow > div:not(:last-child)::after { display: none; }
+.flow-step { color: #6b8bac; font-size: .73rem; font-weight: 900; }
+.learning-flow strong { color: #163c69; font-size: 1.35rem; margin-top: 10px; }
+.learning-flow > div > span:last-child { color: #61768e; font-size: .76rem; line-height: 1.3; }
+.operations-panel { grid-column: 1 / -1; }
+.operations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.operations-grid > div { border: 1px solid #e6edf4; border-radius: 10px; padding: 14px 18px; }
+.operations-grid strong { color: #1d426e; display: block; font-size: 1.4rem; font-variant-numeric: tabular-nums; }
+.operations-grid span { color: #708198; font-size: .8rem; }
+.status-tabs { background: transparent; border-bottom: 1px solid #dce5ee; gap: 2px; margin-bottom: 17px; padding: 0; }
+.status-tabs a { background: transparent; border: 0; border-bottom: 3px solid transparent; border-radius: 0; color: #657991; font-size: .85rem; padding: 11px 16px; }
+.status-tabs a.active { border-color: #347fc7; color: #174d84; }
+.report-row, .ban-panel, .empty-state { border-color: #e1e8f0; border-radius: 14px; }
+@media (max-width: 1050px) {
+    .admin-header { flex-direction: column; }
+    .admin-header-actions { justify-content: flex-start; max-width: none; }
+    .analytics-grid { grid-template-columns: 1fr 1fr; }
+    .activity-panel, .operations-panel { grid-column: 1 / -1; }
+    .learning-flow { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+    .admin-page { padding: 18px 12px 40px; }
+    .admin-header { border-radius: 15px; padding: 24px 20px; }
+    .metric-grid, .analytics-grid { grid-template-columns: 1fr 1fr; }
+    .activity-panel, .role-panel, .grade-panel, .flow-panel, .operations-panel { grid-column: 1 / -1; }
+    .metric-card { min-height: 132px; padding: 17px; }
+    .metric-card strong { font-size: 1.7rem; }
+    .chart-card { padding: 20px; }
+    .operations-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+    .metric-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+    .metric-card { min-height: 120px; padding: 13px 14px; }
+    .metric-card em { font-size: .72rem; }
+    .metric-card .metric-icon { font-size: .95rem; padding: 7px; }
+    .activity-chart { gap: 6px; height: 198px; }
+    .grade-table-head, .grade-table-row { gap: 4px; padding: 10px 8px; font-size: .72rem; }
+    .learning-flow { gap: 8px; }
 }
 </style>
 {% endblock %}

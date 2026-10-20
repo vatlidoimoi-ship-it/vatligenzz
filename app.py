@@ -3621,7 +3621,19 @@ def chart_percent(value, total):
     return round((value / total) * 100)
 
 
-def admin_dashboard_stats(reports):
+def admin_activity_date(value):
+    if not isinstance(value, str):
+        return None
+    parsed = parse_iso_datetime(value)
+    if parsed:
+        return parsed.date()
+    try:
+        return datetime.strptime(value, "%d/%m/%Y %H:%M:%S").date()
+    except ValueError:
+        return None
+
+
+def admin_dashboard_stats():
     users = load_users()
     posts = [
         forum_normalize_question(dict(post))
@@ -3638,9 +3650,25 @@ def admin_dashboard_stats(reports):
         for comment in db._load_json(db.forum_comments_file)
         if comment.get("post_id") in post_ids
     ]
-    chat_messages = db.get_all_chat_messages()
-    point_events = forum_points_events()
     active_users = online_user_records()
+    courses = [course for course in db.get_all_courses()
+               if str(course.get("grade", "")) in ALLOWED_GRADE_LEVELS]
+    course_grades = {course.get("id"): str(course.get("grade")) for course in courses}
+    submissions = [row for row in db.get_all_submissions()
+                   if row.get("course_id") in course_grades]
+    progress = [row for row in db._load_json(db.progress_file)
+                if row.get("course_id") in course_grades]
+    student_ids = {user.get("id") for user in users if user.get("role") == "student"}
+    exam_results = [row for row in read_json(readable_data_file("exam_results.json"), [])
+                    if row.get("subject") in SUBJECTS and row.get("user_id") in student_ids]
+    exam_grades = {}
+    for subject in SUBJECTS:
+        subject_data = read_json(readable_data_file(f"{subject}.json"), {"exams": []})
+        for exam in subject_data.get("exams", []):
+            if str(exam.get("grade", "")) in ALLOWED_GRADE_LEVELS:
+                exam_grades[(subject, exam.get("id"))] = str(exam["grade"])
+    documents = [doc for doc in db.get_all_documents()
+                 if str(doc.get("grade", "")) in DOCUMENT_GRADE_LEVELS]
 
     role_counts = {
         "student": len([u for u in users if u.get("role") == "student"]),
@@ -3654,67 +3682,65 @@ def admin_dashboard_stats(reports):
         {"label": "Admin", "value": role_counts["admin"], "percent": chart_percent(role_counts["admin"], total_users)},
     ]
 
-    today = datetime.now().date()
-    daily_rows = []
-    for days_ago in range(6, -1, -1):
-        day = today - timedelta(days=days_ago)
-        day_key = day.isoformat()
-        question_count = len([p for p in posts if (parse_iso_datetime(p.get("created_at", "")) or datetime.min).date().isoformat() == day_key])
-        answer_count = len([c for c in comments if (parse_iso_datetime(c.get("created_at", "")) or datetime.min).date().isoformat() == day_key])
-        report_count = len([r for r in reports if (parse_iso_datetime(r.get("created_at", "")) or datetime.min).date().isoformat() == day_key])
-        daily_rows.append(
-            {
-                "label": day.strftime("%d/%m"),
-                "questions": question_count,
-                "answers": answer_count,
-                "reports": report_count,
-                "total": question_count + answer_count + report_count,
-            }
-        )
-    max_daily = max([row["total"] for row in daily_rows] + [1])
-    for row in daily_rows:
-        row["height"] = max(6, chart_percent(row["total"], max_daily)) if row["total"] else 4
+    grade_rows = []
+    for grade in ("10", "11", "12"):
+        grade_courses = {course_id for course_id, course_grade in course_grades.items()
+                         if course_grade == grade}
+        grade_rows.append({
+            "label": f"Khối {grade}",
+            "students": len({row.get("user_id") for row in progress
+                             if row.get("course_id") in grade_courses}),
+            "attempts": sum(exam_grades.get((row.get("subject"), row.get("exam_id"))) == grade
+                            for row in exam_results),
+            "submissions": sum(row.get("course_id") in grade_courses for row in submissions),
+        })
 
-    subject_totals = {}
-    for post in posts:
-        subject = post.get("subject") or "Khác"
-        subject_totals[subject] = subject_totals.get(subject, 0) + 1
-    max_subject = max(subject_totals.values(), default=1)
-    subject_rows = [
-        {"label": subject, "value": value, "percent": chart_percent(value, max_subject)}
-        for subject, value in sorted(subject_totals.items(), key=lambda item: item[1], reverse=True)[:6]
-    ]
-
-    report_counts = forum_admin_report_counts(reports)
-    total_reports = len(reports)
-    report_rows = [
-        {"label": "Chờ xử lý", "value": report_counts["pending"], "percent": chart_percent(report_counts["pending"], total_reports or 1)},
-        {"label": "Đã xử lý", "value": report_counts["resolved"], "percent": chart_percent(report_counts["resolved"], total_reports or 1)},
-        {"label": "Bỏ qua", "value": report_counts["rejected"], "percent": chart_percent(report_counts["rejected"], total_reports or 1)},
-    ]
-
-    resolved_rate = chart_percent(report_counts["resolved"], total_reports) if total_reports else 0
-    total_diamonds = sum(int(event.get("points", 0)) for event in point_events)
-    ai_chat_count = len([m for m in chat_messages if m.get("response") or m.get("quiz")])
+    activity = {}
+    for row in exam_results:
+        day = admin_activity_date(row.get("submitted_at"))
+        if day:
+            activity.setdefault(day.strftime("%Y-%m"), {"exams": 0, "submissions": 0})["exams"] += 1
+    for row in submissions:
+        day = admin_activity_date(row.get("submitted_at"))
+        if day:
+            activity.setdefault(day.strftime("%Y-%m"), {"exams": 0, "submissions": 0})["submissions"] += 1
+    latest_month = max(["2026-09", *activity.keys()])
+    latest_year, latest_number = map(int, latest_month.split("-"))
+    monthly_rows = []
+    for offset in range(6, -1, -1):
+        month_index = latest_year * 12 + latest_number - 1 - offset
+        year, month_zero = divmod(month_index, 12)
+        month = month_zero + 1
+        counts = activity.get(f"{year:04d}-{month:02d}", {"exams": 0, "submissions": 0})
+        monthly_rows.append({"label": f"T{month}", "year": year, **counts,
+                             "total": counts["exams"] + counts["submissions"]})
+    max_monthly = max((row["total"] for row in monthly_rows), default=0) or 1
+    for row in monthly_rows:
+        row["exam_percent"] = chart_percent(row["exams"], max_monthly)
+        row["submission_percent"] = chart_percent(row["submissions"], max_monthly)
 
     return {
         "total_users": len(users),
         "students": role_counts["student"],
         "teachers": role_counts["teacher"],
         "admins": role_counts["admin"],
+        "courses": len(courses),
+        "documents": len(documents),
+        "exam_attempts": len(exam_results),
+        "submissions": len(submissions),
+        "completed_lessons": sum(len(row.get("completed_lessons", [])) for row in progress),
+        "enrolled_students": len({row.get("user_id") for row in progress}),
+        "grade_rows": grade_rows,
+        "monthly_rows": monthly_rows,
+        "reporting_window": f"T{monthly_rows[0]['label'][1:]}/{monthly_rows[0]['year']} – T{monthly_rows[-1]['label'][1:]}/{monthly_rows[-1]['year']}",
+        "student_arc": chart_percent(role_counts["student"], total_users),
+        "teacher_arc": chart_percent(role_counts["student"] + role_counts["teacher"], total_users),
         "online_students": len([u for u in active_users if u.get("role") == "student"]),
         "online_total": len(active_users),
         "active_users": sorted(active_users, key=lambda item: item.get("last_seen", datetime.min), reverse=True)[:8],
         "questions": len(posts),
         "answers": len(comments),
-        "chat_messages": len(chat_messages),
-        "ai_chat_count": ai_chat_count,
-        "total_diamonds": total_diamonds,
-        "resolved_rate": resolved_rate,
         "role_rows": role_rows,
-        "daily_rows": daily_rows,
-        "subject_rows": subject_rows,
-        "report_rows": report_rows,
     }
 
 
@@ -4847,7 +4873,7 @@ def admin_forum_reports():
     status_filter = request.args.get("status", "pending")
 
     counts = forum_admin_report_counts(reports)
-    dashboard_stats = admin_dashboard_stats(reports)
+    dashboard_stats = admin_dashboard_stats()
     if status_filter != "all":
         reports = [r for r in reports if r.get("status", "pending") == status_filter]
 
