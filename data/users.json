@@ -1,16 +1,16 @@
 [
   {
     "id": "1",
-    "username": "giaovien",
-    "password": "scrypt:32768:8:1$qEwbxGcZotgLA5DY$65696329ec7253c0d334bb129ef81b88dac4d5bbe49fabcca9b0b1f17aa8572846e871a70f94960f8838aa7ba9f9fa0eb72356aab435f2c6c167952bffc18ba3",
+    "username": "Tr?n Thu H?",
+    "password": "scrypt:32768:8:1$SutLGBs362wnNuwF$88532147b9fab376a2b26b26a2b13a8b666f6aaafa997ac5a7929a4b4ace5c3f576e63e5e63e9844eb804aca7bebfc4bf547e2c264fd16edcc90bec9a3d48170",
     "email": "giaovien@phyedu.local",
     "role": "teacher",
     "created_at": "2026-09-05T20:43:03.289142"
   },
   {
     "id": "2",
-    "username": "hocsinh",
-    "password": "scrypt:32768:8:1$YipCVLZlDbGbhWKh$1f8083a5ec98d6e058169b25fe20eb9684bd8a068d4c2a85441f4f81d188879ba331ad64addc9666680c15523d5d4acfb588fcc70304141a1c6f00579cf69873",
+    "username": "Nguy?n Minh Anh",
+    "password": "scrypt:32768:8:1$5EdCzBwiCz9aY6vL$bcfc3a58e4c9d65d5f784e6ad92b09649ac5812eb394bc547720f8661ca390102a51aec6c51f01706f01585af024fffbb97bce7d4a2ed0bc2c3c43666012adc1",
     "email": "hocsinh@phyedu.local",
     "role": "student",
     "created_at": "2026-09-05T20:43:16.183019"

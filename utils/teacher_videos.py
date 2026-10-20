@@ -330,7 +330,6 @@ def register_teacher_videos(app, get_user, store=None, start_worker=True):
         return jsonify(feature='teacher-video-studio', tools_ready=tools_ready), 200 if tools_ready else 503
 
     if start_worker and store.ready and os.getenv('VIDEO_WORKER_ENABLED', '1') != '0':
-        os.environ['ALLOW_DEMO_FALLBACK'] = '0'
         os.environ.setdefault('GEMINI_MODEL', 'gemini-2.5-flash')
         os.environ.setdefault('TTS_PROVIDER', 'gtts')
         os.environ.setdefault('RENDER_WORKERS', '1')

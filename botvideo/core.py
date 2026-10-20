@@ -103,194 +103,6 @@ def subject_branch(subject):
 
 
 
-def demo_script(problem, subject):
-    """Return a predictable script when Gemini is not configured or on error."""
-    problem = (problem or "").strip() or "Cho tam giác ABC vuông tại A, AB=3, AC=4. Tính BC."
-    subject = normalize_subject(subject)
-    if is_history_subject(subject):
-        return {
-            "problem": problem,
-            "subject": "Lịch sử",
-            "lesson_title": "Hệ thống hóa chủ đề lịch sử",
-            "design_template": "history_newspaper_1990",
-            "history_style": "history_newspaper_1990",
-            "steps": [
-                {
-                    "title": "Mở hồ sơ sự kiện",
-                    "narration": "Mình sẽ không bắt các em học vẹt một đoạn dài. Ta mở chủ đề này như một hồ sơ lịch sử: trước hết xác định mốc thời gian, bối cảnh, lực lượng chính và câu hỏi đề đang nhắm tới.",
-                    "slide_text": "Chủ đề\n- Mốc thời gian\n- Bối cảnh\n- Nhân vật/lực lượng\n- Yêu cầu cần trả lời",
-                    "latex": None,
-                    "geometry": None,
-                    "diagram": None,
-                    "visual": {
-                        "type": "document_card",
-                        "title": "Hồ sơ chủ đề",
-                        "items": ["Mốc thời gian", "Bối cảnh", "Nhân vật/lực lượng", "Yêu cầu đề bài"],
-                    },
-                },
-                {
-                    "title": "Diễn biến chính",
-                    "narration": "Ta xếp các sự kiện theo trục thời gian. Cách này giúp nhìn ra logic trước sau, thay vì nhớ từng ý như một danh sách rời rạc.",
-                    "slide_text": "Diễn biến\n- Bối cảnh hình thành\n- Sự kiện chính\n- Bước ngoặt\n- Kết quả",
-                    "latex": None,
-                    "geometry": None,
-                    "diagram": None,
-                    "visual": {
-                        "type": "timeline",
-                        "events": [
-                            {"date": "Bối cảnh", "label": "Điều kiện xuất hiện"},
-                            {"date": "Sự kiện", "label": "Diễn biến chính"},
-                            {"date": "Bước ngoặt", "label": "Điểm quyết định"},
-                            {"date": "Kết quả", "label": "Tác động cuối"},
-                        ],
-                    },
-                },
-                {
-                    "title": "Logic nguyên nhân - kết quả",
-                    "narration": "Phần ăn điểm thường nằm ở chuỗi nguyên nhân dẫn đến diễn biến, rồi diễn biến tạo ra kết quả và ý nghĩa. Nhớ được chuỗi này thì bài viết sẽ có xương sống.",
-                    "slide_text": "Logic cần nhớ\nNguyên nhân → Diễn biến → Kết quả → Ý nghĩa",
-                    "latex": None,
-                    "geometry": None,
-                    "diagram": None,
-                    "visual": {
-                        "type": "cause_event_result",
-                        "nodes": [
-                            {"label": "Nguyên nhân", "text": "Vì sao xảy ra?"},
-                            {"label": "Diễn biến", "text": "Xảy ra thế nào?"},
-                            {"label": "Kết quả", "text": "Dẫn tới điều gì?"},
-                            {"label": "Ý nghĩa", "text": "Tác động ra sao?"},
-                        ],
-                    },
-                },
-                {
-                    "title": "Tóm tắt ghi nhớ",
-                    "narration": "Chốt lại, đừng ôm quá nhiều chữ. Hãy giữ vài từ khóa mấu chốt: mốc thời gian, bối cảnh, diễn biến trọng tâm, kết quả và ý nghĩa.",
-                    "slide_text": "Cần nhớ\n1. Mốc thời gian\n2. Bối cảnh\n3. Diễn biến trọng tâm\n4. Kết quả\n5. Ý nghĩa",
-                    "latex": None,
-                    "geometry": None,
-                    "diagram": None,
-                    "visual": {"type": "memory_summary", "items": ["Mốc thời gian", "Bối cảnh", "Diễn biến", "Kết quả", "Ý nghĩa"]},
-                },
-            ],
-            "summary": ["Mốc thời gian", "Bối cảnh", "Diễn biến", "Kết quả", "Ý nghĩa"],
-        }
-    if is_physics_subject(subject):
-        lower_problem = problem.lower()
-        if any(token in lower_problem for token in ["mạch", "mach", "điện", "dien", "hiệu điện thế", "hieu dien the", "điện trở", "dien tro", "dòng điện", "dong dien"]):
-            return {
-                "problem": problem,
-                "subject": "Vật lý",
-                "lesson_title": "Giải bài tập điện học",
-                "steps": [
-                    {
-                        "title": "Đọc dữ kiện điện học",
-                        "narration": "Ta xác định hiệu điện thế, điện trở và đại lượng cần tìm là cường độ dòng điện trong mạch.",
-                        "latex": "U = 12\\,\\text{V} \\\\ R = 6\\,\\Omega",
-                        "geometry": None,
-                        "diagram": {"type": "circuit", "labels": {"U": "U = 12 V", "R": "R = 6 Ω"}},
-                    },
-                    {
-                        "title": "Áp dụng định luật Ôm",
-                        "narration": "Với đoạn mạch chỉ có điện trở, cường độ dòng điện được tính bằng hiệu điện thế chia cho điện trở.",
-                        "latex": "I = \\frac{U}{R}",
-                        "geometry": None,
-                        "diagram": {"type": "circuit", "labels": {"U": "U", "R": "R", "I": "I"}},
-                    },
-                    {
-                        "title": "Thay số và kết luận",
-                        "narration": "Thay U bằng 12 vôn và R bằng 6 ôm, ta được cường độ dòng điện bằng 2 ampe.",
-                        "latex": "I = \\frac{12}{6} = 2\\,\\text{A}",
-                        "geometry": None,
-                        "diagram": {"type": "circuit", "labels": {"I": "I = 2 A"}},
-                    },
-                ],
-                "summary": ["I = 2 A"],
-            }
-        return {
-            "problem": problem if problem else "Một vật khối lượng 2 kg chịu lực kéo 10 N. Bỏ qua ma sát. Tính gia tốc của vật.",
-            "subject": "Vật lý",
-            "lesson_title": "Giải bài tập cơ học",
-            "steps": [
-                {
-                    "title": "Đọc dữ kiện vật lí",
-                    "narration": "Ta xác định các đại lượng đã biết: khối lượng của vật là 2 ki lô gam, lực tác dụng là 10 niutơn, và bỏ qua ma sát.",
-                    "latex": "m = 2\\,\\text{kg} \\\\ F = 10\\,\\text{N}",
-                    "geometry": None,
-                    "diagram": {"type": "force", "labels": {"mass": "m = 2 kg", "force": "F = 10 N"}},
-                },
-                {
-                    "title": "Chọn công thức",
-                    "narration": "Vì vật chịu lực tổng hợp theo phương chuyển động, ta dùng định luật hai Newton để liên hệ lực, khối lượng và gia tốc.",
-                    "latex": "F = ma \\\\ a = \\frac{F}{m}",
-                    "geometry": None,
-                    "diagram": {"type": "force", "labels": {"force": "F", "acceleration": "a"}},
-                },
-                {
-                    "title": "Thay số và tính",
-                    "narration": "Thay lực bằng 10 niutơn và khối lượng bằng 2 ki lô gam, ta được gia tốc bằng 5 mét trên giây bình phương.",
-                    "latex": "a = \\frac{10}{2} = 5\\,\\text{m/s}^2",
-                    "geometry": None,
-                    "diagram": {"type": "motion", "labels": {"acceleration": "a = 5 m/s^2"}},
-                },
-                {
-                    "title": "Kết luận",
-                    "narration": "Vậy gia tốc của vật là 5 mét trên giây bình phương.",
-                    "latex": "a = 5\\,\\text{m/s}^2",
-                    "geometry": None,
-                    "diagram": {"type": "motion", "labels": {"result": "a = 5 m/s^2"}},
-                },
-            ],
-            "summary": ["a = 5 m/s^2"],
-        }
-    if "tam giác" in problem.lower() or subject == "Hình học":
-        return {
-            "problem": problem,
-            "subject": subject,
-            "steps": [
-                {
-                    "title": "Đọc dữ kiện bài toán",
-                    "narration": "Ta xác định các dữ kiện quan trọng: Tam giác ABC vuông tại A, có độ dài hai cạnh góc vuông AB bằng 3 và AC bằng 4.",
-                    "latex": "AB = 3, \\quad AC = 4, \\quad \\widehat{A} = 90^\\circ",
-                    "geometry": {"points": {"A": [0, 0], "B": [3, 0], "C": [0, 4]}},
-                },
-                {
-                    "title": "Áp dụng định lý Pythagoras",
-                    "narration": "Vì tam giác ABC vuông tại A, theo định lý Pythagoras ta có bình phương cạnh huyền BC bằng tổng bình phương hai cạnh góc vuông.",
-                    "latex": "BC^2 = AB^2 + AC^2",
-                    "geometry": None,
-                },
-                {
-                    "title": "Tính toán kết quả",
-                    "narration": "Thay số vào công thức: BC bình phương bằng 3 bình phương cộng 4 bình phương bằng 25. Từ đó tính được cạnh BC bằng 5.",
-                    "latex": "BC = \\sqrt{3^2 + 4^2} = \\sqrt{25} = 5",
-                    "geometry": None,
-                },
-            ],
-        }
-    return {
-        "problem": problem,
-        "subject": subject,
-        "steps": [
-            {
-                "title": "Phân tích đề bài",
-                "narration": "Ta đọc kỹ đề bài và trích xuất các thông số chính cùng yêu cầu bài toán.",
-                "latex": None,
-                "geometry": None,
-            },
-            {
-                "title": "Lập luận & Thay số",
-                "narration": "Ta áp dụng công thức phù hợp, thay các dữ kiện đã biết vào biểu thức để tính toán.",
-                "latex": "x = a + b",
-                "geometry": None,
-            },
-            {
-                "title": "Kết luận",
-                "narration": "Sau khi tính toán cẩn thận, ta ghi lại đáp số chính xác của bài toán.",
-                "latex": None,
-                "geometry": None,
-            },
-        ],
-    }
 
 
 def circle_diameter_tangent_script(problem):
@@ -427,11 +239,9 @@ def gemini_image_model_candidates():
     return models or gemini_model_candidates()
 
 
-def allow_demo_fallback():
-    return os.getenv("ALLOW_DEMO_FALLBACK", "0").strip().lower() in {"1", "true", "yes", "on"}
 
 
-def is_default_demo_script(script):
+def is_unrelated_placeholder_script(script):
     problem = str((script or {}).get("problem") or "").lower()
     joined_steps = " ".join(
         f"{step.get('title', '')} {step.get('narration', '')} {step.get('latex', '')}"
@@ -862,7 +672,7 @@ def sanitize_script_for_render(script, original_problem="", subject=None):
 
     steps = [ensure_step_shape(step) for step in script.get("steps") or []]
     if not steps:
-        raise ValueError("Kịch bản không có bước giảng; không thể thay bằng đề demo.")
+        raise ValueError("Kịch bản không có bước giảng; cần tạo lời giải từ đề đã nhập.")
 
     sanitized_steps = []
     for index, step in enumerate(steps, start=1):
@@ -1246,8 +1056,6 @@ def ask_gemini(problem, subject, image_path=None):
             models = [image_model] + [model for model in models if model != image_model]
     primary_model = models[0]
     if not api_keys:
-        if allow_demo_fallback() and not has_image:
-            return ensure_script_quality(demo_script(problem, subject), original_problem=problem, subject=subject)
         raise RuntimeError("Chưa cấu hình Gemini API key nên không thể đọc đề thật.")
 
     input_problem = str(problem or "").strip()
@@ -1382,8 +1190,8 @@ def ask_gemini(problem, subject, image_path=None):
                     original_problem=problem,
                     subject=subject,
                 )
-                if has_image and is_default_demo_script(script):
-                    raise RuntimeError("Gemini trả về kịch bản demo, không khớp ảnh đề bài.")
+                if has_image and is_unrelated_placeholder_script(script):
+                    raise RuntimeError("Gemini trả về kịch bản không khớp ảnh đề bài.")
                 if ocr_problem:
                     script["_ocr_problem"] = ocr_problem
                 script["_model_used"] = model
@@ -1401,8 +1209,6 @@ def ask_gemini(problem, subject, image_path=None):
             script["_ocr_problem"] = ocr_problem
         script["_model_used"] = "rule_based_geometry_fallback"
         return script
-    if allow_demo_fallback() and not has_image:
-        return ensure_script_quality(demo_script(problem, subject), original_problem=problem, subject=subject)
     raise RuntimeError(
         f"Gemini không đọc/giải được đề bài sau {attempted} lượt thử. "
         "Vui lòng thử lại, nhập thêm phần text của đề, hoặc kiểm tra model/API key."

@@ -50,7 +50,7 @@ def register_user(username, password, email, role='student'):
     }
 
 def login_user(username, password):
-    """Đăng nhập user (hỗ trợ cả hash và plaintext cho bản demo)"""
+    """Đăng nhập user với mật khẩu đã lưu."""
     users = load_users()
     user = next((u for u in users if u['username'] == username), None)
 
