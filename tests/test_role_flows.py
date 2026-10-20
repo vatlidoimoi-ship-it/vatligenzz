@@ -70,6 +70,23 @@ class RoleFlowTests(unittest.TestCase):
                 state.update(user_id=role, username=role,
                              role='teacher' if role == 'teacher2' else role)
 
+    def test_stale_login_cookie_does_not_redirect_forever(self):
+        with self.client.session_transaction() as state:
+            state.update(user_id='removed-account', username='Old name', role='admin')
+        response = self.client.get('/', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        with self.client.session_transaction() as state:
+            self.assertNotIn('user_id', state)
+
+        with self.client.session_transaction() as state:
+            state.update(user_id='student', username='Old name', role='admin')
+        response = self.client.get('/', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.request.path, '/student/dashboard')
+        with self.client.session_transaction() as state:
+            self.assertEqual(state['role'], 'student')
+            self.assertEqual(state['username'], 'student')
+
     def post(self, path, **data):
         return self.client.post(path, json=data)
 

@@ -691,9 +691,23 @@ def redirect_to_role_home():
     return redirect(url_for("student_dashboard"))
 
 
+def refresh_login_session():
+    """Discard a removed account and refresh role/name from the current user record."""
+    user_id = session.get("user_id")
+    if not user_id:
+        return False
+    user = get_user_by_id(user_id)
+    if not user or user.get("role") not in {"student", "teacher", "admin"}:
+        session.clear()
+        return False
+    session["role"] = user["role"]
+    session["username"] = user["username"]
+    return True
+
+
 @app.route("/")
 def index():
-    if "user_id" in session:
+    if refresh_login_session():
         return redirect_to_role_home()
 
     home_stats = build_home_stats()
@@ -703,7 +717,7 @@ def index():
 
 @app.route("/app")
 def pwa_entry():
-    if "user_id" in session:
+    if refresh_login_session():
         return redirect_to_role_home()
     return redirect(url_for("login"))
 
@@ -791,7 +805,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if "user_id" in session:
+    if refresh_login_session():
         return redirect(url_for("index"))
 
     if request.method == "POST":
