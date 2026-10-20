@@ -2734,7 +2734,16 @@ def lich_su_tracnghiem():
             and r.get("subject") in SUBJECTS
             and r.get("exam_id") in active_exam_ids
         ]
-        user_results.sort(key=lambda x: x.get("submitted_at", ""), reverse=True)
+        def submitted_time(row):
+            value = row.get("submitted_at", "")
+            for date_format in ("%d/%m/%Y %H:%M:%S", "%Y-%m-%dT%H:%M:%S"):
+                try:
+                    return datetime.strptime(value, date_format)
+                except (TypeError, ValueError):
+                    pass
+            return datetime.min
+
+        user_results.sort(key=submitted_time, reverse=True)
 
         # Thêm tên môn học và icon
         for result in user_results:

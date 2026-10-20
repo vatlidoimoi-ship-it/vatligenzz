@@ -266,6 +266,23 @@ class RoleFlowTests(unittest.TestCase):
         self.assertEqual(feedback.status_code, 200)
         self.assertEqual(self.client.get('/tracnghiem/ket-qua/li/exam_test').status_code, 200)
 
+    def test_exam_history_sorts_day_month_year_dates_chronologically(self):
+        first = self.seed_exam()
+        second = {**first, 'id': 'exam_april', 'title': 'April exam'}
+        first['title'] = 'March exam'
+        web._save_subject_exam_data('li', {'exams': [first, second]})
+        web.write_json(web.writable_data_file('exam_results.json'), [
+            {'user_id': 'student', 'subject': 'li', 'exam_id': first['id'],
+             'exam_title': first['title'], 'submitted_at': '31/03/2026 09:00:00',
+             'result': {'total_score': 8}},
+            {'user_id': 'student', 'subject': 'li', 'exam_id': second['id'],
+             'exam_title': second['title'], 'submitted_at': '01/04/2026 09:00:00',
+             'result': {'total_score': 9}},
+        ])
+        page = self.client.get('/tracnghiem/lich-su')
+        self.assertEqual(page.status_code, 200)
+        self.assertLess(page.data.index(b'April exam'), page.data.index(b'March exam'))
+
     def test_admin_manages_courses_and_documents_without_taking_ownership(self):
         self.login('admin')
         for path in ['/teacher/dashboard', '/teacher/edit_course/course_a', '/teacher/add_document',
