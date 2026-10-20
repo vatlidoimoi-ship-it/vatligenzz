@@ -3,13 +3,26 @@
 {% block title %}Admin - Báo cáo diễn đàn{% endblock %}
 
 {% block content %}
+<aside class="admin-sidebar" aria-label="Điều hướng quản trị">
+    <a class="sidebar-brand" href="{{ url_for('admin_forum_reports') }}"><span class="brand-mark">⚛</span><span><strong>PHYEDU</strong><small>Quản trị học tập Vật lí</small></span></a>
+    <nav>
+        <a class="active" href="{{ url_for('admin_forum_reports') }}"><i class="fa-solid fa-house"></i> Tổng quan</a>
+        <a href="{{ url_for('teacher_dashboard') }}"><i class="fa-solid fa-graduation-cap"></i> Học vụ</a>
+        <a href="{{ url_for('send_notification') }}"><i class="fa-solid fa-bell"></i> Gửi thông báo</a>
+        <a href="{{ url_for('admin_shop') }}"><i class="fa-solid fa-store"></i> Quản lý shop</a>
+        <a href="{{ url_for('forum') }}"><i class="fa-solid fa-comments"></i> Mở diễn đàn</a>
+    </nav>
+    <div class="sidebar-account"><span class="account-avatar"><i class="fa-solid fa-user"></i></span><span><strong>{{ username }}</strong><small>Quản trị hệ thống</small></span></div>
+</aside>
 <div class="admin-page">
+    <div class="admin-topbar"><label class="admin-search"><i class="fa-solid fa-magnifying-glass"></i><input id="adminQuickSearch" type="search" placeholder="Tìm báo cáo diễn đàn..." aria-label="Tìm báo cáo diễn đàn"></label><div><a href="{{ url_for('send_notification') }}" aria-label="Thông báo"><i class="fa-solid fa-bell"></i></a><span class="topbar-avatar"><i class="fa-solid fa-user"></i></span><strong>{{ username }}</strong></div></div>
     <header class="admin-header">
         <div class="admin-heading">
             <span class="eyebrow">TRUNG TÂM QUẢN TRỊ</span>
             <h1>Tổng quan vận hành</h1>
             <p>Dữ liệu học tập {{ stats.reporting_window }} <span class="heading-divider">·</span> <span class="live-mark"></span> {{ stats.online_total }} người đang online</p>
         </div>
+        <div class="physics-banner-art" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="atom-core">⚛</span><span class="physics-note">Khám phá Vật lí<br>Kiến tạo tương lai</span></div>
         <div class="admin-header-actions">
             <a href="{{ url_for('teacher_dashboard') }}">Quản lý học vụ</a>
             <a href="{{ url_for('send_notification') }}">Gửi thông báo</a>
@@ -67,7 +80,12 @@
                 <span>{{ stats.reporting_window }}</span>
             </div>
             <div class="chart-legend"><span><i class="legend-exams"></i> Lượt làm đề</span><span><i class="legend-submissions"></i> Bài tập đã nộp</span></div>
-            <div class="activity-chart">
+            <div class="activity-line-chart" role="img" aria-label="Lượt làm đề và bài tập đã nộp theo từng tháng">
+                <div class="chart-y-axis"><span>{{ stats.monthly_max }}</span><span>{{ (stats.monthly_max * 0.75)|int }}</span><span>{{ (stats.monthly_max * 0.5)|int }}</span><span>{{ (stats.monthly_max * 0.25)|int }}</span><span>0</span></div>
+                <div class="line-plot"><svg viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="exam-fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4e80ec" stop-opacity=".2"/><stop offset="1" stop-color="#4e80ec" stop-opacity="0"/></linearGradient></defs><polygon points="0,100 {{ stats.exam_chart_points }} 600,100" fill="url(#exam-fill)"/><polyline points="{{ stats.exam_chart_points }}" fill="none" stroke="#4879ed" stroke-width="2" vector-effect="non-scaling-stroke"/><polyline points="{{ stats.submission_chart_points }}" fill="none" stroke="#54c9ad" stroke-width="2" vector-effect="non-scaling-stroke"/>{% for row in stats.monthly_rows %}<circle cx="{{ loop.index0 * 100 }}" cy="{{ 100 - row.exam_chart_percent }}" r="3.5" fill="#4879ed"/><circle cx="{{ loop.index0 * 100 }}" cy="{{ 100 - row.submission_chart_percent }}" r="3.5" fill="#54c9ad"/>{% endfor %}</svg></div>
+                <div class="chart-x-axis">{% for row in stats.monthly_rows %}<span>{{ row.label }}/{{ row.year }}</span>{% endfor %}</div>
+            </div>
+            <div class="activity-chart" hidden>
                 {% for row in stats.monthly_rows %}
                 <div class="month-column" title="{{ row.label }}/{{ row.year }}: {{ row.exams }} lượt làm đề, {{ row.submissions }} bài nộp">
                     <strong>{{ row.total }}</strong>
@@ -79,7 +97,13 @@
                 </div>
                 {% endfor %}
             </div>
-            <p class="chart-note">Mỗi cột là tổng số lần làm đề và bài tập đã nộp trong tháng.</p>
+            <p class="chart-note">Hai đường thể hiện số lượt làm đề và bài tập đã nộp theo từng tháng.</p>
+        </article>
+
+        <article class="chart-card physics-panel">
+            <div class="card-title"><div><span class="section-kicker">VẬT LÍ THEO KHỐI</span><h2>Hoạt động học tập</h2></div></div>
+            <div class="physics-rows">{% for row in stats.grade_rows %}<div><span class="physics-grade grade-{{ loop.index }}">{{ row.label }}</span><span class="physics-bar"><i style="width: {{ row.attempt_percent }}%"></i></span><strong>{{ row.attempts }}</strong><small>lượt làm đề</small></div>{% endfor %}</div>
+            <p class="chart-note">Thống kê từ đề Vật lí lớp 10, 11 và 12.</p>
         </article>
 
         <article class="chart-card role-panel">
@@ -762,5 +786,94 @@ body:has(.admin-page) .gift-float-btn { display: none; }
     .grade-table-head, .grade-table-row { gap: 4px; padding: 10px 8px; font-size: .72rem; }
     .learning-flow { gap: 8px; }
 }
+/* Dashboard shell */
+body:has(.admin-page) { background: #edf5ff; }
+body:has(.admin-page) > .navbar, body:has(.admin-page) > .footer, body:has(.admin-page) > .gift-float-btn { display: none !important; }
+body:has(.admin-page) .main-content.auth-notebook { padding: 0; background: #edf5ff; background-image: none; }
+.admin-sidebar { position: fixed; inset: 0 auto 0 0; z-index: 100; width: 238px; box-sizing: border-box; color: #dceaff; background: linear-gradient(170deg,#112f64,#193160 55%,#152a54); padding: 21px 14px; box-shadow: 9px 0 28px rgba(21,45,89,.15); display: flex; flex-direction: column; }
+.sidebar-brand { display: flex; align-items: center; gap: 9px; padding: 4px 9px 22px; color: white; text-decoration: none; }
+.sidebar-brand:hover { color: white; }
+.brand-mark { display: grid; place-items: center; width: 35px; height: 35px; border-radius: 9px; background: #3f9cee; font-size: 1.5rem; }
+.sidebar-brand strong { display: block; font-size: .9rem; line-height: 1.15; }
+.sidebar-brand small,.sidebar-account small { display: block; font-size: .61rem; opacity: .72; }
+.admin-sidebar nav { display: grid; gap: 5px; }
+.admin-sidebar nav { background: transparent; box-shadow: none; padding: 0; border: 0; }
+.admin-sidebar nav a { display: flex; align-items: center; gap: 12px; border-radius: 8px; padding: 11px 12px; color: #e1ebff; text-decoration: none; font-size: .83rem; font-weight: 650; }
+.admin-sidebar nav a:hover,.admin-sidebar nav a.active { color: #fff; background: #4779d3; }
+.admin-sidebar nav i { width: 17px; text-align: center; }
+.sidebar-account { display: flex; align-items: center; gap: 10px; border-top: 1px solid #40547b; margin-top: auto; padding: 17px 6px 2px; font-size: .78rem; }
+.account-avatar,.topbar-avatar { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #3159a4; }
+.admin-page { margin: 0 0 0 238px; max-width: none; padding: 0 24px 48px; min-height: 100vh; }
+.admin-topbar { display: flex; align-items: center; justify-content: space-between; min-height: 58px; gap: 15px; }
+.admin-search { display: flex; align-items: center; gap: 9px; width: min(350px,50vw); height: 36px; background: #fff; color: #5680d7; padding: 0 12px; border: 1px solid #e0e9fa; border-radius: 7px; }
+.admin-search input { border: 0; outline: 0; width: 100%; background: none; color: #203d70; font-size: .8rem; }
+.admin-topbar > div { display: flex; align-items: center; gap: 15px; color: #15336a; font-size: .78rem; }
+.admin-topbar a { color: #467be7; }
+.admin-header { position: relative; overflow: hidden; min-height: 127px; border: 1px solid #c9dcfb; border-radius: 12px; background: linear-gradient(100deg,#d3e9ff 0%,#e5eaff 48%,#d4e8ff 100%); box-shadow: 0 5px 15px rgba(45,90,170,.09); padding: 23px 28px; }
+.admin-header::before { content: ''; position: absolute; width: 380px; height: 170px; border-radius: 50%; background: rgba(255,255,255,.22); left: 32%; top: -90px; }
+.admin-heading { position: relative; z-index: 1; }
+.admin-header .eyebrow { color: #4473c9; letter-spacing: 0; font-size: .75rem; }
+.admin-header h1 { color: #173f86; font-size: 1.65rem; margin: 5px 0; }
+.admin-header p { color: #6385b9; font-size: .78rem; }
+.physics-banner-art { position: absolute; inset: 0 30% 0 auto; width: 270px; color: #4983dd; }
+.atom-core { position: absolute; left: 50px; top: 13px; color: #367cdf; font-size: 4.7rem; text-shadow: 0 8px 18px #aacbf5; }
+.orbit { position: absolute; border: 2px solid rgba(96,151,231,.24); border-radius: 50%; transform: rotate(-22deg); }
+.orbit-one { width: 105px; height: 54px; left: 34px; top: 42px; }
+.orbit-two { width: 115px; height: 46px; left: 28px; top: 46px; transform: rotate(42deg); }
+.physics-note { position: absolute; left: 150px; top: 38px; color: #4a69d4; font-family: cursive; font-size: .9rem; font-style: italic; line-height: 1.2; transform: rotate(-8deg); }
+.admin-header-actions { position: relative; z-index: 1; max-width: 365px; display: grid; grid-template-columns: repeat(2, 1fr); }
+.admin-header-actions a { color: #3468c7; background: rgba(255,255,255,.58); border: 1px solid #d9e6fc; text-align: center; padding: 9px 7px; font-size: .72rem; }
+.admin-header-actions a:hover { color: #174ca6; background: white; }
+.metric-grid { gap: 11px; margin-bottom: 13px; }
+.metric-card { min-height: 118px; border-color: #d9e6fa; border-radius: 9px; padding: 17px 19px; box-shadow: 0 3px 11px rgba(40,81,151,.04); }
+.metric-card::before { display: none; }
+.metric-card.accent-blue { background: linear-gradient(110deg,#f5f9ff,#edf5ff); }
+.metric-card.accent-green { background: linear-gradient(110deg,#f6fffd,#effbf7); }
+.metric-card.accent-amber { background: linear-gradient(110deg,#fffaf5,#fff6ed); }
+.metric-card.accent-violet { background: linear-gradient(110deg,#fbf7ff,#f7f2ff); }
+.metric-card.accent-highlight { background: linear-gradient(110deg,#fffdf5,#fffaf0); }
+.metric-card.accent-slate { background: linear-gradient(110deg,#f6fbff,#eff9fa); }
+.metric-card > span:not(.metric-icon) { color: #325596; font-size: .78rem; }
+.metric-card strong { font-size: 1.8rem; margin: 8px 0 4px; }
+.metric-card em { color: #6484b7; font-size: .72rem; }
+.metric-card .metric-icon { float: left; display: grid; place-items: center; height: 43px; width: 43px; margin-right: 16px; margin-bottom: 35px; font-size: 1.2rem; font-style: normal; }
+.analytics-grid { gap: 12px; grid-template-columns: minmax(0,1.45fr) minmax(275px,.8fr); }
+.activity-panel { order: 1; }.role-panel { order: 2; }.physics-panel { order: 3; }.grade-panel { order: 4; }.flow-panel { order: 5; }.operations-panel { order: 6; }
+.chart-card { border-color: #dce8f9; border-radius: 9px; padding: 17px 19px; box-shadow: 0 3px 12px rgba(38,80,151,.04); }
+.card-title { margin-bottom: 12px; }
+.section-kicker { color: #3669c8; letter-spacing: 0; font-size: .73rem; }
+.card-title h2 { color: #173d83; font-size: .98rem; margin-top: 2px; }
+.activity-panel { min-height: 272px; }
+.activity-chart[hidden] { display: none; }
+.activity-line-chart { display: grid; grid-template-columns: 30px minmax(0,1fr); grid-template-rows: 180px 20px; gap: 0 7px; }
+.chart-y-axis { display: flex; flex-direction: column; justify-content: space-between; color: #7593c0; font-size: .66rem; text-align: right; padding: 0 2px 0 0; }
+.line-plot { position: relative; border-bottom: 1px solid #cfdef1; background: repeating-linear-gradient(to bottom,#e5eefb 0,#e5eefb 1px,transparent 1px,transparent 25%); }
+.line-plot svg { width: 100%; height: 100%; overflow: visible; }
+.chart-x-axis { grid-column: 2; display: flex; justify-content: space-between; color: #5c80b9; font-size: .65rem; padding-top: 6px; }
+.role-panel { min-height: 272px; }
+.role-donut { width: 135px; height: 135px; margin-bottom: 13px; background: conic-gradient(#4d80ea 0 var(--student-arc),#56c8aa var(--student-arc) var(--teacher-arc),#f3b529 var(--teacher-arc) 100%); }
+.role-donut > div { width: 94px; height: 94px; }
+.role-legend { gap: 5px; }
+.physics-panel { grid-column: 1 / -1; min-height: 0; }
+.physics-rows { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.physics-rows > div { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 5px 10px; border: 1px solid #e2ebf9; border-radius: 9px; padding: 13px; }
+.physics-grade { color: #244f9d; font-weight: 800; font-size: .82rem; }
+.physics-bar { grid-column: 1 / -1; height: 7px; background: #eaf1fc; border-radius: 9px; overflow: hidden; }
+.physics-bar i { display: block; height: 100%; border-radius: 9px; background: #5285e8; }
+.physics-rows > div:nth-child(2) i { background: #56c7b5; }
+.physics-rows > div:nth-child(3) i { background: #f0af4d; }
+.physics-rows strong { color: #234788; }
+.physics-rows small { color: #7890b6; }
+@media (max-width: 1150px) { .physics-banner-art { display: none; } .admin-header-actions { max-width: 330px; } }
+@media (max-width: 850px) { .admin-sidebar { width: 62px; padding: 15px 6px; } .sidebar-brand { padding: 3px 7px 20px; } .sidebar-brand > span:last-child,.admin-sidebar nav a:not(.active),.admin-sidebar nav a.active { font-size: 0; } .admin-sidebar nav a { justify-content: center; } .admin-sidebar nav i { font-size: 1rem; } .sidebar-account > span:last-child { display: none; } .admin-page { margin-left: 62px; padding: 0 12px 35px; } .admin-header { flex-direction: column; } .admin-header-actions { display: flex; max-width: none; } .analytics-grid { grid-template-columns: 1fr; } .physics-panel { grid-column: auto; } }
+@media (max-width: 550px) { .metric-grid { grid-template-columns: 1fr 1fr; } .admin-header-actions { display: grid; grid-template-columns: 1fr 1fr; } .physics-rows { grid-template-columns: 1fr; } .admin-topbar strong { display: none; } .activity-line-chart { grid-template-rows: 130px 30px; } .chart-x-axis { font-size: .5rem; } }
 </style>
+<script>
+document.getElementById('adminQuickSearch')?.addEventListener('input', function () {
+    const query = this.value.trim().toLocaleLowerCase('vi');
+    document.querySelectorAll('.report-list .report-row').forEach(row => {
+        row.hidden = !row.textContent.toLocaleLowerCase('vi').includes(query);
+    });
+});
+</script>
 {% endblock %}

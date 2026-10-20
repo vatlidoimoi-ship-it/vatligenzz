@@ -3718,6 +3718,13 @@ def admin_dashboard_stats():
     for row in monthly_rows:
         row["exam_percent"] = chart_percent(row["exams"], max_monthly)
         row["submission_percent"] = chart_percent(row["submissions"], max_monthly)
+    monthly_max = max((max(row["exams"], row["submissions"]) for row in monthly_rows), default=0) or 1
+    for row in monthly_rows:
+        row["exam_chart_percent"] = round(row["exams"] * 100 / monthly_max, 2)
+        row["submission_chart_percent"] = round(row["submissions"] * 100 / monthly_max, 2)
+    max_grade_attempts = max((row["attempts"] for row in grade_rows), default=0) or 1
+    for row in grade_rows:
+        row["attempt_percent"] = round(row["attempts"] * 100 / max_grade_attempts, 2)
 
     return {
         "total_users": len(users),
@@ -3732,6 +3739,9 @@ def admin_dashboard_stats():
         "enrolled_students": len({row.get("user_id") for row in progress}),
         "grade_rows": grade_rows,
         "monthly_rows": monthly_rows,
+        "monthly_max": monthly_max,
+        "exam_chart_points": " ".join(f'{index * 100},{100 - row["exam_chart_percent"]}' for index, row in enumerate(monthly_rows)),
+        "submission_chart_points": " ".join(f'{index * 100},{100 - row["submission_chart_percent"]}' for index, row in enumerate(monthly_rows)),
         "reporting_window": f"T{monthly_rows[0]['label'][1:]}/{monthly_rows[0]['year']} – T{monthly_rows[-1]['label'][1:]}/{monthly_rows[-1]['year']}",
         "student_arc": chart_percent(role_counts["student"], total_users),
         "teacher_arc": chart_percent(role_counts["student"] + role_counts["teacher"], total_users),
