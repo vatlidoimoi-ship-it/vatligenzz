@@ -1,1 +1,56 @@
-﻿[]
+[
+  {
+    "id": "lop2026_10a1",
+    "grade": "10",
+    "title": "V?t l? l?p 10A1",
+    "lessons": [],
+    "created_at": "2026-03-04T08:00:00",
+    "teacher_id": "gv2026_01",
+    "description": ""
+  },
+  {
+    "id": "lop2026_10a2",
+    "grade": "10",
+    "title": "V?t l? l?p 10A2",
+    "lessons": [],
+    "created_at": "2026-03-04T08:00:00",
+    "teacher_id": "gv2026_01",
+    "description": ""
+  },
+  {
+    "id": "lop2026_11a1",
+    "grade": "11",
+    "title": "V?t l? l?p 11A1",
+    "lessons": [],
+    "created_at": "2026-03-04T08:00:00",
+    "teacher_id": "gv2026_02",
+    "description": ""
+  },
+  {
+    "id": "lop2026_11a2",
+    "grade": "11",
+    "title": "V?t l? l?p 11A2",
+    "lessons": [],
+    "created_at": "2026-03-04T08:00:00",
+    "teacher_id": "gv2026_02",
+    "description": ""
+  },
+  {
+    "id": "lop2026_12a1",
+    "grade": "12",
+    "title": "V?t l? l?p 12A1",
+    "lessons": [],
+    "created_at": "2026-03-04T08:00:00",
+    "teacher_id": "gv2026_03",
+    "description": ""
+  },
+  {
+    "id": "lop2026_12a2",
+    "grade": "12",
+    "title": "V?t l? l?p 12A2",
+    "lessons": [],
+    "created_at": "2026-03-04T08:00:00",
+    "teacher_id": "gv2026_03",
+    "description": ""
+  }
+]

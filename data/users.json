@@ -14,5 +14,2429 @@
     "email": "hocsinh@phyedu.local",
     "role": "student",
     "created_at": "2026-09-05T20:43:16.183019"
+  },
+  {
+    "id": "gv2026_01",
+    "role": "teacher",
+    "email": "giaovien202601@phyedu.local",
+    "password": "scrypt:32768:8:1$x7jlSBEO9ZbtJSYU$bb17551b2ec09715b299cd3d6e6f414ea1ed2536a45332f21a9ba621a61481586e9ad2946530617b450cd7b037de016a607146f6b4f9878badf733a0079d59b5",
+    "username": "Ph?m Th? H?ng",
+    "created_at": "2026-03-01T08:00:00"
+  },
+  {
+    "id": "gv2026_02",
+    "role": "teacher",
+    "email": "giaovien202602@phyedu.local",
+    "password": "scrypt:32768:8:1$x7jlSBEO9ZbtJSYU$bb17551b2ec09715b299cd3d6e6f414ea1ed2536a45332f21a9ba621a61481586e9ad2946530617b450cd7b037de016a607146f6b4f9878badf733a0079d59b5",
+    "username": "Nguy?n ??c Th?nh",
+    "created_at": "2026-03-02T08:00:00"
+  },
+  {
+    "id": "gv2026_03",
+    "role": "teacher",
+    "email": "giaovien202603@phyedu.local",
+    "password": "scrypt:32768:8:1$x7jlSBEO9ZbtJSYU$bb17551b2ec09715b299cd3d6e6f414ea1ed2536a45332f21a9ba621a61481586e9ad2946530617b450cd7b037de016a607146f6b4f9878badf733a0079d59b5",
+    "username": "L? Th? Thanh",
+    "created_at": "2026-03-03T08:00:00"
+  },
+  {
+    "id": "hs2026_001",
+    "role": "student",
+    "email": "hocsinh2026001@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Kh?nh D?ng",
+    "class_name": "10A1",
+    "created_at": "2026-03-05T09:00:00"
+  },
+  {
+    "id": "hs2026_002",
+    "role": "student",
+    "email": "hocsinh2026002@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Nh?t H??ng",
+    "class_name": "10A1",
+    "created_at": "2026-04-05T10:00:00"
+  },
+  {
+    "id": "hs2026_003",
+    "role": "student",
+    "email": "hocsinh2026003@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Minh Long",
+    "class_name": "10A1",
+    "created_at": "2026-05-05T11:00:00"
+  },
+  {
+    "id": "hs2026_004",
+    "role": "student",
+    "email": "hocsinh2026004@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Anh An",
+    "class_name": "10A1",
+    "created_at": "2026-06-05T12:00:00"
+  },
+  {
+    "id": "hs2026_005",
+    "role": "student",
+    "email": "hocsinh2026005@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Th? Khang",
+    "class_name": "10A1",
+    "created_at": "2026-07-05T13:00:00"
+  },
+  {
+    "id": "hs2026_006",
+    "role": "student",
+    "email": "hocsinh2026006@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Minh Huy",
+    "class_name": "10A1",
+    "created_at": "2026-08-05T14:00:00"
+  },
+  {
+    "id": "hs2026_007",
+    "role": "student",
+    "email": "hocsinh2026007@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Gia An",
+    "class_name": "10A1",
+    "created_at": "2026-09-05T15:00:00"
+  },
+  {
+    "id": "hs2026_008",
+    "role": "student",
+    "email": "hocsinh2026008@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Th? Trang",
+    "class_name": "10A1",
+    "created_at": "2026-03-06T08:00:00"
+  },
+  {
+    "id": "hs2026_009",
+    "role": "student",
+    "email": "hocsinh2026009@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Thu Long",
+    "class_name": "10A1",
+    "created_at": "2026-04-06T09:00:00"
+  },
+  {
+    "id": "hs2026_010",
+    "role": "student",
+    "email": "hocsinh2026010@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Gia Linh",
+    "class_name": "10A1",
+    "created_at": "2026-05-06T10:00:00"
+  },
+  {
+    "id": "hs2026_011",
+    "role": "student",
+    "email": "hocsinh2026011@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng B?o Ph?c",
+    "class_name": "10A1",
+    "created_at": "2026-06-06T11:00:00"
+  },
+  {
+    "id": "hs2026_012",
+    "role": "student",
+    "email": "hocsinh2026012@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Thu Th?o",
+    "class_name": "10A1",
+    "created_at": "2026-07-06T12:00:00"
+  },
+  {
+    "id": "hs2026_013",
+    "role": "student",
+    "email": "hocsinh2026013@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Phan Nh?t Huy",
+    "class_name": "10A1",
+    "created_at": "2026-08-06T13:00:00"
+  },
+  {
+    "id": "hs2026_014",
+    "role": "student",
+    "email": "hocsinh2026014@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Th? B?nh",
+    "class_name": "10A1",
+    "created_at": "2026-09-06T14:00:00"
+  },
+  {
+    "id": "hs2026_015",
+    "role": "student",
+    "email": "hocsinh2026015@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Ho?i Giang",
+    "class_name": "10A1",
+    "created_at": "2026-03-07T15:00:00"
+  },
+  {
+    "id": "hs2026_016",
+    "role": "student",
+    "email": "hocsinh2026016@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Kh?nh B?nh",
+    "class_name": "10A1",
+    "created_at": "2026-04-07T08:00:00"
+  },
+  {
+    "id": "hs2026_017",
+    "role": "student",
+    "email": "hocsinh2026017@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? H?i D?ng",
+    "class_name": "10A1",
+    "created_at": "2026-05-07T09:00:00"
+  },
+  {
+    "id": "hs2026_018",
+    "role": "student",
+    "email": "hocsinh2026018@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Quang H??ng",
+    "class_name": "10A1",
+    "created_at": "2026-06-07T10:00:00"
+  },
+  {
+    "id": "hs2026_019",
+    "role": "student",
+    "email": "hocsinh2026019@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Ng?c Trang",
+    "class_name": "10A1",
+    "created_at": "2026-07-07T11:00:00"
+  },
+  {
+    "id": "hs2026_020",
+    "role": "student",
+    "email": "hocsinh2026020@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? H?i H??ng",
+    "class_name": "10A1",
+    "created_at": "2026-08-07T12:00:00"
+  },
+  {
+    "id": "hs2026_021",
+    "role": "student",
+    "email": "hocsinh2026021@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Anh Trang",
+    "class_name": "10A1",
+    "created_at": "2026-09-07T13:00:00"
+  },
+  {
+    "id": "hs2026_022",
+    "role": "student",
+    "email": "hocsinh2026022@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i H?i H?n",
+    "class_name": "10A1",
+    "created_at": "2026-03-08T14:00:00"
+  },
+  {
+    "id": "hs2026_023",
+    "role": "student",
+    "email": "hocsinh2026023@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Thu H??ng",
+    "class_name": "10A1",
+    "created_at": "2026-04-08T15:00:00"
+  },
+  {
+    "id": "hs2026_024",
+    "role": "student",
+    "email": "hocsinh2026024@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n B?o Ch?u",
+    "class_name": "10A1",
+    "created_at": "2026-05-08T08:00:00"
+  },
+  {
+    "id": "hs2026_025",
+    "role": "student",
+    "email": "hocsinh2026025@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Anh D?ng",
+    "class_name": "10A1",
+    "created_at": "2026-06-08T09:00:00"
+  },
+  {
+    "id": "hs2026_026",
+    "role": "student",
+    "email": "hocsinh2026026@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Th? Ch?u",
+    "class_name": "10A1",
+    "created_at": "2026-07-08T10:00:00"
+  },
+  {
+    "id": "hs2026_027",
+    "role": "student",
+    "email": "hocsinh2026027@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Quang Ch?u",
+    "class_name": "10A1",
+    "created_at": "2026-08-08T11:00:00"
+  },
+  {
+    "id": "hs2026_028",
+    "role": "student",
+    "email": "hocsinh2026028@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Ho?i Mai",
+    "class_name": "10A1",
+    "created_at": "2026-09-08T12:00:00"
+  },
+  {
+    "id": "hs2026_029",
+    "role": "student",
+    "email": "hocsinh2026029@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Ng?c D?ng",
+    "class_name": "10A1",
+    "created_at": "2026-03-09T13:00:00"
+  },
+  {
+    "id": "hs2026_030",
+    "role": "student",
+    "email": "hocsinh2026030@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?? Ng?c H?n",
+    "class_name": "10A1",
+    "created_at": "2026-04-09T14:00:00"
+  },
+  {
+    "id": "hs2026_031",
+    "role": "student",
+    "email": "hocsinh2026031@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Nh?t Ch?u",
+    "class_name": "10A1",
+    "created_at": "2026-05-09T15:00:00"
+  },
+  {
+    "id": "hs2026_032",
+    "role": "student",
+    "email": "hocsinh2026032@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Phan Thanh Mai",
+    "class_name": "10A1",
+    "created_at": "2026-06-09T08:00:00"
+  },
+  {
+    "id": "hs2026_033",
+    "role": "student",
+    "email": "hocsinh2026033@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Nh?t H?n",
+    "class_name": "10A1",
+    "created_at": "2026-07-09T09:00:00"
+  },
+  {
+    "id": "hs2026_034",
+    "role": "student",
+    "email": "hocsinh2026034@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? B?o Ng?n",
+    "class_name": "10A1",
+    "created_at": "2026-08-09T10:00:00"
+  },
+  {
+    "id": "hs2026_035",
+    "role": "student",
+    "email": "hocsinh2026035@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Kh?nh Giang",
+    "class_name": "10A1",
+    "created_at": "2026-09-09T11:00:00"
+  },
+  {
+    "id": "hs2026_036",
+    "role": "student",
+    "email": "hocsinh2026036@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Kim H??ng",
+    "class_name": "10A1",
+    "created_at": "2026-03-10T12:00:00"
+  },
+  {
+    "id": "hs2026_037",
+    "role": "student",
+    "email": "hocsinh2026037@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Anh Huy",
+    "class_name": "10A1",
+    "created_at": "2026-04-10T13:00:00"
+  },
+  {
+    "id": "hs2026_038",
+    "role": "student",
+    "email": "hocsinh2026038@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Quang Anh",
+    "class_name": "10A1",
+    "created_at": "2026-05-10T14:00:00"
+  },
+  {
+    "id": "hs2026_039",
+    "role": "student",
+    "email": "hocsinh2026039@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Minh Ph?c",
+    "class_name": "10A1",
+    "created_at": "2026-06-10T15:00:00"
+  },
+  {
+    "id": "hs2026_040",
+    "role": "student",
+    "email": "hocsinh2026040@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Ho?i Linh",
+    "class_name": "10A1",
+    "created_at": "2026-07-10T08:00:00"
+  },
+  {
+    "id": "hs2026_041",
+    "role": "student",
+    "email": "hocsinh2026041@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?n Thanh Ng?n",
+    "class_name": "10A2",
+    "created_at": "2026-08-10T09:00:00"
+  },
+  {
+    "id": "hs2026_042",
+    "role": "student",
+    "email": "hocsinh2026042@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Minh B?nh",
+    "class_name": "10A2",
+    "created_at": "2026-09-10T10:00:00"
+  },
+  {
+    "id": "hs2026_043",
+    "role": "student",
+    "email": "hocsinh2026043@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?n Ng?c Ng?n",
+    "class_name": "10A2",
+    "created_at": "2026-03-11T11:00:00"
+  },
+  {
+    "id": "hs2026_044",
+    "role": "student",
+    "email": "hocsinh2026044@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng Nh?t Mai",
+    "class_name": "10A2",
+    "created_at": "2026-04-11T12:00:00"
+  },
+  {
+    "id": "hs2026_045",
+    "role": "student",
+    "email": "hocsinh2026045@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?? Thu Ng?n",
+    "class_name": "10A2",
+    "created_at": "2026-05-11T13:00:00"
+  },
+  {
+    "id": "hs2026_046",
+    "role": "student",
+    "email": "hocsinh2026046@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Nh?t H?",
+    "class_name": "10A2",
+    "created_at": "2026-06-11T14:00:00"
+  },
+  {
+    "id": "hs2026_047",
+    "role": "student",
+    "email": "hocsinh2026047@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Tu?n Nam",
+    "class_name": "10A2",
+    "created_at": "2026-07-11T15:00:00"
+  },
+  {
+    "id": "hs2026_048",
+    "role": "student",
+    "email": "hocsinh2026048@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Tu?n D?ng",
+    "class_name": "10A2",
+    "created_at": "2026-08-11T08:00:00"
+  },
+  {
+    "id": "hs2026_049",
+    "role": "student",
+    "email": "hocsinh2026049@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Gia Huy",
+    "class_name": "10A2",
+    "created_at": "2026-09-11T09:00:00"
+  },
+  {
+    "id": "hs2026_050",
+    "role": "student",
+    "email": "hocsinh2026050@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Nh?t B?nh",
+    "class_name": "10A2",
+    "created_at": "2026-03-12T10:00:00"
+  },
+  {
+    "id": "hs2026_051",
+    "role": "student",
+    "email": "hocsinh2026051@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Kim An",
+    "class_name": "10A2",
+    "created_at": "2026-04-12T11:00:00"
+  },
+  {
+    "id": "hs2026_052",
+    "role": "student",
+    "email": "hocsinh2026052@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Nh?t Trang",
+    "class_name": "10A2",
+    "created_at": "2026-05-12T12:00:00"
+  },
+  {
+    "id": "hs2026_053",
+    "role": "student",
+    "email": "hocsinh2026053@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?? B?o Vy",
+    "class_name": "10A2",
+    "created_at": "2026-06-12T13:00:00"
+  },
+  {
+    "id": "hs2026_054",
+    "role": "student",
+    "email": "hocsinh2026054@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Nh?t Khang",
+    "class_name": "10A2",
+    "created_at": "2026-07-12T14:00:00"
+  },
+  {
+    "id": "hs2026_055",
+    "role": "student",
+    "email": "hocsinh2026055@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Hu?nh Ho?i H?n",
+    "class_name": "10A2",
+    "created_at": "2026-08-12T15:00:00"
+  },
+  {
+    "id": "hs2026_056",
+    "role": "student",
+    "email": "hocsinh2026056@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Ng?c Ch?u",
+    "class_name": "10A2",
+    "created_at": "2026-09-12T08:00:00"
+  },
+  {
+    "id": "hs2026_057",
+    "role": "student",
+    "email": "hocsinh2026057@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Ng?c Nam",
+    "class_name": "10A2",
+    "created_at": "2026-03-13T09:00:00"
+  },
+  {
+    "id": "hs2026_058",
+    "role": "student",
+    "email": "hocsinh2026058@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Thanh Qu?n",
+    "class_name": "10A2",
+    "created_at": "2026-04-13T10:00:00"
+  },
+  {
+    "id": "hs2026_059",
+    "role": "student",
+    "email": "hocsinh2026059@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?inh Quang Trang",
+    "class_name": "10A2",
+    "created_at": "2026-05-13T11:00:00"
+  },
+  {
+    "id": "hs2026_060",
+    "role": "student",
+    "email": "hocsinh2026060@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Kh?nh Mai",
+    "class_name": "10A2",
+    "created_at": "2026-06-13T12:00:00"
+  },
+  {
+    "id": "hs2026_061",
+    "role": "student",
+    "email": "hocsinh2026061@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?inh Quang Tr?",
+    "class_name": "10A2",
+    "created_at": "2026-07-13T13:00:00"
+  },
+  {
+    "id": "hs2026_062",
+    "role": "student",
+    "email": "hocsinh2026062@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? ??c Ph?c",
+    "class_name": "10A2",
+    "created_at": "2026-08-13T14:00:00"
+  },
+  {
+    "id": "hs2026_063",
+    "role": "student",
+    "email": "hocsinh2026063@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? Kh?nh Vy",
+    "class_name": "10A2",
+    "created_at": "2026-09-13T15:00:00"
+  },
+  {
+    "id": "hs2026_064",
+    "role": "student",
+    "email": "hocsinh2026064@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Ho?i H?",
+    "class_name": "10A2",
+    "created_at": "2026-03-14T08:00:00"
+  },
+  {
+    "id": "hs2026_065",
+    "role": "student",
+    "email": "hocsinh2026065@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng Nh?t Ng?n",
+    "class_name": "10A2",
+    "created_at": "2026-04-14T09:00:00"
+  },
+  {
+    "id": "hs2026_066",
+    "role": "student",
+    "email": "hocsinh2026066@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Kim Nam",
+    "class_name": "10A2",
+    "created_at": "2026-05-14T10:00:00"
+  },
+  {
+    "id": "hs2026_067",
+    "role": "student",
+    "email": "hocsinh2026067@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh H?i Vy",
+    "class_name": "10A2",
+    "created_at": "2026-06-14T11:00:00"
+  },
+  {
+    "id": "hs2026_068",
+    "role": "student",
+    "email": "hocsinh2026068@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Hu?nh Ng?c Khang",
+    "class_name": "10A2",
+    "created_at": "2026-07-14T12:00:00"
+  },
+  {
+    "id": "hs2026_069",
+    "role": "student",
+    "email": "hocsinh2026069@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Anh Huy",
+    "class_name": "10A2",
+    "created_at": "2026-08-14T13:00:00"
+  },
+  {
+    "id": "hs2026_070",
+    "role": "student",
+    "email": "hocsinh2026070@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Ng?c Nam",
+    "class_name": "10A2",
+    "created_at": "2026-09-14T14:00:00"
+  },
+  {
+    "id": "hs2026_071",
+    "role": "student",
+    "email": "hocsinh2026071@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Ng?c Tr?",
+    "class_name": "10A2",
+    "created_at": "2026-03-15T15:00:00"
+  },
+  {
+    "id": "hs2026_072",
+    "role": "student",
+    "email": "hocsinh2026072@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? ??c H??ng",
+    "class_name": "10A2",
+    "created_at": "2026-04-15T08:00:00"
+  },
+  {
+    "id": "hs2026_073",
+    "role": "student",
+    "email": "hocsinh2026073@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Hu?nh Thu Ng?n",
+    "class_name": "10A2",
+    "created_at": "2026-05-15T09:00:00"
+  },
+  {
+    "id": "hs2026_074",
+    "role": "student",
+    "email": "hocsinh2026074@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Kh?nh Huy",
+    "class_name": "10A2",
+    "created_at": "2026-06-15T10:00:00"
+  },
+  {
+    "id": "hs2026_075",
+    "role": "student",
+    "email": "hocsinh2026075@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Tu?n Nam",
+    "class_name": "10A2",
+    "created_at": "2026-07-15T11:00:00"
+  },
+  {
+    "id": "hs2026_076",
+    "role": "student",
+    "email": "hocsinh2026076@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?inh Tu?n Huy",
+    "class_name": "10A2",
+    "created_at": "2026-08-15T12:00:00"
+  },
+  {
+    "id": "hs2026_077",
+    "role": "student",
+    "email": "hocsinh2026077@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Nh?t Linh",
+    "class_name": "10A2",
+    "created_at": "2026-09-15T13:00:00"
+  },
+  {
+    "id": "hs2026_078",
+    "role": "student",
+    "email": "hocsinh2026078@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Th? Khang",
+    "class_name": "10A2",
+    "created_at": "2026-03-16T14:00:00"
+  },
+  {
+    "id": "hs2026_079",
+    "role": "student",
+    "email": "hocsinh2026079@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? B?o Linh",
+    "class_name": "10A2",
+    "created_at": "2026-04-16T15:00:00"
+  },
+  {
+    "id": "hs2026_080",
+    "role": "student",
+    "email": "hocsinh2026080@phyedu.local",
+    "grade": "10",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? ??c Giang",
+    "class_name": "10A2",
+    "created_at": "2026-05-16T08:00:00"
+  },
+  {
+    "id": "hs2026_081",
+    "role": "student",
+    "email": "hocsinh2026081@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Minh Linh",
+    "class_name": "11A1",
+    "created_at": "2026-06-16T09:00:00"
+  },
+  {
+    "id": "hs2026_082",
+    "role": "student",
+    "email": "hocsinh2026082@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Ho?i H??ng",
+    "class_name": "11A1",
+    "created_at": "2026-07-16T10:00:00"
+  },
+  {
+    "id": "hs2026_083",
+    "role": "student",
+    "email": "hocsinh2026083@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? H?i Tr?",
+    "class_name": "11A1",
+    "created_at": "2026-08-16T11:00:00"
+  },
+  {
+    "id": "hs2026_084",
+    "role": "student",
+    "email": "hocsinh2026084@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Ng?c B?nh",
+    "class_name": "11A1",
+    "created_at": "2026-09-16T12:00:00"
+  },
+  {
+    "id": "hs2026_085",
+    "role": "student",
+    "email": "hocsinh2026085@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng H?i Th?o",
+    "class_name": "11A1",
+    "created_at": "2026-03-17T13:00:00"
+  },
+  {
+    "id": "hs2026_086",
+    "role": "student",
+    "email": "hocsinh2026086@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng Nh?t Huy",
+    "class_name": "11A1",
+    "created_at": "2026-04-17T14:00:00"
+  },
+  {
+    "id": "hs2026_087",
+    "role": "student",
+    "email": "hocsinh2026087@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Anh Kh?i",
+    "class_name": "11A1",
+    "created_at": "2026-05-17T15:00:00"
+  },
+  {
+    "id": "hs2026_088",
+    "role": "student",
+    "email": "hocsinh2026088@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Th? Vy",
+    "class_name": "11A1",
+    "created_at": "2026-06-17T08:00:00"
+  },
+  {
+    "id": "hs2026_089",
+    "role": "student",
+    "email": "hocsinh2026089@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng Ng?c H?n",
+    "class_name": "11A1",
+    "created_at": "2026-07-17T09:00:00"
+  },
+  {
+    "id": "hs2026_090",
+    "role": "student",
+    "email": "hocsinh2026090@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Hu?nh H?i Mai",
+    "class_name": "11A1",
+    "created_at": "2026-08-17T10:00:00"
+  },
+  {
+    "id": "hs2026_091",
+    "role": "student",
+    "email": "hocsinh2026091@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?? Nh?t Y?n",
+    "class_name": "11A1",
+    "created_at": "2026-09-17T11:00:00"
+  },
+  {
+    "id": "hs2026_092",
+    "role": "student",
+    "email": "hocsinh2026092@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng Thanh H??ng",
+    "class_name": "11A1",
+    "created_at": "2026-03-18T12:00:00"
+  },
+  {
+    "id": "hs2026_093",
+    "role": "student",
+    "email": "hocsinh2026093@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Phan Kh?nh H?",
+    "class_name": "11A1",
+    "created_at": "2026-04-18T13:00:00"
+  },
+  {
+    "id": "hs2026_094",
+    "role": "student",
+    "email": "hocsinh2026094@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Kh?nh H?n",
+    "class_name": "11A1",
+    "created_at": "2026-05-18T14:00:00"
+  },
+  {
+    "id": "hs2026_095",
+    "role": "student",
+    "email": "hocsinh2026095@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Anh Long",
+    "class_name": "11A1",
+    "created_at": "2026-06-18T15:00:00"
+  },
+  {
+    "id": "hs2026_096",
+    "role": "student",
+    "email": "hocsinh2026096@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? ??c Kh?i",
+    "class_name": "11A1",
+    "created_at": "2026-07-18T08:00:00"
+  },
+  {
+    "id": "hs2026_097",
+    "role": "student",
+    "email": "hocsinh2026097@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? H?i An",
+    "class_name": "11A1",
+    "created_at": "2026-08-18T09:00:00"
+  },
+  {
+    "id": "hs2026_098",
+    "role": "student",
+    "email": "hocsinh2026098@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?n Ho?i An",
+    "class_name": "11A1",
+    "created_at": "2026-09-18T10:00:00"
+  },
+  {
+    "id": "hs2026_099",
+    "role": "student",
+    "email": "hocsinh2026099@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Gia Y?n",
+    "class_name": "11A1",
+    "created_at": "2026-03-19T11:00:00"
+  },
+  {
+    "id": "hs2026_100",
+    "role": "student",
+    "email": "hocsinh2026100@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Anh Tr?",
+    "class_name": "11A1",
+    "created_at": "2026-04-19T12:00:00"
+  },
+  {
+    "id": "hs2026_101",
+    "role": "student",
+    "email": "hocsinh2026101@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Ho?i Linh",
+    "class_name": "11A1",
+    "created_at": "2026-05-19T13:00:00"
+  },
+  {
+    "id": "hs2026_102",
+    "role": "student",
+    "email": "hocsinh2026102@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? B?o Khang",
+    "class_name": "11A1",
+    "created_at": "2026-06-19T14:00:00"
+  },
+  {
+    "id": "hs2026_103",
+    "role": "student",
+    "email": "hocsinh2026103@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Ng?c D?ng",
+    "class_name": "11A1",
+    "created_at": "2026-07-19T15:00:00"
+  },
+  {
+    "id": "hs2026_104",
+    "role": "student",
+    "email": "hocsinh2026104@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? ??c Ph?c",
+    "class_name": "11A1",
+    "created_at": "2026-08-19T08:00:00"
+  },
+  {
+    "id": "hs2026_105",
+    "role": "student",
+    "email": "hocsinh2026105@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Hu?nh ??c Qu?n",
+    "class_name": "11A1",
+    "created_at": "2026-09-19T09:00:00"
+  },
+  {
+    "id": "hs2026_106",
+    "role": "student",
+    "email": "hocsinh2026106@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i H?i Anh",
+    "class_name": "11A1",
+    "created_at": "2026-03-20T10:00:00"
+  },
+  {
+    "id": "hs2026_107",
+    "role": "student",
+    "email": "hocsinh2026107@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Hu?nh Th? Long",
+    "class_name": "11A1",
+    "created_at": "2026-04-20T11:00:00"
+  },
+  {
+    "id": "hs2026_108",
+    "role": "student",
+    "email": "hocsinh2026108@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Tu?n Qu?n",
+    "class_name": "11A1",
+    "created_at": "2026-05-20T12:00:00"
+  },
+  {
+    "id": "hs2026_109",
+    "role": "student",
+    "email": "hocsinh2026109@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?inh Ng?c B?nh",
+    "class_name": "11A1",
+    "created_at": "2026-06-20T13:00:00"
+  },
+  {
+    "id": "hs2026_110",
+    "role": "student",
+    "email": "hocsinh2026110@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Ng?c Y?n",
+    "class_name": "11A1",
+    "created_at": "2026-07-20T14:00:00"
+  },
+  {
+    "id": "hs2026_111",
+    "role": "student",
+    "email": "hocsinh2026111@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Anh Qu?n",
+    "class_name": "11A1",
+    "created_at": "2026-08-20T15:00:00"
+  },
+  {
+    "id": "hs2026_112",
+    "role": "student",
+    "email": "hocsinh2026112@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Ho?i H?n",
+    "class_name": "11A1",
+    "created_at": "2026-09-20T08:00:00"
+  },
+  {
+    "id": "hs2026_113",
+    "role": "student",
+    "email": "hocsinh2026113@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Kim Trang",
+    "class_name": "11A1",
+    "created_at": "2026-03-21T09:00:00"
+  },
+  {
+    "id": "hs2026_114",
+    "role": "student",
+    "email": "hocsinh2026114@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?n Thu Khang",
+    "class_name": "11A1",
+    "created_at": "2026-04-21T10:00:00"
+  },
+  {
+    "id": "hs2026_115",
+    "role": "student",
+    "email": "hocsinh2026115@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?n Thanh Khang",
+    "class_name": "11A1",
+    "created_at": "2026-05-21T11:00:00"
+  },
+  {
+    "id": "hs2026_116",
+    "role": "student",
+    "email": "hocsinh2026116@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Nh?t Ph?c",
+    "class_name": "11A1",
+    "created_at": "2026-06-21T12:00:00"
+  },
+  {
+    "id": "hs2026_117",
+    "role": "student",
+    "email": "hocsinh2026117@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Phan Thanh Huy",
+    "class_name": "11A1",
+    "created_at": "2026-07-21T13:00:00"
+  },
+  {
+    "id": "hs2026_118",
+    "role": "student",
+    "email": "hocsinh2026118@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng Gia Khang",
+    "class_name": "11A1",
+    "created_at": "2026-08-21T14:00:00"
+  },
+  {
+    "id": "hs2026_119",
+    "role": "student",
+    "email": "hocsinh2026119@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? Anh Huy",
+    "class_name": "11A1",
+    "created_at": "2026-09-21T15:00:00"
+  },
+  {
+    "id": "hs2026_120",
+    "role": "student",
+    "email": "hocsinh2026120@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? Minh An",
+    "class_name": "11A1",
+    "created_at": "2026-03-22T08:00:00"
+  },
+  {
+    "id": "hs2026_121",
+    "role": "student",
+    "email": "hocsinh2026121@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Gia Ch?u",
+    "class_name": "11A2",
+    "created_at": "2026-04-22T09:00:00"
+  },
+  {
+    "id": "hs2026_122",
+    "role": "student",
+    "email": "hocsinh2026122@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Gia Kh?i",
+    "class_name": "11A2",
+    "created_at": "2026-05-22T10:00:00"
+  },
+  {
+    "id": "hs2026_123",
+    "role": "student",
+    "email": "hocsinh2026123@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Nh?t Ph?c",
+    "class_name": "11A2",
+    "created_at": "2026-06-22T11:00:00"
+  },
+  {
+    "id": "hs2026_124",
+    "role": "student",
+    "email": "hocsinh2026124@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Ho?i Vy",
+    "class_name": "11A2",
+    "created_at": "2026-07-22T12:00:00"
+  },
+  {
+    "id": "hs2026_125",
+    "role": "student",
+    "email": "hocsinh2026125@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Kh?nh B?nh",
+    "class_name": "11A2",
+    "created_at": "2026-08-22T13:00:00"
+  },
+  {
+    "id": "hs2026_126",
+    "role": "student",
+    "email": "hocsinh2026126@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Kim Nam",
+    "class_name": "11A2",
+    "created_at": "2026-09-22T14:00:00"
+  },
+  {
+    "id": "hs2026_127",
+    "role": "student",
+    "email": "hocsinh2026127@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Kh?nh D?ng",
+    "class_name": "11A2",
+    "created_at": "2026-03-23T15:00:00"
+  },
+  {
+    "id": "hs2026_128",
+    "role": "student",
+    "email": "hocsinh2026128@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?? Thanh Tr?",
+    "class_name": "11A2",
+    "created_at": "2026-04-23T08:00:00"
+  },
+  {
+    "id": "hs2026_129",
+    "role": "student",
+    "email": "hocsinh2026129@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng B?o Vy",
+    "class_name": "11A2",
+    "created_at": "2026-05-23T09:00:00"
+  },
+  {
+    "id": "hs2026_130",
+    "role": "student",
+    "email": "hocsinh2026130@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh ??c Anh",
+    "class_name": "11A2",
+    "created_at": "2026-06-23T10:00:00"
+  },
+  {
+    "id": "hs2026_131",
+    "role": "student",
+    "email": "hocsinh2026131@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Phan Ng?c Giang",
+    "class_name": "11A2",
+    "created_at": "2026-07-23T11:00:00"
+  },
+  {
+    "id": "hs2026_132",
+    "role": "student",
+    "email": "hocsinh2026132@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Minh Tr?",
+    "class_name": "11A2",
+    "created_at": "2026-08-23T12:00:00"
+  },
+  {
+    "id": "hs2026_133",
+    "role": "student",
+    "email": "hocsinh2026133@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Anh Ph?c",
+    "class_name": "11A2",
+    "created_at": "2026-09-23T13:00:00"
+  },
+  {
+    "id": "hs2026_134",
+    "role": "student",
+    "email": "hocsinh2026134@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Phan Quang Giang",
+    "class_name": "11A2",
+    "created_at": "2026-03-24T14:00:00"
+  },
+  {
+    "id": "hs2026_135",
+    "role": "student",
+    "email": "hocsinh2026135@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Minh Mai",
+    "class_name": "11A2",
+    "created_at": "2026-04-24T15:00:00"
+  },
+  {
+    "id": "hs2026_136",
+    "role": "student",
+    "email": "hocsinh2026136@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Tu?n Mai",
+    "class_name": "11A2",
+    "created_at": "2026-05-24T08:00:00"
+  },
+  {
+    "id": "hs2026_137",
+    "role": "student",
+    "email": "hocsinh2026137@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Anh Long",
+    "class_name": "11A2",
+    "created_at": "2026-06-24T09:00:00"
+  },
+  {
+    "id": "hs2026_138",
+    "role": "student",
+    "email": "hocsinh2026138@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng Minh B?nh",
+    "class_name": "11A2",
+    "created_at": "2026-07-24T10:00:00"
+  },
+  {
+    "id": "hs2026_139",
+    "role": "student",
+    "email": "hocsinh2026139@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Quang Giang",
+    "class_name": "11A2",
+    "created_at": "2026-08-24T11:00:00"
+  },
+  {
+    "id": "hs2026_140",
+    "role": "student",
+    "email": "hocsinh2026140@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Ng?c Kh?i",
+    "class_name": "11A2",
+    "created_at": "2026-09-24T12:00:00"
+  },
+  {
+    "id": "hs2026_141",
+    "role": "student",
+    "email": "hocsinh2026141@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Tu?n H?n",
+    "class_name": "11A2",
+    "created_at": "2026-03-25T13:00:00"
+  },
+  {
+    "id": "hs2026_142",
+    "role": "student",
+    "email": "hocsinh2026142@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng H?i D?ng",
+    "class_name": "11A2",
+    "created_at": "2026-04-25T14:00:00"
+  },
+  {
+    "id": "hs2026_143",
+    "role": "student",
+    "email": "hocsinh2026143@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? H?i Th?o",
+    "class_name": "11A2",
+    "created_at": "2026-05-25T15:00:00"
+  },
+  {
+    "id": "hs2026_144",
+    "role": "student",
+    "email": "hocsinh2026144@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Thu Kh?i",
+    "class_name": "11A2",
+    "created_at": "2026-06-25T08:00:00"
+  },
+  {
+    "id": "hs2026_145",
+    "role": "student",
+    "email": "hocsinh2026145@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? H?i B?nh",
+    "class_name": "11A2",
+    "created_at": "2026-07-25T09:00:00"
+  },
+  {
+    "id": "hs2026_146",
+    "role": "student",
+    "email": "hocsinh2026146@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Kh?nh Ng?n",
+    "class_name": "11A2",
+    "created_at": "2026-08-25T10:00:00"
+  },
+  {
+    "id": "hs2026_147",
+    "role": "student",
+    "email": "hocsinh2026147@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng Tu?n Linh",
+    "class_name": "11A2",
+    "created_at": "2026-09-25T11:00:00"
+  },
+  {
+    "id": "hs2026_148",
+    "role": "student",
+    "email": "hocsinh2026148@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?inh Kh?nh Y?n",
+    "class_name": "11A2",
+    "created_at": "2026-03-26T12:00:00"
+  },
+  {
+    "id": "hs2026_149",
+    "role": "student",
+    "email": "hocsinh2026149@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? B?o Tr?",
+    "class_name": "11A2",
+    "created_at": "2026-04-26T13:00:00"
+  },
+  {
+    "id": "hs2026_150",
+    "role": "student",
+    "email": "hocsinh2026150@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai B?o Nam",
+    "class_name": "11A2",
+    "created_at": "2026-05-26T14:00:00"
+  },
+  {
+    "id": "hs2026_151",
+    "role": "student",
+    "email": "hocsinh2026151@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? ??c Tr?",
+    "class_name": "11A2",
+    "created_at": "2026-06-26T15:00:00"
+  },
+  {
+    "id": "hs2026_152",
+    "role": "student",
+    "email": "hocsinh2026152@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Nh?t Tr?",
+    "class_name": "11A2",
+    "created_at": "2026-07-26T08:00:00"
+  },
+  {
+    "id": "hs2026_153",
+    "role": "student",
+    "email": "hocsinh2026153@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? H?i Y?n",
+    "class_name": "11A2",
+    "created_at": "2026-08-26T09:00:00"
+  },
+  {
+    "id": "hs2026_154",
+    "role": "student",
+    "email": "hocsinh2026154@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Gia Ng?n",
+    "class_name": "11A2",
+    "created_at": "2026-09-26T10:00:00"
+  },
+  {
+    "id": "hs2026_155",
+    "role": "student",
+    "email": "hocsinh2026155@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Ng?c Trang",
+    "class_name": "11A2",
+    "created_at": "2026-03-27T11:00:00"
+  },
+  {
+    "id": "hs2026_156",
+    "role": "student",
+    "email": "hocsinh2026156@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng H?i An",
+    "class_name": "11A2",
+    "created_at": "2026-04-27T12:00:00"
+  },
+  {
+    "id": "hs2026_157",
+    "role": "student",
+    "email": "hocsinh2026157@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? B?o Ph?c",
+    "class_name": "11A2",
+    "created_at": "2026-05-27T13:00:00"
+  },
+  {
+    "id": "hs2026_158",
+    "role": "student",
+    "email": "hocsinh2026158@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Ho?i Ng?n",
+    "class_name": "11A2",
+    "created_at": "2026-06-27T14:00:00"
+  },
+  {
+    "id": "hs2026_159",
+    "role": "student",
+    "email": "hocsinh2026159@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Phan Ho?i Ph?c",
+    "class_name": "11A2",
+    "created_at": "2026-07-27T15:00:00"
+  },
+  {
+    "id": "hs2026_160",
+    "role": "student",
+    "email": "hocsinh2026160@phyedu.local",
+    "grade": "11",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Tu?n Linh",
+    "class_name": "11A2",
+    "created_at": "2026-08-27T08:00:00"
+  },
+  {
+    "id": "hs2026_161",
+    "role": "student",
+    "email": "hocsinh2026161@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Thanh Y?n",
+    "class_name": "12A1",
+    "created_at": "2026-09-27T09:00:00"
+  },
+  {
+    "id": "hs2026_162",
+    "role": "student",
+    "email": "hocsinh2026162@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Minh Trang",
+    "class_name": "12A1",
+    "created_at": "2026-03-28T10:00:00"
+  },
+  {
+    "id": "hs2026_163",
+    "role": "student",
+    "email": "hocsinh2026163@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? H?i H?",
+    "class_name": "12A1",
+    "created_at": "2026-04-28T11:00:00"
+  },
+  {
+    "id": "hs2026_164",
+    "role": "student",
+    "email": "hocsinh2026164@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Tu?n B?nh",
+    "class_name": "12A1",
+    "created_at": "2026-05-28T12:00:00"
+  },
+  {
+    "id": "hs2026_165",
+    "role": "student",
+    "email": "hocsinh2026165@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m H?i Tr?",
+    "class_name": "12A1",
+    "created_at": "2026-06-28T13:00:00"
+  },
+  {
+    "id": "hs2026_166",
+    "role": "student",
+    "email": "hocsinh2026166@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng B?o Long",
+    "class_name": "12A1",
+    "created_at": "2026-07-28T14:00:00"
+  },
+  {
+    "id": "hs2026_167",
+    "role": "student",
+    "email": "hocsinh2026167@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh ??c Ph?c",
+    "class_name": "12A1",
+    "created_at": "2026-08-28T15:00:00"
+  },
+  {
+    "id": "hs2026_168",
+    "role": "student",
+    "email": "hocsinh2026168@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?inh Minh Long",
+    "class_name": "12A1",
+    "created_at": "2026-09-28T08:00:00"
+  },
+  {
+    "id": "hs2026_169",
+    "role": "student",
+    "email": "hocsinh2026169@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? B?o An",
+    "class_name": "12A1",
+    "created_at": "2026-03-05T09:00:00"
+  },
+  {
+    "id": "hs2026_170",
+    "role": "student",
+    "email": "hocsinh2026170@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Kh?nh An",
+    "class_name": "12A1",
+    "created_at": "2026-04-05T10:00:00"
+  },
+  {
+    "id": "hs2026_171",
+    "role": "student",
+    "email": "hocsinh2026171@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Ho?i Y?n",
+    "class_name": "12A1",
+    "created_at": "2026-05-05T11:00:00"
+  },
+  {
+    "id": "hs2026_172",
+    "role": "student",
+    "email": "hocsinh2026172@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Th? Long",
+    "class_name": "12A1",
+    "created_at": "2026-06-05T12:00:00"
+  },
+  {
+    "id": "hs2026_173",
+    "role": "student",
+    "email": "hocsinh2026173@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Thu Trang",
+    "class_name": "12A1",
+    "created_at": "2026-07-05T13:00:00"
+  },
+  {
+    "id": "hs2026_174",
+    "role": "student",
+    "email": "hocsinh2026174@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Tu?n An",
+    "class_name": "12A1",
+    "created_at": "2026-08-05T14:00:00"
+  },
+  {
+    "id": "hs2026_175",
+    "role": "student",
+    "email": "hocsinh2026175@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Ho?i Trang",
+    "class_name": "12A1",
+    "created_at": "2026-09-05T15:00:00"
+  },
+  {
+    "id": "hs2026_176",
+    "role": "student",
+    "email": "hocsinh2026176@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng B?o Kh?i",
+    "class_name": "12A1",
+    "created_at": "2026-03-06T08:00:00"
+  },
+  {
+    "id": "hs2026_177",
+    "role": "student",
+    "email": "hocsinh2026177@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? B?o Giang",
+    "class_name": "12A1",
+    "created_at": "2026-04-06T09:00:00"
+  },
+  {
+    "id": "hs2026_178",
+    "role": "student",
+    "email": "hocsinh2026178@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?n Anh Nam",
+    "class_name": "12A1",
+    "created_at": "2026-05-06T10:00:00"
+  },
+  {
+    "id": "hs2026_179",
+    "role": "student",
+    "email": "hocsinh2026179@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Tu?n Th?o",
+    "class_name": "12A1",
+    "created_at": "2026-06-06T11:00:00"
+  },
+  {
+    "id": "hs2026_180",
+    "role": "student",
+    "email": "hocsinh2026180@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? B?o Ph?c",
+    "class_name": "12A1",
+    "created_at": "2026-07-06T12:00:00"
+  },
+  {
+    "id": "hs2026_181",
+    "role": "student",
+    "email": "hocsinh2026181@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Kh?nh Khang",
+    "class_name": "12A1",
+    "created_at": "2026-08-06T13:00:00"
+  },
+  {
+    "id": "hs2026_182",
+    "role": "student",
+    "email": "hocsinh2026182@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Tu?n H??ng",
+    "class_name": "12A1",
+    "created_at": "2026-09-06T14:00:00"
+  },
+  {
+    "id": "hs2026_183",
+    "role": "student",
+    "email": "hocsinh2026183@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Ho?i Vy",
+    "class_name": "12A1",
+    "created_at": "2026-03-07T15:00:00"
+  },
+  {
+    "id": "hs2026_184",
+    "role": "student",
+    "email": "hocsinh2026184@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Kim Linh",
+    "class_name": "12A1",
+    "created_at": "2026-04-07T08:00:00"
+  },
+  {
+    "id": "hs2026_185",
+    "role": "student",
+    "email": "hocsinh2026185@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n Tu?n Nam",
+    "class_name": "12A1",
+    "created_at": "2026-05-07T09:00:00"
+  },
+  {
+    "id": "hs2026_186",
+    "role": "student",
+    "email": "hocsinh2026186@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Thanh B?nh",
+    "class_name": "12A1",
+    "created_at": "2026-06-07T10:00:00"
+  },
+  {
+    "id": "hs2026_187",
+    "role": "student",
+    "email": "hocsinh2026187@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Tu?n D?ng",
+    "class_name": "12A1",
+    "created_at": "2026-07-07T11:00:00"
+  },
+  {
+    "id": "hs2026_188",
+    "role": "student",
+    "email": "hocsinh2026188@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Kh?nh Th?o",
+    "class_name": "12A1",
+    "created_at": "2026-08-07T12:00:00"
+  },
+  {
+    "id": "hs2026_189",
+    "role": "student",
+    "email": "hocsinh2026189@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Anh B?nh",
+    "class_name": "12A1",
+    "created_at": "2026-09-07T13:00:00"
+  },
+  {
+    "id": "hs2026_190",
+    "role": "student",
+    "email": "hocsinh2026190@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Minh H?",
+    "class_name": "12A1",
+    "created_at": "2026-03-08T14:00:00"
+  },
+  {
+    "id": "hs2026_191",
+    "role": "student",
+    "email": "hocsinh2026191@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i ??c Qu?n",
+    "class_name": "12A1",
+    "created_at": "2026-04-08T15:00:00"
+  },
+  {
+    "id": "hs2026_192",
+    "role": "student",
+    "email": "hocsinh2026192@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh ??c Long",
+    "class_name": "12A1",
+    "created_at": "2026-05-08T08:00:00"
+  },
+  {
+    "id": "hs2026_193",
+    "role": "student",
+    "email": "hocsinh2026193@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "B?i Anh An",
+    "class_name": "12A1",
+    "created_at": "2026-06-08T09:00:00"
+  },
+  {
+    "id": "hs2026_194",
+    "role": "student",
+    "email": "hocsinh2026194@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Gia Long",
+    "class_name": "12A1",
+    "created_at": "2026-07-08T10:00:00"
+  },
+  {
+    "id": "hs2026_195",
+    "role": "student",
+    "email": "hocsinh2026195@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng Ng?c Vy",
+    "class_name": "12A1",
+    "created_at": "2026-08-08T11:00:00"
+  },
+  {
+    "id": "hs2026_196",
+    "role": "student",
+    "email": "hocsinh2026196@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Ho?i An",
+    "class_name": "12A1",
+    "created_at": "2026-09-08T12:00:00"
+  },
+  {
+    "id": "hs2026_197",
+    "role": "student",
+    "email": "hocsinh2026197@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Nh?t Kh?i",
+    "class_name": "12A1",
+    "created_at": "2026-03-09T13:00:00"
+  },
+  {
+    "id": "hs2026_198",
+    "role": "student",
+    "email": "hocsinh2026198@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?? Th? Long",
+    "class_name": "12A1",
+    "created_at": "2026-04-09T14:00:00"
+  },
+  {
+    "id": "hs2026_199",
+    "role": "student",
+    "email": "hocsinh2026199@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Nh?t Khang",
+    "class_name": "12A1",
+    "created_at": "2026-05-09T15:00:00"
+  },
+  {
+    "id": "hs2026_200",
+    "role": "student",
+    "email": "hocsinh2026200@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? ??c H?",
+    "class_name": "12A1",
+    "created_at": "2026-06-09T08:00:00"
+  },
+  {
+    "id": "hs2026_201",
+    "role": "student",
+    "email": "hocsinh2026201@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Phan Quang Th?o",
+    "class_name": "12A2",
+    "created_at": "2026-07-09T09:00:00"
+  },
+  {
+    "id": "hs2026_202",
+    "role": "student",
+    "email": "hocsinh2026202@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai Kim Giang",
+    "class_name": "12A2",
+    "created_at": "2026-08-09T10:00:00"
+  },
+  {
+    "id": "hs2026_203",
+    "role": "student",
+    "email": "hocsinh2026203@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Anh Th?o",
+    "class_name": "12A2",
+    "created_at": "2026-09-09T11:00:00"
+  },
+  {
+    "id": "hs2026_204",
+    "role": "student",
+    "email": "hocsinh2026204@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "D??ng Tu?n H?",
+    "class_name": "12A2",
+    "created_at": "2026-03-10T12:00:00"
+  },
+  {
+    "id": "hs2026_205",
+    "role": "student",
+    "email": "hocsinh2026205@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?? Thanh B?nh",
+    "class_name": "12A2",
+    "created_at": "2026-04-10T13:00:00"
+  },
+  {
+    "id": "hs2026_206",
+    "role": "student",
+    "email": "hocsinh2026206@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? B?o H??ng",
+    "class_name": "12A2",
+    "created_at": "2026-05-10T14:00:00"
+  },
+  {
+    "id": "hs2026_207",
+    "role": "student",
+    "email": "hocsinh2026207@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? Tu?n Th?o",
+    "class_name": "12A2",
+    "created_at": "2026-06-10T15:00:00"
+  },
+  {
+    "id": "hs2026_208",
+    "role": "student",
+    "email": "hocsinh2026208@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?n Quang Ph?c",
+    "class_name": "12A2",
+    "created_at": "2026-07-10T08:00:00"
+  },
+  {
+    "id": "hs2026_209",
+    "role": "student",
+    "email": "hocsinh2026209@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Nguy?n ??c Qu?n",
+    "class_name": "12A2",
+    "created_at": "2026-08-10T09:00:00"
+  },
+  {
+    "id": "hs2026_210",
+    "role": "student",
+    "email": "hocsinh2026210@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?inh Thu Trang",
+    "class_name": "12A2",
+    "created_at": "2026-09-10T10:00:00"
+  },
+  {
+    "id": "hs2026_211",
+    "role": "student",
+    "email": "hocsinh2026211@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Ng?c H?",
+    "class_name": "12A2",
+    "created_at": "2026-03-11T11:00:00"
+  },
+  {
+    "id": "hs2026_212",
+    "role": "student",
+    "email": "hocsinh2026212@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? ??c Nam",
+    "class_name": "12A2",
+    "created_at": "2026-04-11T12:00:00"
+  },
+  {
+    "id": "hs2026_213",
+    "role": "student",
+    "email": "hocsinh2026213@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Nh?t Tr?",
+    "class_name": "12A2",
+    "created_at": "2026-05-11T13:00:00"
+  },
+  {
+    "id": "hs2026_214",
+    "role": "student",
+    "email": "hocsinh2026214@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "T? Ho?i B?nh",
+    "class_name": "12A2",
+    "created_at": "2026-06-11T14:00:00"
+  },
+  {
+    "id": "hs2026_215",
+    "role": "student",
+    "email": "hocsinh2026215@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "?inh B?o D?ng",
+    "class_name": "12A2",
+    "created_at": "2026-07-11T15:00:00"
+  },
+  {
+    "id": "hs2026_216",
+    "role": "student",
+    "email": "hocsinh2026216@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Thu H??ng",
+    "class_name": "12A2",
+    "created_at": "2026-08-11T08:00:00"
+  },
+  {
+    "id": "hs2026_217",
+    "role": "student",
+    "email": "hocsinh2026217@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Thu Th?o",
+    "class_name": "12A2",
+    "created_at": "2026-09-11T09:00:00"
+  },
+  {
+    "id": "hs2026_218",
+    "role": "student",
+    "email": "hocsinh2026218@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Thu Linh",
+    "class_name": "12A2",
+    "created_at": "2026-03-12T10:00:00"
+  },
+  {
+    "id": "hs2026_219",
+    "role": "student",
+    "email": "hocsinh2026219@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Minh Th?o",
+    "class_name": "12A2",
+    "created_at": "2026-04-12T11:00:00"
+  },
+  {
+    "id": "hs2026_220",
+    "role": "student",
+    "email": "hocsinh2026220@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng H?i Khang",
+    "class_name": "12A2",
+    "created_at": "2026-05-12T12:00:00"
+  },
+  {
+    "id": "hs2026_221",
+    "role": "student",
+    "email": "hocsinh2026221@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Thu H?n",
+    "class_name": "12A2",
+    "created_at": "2026-06-12T13:00:00"
+  },
+  {
+    "id": "hs2026_222",
+    "role": "student",
+    "email": "hocsinh2026222@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng Kh?nh Ch?u",
+    "class_name": "12A2",
+    "created_at": "2026-07-12T14:00:00"
+  },
+  {
+    "id": "hs2026_223",
+    "role": "student",
+    "email": "hocsinh2026223@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "L? Anh H?n",
+    "class_name": "12A2",
+    "created_at": "2026-08-12T15:00:00"
+  },
+  {
+    "id": "hs2026_224",
+    "role": "student",
+    "email": "hocsinh2026224@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Gia Th?o",
+    "class_name": "12A2",
+    "created_at": "2026-09-12T08:00:00"
+  },
+  {
+    "id": "hs2026_225",
+    "role": "student",
+    "email": "hocsinh2026225@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ho?ng Tu?n An",
+    "class_name": "12A2",
+    "created_at": "2026-03-13T09:00:00"
+  },
+  {
+    "id": "hs2026_226",
+    "role": "student",
+    "email": "hocsinh2026226@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Mai B?o B?nh",
+    "class_name": "12A2",
+    "created_at": "2026-04-13T10:00:00"
+  },
+  {
+    "id": "hs2026_227",
+    "role": "student",
+    "email": "hocsinh2026227@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "??ng Thu Th?o",
+    "class_name": "12A2",
+    "created_at": "2026-05-13T11:00:00"
+  },
+  {
+    "id": "hs2026_228",
+    "role": "student",
+    "email": "hocsinh2026228@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Th? Y?n",
+    "class_name": "12A2",
+    "created_at": "2026-06-13T12:00:00"
+  },
+  {
+    "id": "hs2026_229",
+    "role": "student",
+    "email": "hocsinh2026229@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Thanh Mai",
+    "class_name": "12A2",
+    "created_at": "2026-07-13T13:00:00"
+  },
+  {
+    "id": "hs2026_230",
+    "role": "student",
+    "email": "hocsinh2026230@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Kim Y?n",
+    "class_name": "12A2",
+    "created_at": "2026-08-13T14:00:00"
+  },
+  {
+    "id": "hs2026_231",
+    "role": "student",
+    "email": "hocsinh2026231@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Minh Ch?u",
+    "class_name": "12A2",
+    "created_at": "2026-09-13T15:00:00"
+  },
+  {
+    "id": "hs2026_232",
+    "role": "student",
+    "email": "hocsinh2026232@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ng? Th? D?ng",
+    "class_name": "12A2",
+    "created_at": "2026-03-14T08:00:00"
+  },
+  {
+    "id": "hs2026_233",
+    "role": "student",
+    "email": "hocsinh2026233@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? ??c Vy",
+    "class_name": "12A2",
+    "created_at": "2026-04-14T09:00:00"
+  },
+  {
+    "id": "hs2026_234",
+    "role": "student",
+    "email": "hocsinh2026234@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "V? Ng?c B?nh",
+    "class_name": "12A2",
+    "created_at": "2026-05-14T10:00:00"
+  },
+  {
+    "id": "hs2026_235",
+    "role": "student",
+    "email": "hocsinh2026235@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Ng?c Linh",
+    "class_name": "12A2",
+    "created_at": "2026-06-14T11:00:00"
+  },
+  {
+    "id": "hs2026_236",
+    "role": "student",
+    "email": "hocsinh2026236@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Tr?nh Thu Kh?i",
+    "class_name": "12A2",
+    "created_at": "2026-07-14T12:00:00"
+  },
+  {
+    "id": "hs2026_237",
+    "role": "student",
+    "email": "hocsinh2026237@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Ph?m Tu?n Mai",
+    "class_name": "12A2",
+    "created_at": "2026-08-14T13:00:00"
+  },
+  {
+    "id": "hs2026_238",
+    "role": "student",
+    "email": "hocsinh2026238@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "Hu?nh Ho?i Mai",
+    "class_name": "12A2",
+    "created_at": "2026-09-14T14:00:00"
+  },
+  {
+    "id": "hs2026_239",
+    "role": "student",
+    "email": "hocsinh2026239@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? B?o Ng?n",
+    "class_name": "12A2",
+    "created_at": "2026-03-15T15:00:00"
+  },
+  {
+    "id": "hs2026_240",
+    "role": "student",
+    "email": "hocsinh2026240@phyedu.local",
+    "grade": "12",
+    "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
+    "username": "H? Kim An",
+    "class_name": "12A2",
+    "created_at": "2026-04-15T08:00:00"
   }
 ]
