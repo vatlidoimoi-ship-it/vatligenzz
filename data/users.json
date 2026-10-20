@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "username": "Tr?n Thu H?",
+    "username": "Trần Thu Hà",
     "password": "scrypt:32768:8:1$SutLGBs362wnNuwF$88532147b9fab376a2b26b26a2b13a8b666f6aaafa997ac5a7929a4b4ace5c3f576e63e5e63e9844eb804aca7bebfc4bf547e2c264fd16edcc90bec9a3d48170",
     "email": "giaovien@phyedu.local",
     "role": "teacher",
@@ -9,7 +9,7 @@
   },
   {
     "id": "2",
-    "username": "Nguy?n Minh Anh",
+    "username": "Nguyễn Minh Anh",
     "password": "scrypt:32768:8:1$5EdCzBwiCz9aY6vL$bcfc3a58e4c9d65d5f784e6ad92b09649ac5812eb394bc547720f8661ca390102a51aec6c51f01706f01585af024fffbb97bce7d4a2ed0bc2c3c43666012adc1",
     "email": "hocsinh@phyedu.local",
     "role": "student",
@@ -20,7 +20,7 @@
     "role": "teacher",
     "email": "giaovien202601@phyedu.local",
     "password": "scrypt:32768:8:1$x7jlSBEO9ZbtJSYU$bb17551b2ec09715b299cd3d6e6f414ea1ed2536a45332f21a9ba621a61481586e9ad2946530617b450cd7b037de016a607146f6b4f9878badf733a0079d59b5",
-    "username": "Ph?m Th? H?ng",
+    "username": "Phạm Thị Hồng",
     "created_at": "2026-03-01T08:00:00"
   },
   {
@@ -28,7 +28,7 @@
     "role": "teacher",
     "email": "giaovien202602@phyedu.local",
     "password": "scrypt:32768:8:1$x7jlSBEO9ZbtJSYU$bb17551b2ec09715b299cd3d6e6f414ea1ed2536a45332f21a9ba621a61481586e9ad2946530617b450cd7b037de016a607146f6b4f9878badf733a0079d59b5",
-    "username": "Nguy?n ??c Th?nh",
+    "username": "Nguyễn Đức Thành",
     "created_at": "2026-03-02T08:00:00"
   },
   {
@@ -36,7 +36,7 @@
     "role": "teacher",
     "email": "giaovien202603@phyedu.local",
     "password": "scrypt:32768:8:1$x7jlSBEO9ZbtJSYU$bb17551b2ec09715b299cd3d6e6f414ea1ed2536a45332f21a9ba621a61481586e9ad2946530617b450cd7b037de016a607146f6b4f9878badf733a0079d59b5",
-    "username": "L? Th? Thanh",
+    "username": "Lê Thị Thanh",
     "created_at": "2026-03-03T08:00:00"
   },
   {
@@ -45,7 +45,7 @@
     "email": "hocsinh2026001@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Kh?nh D?ng",
+    "username": "Võ Khánh Dũng",
     "class_name": "10A1",
     "created_at": "2026-03-05T09:00:00"
   },
@@ -55,7 +55,7 @@
     "email": "hocsinh2026002@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Nh?t H??ng",
+    "username": "Lê Nhật Hương",
     "class_name": "10A1",
     "created_at": "2026-04-05T10:00:00"
   },
@@ -65,7 +65,7 @@
     "email": "hocsinh2026003@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Minh Long",
+    "username": "Phạm Minh Long",
     "class_name": "10A1",
     "created_at": "2026-05-05T11:00:00"
   },
@@ -75,7 +75,7 @@
     "email": "hocsinh2026004@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Anh An",
+    "username": "Lý Anh An",
     "class_name": "10A1",
     "created_at": "2026-06-05T12:00:00"
   },
@@ -85,7 +85,7 @@
     "email": "hocsinh2026005@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Th? Khang",
+    "username": "Nguyễn Thị Khang",
     "class_name": "10A1",
     "created_at": "2026-07-05T13:00:00"
   },
@@ -95,7 +95,7 @@
     "email": "hocsinh2026006@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Minh Huy",
+    "username": "Vũ Minh Huy",
     "class_name": "10A1",
     "created_at": "2026-08-05T14:00:00"
   },
@@ -105,7 +105,7 @@
     "email": "hocsinh2026007@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Gia An",
+    "username": "Võ Gia An",
     "class_name": "10A1",
     "created_at": "2026-09-05T15:00:00"
   },
@@ -115,7 +115,7 @@
     "email": "hocsinh2026008@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Th? Trang",
+    "username": "Trịnh Thị Trang",
     "class_name": "10A1",
     "created_at": "2026-03-06T08:00:00"
   },
@@ -125,7 +125,7 @@
     "email": "hocsinh2026009@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Thu Long",
+    "username": "Võ Thu Long",
     "class_name": "10A1",
     "created_at": "2026-04-06T09:00:00"
   },
@@ -145,7 +145,7 @@
     "email": "hocsinh2026011@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng B?o Ph?c",
+    "username": "Đặng Bảo Phúc",
     "class_name": "10A1",
     "created_at": "2026-06-06T11:00:00"
   },
@@ -155,7 +155,7 @@
     "email": "hocsinh2026012@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Thu Th?o",
+    "username": "Bùi Thu Thảo",
     "class_name": "10A1",
     "created_at": "2026-07-06T12:00:00"
   },
@@ -165,7 +165,7 @@
     "email": "hocsinh2026013@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Phan Nh?t Huy",
+    "username": "Phan Nhật Huy",
     "class_name": "10A1",
     "created_at": "2026-08-06T13:00:00"
   },
@@ -175,7 +175,7 @@
     "email": "hocsinh2026014@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Th? B?nh",
+    "username": "Hồ Thị Bình",
     "class_name": "10A1",
     "created_at": "2026-09-06T14:00:00"
   },
@@ -185,7 +185,7 @@
     "email": "hocsinh2026015@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Ho?i Giang",
+    "username": "Lý Hoài Giang",
     "class_name": "10A1",
     "created_at": "2026-03-07T15:00:00"
   },
@@ -195,7 +195,7 @@
     "email": "hocsinh2026016@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Kh?nh B?nh",
+    "username": "Hồ Khánh Bình",
     "class_name": "10A1",
     "created_at": "2026-04-07T08:00:00"
   },
@@ -205,7 +205,7 @@
     "email": "hocsinh2026017@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? H?i D?ng",
+    "username": "Lý Hải Dũng",
     "class_name": "10A1",
     "created_at": "2026-05-07T09:00:00"
   },
@@ -215,7 +215,7 @@
     "email": "hocsinh2026018@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Quang H??ng",
+    "username": "Bùi Quang Hương",
     "class_name": "10A1",
     "created_at": "2026-06-07T10:00:00"
   },
@@ -225,7 +225,7 @@
     "email": "hocsinh2026019@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Ng?c Trang",
+    "username": "Nguyễn Ngọc Trang",
     "class_name": "10A1",
     "created_at": "2026-07-07T11:00:00"
   },
@@ -235,7 +235,7 @@
     "email": "hocsinh2026020@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? H?i H??ng",
+    "username": "Hồ Hải Hương",
     "class_name": "10A1",
     "created_at": "2026-08-07T12:00:00"
   },
@@ -245,7 +245,7 @@
     "email": "hocsinh2026021@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Anh Trang",
+    "username": "Bùi Anh Trang",
     "class_name": "10A1",
     "created_at": "2026-09-07T13:00:00"
   },
@@ -255,7 +255,7 @@
     "email": "hocsinh2026022@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i H?i H?n",
+    "username": "Bùi Hải Hân",
     "class_name": "10A1",
     "created_at": "2026-03-08T14:00:00"
   },
@@ -265,7 +265,7 @@
     "email": "hocsinh2026023@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Thu H??ng",
+    "username": "Nguyễn Thu Hương",
     "class_name": "10A1",
     "created_at": "2026-04-08T15:00:00"
   },
@@ -275,7 +275,7 @@
     "email": "hocsinh2026024@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n B?o Ch?u",
+    "username": "Nguyễn Bảo Châu",
     "class_name": "10A1",
     "created_at": "2026-05-08T08:00:00"
   },
@@ -285,7 +285,7 @@
     "email": "hocsinh2026025@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Anh D?ng",
+    "username": "Lý Anh Dũng",
     "class_name": "10A1",
     "created_at": "2026-06-08T09:00:00"
   },
@@ -295,7 +295,7 @@
     "email": "hocsinh2026026@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Th? Ch?u",
+    "username": "Trịnh Thị Châu",
     "class_name": "10A1",
     "created_at": "2026-07-08T10:00:00"
   },
@@ -305,7 +305,7 @@
     "email": "hocsinh2026027@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Quang Ch?u",
+    "username": "Mai Quang Châu",
     "class_name": "10A1",
     "created_at": "2026-08-08T11:00:00"
   },
@@ -315,7 +315,7 @@
     "email": "hocsinh2026028@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Ho?i Mai",
+    "username": "Mai Hoài Mai",
     "class_name": "10A1",
     "created_at": "2026-09-08T12:00:00"
   },
@@ -325,7 +325,7 @@
     "email": "hocsinh2026029@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Ng?c D?ng",
+    "username": "Lý Ngọc Dũng",
     "class_name": "10A1",
     "created_at": "2026-03-09T13:00:00"
   },
@@ -335,7 +335,7 @@
     "email": "hocsinh2026030@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?? Ng?c H?n",
+    "username": "Đỗ Ngọc Hân",
     "class_name": "10A1",
     "created_at": "2026-04-09T14:00:00"
   },
@@ -345,7 +345,7 @@
     "email": "hocsinh2026031@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Nh?t Ch?u",
+    "username": "Mai Nhật Châu",
     "class_name": "10A1",
     "created_at": "2026-05-09T15:00:00"
   },
@@ -365,7 +365,7 @@
     "email": "hocsinh2026033@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Nh?t H?n",
+    "username": "Ngô Nhật Hân",
     "class_name": "10A1",
     "created_at": "2026-07-09T09:00:00"
   },
@@ -375,7 +375,7 @@
     "email": "hocsinh2026034@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? B?o Ng?n",
+    "username": "Ngô Bảo Ngân",
     "class_name": "10A1",
     "created_at": "2026-08-09T10:00:00"
   },
@@ -385,7 +385,7 @@
     "email": "hocsinh2026035@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Kh?nh Giang",
+    "username": "Võ Khánh Giang",
     "class_name": "10A1",
     "created_at": "2026-09-09T11:00:00"
   },
@@ -395,8 +395,8 @@
     "email": "hocsinh2026036@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Kim H??ng",
-    "class_name": "10A1",
+    "username": "Bùi Kim Hương",
+    "class_name": "10A2",
     "created_at": "2026-03-10T12:00:00"
   },
   {
@@ -405,8 +405,8 @@
     "email": "hocsinh2026037@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Anh Huy",
-    "class_name": "10A1",
+    "username": "Vũ Anh Huy",
+    "class_name": "10A2",
     "created_at": "2026-04-10T13:00:00"
   },
   {
@@ -415,8 +415,8 @@
     "email": "hocsinh2026038@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Quang Anh",
-    "class_name": "10A1",
+    "username": "Trịnh Quang Anh",
+    "class_name": "10A2",
     "created_at": "2026-05-10T14:00:00"
   },
   {
@@ -425,8 +425,8 @@
     "email": "hocsinh2026039@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Minh Ph?c",
-    "class_name": "10A1",
+    "username": "Nguyễn Minh Phúc",
+    "class_name": "10A2",
     "created_at": "2026-06-10T15:00:00"
   },
   {
@@ -435,8 +435,8 @@
     "email": "hocsinh2026040@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Ho?i Linh",
-    "class_name": "10A1",
+    "username": "Phạm Hoài Linh",
+    "class_name": "10A2",
     "created_at": "2026-07-10T08:00:00"
   },
   {
@@ -445,7 +445,7 @@
     "email": "hocsinh2026041@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?n Thanh Ng?n",
+    "username": "Trần Thanh Ngân",
     "class_name": "10A2",
     "created_at": "2026-08-10T09:00:00"
   },
@@ -455,7 +455,7 @@
     "email": "hocsinh2026042@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Minh B?nh",
+    "username": "Ngô Minh Bình",
     "class_name": "10A2",
     "created_at": "2026-09-10T10:00:00"
   },
@@ -465,7 +465,7 @@
     "email": "hocsinh2026043@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?n Ng?c Ng?n",
+    "username": "Trần Ngọc Ngân",
     "class_name": "10A2",
     "created_at": "2026-03-11T11:00:00"
   },
@@ -475,7 +475,7 @@
     "email": "hocsinh2026044@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng Nh?t Mai",
+    "username": "Đặng Nhật Mai",
     "class_name": "10A2",
     "created_at": "2026-04-11T12:00:00"
   },
@@ -485,7 +485,7 @@
     "email": "hocsinh2026045@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?? Thu Ng?n",
+    "username": "Đỗ Thu Ngân",
     "class_name": "10A2",
     "created_at": "2026-05-11T13:00:00"
   },
@@ -495,7 +495,7 @@
     "email": "hocsinh2026046@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Nh?t H?",
+    "username": "Lê Nhật Hà",
     "class_name": "10A2",
     "created_at": "2026-06-11T14:00:00"
   },
@@ -505,7 +505,7 @@
     "email": "hocsinh2026047@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Tu?n Nam",
+    "username": "Hoàng Tuấn Nam",
     "class_name": "10A2",
     "created_at": "2026-07-11T15:00:00"
   },
@@ -515,7 +515,7 @@
     "email": "hocsinh2026048@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Tu?n D?ng",
+    "username": "Hoàng Tuấn Dũng",
     "class_name": "10A2",
     "created_at": "2026-08-11T08:00:00"
   },
@@ -525,7 +525,7 @@
     "email": "hocsinh2026049@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Gia Huy",
+    "username": "Lý Gia Huy",
     "class_name": "10A2",
     "created_at": "2026-09-11T09:00:00"
   },
@@ -535,7 +535,7 @@
     "email": "hocsinh2026050@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Nh?t B?nh",
+    "username": "Ngô Nhật Bình",
     "class_name": "10A2",
     "created_at": "2026-03-12T10:00:00"
   },
@@ -545,7 +545,7 @@
     "email": "hocsinh2026051@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Kim An",
+    "username": "Lê Kim An",
     "class_name": "10A2",
     "created_at": "2026-04-12T11:00:00"
   },
@@ -555,7 +555,7 @@
     "email": "hocsinh2026052@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Nh?t Trang",
+    "username": "Võ Nhật Trang",
     "class_name": "10A2",
     "created_at": "2026-05-12T12:00:00"
   },
@@ -565,7 +565,7 @@
     "email": "hocsinh2026053@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?? B?o Vy",
+    "username": "Đỗ Bảo Vy",
     "class_name": "10A2",
     "created_at": "2026-06-12T13:00:00"
   },
@@ -575,7 +575,7 @@
     "email": "hocsinh2026054@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Nh?t Khang",
+    "username": "Lý Nhật Khang",
     "class_name": "10A2",
     "created_at": "2026-07-12T14:00:00"
   },
@@ -585,7 +585,7 @@
     "email": "hocsinh2026055@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Hu?nh Ho?i H?n",
+    "username": "Huỳnh Hoài Hân",
     "class_name": "10A2",
     "created_at": "2026-08-12T15:00:00"
   },
@@ -595,7 +595,7 @@
     "email": "hocsinh2026056@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Ng?c Ch?u",
+    "username": "Hoàng Ngọc Châu",
     "class_name": "10A2",
     "created_at": "2026-09-12T08:00:00"
   },
@@ -605,7 +605,7 @@
     "email": "hocsinh2026057@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Ng?c Nam",
+    "username": "Vũ Ngọc Nam",
     "class_name": "10A2",
     "created_at": "2026-03-13T09:00:00"
   },
@@ -615,7 +615,7 @@
     "email": "hocsinh2026058@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Thanh Qu?n",
+    "username": "Hoàng Thanh Quân",
     "class_name": "10A2",
     "created_at": "2026-04-13T10:00:00"
   },
@@ -625,7 +625,7 @@
     "email": "hocsinh2026059@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?inh Quang Trang",
+    "username": "Đinh Quang Trang",
     "class_name": "10A2",
     "created_at": "2026-05-13T11:00:00"
   },
@@ -635,7 +635,7 @@
     "email": "hocsinh2026060@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Kh?nh Mai",
+    "username": "Ngô Khánh Mai",
     "class_name": "10A2",
     "created_at": "2026-06-13T12:00:00"
   },
@@ -645,7 +645,7 @@
     "email": "hocsinh2026061@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?inh Quang Tr?",
+    "username": "Đinh Quang Trí",
     "class_name": "10A2",
     "created_at": "2026-07-13T13:00:00"
   },
@@ -655,7 +655,7 @@
     "email": "hocsinh2026062@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? ??c Ph?c",
+    "username": "Ngô Đức Phúc",
     "class_name": "10A2",
     "created_at": "2026-08-13T14:00:00"
   },
@@ -665,7 +665,7 @@
     "email": "hocsinh2026063@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? Kh?nh Vy",
+    "username": "Tạ Khánh Vy",
     "class_name": "10A2",
     "created_at": "2026-09-13T15:00:00"
   },
@@ -675,7 +675,7 @@
     "email": "hocsinh2026064@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Ho?i H?",
+    "username": "Võ Hoài Hà",
     "class_name": "10A2",
     "created_at": "2026-03-14T08:00:00"
   },
@@ -685,7 +685,7 @@
     "email": "hocsinh2026065@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng Nh?t Ng?n",
+    "username": "Đặng Nhật Ngân",
     "class_name": "10A2",
     "created_at": "2026-04-14T09:00:00"
   },
@@ -695,7 +695,7 @@
     "email": "hocsinh2026066@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Kim Nam",
+    "username": "Lê Kim Nam",
     "class_name": "10A2",
     "created_at": "2026-05-14T10:00:00"
   },
@@ -705,7 +705,7 @@
     "email": "hocsinh2026067@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh H?i Vy",
+    "username": "Trịnh Hải Vy",
     "class_name": "10A2",
     "created_at": "2026-06-14T11:00:00"
   },
@@ -715,7 +715,7 @@
     "email": "hocsinh2026068@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Hu?nh Ng?c Khang",
+    "username": "Huỳnh Ngọc Khang",
     "class_name": "10A2",
     "created_at": "2026-07-14T12:00:00"
   },
@@ -725,7 +725,7 @@
     "email": "hocsinh2026069@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Anh Huy",
+    "username": "Hoàng Anh Huy",
     "class_name": "10A2",
     "created_at": "2026-08-14T13:00:00"
   },
@@ -735,7 +735,7 @@
     "email": "hocsinh2026070@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Ng?c Nam",
+    "username": "Mai Ngọc Nam",
     "class_name": "10A2",
     "created_at": "2026-09-14T14:00:00"
   },
@@ -745,7 +745,7 @@
     "email": "hocsinh2026071@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Ng?c Tr?",
+    "username": "Phạm Ngọc Trí",
     "class_name": "10A2",
     "created_at": "2026-03-15T15:00:00"
   },
@@ -755,7 +755,7 @@
     "email": "hocsinh2026072@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? ??c H??ng",
+    "username": "Tạ Đức Hương",
     "class_name": "10A2",
     "created_at": "2026-04-15T08:00:00"
   },
@@ -765,7 +765,7 @@
     "email": "hocsinh2026073@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Hu?nh Thu Ng?n",
+    "username": "Huỳnh Thu Ngân",
     "class_name": "10A2",
     "created_at": "2026-05-15T09:00:00"
   },
@@ -775,7 +775,7 @@
     "email": "hocsinh2026074@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Kh?nh Huy",
+    "username": "Ngô Khánh Huy",
     "class_name": "10A2",
     "created_at": "2026-06-15T10:00:00"
   },
@@ -785,7 +785,7 @@
     "email": "hocsinh2026075@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Tu?n Nam",
+    "username": "Phạm Tuấn Nam",
     "class_name": "10A2",
     "created_at": "2026-07-15T11:00:00"
   },
@@ -795,7 +795,7 @@
     "email": "hocsinh2026076@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?inh Tu?n Huy",
+    "username": "Đinh Tuấn Huy",
     "class_name": "10A2",
     "created_at": "2026-08-15T12:00:00"
   },
@@ -805,7 +805,7 @@
     "email": "hocsinh2026077@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Nh?t Linh",
+    "username": "Nguyễn Nhật Linh",
     "class_name": "10A2",
     "created_at": "2026-09-15T13:00:00"
   },
@@ -815,7 +815,7 @@
     "email": "hocsinh2026078@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Th? Khang",
+    "username": "Ngô Thị Khang",
     "class_name": "10A2",
     "created_at": "2026-03-16T14:00:00"
   },
@@ -825,7 +825,7 @@
     "email": "hocsinh2026079@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? B?o Linh",
+    "username": "Tạ Bảo Linh",
     "class_name": "10A2",
     "created_at": "2026-04-16T15:00:00"
   },
@@ -835,7 +835,7 @@
     "email": "hocsinh2026080@phyedu.local",
     "grade": "10",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? ??c Giang",
+    "username": "Lê Đức Giang",
     "class_name": "10A2",
     "created_at": "2026-05-16T08:00:00"
   },
@@ -845,7 +845,7 @@
     "email": "hocsinh2026081@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Minh Linh",
+    "username": "Nguyễn Minh Linh",
     "class_name": "11A1",
     "created_at": "2026-06-16T09:00:00"
   },
@@ -855,7 +855,7 @@
     "email": "hocsinh2026082@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Ho?i H??ng",
+    "username": "Hoàng Hoài Hương",
     "class_name": "11A1",
     "created_at": "2026-07-16T10:00:00"
   },
@@ -865,7 +865,7 @@
     "email": "hocsinh2026083@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? H?i Tr?",
+    "username": "Tạ Hải Trí",
     "class_name": "11A1",
     "created_at": "2026-08-16T11:00:00"
   },
@@ -875,7 +875,7 @@
     "email": "hocsinh2026084@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Ng?c B?nh",
+    "username": "Nguyễn Ngọc Bình",
     "class_name": "11A1",
     "created_at": "2026-09-16T12:00:00"
   },
@@ -885,7 +885,7 @@
     "email": "hocsinh2026085@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng H?i Th?o",
+    "username": "Dương Hải Thảo",
     "class_name": "11A1",
     "created_at": "2026-03-17T13:00:00"
   },
@@ -895,7 +895,7 @@
     "email": "hocsinh2026086@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng Nh?t Huy",
+    "username": "Đặng Nhật Huy",
     "class_name": "11A1",
     "created_at": "2026-04-17T14:00:00"
   },
@@ -905,7 +905,7 @@
     "email": "hocsinh2026087@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Anh Kh?i",
+    "username": "Hoàng Anh Khôi",
     "class_name": "11A1",
     "created_at": "2026-05-17T15:00:00"
   },
@@ -915,7 +915,7 @@
     "email": "hocsinh2026088@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Th? Vy",
+    "username": "Mai Thị Vy",
     "class_name": "11A1",
     "created_at": "2026-06-17T08:00:00"
   },
@@ -925,7 +925,7 @@
     "email": "hocsinh2026089@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng Ng?c H?n",
+    "username": "Đặng Ngọc Hân",
     "class_name": "11A1",
     "created_at": "2026-07-17T09:00:00"
   },
@@ -935,7 +935,7 @@
     "email": "hocsinh2026090@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Hu?nh H?i Mai",
+    "username": "Huỳnh Hải Mai",
     "class_name": "11A1",
     "created_at": "2026-08-17T10:00:00"
   },
@@ -945,7 +945,7 @@
     "email": "hocsinh2026091@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?? Nh?t Y?n",
+    "username": "Đỗ Nhật Yến",
     "class_name": "11A1",
     "created_at": "2026-09-17T11:00:00"
   },
@@ -955,7 +955,7 @@
     "email": "hocsinh2026092@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng Thanh H??ng",
+    "username": "Dương Thanh Hương",
     "class_name": "11A1",
     "created_at": "2026-03-18T12:00:00"
   },
@@ -965,7 +965,7 @@
     "email": "hocsinh2026093@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Phan Kh?nh H?",
+    "username": "Phan Khánh Hà",
     "class_name": "11A1",
     "created_at": "2026-04-18T13:00:00"
   },
@@ -975,7 +975,7 @@
     "email": "hocsinh2026094@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Kh?nh H?n",
+    "username": "Hoàng Khánh Hân",
     "class_name": "11A1",
     "created_at": "2026-05-18T14:00:00"
   },
@@ -985,7 +985,7 @@
     "email": "hocsinh2026095@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Anh Long",
+    "username": "Lý Anh Long",
     "class_name": "11A1",
     "created_at": "2026-06-18T15:00:00"
   },
@@ -995,7 +995,7 @@
     "email": "hocsinh2026096@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? ??c Kh?i",
+    "username": "Vũ Đức Khôi",
     "class_name": "11A1",
     "created_at": "2026-07-18T08:00:00"
   },
@@ -1005,7 +1005,7 @@
     "email": "hocsinh2026097@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? H?i An",
+    "username": "Ngô Hải An",
     "class_name": "11A1",
     "created_at": "2026-08-18T09:00:00"
   },
@@ -1015,7 +1015,7 @@
     "email": "hocsinh2026098@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?n Ho?i An",
+    "username": "Trần Hoài An",
     "class_name": "11A1",
     "created_at": "2026-09-18T10:00:00"
   },
@@ -1025,7 +1025,7 @@
     "email": "hocsinh2026099@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Gia Y?n",
+    "username": "Trịnh Gia Yến",
     "class_name": "11A1",
     "created_at": "2026-03-19T11:00:00"
   },
@@ -1035,7 +1035,7 @@
     "email": "hocsinh2026100@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Anh Tr?",
+    "username": "Võ Anh Trí",
     "class_name": "11A1",
     "created_at": "2026-04-19T12:00:00"
   },
@@ -1045,7 +1045,7 @@
     "email": "hocsinh2026101@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Ho?i Linh",
+    "username": "Lý Hoài Linh",
     "class_name": "11A1",
     "created_at": "2026-05-19T13:00:00"
   },
@@ -1055,7 +1055,7 @@
     "email": "hocsinh2026102@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? B?o Khang",
+    "username": "Lý Bảo Khang",
     "class_name": "11A1",
     "created_at": "2026-06-19T14:00:00"
   },
@@ -1065,7 +1065,7 @@
     "email": "hocsinh2026103@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Ng?c D?ng",
+    "username": "Vũ Ngọc Dũng",
     "class_name": "11A1",
     "created_at": "2026-07-19T15:00:00"
   },
@@ -1075,7 +1075,7 @@
     "email": "hocsinh2026104@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? ??c Ph?c",
+    "username": "Lý Đức Phúc",
     "class_name": "11A1",
     "created_at": "2026-08-19T08:00:00"
   },
@@ -1085,7 +1085,7 @@
     "email": "hocsinh2026105@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Hu?nh ??c Qu?n",
+    "username": "Huỳnh Đức Quân",
     "class_name": "11A1",
     "created_at": "2026-09-19T09:00:00"
   },
@@ -1095,7 +1095,7 @@
     "email": "hocsinh2026106@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i H?i Anh",
+    "username": "Bùi Hải Anh",
     "class_name": "11A1",
     "created_at": "2026-03-20T10:00:00"
   },
@@ -1105,7 +1105,7 @@
     "email": "hocsinh2026107@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Hu?nh Th? Long",
+    "username": "Huỳnh Thị Long",
     "class_name": "11A1",
     "created_at": "2026-04-20T11:00:00"
   },
@@ -1115,7 +1115,7 @@
     "email": "hocsinh2026108@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Tu?n Qu?n",
+    "username": "Nguyễn Tuấn Quân",
     "class_name": "11A1",
     "created_at": "2026-05-20T12:00:00"
   },
@@ -1125,7 +1125,7 @@
     "email": "hocsinh2026109@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?inh Ng?c B?nh",
+    "username": "Đinh Ngọc Bình",
     "class_name": "11A1",
     "created_at": "2026-06-20T13:00:00"
   },
@@ -1135,7 +1135,7 @@
     "email": "hocsinh2026110@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Ng?c Y?n",
+    "username": "Mai Ngọc Yến",
     "class_name": "11A1",
     "created_at": "2026-07-20T14:00:00"
   },
@@ -1145,7 +1145,7 @@
     "email": "hocsinh2026111@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Anh Qu?n",
+    "username": "Vũ Anh Quân",
     "class_name": "11A1",
     "created_at": "2026-08-20T15:00:00"
   },
@@ -1155,7 +1155,7 @@
     "email": "hocsinh2026112@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Ho?i H?n",
+    "username": "Hoàng Hoài Hân",
     "class_name": "11A1",
     "created_at": "2026-09-20T08:00:00"
   },
@@ -1165,7 +1165,7 @@
     "email": "hocsinh2026113@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Kim Trang",
+    "username": "Lý Kim Trang",
     "class_name": "11A1",
     "created_at": "2026-03-21T09:00:00"
   },
@@ -1175,7 +1175,7 @@
     "email": "hocsinh2026114@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?n Thu Khang",
+    "username": "Trần Thu Khang",
     "class_name": "11A1",
     "created_at": "2026-04-21T10:00:00"
   },
@@ -1185,7 +1185,7 @@
     "email": "hocsinh2026115@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?n Thanh Khang",
+    "username": "Trần Thanh Khang",
     "class_name": "11A1",
     "created_at": "2026-05-21T11:00:00"
   },
@@ -1195,7 +1195,7 @@
     "email": "hocsinh2026116@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Nh?t Ph?c",
+    "username": "Lê Nhật Phúc",
     "class_name": "11A1",
     "created_at": "2026-06-21T12:00:00"
   },
@@ -1206,7 +1206,7 @@
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
     "username": "Phan Thanh Huy",
-    "class_name": "11A1",
+    "class_name": "11A2",
     "created_at": "2026-07-21T13:00:00"
   },
   {
@@ -1215,8 +1215,8 @@
     "email": "hocsinh2026118@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng Gia Khang",
-    "class_name": "11A1",
+    "username": "Dương Gia Khang",
+    "class_name": "11A2",
     "created_at": "2026-08-21T14:00:00"
   },
   {
@@ -1225,8 +1225,8 @@
     "email": "hocsinh2026119@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? Anh Huy",
-    "class_name": "11A1",
+    "username": "Tạ Anh Huy",
+    "class_name": "11A2",
     "created_at": "2026-09-21T15:00:00"
   },
   {
@@ -1235,8 +1235,8 @@
     "email": "hocsinh2026120@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? Minh An",
-    "class_name": "11A1",
+    "username": "Tạ Minh An",
+    "class_name": "11A2",
     "created_at": "2026-03-22T08:00:00"
   },
   {
@@ -1245,7 +1245,7 @@
     "email": "hocsinh2026121@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Gia Ch?u",
+    "username": "Lê Gia Châu",
     "class_name": "11A2",
     "created_at": "2026-04-22T09:00:00"
   },
@@ -1255,7 +1255,7 @@
     "email": "hocsinh2026122@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Gia Kh?i",
+    "username": "Lý Gia Khôi",
     "class_name": "11A2",
     "created_at": "2026-05-22T10:00:00"
   },
@@ -1265,7 +1265,7 @@
     "email": "hocsinh2026123@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Nh?t Ph?c",
+    "username": "Ngô Nhật Phúc",
     "class_name": "11A2",
     "created_at": "2026-06-22T11:00:00"
   },
@@ -1275,7 +1275,7 @@
     "email": "hocsinh2026124@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Ho?i Vy",
+    "username": "Ngô Hoài Vy",
     "class_name": "11A2",
     "created_at": "2026-07-22T12:00:00"
   },
@@ -1285,7 +1285,7 @@
     "email": "hocsinh2026125@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Kh?nh B?nh",
+    "username": "Mai Khánh Bình",
     "class_name": "11A2",
     "created_at": "2026-08-22T13:00:00"
   },
@@ -1295,7 +1295,7 @@
     "email": "hocsinh2026126@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Kim Nam",
+    "username": "Bùi Kim Nam",
     "class_name": "11A2",
     "created_at": "2026-09-22T14:00:00"
   },
@@ -1305,7 +1305,7 @@
     "email": "hocsinh2026127@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Kh?nh D?ng",
+    "username": "Hồ Khánh Dũng",
     "class_name": "11A2",
     "created_at": "2026-03-23T15:00:00"
   },
@@ -1315,7 +1315,7 @@
     "email": "hocsinh2026128@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?? Thanh Tr?",
+    "username": "Đỗ Thanh Trí",
     "class_name": "11A2",
     "created_at": "2026-04-23T08:00:00"
   },
@@ -1325,7 +1325,7 @@
     "email": "hocsinh2026129@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng B?o Vy",
+    "username": "Dương Bảo Vy",
     "class_name": "11A2",
     "created_at": "2026-05-23T09:00:00"
   },
@@ -1335,7 +1335,7 @@
     "email": "hocsinh2026130@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh ??c Anh",
+    "username": "Trịnh Đức Anh",
     "class_name": "11A2",
     "created_at": "2026-06-23T10:00:00"
   },
@@ -1345,7 +1345,7 @@
     "email": "hocsinh2026131@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Phan Ng?c Giang",
+    "username": "Phan Ngọc Giang",
     "class_name": "11A2",
     "created_at": "2026-07-23T11:00:00"
   },
@@ -1355,7 +1355,7 @@
     "email": "hocsinh2026132@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Minh Tr?",
+    "username": "Hồ Minh Trí",
     "class_name": "11A2",
     "created_at": "2026-08-23T12:00:00"
   },
@@ -1365,7 +1365,7 @@
     "email": "hocsinh2026133@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Anh Ph?c",
+    "username": "Trịnh Anh Phúc",
     "class_name": "11A2",
     "created_at": "2026-09-23T13:00:00"
   },
@@ -1385,7 +1385,7 @@
     "email": "hocsinh2026135@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Minh Mai",
+    "username": "Ngô Minh Mai",
     "class_name": "11A2",
     "created_at": "2026-04-24T15:00:00"
   },
@@ -1395,7 +1395,7 @@
     "email": "hocsinh2026136@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Tu?n Mai",
+    "username": "Võ Tuấn Mai",
     "class_name": "11A2",
     "created_at": "2026-05-24T08:00:00"
   },
@@ -1415,7 +1415,7 @@
     "email": "hocsinh2026138@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng Minh B?nh",
+    "username": "Dương Minh Bình",
     "class_name": "11A2",
     "created_at": "2026-07-24T10:00:00"
   },
@@ -1425,7 +1425,7 @@
     "email": "hocsinh2026139@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Quang Giang",
+    "username": "Võ Quang Giang",
     "class_name": "11A2",
     "created_at": "2026-08-24T11:00:00"
   },
@@ -1435,7 +1435,7 @@
     "email": "hocsinh2026140@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Ng?c Kh?i",
+    "username": "Hoàng Ngọc Khôi",
     "class_name": "11A2",
     "created_at": "2026-09-24T12:00:00"
   },
@@ -1445,7 +1445,7 @@
     "email": "hocsinh2026141@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Tu?n H?n",
+    "username": "Hoàng Tuấn Hân",
     "class_name": "11A2",
     "created_at": "2026-03-25T13:00:00"
   },
@@ -1455,7 +1455,7 @@
     "email": "hocsinh2026142@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng H?i D?ng",
+    "username": "Dương Hải Dũng",
     "class_name": "11A2",
     "created_at": "2026-04-25T14:00:00"
   },
@@ -1465,7 +1465,7 @@
     "email": "hocsinh2026143@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? H?i Th?o",
+    "username": "Lý Hải Thảo",
     "class_name": "11A2",
     "created_at": "2026-05-25T15:00:00"
   },
@@ -1475,7 +1475,7 @@
     "email": "hocsinh2026144@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Thu Kh?i",
+    "username": "Phạm Thu Khôi",
     "class_name": "11A2",
     "created_at": "2026-06-25T08:00:00"
   },
@@ -1485,7 +1485,7 @@
     "email": "hocsinh2026145@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? H?i B?nh",
+    "username": "Lê Hải Bình",
     "class_name": "11A2",
     "created_at": "2026-07-25T09:00:00"
   },
@@ -1495,7 +1495,7 @@
     "email": "hocsinh2026146@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Kh?nh Ng?n",
+    "username": "Trịnh Khánh Ngân",
     "class_name": "11A2",
     "created_at": "2026-08-25T10:00:00"
   },
@@ -1505,7 +1505,7 @@
     "email": "hocsinh2026147@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng Tu?n Linh",
+    "username": "Đặng Tuấn Linh",
     "class_name": "11A2",
     "created_at": "2026-09-25T11:00:00"
   },
@@ -1515,7 +1515,7 @@
     "email": "hocsinh2026148@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?inh Kh?nh Y?n",
+    "username": "Đinh Khánh Yến",
     "class_name": "11A2",
     "created_at": "2026-03-26T12:00:00"
   },
@@ -1525,7 +1525,7 @@
     "email": "hocsinh2026149@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? B?o Tr?",
+    "username": "Lý Bảo Trí",
     "class_name": "11A2",
     "created_at": "2026-04-26T13:00:00"
   },
@@ -1535,7 +1535,7 @@
     "email": "hocsinh2026150@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai B?o Nam",
+    "username": "Mai Bảo Nam",
     "class_name": "11A2",
     "created_at": "2026-05-26T14:00:00"
   },
@@ -1545,7 +1545,7 @@
     "email": "hocsinh2026151@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? ??c Tr?",
+    "username": "Hồ Đức Trí",
     "class_name": "11A2",
     "created_at": "2026-06-26T15:00:00"
   },
@@ -1555,7 +1555,7 @@
     "email": "hocsinh2026152@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Nh?t Tr?",
+    "username": "Phạm Nhật Trí",
     "class_name": "11A2",
     "created_at": "2026-07-26T08:00:00"
   },
@@ -1565,7 +1565,7 @@
     "email": "hocsinh2026153@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? H?i Y?n",
+    "username": "Ngô Hải Yến",
     "class_name": "11A2",
     "created_at": "2026-08-26T09:00:00"
   },
@@ -1575,7 +1575,7 @@
     "email": "hocsinh2026154@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Gia Ng?n",
+    "username": "Lê Gia Ngân",
     "class_name": "11A2",
     "created_at": "2026-09-26T10:00:00"
   },
@@ -1585,7 +1585,7 @@
     "email": "hocsinh2026155@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Ng?c Trang",
+    "username": "Lý Ngọc Trang",
     "class_name": "11A2",
     "created_at": "2026-03-27T11:00:00"
   },
@@ -1595,7 +1595,7 @@
     "email": "hocsinh2026156@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng H?i An",
+    "username": "Dương Hải An",
     "class_name": "11A2",
     "created_at": "2026-04-27T12:00:00"
   },
@@ -1605,7 +1605,7 @@
     "email": "hocsinh2026157@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? B?o Ph?c",
+    "username": "Võ Bảo Phúc",
     "class_name": "11A2",
     "created_at": "2026-05-27T13:00:00"
   },
@@ -1615,7 +1615,7 @@
     "email": "hocsinh2026158@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Ho?i Ng?n",
+    "username": "Ngô Hoài Ngân",
     "class_name": "11A2",
     "created_at": "2026-06-27T14:00:00"
   },
@@ -1625,7 +1625,7 @@
     "email": "hocsinh2026159@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Phan Ho?i Ph?c",
+    "username": "Phan Hoài Phúc",
     "class_name": "11A2",
     "created_at": "2026-07-27T15:00:00"
   },
@@ -1635,7 +1635,7 @@
     "email": "hocsinh2026160@phyedu.local",
     "grade": "11",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Tu?n Linh",
+    "username": "Trịnh Tuấn Linh",
     "class_name": "11A2",
     "created_at": "2026-08-27T08:00:00"
   },
@@ -1645,7 +1645,7 @@
     "email": "hocsinh2026161@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Thanh Y?n",
+    "username": "Lý Thanh Yến",
     "class_name": "12A1",
     "created_at": "2026-09-27T09:00:00"
   },
@@ -1655,7 +1655,7 @@
     "email": "hocsinh2026162@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Minh Trang",
+    "username": "Lê Minh Trang",
     "class_name": "12A1",
     "created_at": "2026-03-28T10:00:00"
   },
@@ -1665,7 +1665,7 @@
     "email": "hocsinh2026163@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? H?i H?",
+    "username": "Hồ Hải Hà",
     "class_name": "12A1",
     "created_at": "2026-04-28T11:00:00"
   },
@@ -1675,7 +1675,7 @@
     "email": "hocsinh2026164@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Tu?n B?nh",
+    "username": "Mai Tuấn Bình",
     "class_name": "12A1",
     "created_at": "2026-05-28T12:00:00"
   },
@@ -1685,7 +1685,7 @@
     "email": "hocsinh2026165@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m H?i Tr?",
+    "username": "Phạm Hải Trí",
     "class_name": "12A1",
     "created_at": "2026-06-28T13:00:00"
   },
@@ -1695,7 +1695,7 @@
     "email": "hocsinh2026166@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng B?o Long",
+    "username": "Hoàng Bảo Long",
     "class_name": "12A1",
     "created_at": "2026-07-28T14:00:00"
   },
@@ -1705,7 +1705,7 @@
     "email": "hocsinh2026167@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh ??c Ph?c",
+    "username": "Trịnh Đức Phúc",
     "class_name": "12A1",
     "created_at": "2026-08-28T15:00:00"
   },
@@ -1715,7 +1715,7 @@
     "email": "hocsinh2026168@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?inh Minh Long",
+    "username": "Đinh Minh Long",
     "class_name": "12A1",
     "created_at": "2026-09-28T08:00:00"
   },
@@ -1725,7 +1725,7 @@
     "email": "hocsinh2026169@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? B?o An",
+    "username": "Võ Bảo An",
     "class_name": "12A1",
     "created_at": "2026-03-05T09:00:00"
   },
@@ -1735,7 +1735,7 @@
     "email": "hocsinh2026170@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Kh?nh An",
+    "username": "Bùi Khánh An",
     "class_name": "12A1",
     "created_at": "2026-04-05T10:00:00"
   },
@@ -1745,7 +1745,7 @@
     "email": "hocsinh2026171@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Ho?i Y?n",
+    "username": "Bùi Hoài Yến",
     "class_name": "12A1",
     "created_at": "2026-05-05T11:00:00"
   },
@@ -1755,7 +1755,7 @@
     "email": "hocsinh2026172@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Th? Long",
+    "username": "Ngô Thị Long",
     "class_name": "12A1",
     "created_at": "2026-06-05T12:00:00"
   },
@@ -1765,7 +1765,7 @@
     "email": "hocsinh2026173@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Thu Trang",
+    "username": "Phạm Thu Trang",
     "class_name": "12A1",
     "created_at": "2026-07-05T13:00:00"
   },
@@ -1775,7 +1775,7 @@
     "email": "hocsinh2026174@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Tu?n An",
+    "username": "Ngô Tuấn An",
     "class_name": "12A1",
     "created_at": "2026-08-05T14:00:00"
   },
@@ -1785,7 +1785,7 @@
     "email": "hocsinh2026175@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Ho?i Trang",
+    "username": "Hoàng Hoài Trang",
     "class_name": "12A1",
     "created_at": "2026-09-05T15:00:00"
   },
@@ -1795,7 +1795,7 @@
     "email": "hocsinh2026176@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng B?o Kh?i",
+    "username": "Dương Bảo Khôi",
     "class_name": "12A1",
     "created_at": "2026-03-06T08:00:00"
   },
@@ -1805,7 +1805,7 @@
     "email": "hocsinh2026177@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? B?o Giang",
+    "username": "Tạ Bảo Giang",
     "class_name": "12A1",
     "created_at": "2026-04-06T09:00:00"
   },
@@ -1815,7 +1815,7 @@
     "email": "hocsinh2026178@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?n Anh Nam",
+    "username": "Trần Anh Nam",
     "class_name": "12A1",
     "created_at": "2026-05-06T10:00:00"
   },
@@ -1825,7 +1825,7 @@
     "email": "hocsinh2026179@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai Tu?n Th?o",
+    "username": "Mai Tuấn Thảo",
     "class_name": "12A1",
     "created_at": "2026-06-06T11:00:00"
   },
@@ -1835,7 +1835,7 @@
     "email": "hocsinh2026180@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? B?o Ph?c",
+    "username": "Lê Bảo Phúc",
     "class_name": "12A1",
     "created_at": "2026-07-06T12:00:00"
   },
@@ -1845,7 +1845,7 @@
     "email": "hocsinh2026181@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Kh?nh Khang",
+    "username": "Hồ Khánh Khang",
     "class_name": "12A1",
     "created_at": "2026-08-06T13:00:00"
   },
@@ -1855,7 +1855,7 @@
     "email": "hocsinh2026182@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Tu?n H??ng",
+    "username": "Lý Tuấn Hương",
     "class_name": "12A1",
     "created_at": "2026-09-06T14:00:00"
   },
@@ -1865,7 +1865,7 @@
     "email": "hocsinh2026183@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Ho?i Vy",
+    "username": "Hồ Hoài Vy",
     "class_name": "12A1",
     "created_at": "2026-03-07T15:00:00"
   },
@@ -1875,7 +1875,7 @@
     "email": "hocsinh2026184@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Kim Linh",
+    "username": "Lý Kim Linh",
     "class_name": "12A1",
     "created_at": "2026-04-07T08:00:00"
   },
@@ -1885,7 +1885,7 @@
     "email": "hocsinh2026185@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n Tu?n Nam",
+    "username": "Nguyễn Tuấn Nam",
     "class_name": "12A1",
     "created_at": "2026-05-07T09:00:00"
   },
@@ -1895,7 +1895,7 @@
     "email": "hocsinh2026186@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Thanh B?nh",
+    "username": "Bùi Thanh Bình",
     "class_name": "12A1",
     "created_at": "2026-06-07T10:00:00"
   },
@@ -1905,7 +1905,7 @@
     "email": "hocsinh2026187@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Tu?n D?ng",
+    "username": "Hồ Tuấn Dũng",
     "class_name": "12A1",
     "created_at": "2026-07-07T11:00:00"
   },
@@ -1915,7 +1915,7 @@
     "email": "hocsinh2026188@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Kh?nh Th?o",
+    "username": "Bùi Khánh Thảo",
     "class_name": "12A1",
     "created_at": "2026-08-07T12:00:00"
   },
@@ -1925,7 +1925,7 @@
     "email": "hocsinh2026189@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Anh B?nh",
+    "username": "Vũ Anh Bình",
     "class_name": "12A1",
     "created_at": "2026-09-07T13:00:00"
   },
@@ -1935,7 +1935,7 @@
     "email": "hocsinh2026190@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Minh H?",
+    "username": "Trịnh Minh Hà",
     "class_name": "12A1",
     "created_at": "2026-03-08T14:00:00"
   },
@@ -1945,7 +1945,7 @@
     "email": "hocsinh2026191@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i ??c Qu?n",
+    "username": "Bùi Đức Quân",
     "class_name": "12A1",
     "created_at": "2026-04-08T15:00:00"
   },
@@ -1955,7 +1955,7 @@
     "email": "hocsinh2026192@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh ??c Long",
+    "username": "Trịnh Đức Long",
     "class_name": "12A1",
     "created_at": "2026-05-08T08:00:00"
   },
@@ -1965,7 +1965,7 @@
     "email": "hocsinh2026193@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "B?i Anh An",
+    "username": "Bùi Anh An",
     "class_name": "12A1",
     "created_at": "2026-06-08T09:00:00"
   },
@@ -1975,7 +1975,7 @@
     "email": "hocsinh2026194@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Gia Long",
+    "username": "Trịnh Gia Long",
     "class_name": "12A1",
     "created_at": "2026-07-08T10:00:00"
   },
@@ -1985,7 +1985,7 @@
     "email": "hocsinh2026195@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng Ng?c Vy",
+    "username": "Dương Ngọc Vy",
     "class_name": "12A1",
     "created_at": "2026-08-08T11:00:00"
   },
@@ -1995,7 +1995,7 @@
     "email": "hocsinh2026196@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Ho?i An",
+    "username": "Hoàng Hoài An",
     "class_name": "12A1",
     "created_at": "2026-09-08T12:00:00"
   },
@@ -2005,7 +2005,7 @@
     "email": "hocsinh2026197@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Nh?t Kh?i",
+    "username": "Phạm Nhật Khôi",
     "class_name": "12A1",
     "created_at": "2026-03-09T13:00:00"
   },
@@ -2015,8 +2015,8 @@
     "email": "hocsinh2026198@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?? Th? Long",
-    "class_name": "12A1",
+    "username": "Đỗ Thị Long",
+    "class_name": "12A2",
     "created_at": "2026-04-09T14:00:00"
   },
   {
@@ -2025,8 +2025,8 @@
     "email": "hocsinh2026199@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Nh?t Khang",
-    "class_name": "12A1",
+    "username": "Hồ Nhật Khang",
+    "class_name": "12A2",
     "created_at": "2026-05-09T15:00:00"
   },
   {
@@ -2035,8 +2035,8 @@
     "email": "hocsinh2026200@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? ??c H?",
-    "class_name": "12A1",
+    "username": "Tạ Đức Hà",
+    "class_name": "12A2",
     "created_at": "2026-06-09T08:00:00"
   },
   {
@@ -2045,7 +2045,7 @@
     "email": "hocsinh2026201@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Phan Quang Th?o",
+    "username": "Phan Quang Thảo",
     "class_name": "12A2",
     "created_at": "2026-07-09T09:00:00"
   },
@@ -2065,7 +2065,7 @@
     "email": "hocsinh2026203@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Anh Th?o",
+    "username": "Ngô Anh Thảo",
     "class_name": "12A2",
     "created_at": "2026-09-09T11:00:00"
   },
@@ -2075,7 +2075,7 @@
     "email": "hocsinh2026204@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "D??ng Tu?n H?",
+    "username": "Dương Tuấn Hà",
     "class_name": "12A2",
     "created_at": "2026-03-10T12:00:00"
   },
@@ -2085,7 +2085,7 @@
     "email": "hocsinh2026205@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?? Thanh B?nh",
+    "username": "Đỗ Thanh Bình",
     "class_name": "12A2",
     "created_at": "2026-04-10T13:00:00"
   },
@@ -2095,7 +2095,7 @@
     "email": "hocsinh2026206@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? B?o H??ng",
+    "username": "Hồ Bảo Hương",
     "class_name": "12A2",
     "created_at": "2026-05-10T14:00:00"
   },
@@ -2105,7 +2105,7 @@
     "email": "hocsinh2026207@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? Tu?n Th?o",
+    "username": "Tạ Tuấn Thảo",
     "class_name": "12A2",
     "created_at": "2026-06-10T15:00:00"
   },
@@ -2115,7 +2115,7 @@
     "email": "hocsinh2026208@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?n Quang Ph?c",
+    "username": "Trần Quang Phúc",
     "class_name": "12A2",
     "created_at": "2026-07-10T08:00:00"
   },
@@ -2125,7 +2125,7 @@
     "email": "hocsinh2026209@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Nguy?n ??c Qu?n",
+    "username": "Nguyễn Đức Quân",
     "class_name": "12A2",
     "created_at": "2026-08-10T09:00:00"
   },
@@ -2135,7 +2135,7 @@
     "email": "hocsinh2026210@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?inh Thu Trang",
+    "username": "Đinh Thu Trang",
     "class_name": "12A2",
     "created_at": "2026-09-10T10:00:00"
   },
@@ -2145,7 +2145,7 @@
     "email": "hocsinh2026211@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Ng?c H?",
+    "username": "Lê Ngọc Hà",
     "class_name": "12A2",
     "created_at": "2026-03-11T11:00:00"
   },
@@ -2155,7 +2155,7 @@
     "email": "hocsinh2026212@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? ??c Nam",
+    "username": "Lê Đức Nam",
     "class_name": "12A2",
     "created_at": "2026-04-11T12:00:00"
   },
@@ -2165,7 +2165,7 @@
     "email": "hocsinh2026213@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Nh?t Tr?",
+    "username": "Hoàng Nhật Trí",
     "class_name": "12A2",
     "created_at": "2026-05-11T13:00:00"
   },
@@ -2175,7 +2175,7 @@
     "email": "hocsinh2026214@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "T? Ho?i B?nh",
+    "username": "Tạ Hoài Bình",
     "class_name": "12A2",
     "created_at": "2026-06-11T14:00:00"
   },
@@ -2185,7 +2185,7 @@
     "email": "hocsinh2026215@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "?inh B?o D?ng",
+    "username": "Đinh Bảo Dũng",
     "class_name": "12A2",
     "created_at": "2026-07-11T15:00:00"
   },
@@ -2195,7 +2195,7 @@
     "email": "hocsinh2026216@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Thu H??ng",
+    "username": "Phạm Thu Hương",
     "class_name": "12A2",
     "created_at": "2026-08-11T08:00:00"
   },
@@ -2205,7 +2205,7 @@
     "email": "hocsinh2026217@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Thu Th?o",
+    "username": "Hồ Thu Thảo",
     "class_name": "12A2",
     "created_at": "2026-09-11T09:00:00"
   },
@@ -2215,7 +2215,7 @@
     "email": "hocsinh2026218@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Thu Linh",
+    "username": "Vũ Thu Linh",
     "class_name": "12A2",
     "created_at": "2026-03-12T10:00:00"
   },
@@ -2225,7 +2225,7 @@
     "email": "hocsinh2026219@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Minh Th?o",
+    "username": "Hoàng Minh Thảo",
     "class_name": "12A2",
     "created_at": "2026-04-12T11:00:00"
   },
@@ -2235,7 +2235,7 @@
     "email": "hocsinh2026220@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng H?i Khang",
+    "username": "Đặng Hải Khang",
     "class_name": "12A2",
     "created_at": "2026-05-12T12:00:00"
   },
@@ -2245,7 +2245,7 @@
     "email": "hocsinh2026221@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Thu H?n",
+    "username": "Lý Thu Hân",
     "class_name": "12A2",
     "created_at": "2026-06-12T13:00:00"
   },
@@ -2255,7 +2255,7 @@
     "email": "hocsinh2026222@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng Kh?nh Ch?u",
+    "username": "Đặng Khánh Châu",
     "class_name": "12A2",
     "created_at": "2026-07-12T14:00:00"
   },
@@ -2265,7 +2265,7 @@
     "email": "hocsinh2026223@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "L? Anh H?n",
+    "username": "Lê Anh Hân",
     "class_name": "12A2",
     "created_at": "2026-08-12T15:00:00"
   },
@@ -2275,7 +2275,7 @@
     "email": "hocsinh2026224@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Gia Th?o",
+    "username": "Trịnh Gia Thảo",
     "class_name": "12A2",
     "created_at": "2026-09-12T08:00:00"
   },
@@ -2285,7 +2285,7 @@
     "email": "hocsinh2026225@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ho?ng Tu?n An",
+    "username": "Hoàng Tuấn An",
     "class_name": "12A2",
     "created_at": "2026-03-13T09:00:00"
   },
@@ -2295,7 +2295,7 @@
     "email": "hocsinh2026226@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Mai B?o B?nh",
+    "username": "Mai Bảo Bình",
     "class_name": "12A2",
     "created_at": "2026-04-13T10:00:00"
   },
@@ -2305,7 +2305,7 @@
     "email": "hocsinh2026227@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "??ng Thu Th?o",
+    "username": "Đặng Thu Thảo",
     "class_name": "12A2",
     "created_at": "2026-05-13T11:00:00"
   },
@@ -2315,7 +2315,7 @@
     "email": "hocsinh2026228@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Th? Y?n",
+    "username": "Hồ Thị Yến",
     "class_name": "12A2",
     "created_at": "2026-06-13T12:00:00"
   },
@@ -2325,7 +2325,7 @@
     "email": "hocsinh2026229@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Thanh Mai",
+    "username": "Hồ Thanh Mai",
     "class_name": "12A2",
     "created_at": "2026-07-13T13:00:00"
   },
@@ -2335,7 +2335,7 @@
     "email": "hocsinh2026230@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Kim Y?n",
+    "username": "Hồ Kim Yến",
     "class_name": "12A2",
     "created_at": "2026-08-13T14:00:00"
   },
@@ -2345,7 +2345,7 @@
     "email": "hocsinh2026231@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Minh Ch?u",
+    "username": "Phạm Minh Châu",
     "class_name": "12A2",
     "created_at": "2026-09-13T15:00:00"
   },
@@ -2355,7 +2355,7 @@
     "email": "hocsinh2026232@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ng? Th? D?ng",
+    "username": "Ngô Thị Dũng",
     "class_name": "12A2",
     "created_at": "2026-03-14T08:00:00"
   },
@@ -2365,7 +2365,7 @@
     "email": "hocsinh2026233@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? ??c Vy",
+    "username": "Hồ Đức Vy",
     "class_name": "12A2",
     "created_at": "2026-04-14T09:00:00"
   },
@@ -2375,7 +2375,7 @@
     "email": "hocsinh2026234@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "V? Ng?c B?nh",
+    "username": "Võ Ngọc Bình",
     "class_name": "12A2",
     "created_at": "2026-05-14T10:00:00"
   },
@@ -2385,7 +2385,7 @@
     "email": "hocsinh2026235@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Ng?c Linh",
+    "username": "Trịnh Ngọc Linh",
     "class_name": "12A2",
     "created_at": "2026-06-14T11:00:00"
   },
@@ -2395,7 +2395,7 @@
     "email": "hocsinh2026236@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Tr?nh Thu Kh?i",
+    "username": "Trịnh Thu Khôi",
     "class_name": "12A2",
     "created_at": "2026-07-14T12:00:00"
   },
@@ -2405,7 +2405,7 @@
     "email": "hocsinh2026237@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Ph?m Tu?n Mai",
+    "username": "Phạm Tuấn Mai",
     "class_name": "12A2",
     "created_at": "2026-08-14T13:00:00"
   },
@@ -2415,7 +2415,7 @@
     "email": "hocsinh2026238@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "Hu?nh Ho?i Mai",
+    "username": "Huỳnh Hoài Mai",
     "class_name": "12A2",
     "created_at": "2026-09-14T14:00:00"
   },
@@ -2425,7 +2425,7 @@
     "email": "hocsinh2026239@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? B?o Ng?n",
+    "username": "Hồ Bảo Ngân",
     "class_name": "12A2",
     "created_at": "2026-03-15T15:00:00"
   },
@@ -2435,7 +2435,7 @@
     "email": "hocsinh2026240@phyedu.local",
     "grade": "12",
     "password": "scrypt:32768:8:1$a2gsXZK3PjH25rBv$e8fd29fc965bebd1f05fa6e286ac6f04cef5aa3535bc8c4d678fa59df529efae5ffb82866b2beb889d30995fb864f87c7ddea6e9168b051170cee921ff715477",
-    "username": "H? Kim An",
+    "username": "Hồ Kim An",
     "class_name": "12A2",
     "created_at": "2026-04-15T08:00:00"
   }
