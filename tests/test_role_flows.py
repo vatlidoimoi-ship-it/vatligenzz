@@ -307,10 +307,14 @@ class RoleFlowTests(unittest.TestCase):
         self.assertEqual(stats['reporting_window'], 'T3/2026 – T9/2026')
         self.assertEqual(stats['monthly_rows'][0]['exams'], 1)
         self.assertEqual(stats['monthly_rows'][4]['submissions'], 1)
+        self.assertEqual([row['cumulative_exams'] for row in stats['monthly_rows']], [1] * 7)
+        self.assertEqual([row['cumulative_submissions'] for row in stats['monthly_rows']], [0, 0, 0, 0, 1, 1, 1])
+        self.assertTrue(stats['exam_chart_points'].startswith('0,100 '))
+        self.assertTrue(stats['exam_chart_points'].endswith('600.0,0.0'))
         self.login('admin')
         page = self.client.get('/admin/forum-reports')
         self.assertEqual(page.status_code, 200)
-        self.assertIn('Hoạt động theo tháng'.encode(), page.data)
+        self.assertIn('Lũy kế hoạt động học tập'.encode(), page.data)
 
     def test_admin_manages_courses_and_documents_without_taking_ownership(self):
         self.login('admin')

@@ -17,6 +17,12 @@
                 <option value="{{ grade }}" {% if initial_grade == grade %}selected{% endif %}>Lớp {{ grade }}</option>
                 {% endfor %}
             </select>
+            <label for="examSemesterFilter">Học kì</label>
+            <select id="examSemesterFilter" class="form-select" style="max-width:220px">
+                <option value="all">Tất cả học kì</option>
+                <option value="hk1">Học kì I</option>
+                <option value="hk2">Học kì II</option>
+            </select>
             <p id="examGradeCount" role="status"></p>
         </div>
     </div>
@@ -40,7 +46,7 @@
             {% if exams|length > 0 %}
                 <div class="row">
                     {% for exam in exams %}
-                    <div class="col-md-6 col-lg-4 mb-4 exam-grade-card" data-grade="{{ exam.grade }}">
+                    <div class="col-md-6 col-lg-4 mb-4 exam-grade-card" data-grade="{{ exam.grade }}" data-semester="{{ exam.semester or '' }}">
                         <div class="exam-card h-100">
                             <div class="card-body">
                                 <h5 class="exam-card-title">
@@ -49,6 +55,7 @@
                                 {% if exam.grade %}
                                 <p class="exam-card-info"><strong>Lớp {{ exam.grade }}</strong>{% if exam.batch_id == 'word11-20x20-v1' %} · Bộ đề theo tài liệu Word{% endif %}</p>
                                 {% endif %}
+                                {% if exam.semester %}<p class="exam-card-info">Học kì {{ 'I' if exam.semester == 'hk1' else 'II' }}</p>{% endif %}
                                 {% if exam.description %}
                                 <p class="exam-card-info">{{ exam.description }}</p>
                                 {% endif %}
@@ -88,15 +95,18 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const gradeFilter = document.getElementById('examGradeFilter');
+    const semesterFilter = document.getElementById('examSemesterFilter');
     function filterByGrade() {
         let visible = 0;
         document.querySelectorAll('.exam-grade-card').forEach(card => {
-            card.hidden = gradeFilter.value !== 'all' && card.dataset.grade !== gradeFilter.value;
+            card.hidden = (gradeFilter.value !== 'all' && card.dataset.grade !== gradeFilter.value)
+                || (semesterFilter.value !== 'all' && card.dataset.semester !== semesterFilter.value);
             if (!card.hidden) visible++;
         });
-        document.getElementById('examGradeCount').textContent = `${visible} đề${gradeFilter.value === 'all' ? '' : ' lớp ' + gradeFilter.value}`;
+        document.getElementById('examGradeCount').textContent = `${visible} đề${gradeFilter.value === 'all' ? '' : ' lớp ' + gradeFilter.value}${semesterFilter.value === 'all' ? '' : ' · học kì ' + (semesterFilter.value === 'hk1' ? 'I' : 'II')}`;
     }
     gradeFilter.addEventListener('change', filterByGrade);
+    semesterFilter.addEventListener('change', filterByGrade);
     filterByGrade();
     const triggerTabList = document.querySelectorAll('#subjectTabs button[data-bs-toggle="tab"]');
     triggerTabList.forEach(triggerEl => {

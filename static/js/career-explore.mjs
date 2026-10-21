@@ -7,6 +7,7 @@ const escape = value => String(value).replace(/[&<>"']/g, c => ({'&': '&amp;', '
 const dialog = $('assessmentDialog');
 const content = $('assessmentContent');
 let active, answers = [], step = 0, stage = 'intro', result, opener;
+let recordedResult = false;
 
 function switchPanel(chat) {
     $('explorePanel').hidden = chat;
@@ -41,6 +42,7 @@ $('packageGrid').addEventListener('click', event => {
     result = null;
     opener = button;
     stage = 'intro';
+    recordedResult = false;
     renderIntro();
     dialog.showModal();
 });
@@ -54,7 +56,7 @@ function sourceMarkup() {
 const help = '<div class="care-help"><p><strong>Bạn không cần tự vượt qua một mình.</strong> Nếu cảm xúc kéo dài hoặc ảnh hưởng việc học, giấc ngủ, sinh hoạt, hãy nói với người lớn tin cậy hoặc chuyên viên. Nếu đang có nguy cơ làm hại bản thân hay gặp nguy hiểm ngay lúc này, đến nơi an toàn, nhờ người ở cùng và gọi cấp cứu địa phương (115 tại Việt Nam).</p></div>';
 function renderIntro() {
     content.innerHTML = `<p class="care-eyebrow">${escape(active.tag)}</p><h2 id="assessmentTitle" tabindex="-1">${escape(active.title)}</h2><p>${escape(active.description)}</p><p class="care-disclosure">${escape(active.note)}</p>${sourceMarkup()}
-    ${active.items.length ? `<p>${escape(active.instruction)}</p><p class="care-source">Không lưu câu trả lời lên máy chủ. Đóng bài hoặc tải lại trang sẽ xóa câu trả lời. Bạn có thể dừng bất cứ lúc nào.</p><button class="care-action" type="button" data-action="start">Mình đã hiểu · Bắt đầu ${active.items.length} câu →</button>` : `<h3>Một bước nhỏ để tìm hỗ trợ</h3><p>Ghi lại điều đang làm bạn khó chịu, khi nào bắt đầu và ảnh hưởng tới sinh hoạt ra sao. Bạn không cần tự gắn nhãn cho cảm xúc của mình.</p><p>Hãy nhờ người lớn tin cậy kết nối với chuyên viên tâm lý hoặc người phụ trách tư vấn học đường. Bạn có thể nói: “Gần đây em đang gặp khó khăn và muốn có người cùng tìm cách hỗ trợ.”</p>${help}<button class="care-action" type="button" data-action="talk">Chuẩn bị lời nhắn để trò chuyện →</button>`}`;
+    ${active.items.length ? `<p>${escape(active.instruction)}</p><p class="care-source">Không lưu câu trả lời hoặc điểm lên máy chủ. Khi hoàn thành, hệ thống ghi nhận tên gói và lượt làm để thống kê. Đóng bài hoặc tải lại trang sẽ xóa câu trả lời. Bạn có thể dừng bất cứ lúc nào.</p><button class="care-action" type="button" data-action="start">Mình đã hiểu · Bắt đầu ${active.items.length} câu →</button>` : `<h3>Một bước nhỏ để tìm hỗ trợ</h3><p>Ghi lại điều đang làm bạn khó chịu, khi nào bắt đầu và ảnh hưởng tới sinh hoạt ra sao. Bạn không cần tự gắn nhãn cho cảm xúc của mình.</p><p>Hãy nhờ người lớn tin cậy kết nối với chuyên viên tâm lý hoặc người phụ trách tư vấn học đường. Bạn có thể nói: “Gần đây em đang gặp khó khăn và muốn có người cùng tìm cách hỗ trợ.”</p>${help}<button class="care-action" type="button" data-action="talk">Chuẩn bị lời nhắn để trò chuyện →</button>`}`;
 }
 function renderQuestion() {
     const item = active.items[step];
@@ -74,6 +76,15 @@ content.addEventListener('change', event => {
 function renderResult() {
     result = scoreAssessment(active.id, answers);
     stage = 'result';
+    if (!recordedResult) {
+        recordedResult = true;
+        fetch('/api/career-guidance/completion', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({package_id: active.id})
+        }).then(response => { if (!response.ok) recordedResult = false; })
+          .catch(() => { recordedResult = false; });
+    }
     content.innerHTML = `<p class="care-eyebrow">${escape(active.title)} · KẾT QUẢ THAM KHẢO</p><h2 id="assessmentTitle" tabindex="-1">${escape(result.title)}</h2><p>${escape(result.message)}</p>
         ${result.rows.map(row => `<div class="care-result-row"><div class="care-result-label"><span>${escape(row.label)}</span><span>${row.value}/100</span></div><div class="care-meter" aria-hidden="true"><span style="width:${row.value}%"></span></div><p>${escape(row.detail)}</p></div>`).join('')}
         <p class="care-disclosure">${escape(result.next)}</p>${active.category === 'wellbeing' ? help : ''}<details><summary>Hiểu đúng kết quả và nguồn câu hỏi</summary><p>${escape(active.note)}</p>${sourceMarkup()}</details>

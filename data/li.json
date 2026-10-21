@@ -362,7 +362,8 @@
           "id": 20,
           "source_file": "1. CHUYÊN ĐỀ 1 - DAO ĐỘNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_02",
@@ -726,7 +727,8 @@
           "id": 20,
           "source_file": "1. CHUYÊN ĐỀ 1 - DAO ĐỘNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_03",
@@ -1090,7 +1092,8 @@
           "id": 20,
           "source_file": "1. CHUYÊN ĐỀ 1 - DAO ĐỘNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_04",
@@ -1454,7 +1457,8 @@
           "id": 20,
           "source_file": "1. CHUYÊN ĐỀ 1 - DAO ĐỘNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_05",
@@ -1818,7 +1822,8 @@
           "id": 20,
           "source_file": "1. CHUYÊN ĐỀ 1 - DAO ĐỘNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_06",
@@ -2182,7 +2187,8 @@
           "id": 20,
           "source_file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_07",
@@ -2546,7 +2552,8 @@
           "source_quote": "- Các thành phần vectơ đặc trưng cho điện trường và từ trường dao động cùng pha, vuông góc với nhau và vuông góc với phương truyền sóng điện từ.",
           "source_file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_08",
@@ -2910,7 +2917,8 @@
           "source_quote": "Theo đề bài khi M hoặc N có tốc độ dao động cực đại thì tại A có tốc độ dao động cực tiểu tức là M và N dao động vuông pha với A.",
           "source_file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_09",
@@ -3274,7 +3282,8 @@
           "source_quote": "Trong thí nghiệm giao thoa khe I-âng có khoảng vân là i. Khoảng cách từ vân sáng bậc 5 đến vân tối bậc 9 ở cùng một bên vân trung tâm là",
           "source_file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_10",
@@ -3638,7 +3647,8 @@
           "source_quote": "Sóng dừng trên một sợi dây đàn hồi chiều dài L = PQ được mô tả như Hình bên. Số nút sóng (kể cả hai đầu dây) và số bụng sóng trên dây là",
           "source_file": "2. CHUYÊN ĐỀ 2 - SÓNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li11_word_11",
@@ -4002,7 +4012,8 @@
           "source_quote": "(SBT CD) Hai vật tích điện giống hệt nhau tác dụng lên nhau một lực 2.10-2N khi được đặt cách nhau 34 cm. Tính độ lớn điện tích của mỗi vật.",
           "source_file": "3. CHUYÊN ĐỀ 3 - ĐIỆN TRƯỜNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_12",
@@ -4366,7 +4377,8 @@
           "source_quote": "Một điện tích thử đặt tại điểm có cường độ điện trường 2,5 V/m. Lực tác dụng lên điện tích đó bằng 5.10-5 N. Tính độ lớn của điện tích đó?",
           "source_file": "3. CHUYÊN ĐỀ 3 - ĐIỆN TRƯỜNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_13",
@@ -4730,7 +4742,8 @@
           "source_quote": "Một electrôn chuyển động dọc theo một đường sức của điện trường đều có cường độ 364V/m. Electrôn xuất phát từ điểm M với vận tốc 3,2.106m/s.",
           "source_file": "3. CHUYÊN ĐỀ 3 - ĐIỆN TRƯỜNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_14",
@@ -5094,7 +5107,8 @@
           "source_quote": "Công của lực điện trường làm di chuyển một điện tích giữa hai điểm có hiệu điện thế U = 2000 V là 1J. Độ lớn q của điện tích đó là",
           "source_file": "3. CHUYÊN ĐỀ 3 - ĐIỆN TRƯỜNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_15",
@@ -5458,7 +5472,8 @@
           "source_quote": "Vùng diện tích đầu tiên (1) (hình tam giác) hiển thị năng lượng tích trữ khi tụ điện được tích điện đến 2,0 V. năng lượng dự trữ khi đó là:",
           "source_file": "3. CHUYÊN ĐỀ 3 - ĐIỆN TRƯỜNG - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_16",
@@ -5822,7 +5837,8 @@
           "source_quote": "(SBT-KNTT) Dòng điện chạy qua một dây dẫn kim loại có cường độ 1A. Số electron dịch chuyển qua tiết diện thẳng của dây dẫn này trong 2 s là",
           "source_file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_17",
@@ -6186,7 +6202,8 @@
           "source_quote": "- Dao động nhiệt của các ion trong mạng tinh thể cản trở chuyển động của các electron tự do là nguyên nhân chính gây ra điện trở của kim loại.",
           "source_file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_18",
@@ -6550,7 +6567,8 @@
           "source_quote": "Người ta cắt một đoạn dây dẫn có điện trở R thành 2 nữa bằng nhau và ghép các đầu của chúng lại với nhau. Điện trở của đoạn dây đôi này bằng",
           "source_file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_19",
@@ -6914,7 +6932,8 @@
           "source_quote": "Hiệu điện thế mạch ngoài U cần đặt vào hai cực dương và âm của nguồn điện để nạp điện cho nguồn với dòng điện I được xác định bởi biểu thức.",
           "source_file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li11_word_20",
@@ -7278,7 +7297,8 @@
           "source_quote": "- Công suất tiêu thụ năng lượng điện (công suất điện) của một đoạn mạch là năng lượng điện mà mạch điện tiêu thụ trong một đơn vị thời gian",
           "source_file": "4. CHUYÊN ĐỀ 4 - DÒNG ĐIỆN. MẠCH ĐIỆN - GV.docx"
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_01",
@@ -7865,7 +7885,8 @@
           "source_quote": "28  Dạng 4. Cảm ứng từ trong lòng ống dây Bài tập 5. Một ống hình trụ dài 0,5m, gồm 1000 vòng dây được quấn quanh ống dây với các vòng khít nhau cách điện với nhau, cho dòng điện chạy qua mỗi vòng là 100A. Cảm ứng từ trong lòng ống dây có độ lớn.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_02",
@@ -8452,7 +8473,8 @@
           "source_quote": "28  Dạng 4. Cảm ứng từ trong lòng ống dây Bài tập 5. Một ống hình trụ dài 0,5m, gồm 1000 vòng dây được quấn quanh ống dây với các vòng khít nhau cách điện với nhau, cho dòng điện chạy qua mỗi vòng là 100A. Cảm ứng từ trong lòng ống dây có độ lớn.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_03",
@@ -9039,7 +9061,8 @@
           "source_quote": "28  Dạng 4. Cảm ứng từ trong lòng ống dây Bài tập 5. Một ống hình trụ dài 0,5m, gồm 1000 vòng dây được quấn quanh ống dây với các vòng khít nhau cách điện với nhau, cho dòng điện chạy qua mỗi vòng là 100A. Cảm ứng từ trong lòng ống dây có độ lớn.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_04",
@@ -9626,7 +9649,8 @@
           "source_quote": "28  Dạng 4. Cảm ứng từ trong lòng ống dây Bài tập 5. Một ống hình trụ dài 0,5m, gồm 1000 vòng dây được quấn quanh ống dây với các vòng khít nhau cách điện với nhau, cho dòng điện chạy qua mỗi vòng là 100A. Cảm ứng từ trong lòng ống dây có độ lớn.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_05",
@@ -10213,7 +10237,8 @@
           "source_quote": "28  Dạng 4. Cảm ứng từ trong lòng ống dây Bài tập 5. Một ống hình trụ dài 0,5m, gồm 1000 vòng dây được quấn quanh ống dây với các vòng khít nhau cách điện với nhau, cho dòng điện chạy qua mỗi vòng là 100A. Cảm ứng từ trong lòng ống dây có độ lớn.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_06",
@@ -10796,7 +10821,8 @@
           "source_quote": "46 Chiều dòng điện cảm ứng. Định luật Lenz » Theo định luật Lenz: “Dòng điện cảm ứng xuất hiện trong mạch kín có chiều sao cho từ trường do nó sính ra có tác dụng chống lại sự biến thiên của từ thông qua mạch kín đó.” Suất điện động cảm ứng. Định luật Faraday » Định luật Faraday về cảm ứng điện từ: Độ lớn của suất điện động cảm ứng trong mạch kín",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_07",
@@ -11379,7 +11405,8 @@
           "source_quote": "46 Chiều dòng điện cảm ứng. Định luật Lenz » Theo định luật Lenz: “Dòng điện cảm ứng xuất hiện trong mạch kín có chiều sao cho từ trường do nó sính ra có tác dụng chống lại sự biến thiên của từ thông qua mạch kín đó.” Suất điện động cảm ứng. Định luật Faraday » Định luật Faraday về cảm ứng điện từ: Độ lớn của suất điện động cảm ứng trong mạch kín",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_08",
@@ -11962,7 +11989,8 @@
           "source_quote": "46 Chiều dòng điện cảm ứng. Định luật Lenz » Theo định luật Lenz: “Dòng điện cảm ứng xuất hiện trong mạch kín có chiều sao cho từ trường do nó sính ra có tác dụng chống lại sự biến thiên của từ thông qua mạch kín đó.” Suất điện động cảm ứng. Định luật Faraday » Định luật Faraday về cảm ứng điện từ: Độ lớn của suất điện động cảm ứng trong mạch kín",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_09",
@@ -12545,7 +12573,8 @@
           "source_quote": "46 Chiều dòng điện cảm ứng. Định luật Lenz » Theo định luật Lenz: “Dòng điện cảm ứng xuất hiện trong mạch kín có chiều sao cho từ trường do nó sính ra có tác dụng chống lại sự biến thiên của từ thông qua mạch kín đó.” Suất điện động cảm ứng. Định luật Faraday » Định luật Faraday về cảm ứng điện từ: Độ lớn của suất điện động cảm ứng trong mạch kín",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_10",
@@ -13128,7 +13157,8 @@
           "source_quote": "46 Chiều dòng điện cảm ứng. Định luật Lenz » Theo định luật Lenz: “Dòng điện cảm ứng xuất hiện trong mạch kín có chiều sao cho từ trường do nó sính ra có tác dụng chống lại sự biến thiên của từ thông qua mạch kín đó.” Suất điện động cảm ứng. Định luật Faraday » Định luật Faraday về cảm ứng điện từ: Độ lớn của suất điện động cảm ứng trong mạch kín",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_11",
@@ -13697,7 +13727,8 @@
           "source_quote": "96 C. B. C. D. Câu 10: Hai máy phát điện (1) và (2) tạo ra hai suất điện động xoay chiều 1e và 2e cùng tần số và biến thiên theo thời gian t như hình bên. Hai suất điện động này có tần số và độ lớn độ lệch pha lần lượt là A. 0,4 , . 4 Hz rad . B. 2,5 , . 2 Hz rad C. 2,5 , . 4 Hz rad D. 0,4 , . 2 Hz rad Câu 11: Trong Hình 1, một thanh nam châm N-S",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_12",
@@ -14266,7 +14297,8 @@
           "source_quote": "96 C. B. C. D. Câu 10: Hai máy phát điện (1) và (2) tạo ra hai suất điện động xoay chiều 1e và 2e cùng tần số và biến thiên theo thời gian t như hình bên. Hai suất điện động này có tần số và độ lớn độ lệch pha lần lượt là A. 0,4 , . 4 Hz rad . B. 2,5 , . 2 Hz rad C. 2,5 , . 4 Hz rad D. 0,4 , . 2 Hz rad Câu 11: Trong Hình 1, một thanh nam châm N-S",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_13",
@@ -14835,7 +14867,8 @@
           "source_quote": "96 C. B. C. D. Câu 10: Hai máy phát điện (1) và (2) tạo ra hai suất điện động xoay chiều 1e và 2e cùng tần số và biến thiên theo thời gian t như hình bên. Hai suất điện động này có tần số và độ lớn độ lệch pha lần lượt là A. 0,4 , . 4 Hz rad . B. 2,5 , . 2 Hz rad C. 2,5 , . 4 Hz rad D. 0,4 , . 2 Hz rad Câu 11: Trong Hình 1, một thanh nam châm N-S",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_14",
@@ -15404,7 +15437,8 @@
           "source_quote": "96 C. B. C. D. Câu 10: Hai máy phát điện (1) và (2) tạo ra hai suất điện động xoay chiều 1e và 2e cùng tần số và biến thiên theo thời gian t như hình bên. Hai suất điện động này có tần số và độ lớn độ lệch pha lần lượt là A. 0,4 , . 4 Hz rad . B. 2,5 , . 2 Hz rad C. 2,5 , . 4 Hz rad D. 0,4 , . 2 Hz rad Câu 11: Trong Hình 1, một thanh nam châm N-S",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_15",
@@ -15973,7 +16007,8 @@
           "source_quote": "96 C. B. C. D. Câu 10: Hai máy phát điện (1) và (2) tạo ra hai suất điện động xoay chiều 1e và 2e cùng tần số và biến thiên theo thời gian t như hình bên. Hai suất điện động này có tần số và độ lớn độ lệch pha lần lượt là A. 0,4 , . 4 Hz rad . B. 2,5 , . 2 Hz rad C. 2,5 , . 4 Hz rad D. 0,4 , . 2 Hz rad Câu 11: Trong Hình 1, một thanh nam châm N-S",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_16",
@@ -16536,7 +16571,8 @@
           "source_quote": "180 B. Bài tập tự luận  Dạng 1. Nhà máy điện hạt nhân Bài tập 1: Một nhà máy điện nguyên tử có công suất 5 MW, hoạt động với hiệu suất 17%. Sau thời gian một ngày đêm sẽ có một khối lượng bao nhiêu 235 92U bị phân hạch, nếu cho rằng cứ mỗi phân hạch giải phóng 3,2.10-11 J.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_17",
@@ -17099,7 +17135,8 @@
           "source_quote": "180 B. Bài tập tự luận  Dạng 1. Nhà máy điện hạt nhân Bài tập 1: Một nhà máy điện nguyên tử có công suất 5 MW, hoạt động với hiệu suất 17%. Sau thời gian một ngày đêm sẽ có một khối lượng bao nhiêu 235 92U bị phân hạch, nếu cho rằng cứ mỗi phân hạch giải phóng 3,2.10-11 J.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_18",
@@ -17662,7 +17699,8 @@
           "source_quote": "180 B. Bài tập tự luận  Dạng 1. Nhà máy điện hạt nhân Bài tập 1: Một nhà máy điện nguyên tử có công suất 5 MW, hoạt động với hiệu suất 17%. Sau thời gian một ngày đêm sẽ có một khối lượng bao nhiêu 235 92U bị phân hạch, nếu cho rằng cứ mỗi phân hạch giải phóng 3,2.10-11 J.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_19",
@@ -18225,7 +18263,8 @@
           "source_quote": "180 B. Bài tập tự luận  Dạng 1. Nhà máy điện hạt nhân Bài tập 1: Một nhà máy điện nguyên tử có công suất 5 MW, hoạt động với hiệu suất 17%. Sau thời gian một ngày đêm sẽ có một khối lượng bao nhiêu 235 92U bị phân hạch, nếu cho rằng cứ mỗi phân hạch giải phóng 3,2.10-11 J.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li12_pdf_20",
@@ -18788,7 +18827,8 @@
           "source_quote": "180 B. Bài tập tự luận  Dạng 1. Nhà máy điện hạt nhân Bài tập 1: Một nhà máy điện nguyên tử có công suất 5 MW, hoạt động với hiệu suất 17%. Sau thời gian một ngày đêm sẽ có một khối lượng bao nhiêu 235 92U bị phân hạch, nếu cho rằng cứ mỗi phân hạch giải phóng 3,2.10-11 J.  Lời giải",
           "source_relation": "Biên soạn theo kiến thức/bài tập ở trang nguồn; số liệu được tạo mới."
         }
-      ]
+      ],
+      "semester": "hk2"
     },
     {
       "id": "exam_li10_intro_01",
@@ -18961,7 +19001,8 @@
           "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
           "explanation": "Theo tài liệu bài 1, đáp án là C: cấp độ mô phỏng tầm rộng lớn hay rất lớn của vật chất.."
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li10_intro_02",
@@ -19117,7 +19158,8 @@
           "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
           "explanation": "Theo tài liệu bài 1, đáp án là A: Vật nặng bao giờ cũng rơi nhanh hơn vật nhẹ.."
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li10_intro_03",
@@ -19273,7 +19315,8 @@
           "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
           "explanation": "Theo tài liệu bài 1, đáp án là C: Nghiên cứu về cảm ứng điện từ.."
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li10_intro_04",
@@ -19429,7 +19472,8 @@
           "source_file": "BA╠ÇI 01. LA╠ÇM QUEN VO╠¢╠üI VA╠ú╠éT LI╠ü.docx",
           "explanation": "Theo tài liệu bài 1, đáp án là C: Xác định vấn đề nghiên cứu, quan sát thu thập thông tin, đưa ra dự đoán, thí nghiệm kiểm tra, kết luận.."
         }
-      ]
+      ],
+      "semester": "hk1"
     },
     {
       "id": "exam_li10_safety_01",
@@ -19720,6 +19764,1497 @@
           "source_question": 40,
           "source_file": "BA▌ÇI 02. CA▌üC QUY TA▌å▌üC AN TOA▌ÇN TRONG PHO▌ÇNG THU▌¢▌úC HA▌ÇNH VA▌ú▌éT LI▌ü.docx",
           "explanation": "Theo tài liệu bài 2, đáp án là C: Để hóa chất không đúng nơi quy định sau khi làm xong thí nghiệm.."
+        }
+      ],
+      "semester": "hk1"
+    },
+    {
+      "id": "exam_li10_gap_01",
+      "title": "Vật lí 10 · Đo lường và chuyển động thẳng",
+      "grade": "10",
+      "semester": "hk1",
+      "topic": "Đo lường và chuyển động thẳng",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Đơn vị SI của tốc độ là gì?",
+          "options": {
+            "A": "m/s",
+            "B": "km/h",
+            "C": "m/s²",
+            "D": "N"
+          },
+          "correct_answer": "A",
+          "explanation": "Tốc độ bằng quãng đường chia thời gian."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Một xe đi 120 m trong 10 s. Tốc độ trung bình là bao nhiêu?",
+          "options": {
+            "A": "10 m/s",
+            "B": "1200 m/s",
+            "C": "0,083 m/s",
+            "D": "12 m/s"
+          },
+          "correct_answer": "D",
+          "explanation": "120 : 10 = 12 m/s."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Độ dịch chuyển của người đi 3 m về đông rồi 3 m về tây là bao nhiêu?",
+          "options": {
+            "A": "6 m",
+            "B": "-6 m",
+            "C": "0 m",
+            "D": "3 m"
+          },
+          "correct_answer": "C",
+          "explanation": "Vị trí cuối trùng vị trí đầu."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Trong chuyển động thẳng đều, đồ thị tọa độ theo thời gian có dạng nào?",
+          "options": {
+            "A": "Đường gấp khúc bất kì",
+            "B": "Đường thẳng",
+            "C": "Parabol",
+            "D": "Đường tròn"
+          },
+          "correct_answer": "B",
+          "explanation": "Tọa độ x = x₀ + vt là hàm bậc nhất của t."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Một vật chuyển động thẳng đều với v = 5 m/s trong 4 s. Quãng đường đi được là bao nhiêu?",
+          "options": {
+            "A": "20 m",
+            "B": "1,25 m",
+            "C": "9 m",
+            "D": "40 m"
+          },
+          "correct_answer": "A",
+          "explanation": "s = vt = 5 × 4 = 20 m."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Đại lượng nào có cả độ lớn và hướng?",
+          "options": {
+            "A": "Quãng đường",
+            "B": "Tốc độ",
+            "C": "Thời gian",
+            "D": "Vận tốc"
+          },
+          "correct_answer": "D",
+          "explanation": "Vận tốc là đại lượng vectơ."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "1 km/h xấp xỉ bằng bao nhiêu m/s?",
+          "options": {
+            "A": "10 m/s",
+            "B": "1000 m/s",
+            "C": "0,278 m/s",
+            "D": "3,6 m/s"
+          },
+          "correct_answer": "C",
+          "explanation": "Đổi 1000 m trong 3600 s."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Kết quả đo lặp lại 9,8 cm; 10,0 cm; 10,2 cm có giá trị trung bình là bao nhiêu?",
+          "options": {
+            "A": "30,0 cm",
+            "B": "10,0 cm",
+            "C": "9,8 cm",
+            "D": "10,2 cm"
+          },
+          "correct_answer": "B",
+          "explanation": "Trung bình cộng ba lần đo là 10,0 cm."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Một người đi 40 m về đông rồi 30 m về bắc. Độ lớn độ dịch chuyển là bao nhiêu?",
+          "options": {
+            "A": "50 m",
+            "B": "70 m",
+            "C": "10 m",
+            "D": "35 m"
+          },
+          "correct_answer": "A",
+          "explanation": "Dùng định lí Pythagoras: √(40² + 30²) = 50 m."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Hai xe đi ngược chiều với tốc độ 10 m/s và 15 m/s. Tốc độ tiến lại gần nhau là bao nhiêu?",
+          "options": {
+            "A": "5 m/s",
+            "B": "10 m/s",
+            "C": "150 m/s",
+            "D": "25 m/s"
+          },
+          "correct_answer": "D",
+          "explanation": "Tốc độ tiến lại gần bằng tổng hai tốc độ."
+        }
+      ]
+    },
+    {
+      "id": "exam_li10_gap_02",
+      "title": "Vật lí 10 · Chuyển động biến đổi đều và rơi tự do",
+      "grade": "10",
+      "semester": "hk1",
+      "topic": "Chuyển động biến đổi đều và rơi tự do",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Đơn vị SI của gia tốc là gì?",
+          "options": {
+            "A": "m/s²",
+            "B": "m/s",
+            "C": "N",
+            "D": "kg·m/s"
+          },
+          "correct_answer": "A",
+          "explanation": "Gia tốc là độ biến thiên vận tốc trong một đơn vị thời gian."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Xe tăng tốc từ 2 m/s lên 10 m/s trong 4 s. Gia tốc là bao nhiêu?",
+          "options": {
+            "A": "3 m/s²",
+            "B": "8 m/s²",
+            "C": "32 m/s²",
+            "D": "2 m/s²"
+          },
+          "correct_answer": "D",
+          "explanation": "a = (10 − 2)/4 = 2 m/s²."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Vật bắt đầu từ nghỉ, gia tốc 3 m/s². Vận tốc sau 4 s là bao nhiêu?",
+          "options": {
+            "A": "1,33 m/s",
+            "B": "24 m/s",
+            "C": "12 m/s",
+            "D": "7 m/s"
+          },
+          "correct_answer": "C",
+          "explanation": "v = at = 3 × 4."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Vật xuất phát từ nghỉ với gia tốc 2 m/s² trong 5 s. Quãng đường là bao nhiêu?",
+          "options": {
+            "A": "5 m",
+            "B": "25 m",
+            "C": "10 m",
+            "D": "50 m"
+          },
+          "correct_answer": "B",
+          "explanation": "s = at²/2 = 2 × 25/2."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Vật đang đi 20 m/s và hãm với độ lớn gia tốc 4 m/s². Thời gian dừng là bao nhiêu?",
+          "options": {
+            "A": "5 s",
+            "B": "4 s",
+            "C": "16 s",
+            "D": "80 s"
+          },
+          "correct_answer": "A",
+          "explanation": "t = v₀/|a| = 20/4."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Bỏ qua sức cản không khí, vật rơi tự do gần mặt đất có gia tốc hướng nào?",
+          "options": {
+            "A": "Thẳng đứng lên trên",
+            "B": "Theo phương ngang",
+            "C": "Luôn ngược chiều vận tốc",
+            "D": "Thẳng đứng xuống dưới"
+          },
+          "correct_answer": "D",
+          "explanation": "Gia tốc trọng trường hướng xuống dưới."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Lấy g = 10 m/s². Vật thả rơi từ nghỉ trong 2 s có tốc độ bao nhiêu?",
+          "options": {
+            "A": "10 m/s",
+            "B": "40 m/s",
+            "C": "20 m/s",
+            "D": "5 m/s"
+          },
+          "correct_answer": "C",
+          "explanation": "v = gt = 10 × 2."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Lấy g = 10 m/s². Vật thả rơi từ nghỉ trong 3 s đi được bao nhiêu?",
+          "options": {
+            "A": "90 m",
+            "B": "45 m",
+            "C": "15 m",
+            "D": "30 m"
+          },
+          "correct_answer": "B",
+          "explanation": "s = gt²/2 = 10 × 9/2."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Trên đồ thị vận tốc–thời gian, độ dốc của một đoạn thẳng biểu thị đại lượng nào?",
+          "options": {
+            "A": "Gia tốc",
+            "B": "Quãng đường",
+            "C": "Khối lượng",
+            "D": "Lực ma sát"
+          },
+          "correct_answer": "A",
+          "explanation": "Độ dốc Δv/Δt bằng gia tốc."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Một xe giảm tốc đều từ 12 m/s xuống 4 m/s trong 2 s. Gia tốc là bao nhiêu?",
+          "options": {
+            "A": "4 m/s²",
+            "B": "-8 m/s²",
+            "C": "8 m/s²",
+            "D": "-4 m/s²"
+          },
+          "correct_answer": "D",
+          "explanation": "a = (4 − 12)/2 = −4 m/s²."
+        }
+      ]
+    },
+    {
+      "id": "exam_li10_gap_03",
+      "title": "Vật lí 10 · Các định luật Newton và lực ma sát",
+      "grade": "10",
+      "semester": "hk1",
+      "topic": "Các định luật Newton và lực ma sát",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Khi hợp lực tác dụng lên vật bằng 0, vật có thể ở trạng thái nào?",
+          "options": {
+            "A": "Đứng yên hoặc chuyển động thẳng đều",
+            "B": "Chỉ đứng yên",
+            "C": "Chỉ tăng tốc",
+            "D": "Chuyển động tròn đều"
+          },
+          "correct_answer": "A",
+          "explanation": "Định luật I Newton cho phép vật giữ nguyên vận tốc."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Vật khối lượng 2 kg chịu hợp lực 6 N. Gia tốc là bao nhiêu?",
+          "options": {
+            "A": "12 m/s²",
+            "B": "4 m/s²",
+            "C": "0,33 m/s²",
+            "D": "3 m/s²"
+          },
+          "correct_answer": "D",
+          "explanation": "a = F/m = 6/2."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Đơn vị SI của lực là gì?",
+          "options": {
+            "A": "W",
+            "B": "Pa",
+            "C": "N",
+            "D": "J"
+          },
+          "correct_answer": "C",
+          "explanation": "Đơn vị lực là newton (N)."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Lấy g = 10 m/s². Trọng lượng của vật 3 kg là bao nhiêu?",
+          "options": {
+            "A": "300 N",
+            "B": "30 N",
+            "C": "3 N",
+            "D": "13 N"
+          },
+          "correct_answer": "B",
+          "explanation": "P = mg = 3 × 10."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Lực và phản lực theo định luật III Newton tác dụng lên đâu?",
+          "options": {
+            "A": "Hai vật khác nhau",
+            "B": "Cùng một vật",
+            "C": "Chỉ vật đứng yên",
+            "D": "Chỉ vật chuyển động"
+          },
+          "correct_answer": "A",
+          "explanation": "Cặp tương tác tác dụng lên hai vật khác nhau."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Vật trượt trên mặt phẳng ngang; lực ma sát trượt hướng nào?",
+          "options": {
+            "A": "Cùng chiều chuyển động tương đối",
+            "B": "Luôn thẳng đứng lên",
+            "C": "Luôn thẳng đứng xuống",
+            "D": "Ngược chiều chuyển động tương đối"
+          },
+          "correct_answer": "D",
+          "explanation": "Ma sát trượt cản chuyển động tương đối giữa hai bề mặt."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Lực ép 20 N, hệ số ma sát trượt 0,2. Độ lớn lực ma sát trượt là bao nhiêu?",
+          "options": {
+            "A": "20,2 N",
+            "B": "100 N",
+            "C": "4 N",
+            "D": "0,01 N"
+          },
+          "correct_answer": "C",
+          "explanation": "Fms = μN = 0,2 × 20."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Hai lực cùng phương, cùng chiều 5 N và 7 N có hợp lực bao nhiêu?",
+          "options": {
+            "A": "7 N",
+            "B": "12 N",
+            "C": "2 N",
+            "D": "35 N"
+          },
+          "correct_answer": "B",
+          "explanation": "Hai lực cùng chiều có độ lớn hợp lực bằng tổng."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Hai lực ngược chiều 10 N và 6 N có hợp lực độ lớn bao nhiêu?",
+          "options": {
+            "A": "4 N",
+            "B": "16 N",
+            "C": "60 N",
+            "D": "10 N"
+          },
+          "correct_answer": "A",
+          "explanation": "Độ lớn hợp lực bằng hiệu hai độ lớn."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Một vật khối lượng 5 kg có gia tốc 2 m/s². Hợp lực là bao nhiêu?",
+          "options": {
+            "A": "2,5 N",
+            "B": "7 N",
+            "C": "25 N",
+            "D": "10 N"
+          },
+          "correct_answer": "D",
+          "explanation": "F = ma = 5 × 2."
+        }
+      ]
+    },
+    {
+      "id": "exam_li10_gap_04",
+      "title": "Vật lí 10 · Công, năng lượng và động lượng",
+      "grade": "10",
+      "semester": "hk2",
+      "topic": "Công, năng lượng và động lượng",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Đơn vị SI của công cơ học là gì?",
+          "options": {
+            "A": "J",
+            "B": "N",
+            "C": "W",
+            "D": "kg"
+          },
+          "correct_answer": "A",
+          "explanation": "Đơn vị công là joule (J)."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Lực 10 N cùng hướng chuyển dời 5 m thực hiện công bao nhiêu?",
+          "options": {
+            "A": "2 J",
+            "B": "15 J",
+            "C": "500 J",
+            "D": "50 J"
+          },
+          "correct_answer": "D",
+          "explanation": "A = Fs = 10 × 5."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Lực vuông góc với độ dịch chuyển thực hiện công bao nhiêu?",
+          "options": {
+            "A": "Bằng F/s",
+            "B": "Luôn âm",
+            "C": "0 J",
+            "D": "Bằng Fs"
+          },
+          "correct_answer": "C",
+          "explanation": "A = Fs cos 90° = 0."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Vật 2 kg chuyển động 3 m/s có động năng bao nhiêu?",
+          "options": {
+            "A": "18 J",
+            "B": "9 J",
+            "C": "3 J",
+            "D": "6 J"
+          },
+          "correct_answer": "B",
+          "explanation": "Wđ = mv²/2 = 2 × 9/2."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Lấy g = 10 m/s², vật 2 kg ở cao 5 m có thế năng trọng trường bao nhiêu so với mặt đất?",
+          "options": {
+            "A": "100 J",
+            "B": "10 J",
+            "C": "25 J",
+            "D": "50 J"
+          },
+          "correct_answer": "A",
+          "explanation": "Wt = mgh = 2 × 10 × 5."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Công suất của máy thực hiện công 600 J trong 3 s là bao nhiêu?",
+          "options": {
+            "A": "1800 W",
+            "B": "603 W",
+            "C": "20 W",
+            "D": "200 W"
+          },
+          "correct_answer": "D",
+          "explanation": "P = A/t = 600/3."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Động lượng của vật 2 kg chuyển động 4 m/s có độ lớn bao nhiêu?",
+          "options": {
+            "A": "4 kg·m/s",
+            "B": "16 kg·m/s",
+            "C": "8 kg·m/s",
+            "D": "2 kg·m/s"
+          },
+          "correct_answer": "C",
+          "explanation": "p = mv = 2 × 4."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Trong hệ kín, đại lượng nào được bảo toàn khi các vật tương tác?",
+          "options": {
+            "A": "Động năng trong mọi va chạm",
+            "B": "Tổng động lượng",
+            "C": "Động lượng từng vật",
+            "D": "Tốc độ từng vật"
+          },
+          "correct_answer": "B",
+          "explanation": "Tổng động lượng của hệ kín không đổi."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Nếu tốc độ tăng gấp đôi và khối lượng không đổi, động năng thay đổi thế nào?",
+          "options": {
+            "A": "Tăng gấp 4",
+            "B": "Tăng gấp 2",
+            "C": "Không đổi",
+            "D": "Giảm một nửa"
+          },
+          "correct_answer": "A",
+          "explanation": "Động năng tỉ lệ với bình phương tốc độ."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Hiệu suất của máy cho 80 J công có ích từ 100 J năng lượng cung cấp là bao nhiêu?",
+          "options": {
+            "A": "20%",
+            "B": "125%",
+            "C": "180%",
+            "D": "80%"
+          },
+          "correct_answer": "D",
+          "explanation": "H = 80/100 × 100%."
+        }
+      ]
+    },
+    {
+      "id": "exam_li11_gap_01",
+      "title": "Vật lí 11 · Ôn tập dao động và sóng",
+      "grade": "11",
+      "semester": "hk1",
+      "topic": "Ôn tập dao động và sóng",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Trong dao động điều hòa, gia tốc luôn hướng về đâu?",
+          "options": {
+            "A": "Vị trí cân bằng",
+            "B": "Biên dương",
+            "C": "Biên âm",
+            "D": "Theo chiều vận tốc"
+          },
+          "correct_answer": "A",
+          "explanation": "a = -ω²x nên gia tốc hướng về vị trí cân bằng."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Con lắc dao động điều hòa có chu kì 2 s. Tần số bằng bao nhiêu?",
+          "options": {
+            "A": "2 Hz",
+            "B": "4 Hz",
+            "C": "0,25 Hz",
+            "D": "0,5 Hz"
+          },
+          "correct_answer": "D",
+          "explanation": "f = 1/T = 1/2 Hz."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Sóng truyền với tốc độ 6 m/s và tần số 3 Hz. Bước sóng là bao nhiêu?",
+          "options": {
+            "A": "9 m",
+            "B": "18 m",
+            "C": "2 m",
+            "D": "0,5 m"
+          },
+          "correct_answer": "C",
+          "explanation": "λ = v/f = 6/3 m."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Trong môi trường truyền sóng cơ, đại lượng nào được truyền đi?",
+          "options": {
+            "A": "Điện tích của nguồn",
+            "B": "Năng lượng",
+            "C": "Toàn bộ phần tử vật chất theo sóng",
+            "D": "Khối lượng của nguồn"
+          },
+          "correct_answer": "B",
+          "explanation": "Sóng cơ truyền dao động và năng lượng."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Hai nguồn kết hợp cần có đặc điểm nào?",
+          "options": {
+            "A": "Cùng tần số và độ lệch pha không đổi",
+            "B": "Chỉ cùng biên độ",
+            "C": "Chỉ cùng tốc độ",
+            "D": "Tần số thay đổi liên tục"
+          },
+          "correct_answer": "A",
+          "explanation": "Điều kiện nguồn kết hợp đảm bảo vân giao thoa ổn định."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Trong sóng dừng, nút sóng có biên độ dao động bằng bao nhiêu?",
+          "options": {
+            "A": "Cực đại",
+            "B": "Bằng bước sóng",
+            "C": "Bằng tốc độ truyền sóng",
+            "D": "0"
+          },
+          "correct_answer": "D",
+          "explanation": "Hai sóng giao thoa triệt tiêu tại nút."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Khoảng cách giữa hai nút sóng liên tiếp bằng bao nhiêu?",
+          "options": {
+            "A": "Hai bước sóng",
+            "B": "Một phần tư bước sóng",
+            "C": "Một nửa bước sóng",
+            "D": "Một bước sóng"
+          },
+          "correct_answer": "C",
+          "explanation": "Các nút liền kề cách nhau λ/2."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Ở vị trí cân bằng của dao động điều hòa không ma sát, tốc độ có độ lớn thế nào?",
+          "options": {
+            "A": "Luôn bằng gia tốc",
+            "B": "Cực đại",
+            "C": "Bằng 0",
+            "D": "Không xác định"
+          },
+          "correct_answer": "B",
+          "explanation": "Tại x = 0, toàn bộ cơ năng là động năng."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Sóng điện từ truyền được trong môi trường nào?",
+          "options": {
+            "A": "Chân không",
+            "B": "Chỉ chất rắn",
+            "C": "Chỉ chất lỏng",
+            "D": "Chỉ không khí"
+          },
+          "correct_answer": "A",
+          "explanation": "Sóng điện từ không cần môi trường vật chất."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Biên độ dao động tăng gấp đôi khi khối lượng và tần số góc không đổi. Cơ năng thay đổi thế nào?",
+          "options": {
+            "A": "Tăng gấp 2",
+            "B": "Không đổi",
+            "C": "Giảm một nửa",
+            "D": "Tăng gấp 4"
+          },
+          "correct_answer": "D",
+          "explanation": "Cơ năng E = mω²A²/2 tỉ lệ với A²."
+        }
+      ]
+    },
+    {
+      "id": "exam_li11_gap_02",
+      "title": "Vật lí 11 · Ôn tập điện trường và mạch điện",
+      "grade": "11",
+      "semester": "hk2",
+      "topic": "Ôn tập điện trường và mạch điện",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Đơn vị SI của cường độ điện trường là gì?",
+          "options": {
+            "A": "V/m",
+            "B": "V·m",
+            "C": "C/m",
+            "D": "A/m"
+          },
+          "correct_answer": "A",
+          "explanation": "E = F/q có đơn vị N/C, tương đương V/m."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Điện tích 2 C đi qua tiết diện dây trong 4 s. Cường độ dòng điện là bao nhiêu?",
+          "options": {
+            "A": "2 A",
+            "B": "4 A",
+            "C": "8 A",
+            "D": "0,5 A"
+          },
+          "correct_answer": "D",
+          "explanation": "I = q/t = 2/4 A."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Điện trở 5 Ω có hiệu điện thế 10 V. Dòng điện qua điện trở là bao nhiêu?",
+          "options": {
+            "A": "5 A",
+            "B": "50 A",
+            "C": "2 A",
+            "D": "0,5 A"
+          },
+          "correct_answer": "C",
+          "explanation": "I = U/R = 10/5 A."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Hai điện trở 3 Ω và 6 Ω mắc nối tiếp có điện trở tương đương bao nhiêu?",
+          "options": {
+            "A": "18 Ω",
+            "B": "9 Ω",
+            "C": "2 Ω",
+            "D": "3 Ω"
+          },
+          "correct_answer": "B",
+          "explanation": "Mắc nối tiếp: Rtđ = R₁ + R₂."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Hai điện trở 3 Ω và 6 Ω mắc song song có điện trở tương đương bao nhiêu?",
+          "options": {
+            "A": "2 Ω",
+            "B": "3 Ω",
+            "C": "9 Ω",
+            "D": "18 Ω"
+          },
+          "correct_answer": "A",
+          "explanation": "Rtđ = R₁R₂/(R₁ + R₂) = 18/9 Ω."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Tụ điện có điện dung 2 μF đặt dưới hiệu điện thế 5 V tích điện bao nhiêu?",
+          "options": {
+            "A": "0,4 μC",
+            "B": "2,5 μC",
+            "C": "25 μC",
+            "D": "10 μC"
+          },
+          "correct_answer": "D",
+          "explanation": "Q = CU = 2 × 5 μC."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Công suất tiêu thụ của điện trở dưới U = 12 V, I = 2 A là bao nhiêu?",
+          "options": {
+            "A": "12 W",
+            "B": "144 W",
+            "C": "24 W",
+            "D": "6 W"
+          },
+          "correct_answer": "C",
+          "explanation": "P = UI = 12 × 2 W."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Điện trường đều có E = 100 V/m. Độ lớn lực tác dụng lên điện tích 0,02 C là bao nhiêu?",
+          "options": {
+            "A": "5000 N",
+            "B": "2 N",
+            "C": "0,02 N",
+            "D": "100 N"
+          },
+          "correct_answer": "B",
+          "explanation": "F = |q|E = 0,02 × 100 N."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Dòng điện không đổi 2 A chạy trong 5 s tải qua tiết diện bao nhiêu điện tích?",
+          "options": {
+            "A": "10 C",
+            "B": "0,4 C",
+            "C": "2,5 C",
+            "D": "20 C"
+          },
+          "correct_answer": "A",
+          "explanation": "q = It = 2 × 5 C."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Điện trở 4 Ω có dòng điện 3 A. Nhiệt tỏa ra trong 2 s là bao nhiêu?",
+          "options": {
+            "A": "12 J",
+            "B": "24 J",
+            "C": "36 J",
+            "D": "72 J"
+          },
+          "correct_answer": "D",
+          "explanation": "Q = I²Rt = 3² × 4 × 2 J."
+        }
+      ]
+    },
+    {
+      "id": "exam_li12_gap_01",
+      "title": "Vật lí 12 · Cấu trúc chất và sự chuyển thể",
+      "grade": "12",
+      "semester": "hk1",
+      "topic": "Cấu trúc chất và sự chuyển thể",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Trong chất rắn kết tinh, các hạt cấu tạo thường có đặc điểm nào?",
+          "options": {
+            "A": "Sắp xếp có trật tự trong mạng tinh thể",
+            "B": "Chuyển động tự do khắp bình chứa",
+            "C": "Không dao động",
+            "D": "Không tương tác"
+          },
+          "correct_answer": "A",
+          "explanation": "Các hạt dao động quanh vị trí cân bằng trong mạng tinh thể."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Ở cùng điều kiện, chất nào thường có hình dạng và thể tích xác định?",
+          "options": {
+            "A": "Chất khí",
+            "B": "Hơi nước",
+            "C": "Không khí",
+            "D": "Chất rắn"
+          },
+          "correct_answer": "D",
+          "explanation": "Chất rắn giữ hình dạng và thể tích riêng."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Quá trình chuyển từ thể rắn sang thể lỏng gọi là gì?",
+          "options": {
+            "A": "Ngưng tụ",
+            "B": "Thăng hoa",
+            "C": "Nóng chảy",
+            "D": "Đông đặc"
+          },
+          "correct_answer": "C",
+          "explanation": "Nóng chảy là rắn chuyển thành lỏng."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Quá trình chuyển trực tiếp từ thể rắn sang thể khí gọi là gì?",
+          "options": {
+            "A": "Nóng chảy",
+            "B": "Thăng hoa",
+            "C": "Hóa lỏng",
+            "D": "Đông đặc"
+          },
+          "correct_answer": "B",
+          "explanation": "Thăng hoa bỏ qua pha lỏng."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Trong khi một chất rắn kết tinh tinh khiết đang nóng chảy ở áp suất không đổi, nhiệt độ thường thế nào?",
+          "options": {
+            "A": "Không đổi",
+            "B": "Tăng đều",
+            "C": "Giảm đều",
+            "D": "Bằng 0 °C với mọi chất"
+          },
+          "correct_answer": "A",
+          "explanation": "Nhiệt cung cấp dùng để chuyển pha."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Giọt nước đọng ngoài ly nước lạnh chủ yếu do quá trình nào?",
+          "options": {
+            "A": "Nóng chảy của ly",
+            "B": "Bay hơi từ mặt ngoài ly",
+            "C": "Thăng hoa của nước",
+            "D": "Ngưng tụ hơi nước trong không khí"
+          },
+          "correct_answer": "D",
+          "explanation": "Hơi nước gặp bề mặt lạnh và ngưng tụ."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Sự bay hơi của chất lỏng diễn ra ở đâu?",
+          "options": {
+            "A": "Chỉ ở 0 °C",
+            "B": "Chỉ trong bình kín",
+            "C": "Trên mặt thoáng ở nhiều nhiệt độ",
+            "D": "Chỉ trong toàn bộ chất lỏng ở nhiệt độ sôi"
+          },
+          "correct_answer": "C",
+          "explanation": "Bay hơi xảy ra trên bề mặt chất lỏng."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Sự sôi khác sự bay hơi thông thường ở điểm nào?",
+          "options": {
+            "A": "Không tạo hơi",
+            "B": "Xảy ra cả trong lòng và trên mặt thoáng",
+            "C": "Chỉ xảy ra trên mặt thoáng",
+            "D": "Không cần nhiệt"
+          },
+          "correct_answer": "B",
+          "explanation": "Khi sôi, bong bóng hơi hình thành trong lòng chất lỏng."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Cùng nhiệt độ, các phân tử trong chất khí có đứng yên không?",
+          "options": {
+            "A": "Không, chúng chuyển động hỗn loạn",
+            "B": "Có, tất cả đứng yên",
+            "C": "Chỉ chuyển động khi có gió",
+            "D": "Chỉ dao động tại nút mạng"
+          },
+          "correct_answer": "A",
+          "explanation": "Chuyển động nhiệt của phân tử khí là hỗn loạn."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Trong nhiệt kế thủy ngân, nhiệt độ tăng làm cột thủy ngân thường thế nào?",
+          "options": {
+            "A": "Hạ xuống",
+            "B": "Không đổi",
+            "C": "Biến thành khí ngay",
+            "D": "Dâng lên"
+          },
+          "correct_answer": "D",
+          "explanation": "Thủy ngân nở vì nhiệt khi nóng lên."
+        }
+      ]
+    },
+    {
+      "id": "exam_li12_gap_02",
+      "title": "Vật lí 12 · Nội năng và định luật I nhiệt động lực học",
+      "grade": "12",
+      "semester": "hk1",
+      "topic": "Nội năng và định luật I nhiệt động lực học",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Nội năng của một vật là tổng của những dạng năng lượng vi mô nào?",
+          "options": {
+            "A": "Động năng và thế năng tương tác của các phân tử",
+            "B": "Động năng chuyển động cả vật và thế năng trọng trường",
+            "C": "Chỉ động năng chuyển động cả vật",
+            "D": "Chỉ điện năng"
+          },
+          "correct_answer": "A",
+          "explanation": "Nội năng gắn với chuyển động và tương tác vi mô."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Có thể thay đổi nội năng của vật bằng cách nào?",
+          "options": {
+            "A": "Chỉ truyền nhiệt",
+            "B": "Chỉ thực hiện công",
+            "C": "Chỉ đổi vị trí vật",
+            "D": "Truyền nhiệt hoặc thực hiện công"
+          },
+          "correct_answer": "D",
+          "explanation": "Hai cách cơ bản là truyền nhiệt và thực hiện công."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Theo quy ước ΔU = Q + A, hệ nhận nhiệt 100 J và nhận công 20 J. ΔU bằng bao nhiêu?",
+          "options": {
+            "A": "-120 J",
+            "B": "5 J",
+            "C": "120 J",
+            "D": "80 J"
+          },
+          "correct_answer": "C",
+          "explanation": "Cộng nhiệt và công mà hệ nhận: 100 + 20."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Theo quy ước ΔU = Q + A, hệ tỏa 50 J và nhận công 80 J. ΔU bằng bao nhiêu?",
+          "options": {
+            "A": "-130 J",
+            "B": "30 J",
+            "C": "130 J",
+            "D": "-30 J"
+          },
+          "correct_answer": "B",
+          "explanation": "Q = -50 J, A = +80 J nên ΔU = 30 J."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Khi cọ xát hai bàn tay, nội năng tăng chủ yếu vì điều gì?",
+          "options": {
+            "A": "Công của lực ma sát chuyển thành nội năng",
+            "B": "Nhiệt độ môi trường giảm",
+            "C": "Khối lượng tay tăng",
+            "D": "Áp suất khí quyển tăng"
+          },
+          "correct_answer": "A",
+          "explanation": "Ma sát thực hiện công làm nóng tay."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Nhiệt tự truyền từ vật nóng sang vật lạnh khi tiếp xúc cho đến khi nào?",
+          "options": {
+            "A": "Cả hai cùng đạt 0 °C",
+            "B": "Vật lạnh nóng hơn vật ban đầu",
+            "C": "Cả hai ngừng chuyển động",
+            "D": "Đạt cân bằng nhiệt"
+          },
+          "correct_answer": "D",
+          "explanation": "Truyền nhiệt dừng khi hai vật cùng nhiệt độ."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Đơn vị SI của nhiệt lượng là gì?",
+          "options": {
+            "A": "K",
+            "B": "W",
+            "C": "J",
+            "D": "°C"
+          },
+          "correct_answer": "C",
+          "explanation": "Nhiệt lượng là năng lượng nên dùng joule."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Một hệ không trao đổi nhiệt nhưng nhận 40 J công. Theo ΔU = Q + A, nội năng thay đổi bao nhiêu?",
+          "options": {
+            "A": "Tăng 80 J",
+            "B": "Tăng 40 J",
+            "C": "Giảm 40 J",
+            "D": "Không đổi"
+          },
+          "correct_answer": "B",
+          "explanation": "Q = 0 và A = +40 J."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Nếu một hệ nhận nhiệt 70 J và tự thực hiện công 30 J, ΔU theo ΔU = Q + A là bao nhiêu?",
+          "options": {
+            "A": "40 J",
+            "B": "100 J",
+            "C": "-40 J",
+            "D": "-100 J"
+          },
+          "correct_answer": "A",
+          "explanation": "Công do hệ thực hiện tương ứng A = -30 J."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Đơn vị của nhiệt dung riêng là gì?",
+          "options": {
+            "A": "J/kg",
+            "B": "W/K",
+            "C": "kg/J",
+            "D": "J/(kg·K)"
+          },
+          "correct_answer": "D",
+          "explanation": "Từ Q = mcΔT suy ra đơn vị của c."
+        }
+      ]
+    },
+    {
+      "id": "exam_li12_gap_03",
+      "title": "Vật lí 12 · Nhiệt dung riêng và nhiệt chuyển thể",
+      "grade": "12",
+      "semester": "hk1",
+      "topic": "Nhiệt dung riêng và nhiệt chuyển thể",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Công thức tính nhiệt lượng làm một vật tăng nhiệt độ mà không chuyển pha là gì?",
+          "options": {
+            "A": "Q = mcΔT",
+            "B": "Q = m/ cΔT",
+            "C": "Q = c/(mΔT)",
+            "D": "Q = mλ"
+          },
+          "correct_answer": "A",
+          "explanation": "Nhiệt lượng tỉ lệ khối lượng, nhiệt dung riêng và độ tăng nhiệt độ."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Nước 1 kg, c = 4200 J/(kg·K), tăng 2 °C cần nhiệt lượng bao nhiêu?",
+          "options": {
+            "A": "2100 J",
+            "B": "4200 J",
+            "C": "16800 J",
+            "D": "8400 J"
+          },
+          "correct_answer": "D",
+          "explanation": "Q = 1 × 4200 × 2."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Nếu giữ nguyên khối lượng và độ tăng nhiệt độ, chất có nhiệt dung riêng gấp đôi cần nhiệt lượng thế nào?",
+          "options": {
+            "A": "Không đổi",
+            "B": "Gấp bốn",
+            "C": "Gấp đôi",
+            "D": "Một nửa"
+          },
+          "correct_answer": "C",
+          "explanation": "Q tỉ lệ thuận với c."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Đơn vị SI của nhiệt nóng chảy riêng là gì?",
+          "options": {
+            "A": "K/kg",
+            "B": "J/kg",
+            "C": "J",
+            "D": "J/(kg·K)"
+          },
+          "correct_answer": "B",
+          "explanation": "Từ Q = λm suy ra λ có đơn vị J/kg."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Làm tan 0,5 kg nước đá ở nhiệt độ nóng chảy, λ = 3,4×10⁵ J/kg, cần bao nhiêu nhiệt?",
+          "options": {
+            "A": "1,7×10⁵ J",
+            "B": "3,4×10⁵ J",
+            "C": "6,8×10⁵ J",
+            "D": "1,7×10⁶ J"
+          },
+          "correct_answer": "A",
+          "explanation": "Q = λm = 3,4×10⁵ × 0,5."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Nhiệt hóa hơi riêng cho biết nhiệt cần để hóa hơi bao nhiêu chất lỏng ở nhiệt độ sôi?",
+          "options": {
+            "A": "1 g",
+            "B": "1 mol ở mọi chất",
+            "C": "Toàn bộ chất lỏng bất kì",
+            "D": "1 kg"
+          },
+          "correct_answer": "D",
+          "explanation": "Nhiệt hóa hơi riêng tính trên một đơn vị khối lượng."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Hóa hơi hoàn toàn 2 kg chất lỏng tại nhiệt độ sôi với L = 2×10⁶ J/kg cần bao nhiêu nhiệt?",
+          "options": {
+            "A": "2×10⁶ J",
+            "B": "8×10⁶ J",
+            "C": "4×10⁶ J",
+            "D": "1×10⁶ J"
+          },
+          "correct_answer": "C",
+          "explanation": "Q = Lm = 2×10⁶ × 2."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Khi nước đá ở 0 °C đang nóng chảy, nhiệt cấp thêm chủ yếu dùng để làm gì?",
+          "options": {
+            "A": "Tạo công cơ học ngoài",
+            "B": "Chuyển pha",
+            "C": "Tăng ngay nhiệt độ của phần đá",
+            "D": "Tăng khối lượng"
+          },
+          "correct_answer": "B",
+          "explanation": "Nhiệt nóng chảy làm thay đổi trạng thái."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Vật 2 kg có c = 500 J/(kg·K) nhận 5000 J. Độ tăng nhiệt độ là bao nhiêu?",
+          "options": {
+            "A": "5 K",
+            "B": "2 K",
+            "C": "10 K",
+            "D": "50 K"
+          },
+          "correct_answer": "A",
+          "explanation": "ΔT = Q/(mc) = 5000/(2 × 500)."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Khi ngưng tụ ở cùng nhiệt độ, hơi nước sẽ thế nào?",
+          "options": {
+            "A": "Thu nhiệt",
+            "B": "Không trao đổi năng lượng",
+            "C": "Luôn tăng nhiệt độ",
+            "D": "Tỏa nhiệt"
+          },
+          "correct_answer": "D",
+          "explanation": "Ngưng tụ là quá trình tỏa nhiệt."
+        }
+      ]
+    },
+    {
+      "id": "exam_li12_gap_04",
+      "title": "Vật lí 12 · Khí lí tưởng và các định luật chất khí",
+      "grade": "12",
+      "semester": "hk1",
+      "topic": "Khí lí tưởng và các định luật chất khí",
+      "time_limit": 20,
+      "description": "10 câu trắc nghiệm, 20 phút, thang điểm 10. Câu hỏi biên soạn mới theo kiến thức Vật lí phổ thông.",
+      "batch_id": "curriculum-gaps-2026-v1",
+      "created_by": null,
+      "scoring_config": {
+        "multiple_choice": {
+          "weight_percent": 100,
+          "points": 10
+        }
+      },
+      "questions": [
+        {
+          "id": 1,
+          "number": 1,
+          "question": "Nhiệt độ 27 °C xấp xỉ bao nhiêu kelvin?",
+          "options": {
+            "A": "300 K",
+            "B": "27 K",
+            "C": "246 K",
+            "D": "327 K"
+          },
+          "correct_answer": "A",
+          "explanation": "T(K) = t(°C) + 273."
+        },
+        {
+          "id": 2,
+          "number": 2,
+          "question": "Định luật Boyle cho lượng khí xác định ở nhiệt độ không đổi biểu thị quan hệ nào?",
+          "options": {
+            "A": "p/V không đổi",
+            "B": "pT không đổi",
+            "C": "V/T không đổi khi áp suất thay đổi",
+            "D": "pV không đổi"
+          },
+          "correct_answer": "D",
+          "explanation": "Trong quá trình đẳng nhiệt, áp suất tỉ lệ nghịch thể tích."
+        },
+        {
+          "id": 3,
+          "number": 3,
+          "question": "Khí đẳng nhiệt có thể tích giảm một nửa. Áp suất biến đổi thế nào?",
+          "options": {
+            "A": "Không đổi",
+            "B": "Tăng gấp bốn",
+            "C": "Tăng gấp đôi",
+            "D": "Giảm một nửa"
+          },
+          "correct_answer": "C",
+          "explanation": "p₁V₁ = p₂V₂."
+        },
+        {
+          "id": 4,
+          "number": 4,
+          "question": "Trong quá trình đẳng áp của lượng khí xác định, V/T tuyệt đối thế nào?",
+          "options": {
+            "A": "Bằng áp suất",
+            "B": "Không đổi",
+            "C": "Tăng đều",
+            "D": "Giảm đều"
+          },
+          "correct_answer": "B",
+          "explanation": "Định luật Charles: V/T = hằng số."
+        },
+        {
+          "id": 5,
+          "number": 5,
+          "question": "Khí đẳng áp từ 300 K lên 600 K, thể tích ban đầu 2 lít. Thể tích cuối là bao nhiêu?",
+          "options": {
+            "A": "4 lít",
+            "B": "1 lít",
+            "C": "2 lít",
+            "D": "8 lít"
+          },
+          "correct_answer": "A",
+          "explanation": "V tỉ lệ T tuyệt đối nên tăng gấp đôi."
+        },
+        {
+          "id": 6,
+          "number": 6,
+          "question": "Trong quá trình đẳng tích của lượng khí xác định, p/T tuyệt đối thế nào?",
+          "options": {
+            "A": "Tỉ lệ nghịch T",
+            "B": "Luôn bằng 0",
+            "C": "Bằng V",
+            "D": "Không đổi"
+          },
+          "correct_answer": "D",
+          "explanation": "Áp suất tỉ lệ với nhiệt độ tuyệt đối khi V không đổi."
+        },
+        {
+          "id": 7,
+          "number": 7,
+          "question": "Khí đẳng tích có p = 100 kPa tại 300 K. Tại 600 K, p bằng bao nhiêu?",
+          "options": {
+            "A": "100 kPa",
+            "B": "400 kPa",
+            "C": "200 kPa",
+            "D": "50 kPa"
+          },
+          "correct_answer": "C",
+          "explanation": "p/T không đổi nên áp suất tăng gấp đôi."
+        },
+        {
+          "id": 8,
+          "number": 8,
+          "question": "Phương trình trạng thái khí lí tưởng của n mol khí là gì?",
+          "options": {
+            "A": "V = nRpT",
+            "B": "pV = nRT",
+            "C": "p/V = nRT",
+            "D": "pT = nRV"
+          },
+          "correct_answer": "B",
+          "explanation": "Đây là phương trình trạng thái của khí lí tưởng."
+        },
+        {
+          "id": 9,
+          "number": 9,
+          "question": "Trong phương trình pV = nRT, nhiệt độ T cần dùng thang nào?",
+          "options": {
+            "A": "Kelvin",
+            "B": "Celsius",
+            "C": "Fahrenheit",
+            "D": "Bất kì thang nào"
+          },
+          "correct_answer": "A",
+          "explanation": "Phương trình dùng nhiệt độ tuyệt đối."
+        },
+        {
+          "id": 10,
+          "number": 10,
+          "question": "Lượng khí giữ V và n không đổi, nhiệt độ tuyệt đối giảm còn một nửa. Áp suất thế nào?",
+          "options": {
+            "A": "Tăng gấp đôi",
+            "B": "Không đổi",
+            "C": "Giảm còn một phần tư",
+            "D": "Giảm một nửa"
+          },
+          "correct_answer": "D",
+          "explanation": "p tỉ lệ thuận với T khi V, n không đổi."
         }
       ]
     }

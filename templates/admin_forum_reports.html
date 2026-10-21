@@ -68,6 +68,18 @@
             <strong>{{ stats.documents }}</strong>
             <em>Trong kho lớp 10, 11, 12</em>
         </article>
+        <article class="metric-card accent-blue">
+            <span class="metric-icon" aria-hidden="true">?</span>
+            <span>Lượt làm Tâm lí - hướng nghiệp</span>
+            <strong>{{ stats.career_completions }}</strong>
+            <em>{{ stats.career_students }} học sinh đã hoàn thành</em>
+        </article>
+    </section>
+
+    <section class="chart-card" style="margin-bottom: 18px">
+        <div class="card-title"><div><span class="section-kicker">TÂM LÍ - HƯỚNG NGHIỆP</span><h2>Lượt hoàn thành theo gói</h2></div></div>
+        <div class="physics-rows">{% for row in stats.career_rows %}<div><span>{{ row.title }}</span><strong>{{ row.count }}</strong><small>lượt hoàn thành</small></div>{% endfor %}</div>
+        <p class="chart-note">Chỉ tính các lượt hoàn thành được ghi nhận từ khi bật thống kê. Không lưu câu trả lời hoặc điểm.</p>
     </section>
 
     <section class="analytics-grid">
@@ -75,15 +87,15 @@
             <div class="card-title">
                 <div>
                     <span class="section-kicker">XU HƯỚNG HỌC TẬP</span>
-                    <h2>Hoạt động theo tháng</h2>
+                    <h2>Lũy kế hoạt động học tập</h2>
                 </div>
                 <span>{{ stats.reporting_window }}</span>
             </div>
-            <div class="chart-legend"><span><i class="legend-exams"></i> Lượt làm đề</span><span><i class="legend-submissions"></i> Bài tập đã nộp</span></div>
-            <div class="activity-line-chart" role="img" aria-label="Lượt làm đề và bài tập đã nộp theo từng tháng">
+            <div class="chart-legend"><span><i class="legend-exams"></i> Lũy kế lượt làm đề</span><span><i class="legend-submissions"></i> Lũy kế bài tập đã nộp</span></div>
+            <div class="activity-line-chart" role="img" aria-label="Lũy kế lượt làm đề và bài tập đã nộp đến cuối từng tháng">
                 <div class="chart-y-axis"><span>{{ stats.monthly_max }}</span><span>{{ (stats.monthly_max * 0.75)|int }}</span><span>{{ (stats.monthly_max * 0.5)|int }}</span><span>{{ (stats.monthly_max * 0.25)|int }}</span><span>0</span></div>
-                <div class="line-plot"><svg viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="exam-fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4e80ec" stop-opacity=".2"/><stop offset="1" stop-color="#4e80ec" stop-opacity="0"/></linearGradient></defs><polygon points="0,100 {{ stats.exam_chart_points }} 600,100" fill="url(#exam-fill)"/><polyline points="{{ stats.exam_chart_points }}" fill="none" stroke="#4879ed" stroke-width="2" vector-effect="non-scaling-stroke"/><polyline points="{{ stats.submission_chart_points }}" fill="none" stroke="#54c9ad" stroke-width="2" vector-effect="non-scaling-stroke"/>{% for row in stats.monthly_rows %}<circle cx="{{ loop.index0 * 100 }}" cy="{{ 100 - row.exam_chart_percent }}" r="3.5" fill="#4879ed"/><circle cx="{{ loop.index0 * 100 }}" cy="{{ 100 - row.submission_chart_percent }}" r="3.5" fill="#54c9ad"/>{% endfor %}</svg></div>
-                <div class="chart-x-axis">{% for row in stats.monthly_rows %}<span>{{ row.label }}/{{ row.year }}</span>{% endfor %}</div>
+                <div class="line-plot"><svg viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="exam-fill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4e80ec" stop-opacity=".2"/><stop offset="1" stop-color="#4e80ec" stop-opacity="0"/></linearGradient></defs><polygon points="{{ stats.exam_chart_points }} 600,100" fill="url(#exam-fill)"/><polyline points="{{ stats.exam_chart_points }}" fill="none" stroke="#4879ed" stroke-width="2" vector-effect="non-scaling-stroke"/><polyline points="{{ stats.submission_chart_points }}" fill="none" stroke="#54c9ad" stroke-width="2" vector-effect="non-scaling-stroke"/><circle cx="0" cy="100" r="3.5" fill="#4879ed"/>{% for row in stats.monthly_rows %}<circle cx="{{ (loop.index * 600 / stats.monthly_rows|length)|round(2) }}" cy="{{ 100 - row.exam_chart_percent }}" r="3.5" fill="#4879ed"/><circle cx="{{ (loop.index * 600 / stats.monthly_rows|length)|round(2) }}" cy="{{ 100 - row.submission_chart_percent }}" r="3.5" fill="#54c9ad"/>{% endfor %}</svg></div>
+                <div class="chart-x-axis"><span>Đầu {{ stats.monthly_rows[0].label }}</span>{% for row in stats.monthly_rows %}<span>{{ row.label }}/{{ row.year }}</span>{% endfor %}</div>
             </div>
             <div class="activity-chart" hidden>
                 {% for row in stats.monthly_rows %}
@@ -97,7 +109,7 @@
                 </div>
                 {% endfor %}
             </div>
-            <p class="chart-note">Hai đường thể hiện số lượt làm đề và bài tập đã nộp theo từng tháng.</p>
+            <p class="chart-note">Bắt đầu từ 0 ở đầu {{ stats.monthly_rows[0].label }}; mỗi điểm sau là tổng số lượt trong giai đoạn đến cuối tháng đó.</p>
         </article>
 
         <article class="chart-card physics-panel">

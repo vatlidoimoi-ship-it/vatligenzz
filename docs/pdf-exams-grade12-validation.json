@@ -1,0 +1,22 @@
+{
+  "batch_id": "pdf12-hk2-20x20-v1",
+  "bank_sha256": "da66f7cfff769b598a9cea23e395b15a43fb2dc365c87b4c9ee437bc5dca44f4",
+  "source_sha256": "632067932e1f9fa6a8a1ce9c916af8eccf574cc43b87ceb4c99297fa7081a2ae",
+  "exam_count": 20,
+  "question_count": 400,
+  "time_limit_minutes": 30,
+  "score_per_question": 0.5,
+  "numerical_checks": 360,
+  "checks": [
+    "unique stems and IDs",
+    "four distinct options; five A/B/C/D answers per exam",
+    "PDF checksum and exact page references",
+    "360 numerical formula checks",
+    "hand-calculated answer anchors",
+    "real template rendering for every exam",
+    "real submission handler: 20/10/0 correct produces 10/5/0 points",
+    "merge preservation, collision rejection and idempotence",
+    "grade-11 regression checks"
+  ],
+  "review_scope": "AI-authored and reviewed; automated validation, not human subject-matter certification"
+}

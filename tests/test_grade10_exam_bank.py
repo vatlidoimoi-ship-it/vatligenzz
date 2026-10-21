@@ -42,9 +42,9 @@ class Grade10BankTests(unittest.TestCase):
         all_exams = json.loads((ROOT / 'data/li.json').read_text(encoding='utf-8-sig'))['exams']
         counts = {grade: sum(str(exam.get('grade')) == grade for exam in all_exams)
                   for grade in ('10', '11', '12')}
-        self.assertEqual(counts, {'10': 5, '11': 20, '12': 20})
-        self.assertEqual({exam['id'] for exam in all_exams if exam.get('grade') == '10'},
-                         {exam['id'] for exam in BANK})
+        self.assertEqual(counts, {'10': 9, '11': 22, '12': 24})
+        self.assertTrue({exam['id'] for exam in BANK}.issubset(
+            {exam['id'] for exam in all_exams if exam.get('grade') == '10'}))
 
     def test_all_grade10_exams_render_submit_and_history(self):
         case = fixtures.RoleFlowTests()

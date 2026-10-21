@@ -1,0 +1,16 @@
+{
+  "batch_id": "pdf12-hk2-20x20-v1",
+  "remote_key": "data/li.json",
+  "readback_verified": true,
+  "grade_counts": {
+    "11": 20,
+    "12": 20
+  },
+  "preserved_existing_exams": 20,
+  "added_batch_exams": 20,
+  "bank_sha256": "da66f7cfff769b598a9cea23e395b15a43fb2dc365c87b4c9ee437bc5dca44f4",
+  "backup_file": ".runtime_data\\publish-backups\\li-before-pdf12-0f3fc9cd4e983956.json",
+  "website_route_verified_with_live_supabase": true,
+  "rendered_grade11_cards": 20,
+  "rendered_grade12_cards": 20
+}

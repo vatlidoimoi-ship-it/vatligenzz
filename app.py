@@ -86,6 +86,8 @@ USER_INVENTORY_FILE = writable_data_file("user_inventory.json", [])
 USER_PROFILES_FILE = writable_data_file("user_profiles.json", [])
 NOTIFICATIONS_FILE = writable_data_file("notifications.json", [])
 GIFT_EVENTS_FILE = writable_data_file("gift_events.json", [])
+CAREER_COMPLETIONS_FILE = writable_data_file("career_completions.json", [])
+CAREER_COMPLETIONS_LOCK = threading.RLock()
 
 FORUM_SUBJECTS = [
     "Vật Lý",
@@ -739,6 +741,29 @@ def install_guide_asset(filename):
 def career_guidance():
     assessment_catalog = read_json(readable_data_file("career_assessments.json"), {})
     return render_template("career_guidance.html", assessment_catalog=assessment_catalog)
+
+
+@app.route("/api/career-guidance/completion", methods=["POST"])
+@login_required
+def career_guidance_completion():
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict) or set(payload) != {"package_id"}:
+        return jsonify({"error": "Dữ liệu không hợp lệ"}), 400
+    package_id = payload["package_id"]
+    catalog = read_json(readable_data_file("career_assessments.json"), {})
+    allowed = {pack.get("id") for pack in catalog.get("packages", [])
+               if pack.get("items")}
+    if not isinstance(package_id, str) or package_id not in allowed:
+        return jsonify({"error": "Gói trắc nghiệm không hợp lệ"}), 400
+    user = get_user_by_id(session["user_id"])
+    if not user or user.get("role") != "student":
+        return jsonify({"error": "Chỉ học sinh được ghi nhận lượt làm"}), 403
+    with CAREER_COMPLETIONS_LOCK:
+        rows = read_json(CAREER_COMPLETIONS_FILE, [])
+        rows.append({"user_id": session["user_id"], "package_id": package_id,
+                     "completed_at": datetime.now().isoformat(timespec="seconds")})
+        write_json(CAREER_COMPLETIONS_FILE, rows)
+    return jsonify({"success": True})
 
 
 @app.route("/api/career-guidance/chat", methods=["POST"])
@@ -3635,6 +3660,16 @@ def admin_activity_date(value):
 
 def admin_dashboard_stats():
     users = load_users()
+    career_catalog = read_json(readable_data_file("career_assessments.json"), {})
+    if not isinstance(career_catalog, dict):
+        career_catalog = {}
+    career_packages = {pack.get("id"): pack.get("title")
+                       for pack in career_catalog.get("packages", []) if pack.get("items")}
+    career_completions = [row for row in read_json(CAREER_COMPLETIONS_FILE, [])
+                          if row.get("package_id") in career_packages]
+    career_rows = [{"title": title, "count": sum(row.get("package_id") == package_id
+                                                    for row in career_completions)}
+                   for package_id, title in career_packages.items()]
     posts = [
         forum_normalize_question(dict(post))
         for post in db.get_all_forum_posts()
@@ -3718,10 +3753,18 @@ def admin_dashboard_stats():
     for row in monthly_rows:
         row["exam_percent"] = chart_percent(row["exams"], max_monthly)
         row["submission_percent"] = chart_percent(row["submissions"], max_monthly)
-    monthly_max = max((max(row["exams"], row["submissions"]) for row in monthly_rows), default=0) or 1
+    # The chart covers the displayed window: start at zero before its first month.
+    cumulative_exams = 0
+    cumulative_submissions = 0
     for row in monthly_rows:
-        row["exam_chart_percent"] = round(row["exams"] * 100 / monthly_max, 2)
-        row["submission_chart_percent"] = round(row["submissions"] * 100 / monthly_max, 2)
+        cumulative_exams += row["exams"]
+        cumulative_submissions += row["submissions"]
+        row["cumulative_exams"] = cumulative_exams
+        row["cumulative_submissions"] = cumulative_submissions
+    monthly_max = max(cumulative_exams, cumulative_submissions, 1)
+    for row in monthly_rows:
+        row["exam_chart_percent"] = round(row["cumulative_exams"] * 100 / monthly_max, 2)
+        row["submission_chart_percent"] = round(row["cumulative_submissions"] * 100 / monthly_max, 2)
     max_grade_attempts = max((row["attempts"] for row in grade_rows), default=0) or 1
     for row in grade_rows:
         row["attempt_percent"] = round(row["attempts"] * 100 / max_grade_attempts, 2)
@@ -3734,14 +3777,17 @@ def admin_dashboard_stats():
         "courses": len(courses),
         "documents": len(documents),
         "exam_attempts": len(exam_results),
+        "career_completions": len(career_completions),
+        "career_students": len({row.get("user_id") for row in career_completions}),
+        "career_rows": career_rows,
         "submissions": len(submissions),
         "completed_lessons": sum(len(row.get("completed_lessons", [])) for row in progress),
         "enrolled_students": len({row.get("user_id") for row in progress}),
         "grade_rows": grade_rows,
         "monthly_rows": monthly_rows,
         "monthly_max": monthly_max,
-        "exam_chart_points": " ".join(f'{index * 100},{100 - row["exam_chart_percent"]}' for index, row in enumerate(monthly_rows)),
-        "submission_chart_points": " ".join(f'{index * 100},{100 - row["submission_chart_percent"]}' for index, row in enumerate(monthly_rows)),
+        "exam_chart_points": "0,100 " + " ".join(f'{round((index + 1) * 600 / len(monthly_rows), 2)},{100 - row["exam_chart_percent"]}' for index, row in enumerate(monthly_rows)),
+        "submission_chart_points": "0,100 " + " ".join(f'{round((index + 1) * 600 / len(monthly_rows), 2)},{100 - row["submission_chart_percent"]}' for index, row in enumerate(monthly_rows)),
         "reporting_window": f"T{monthly_rows[0]['label'][1:]}/{monthly_rows[0]['year']} – T{monthly_rows[-1]['label'][1:]}/{monthly_rows[-1]['year']}",
         "student_arc": chart_percent(role_counts["student"], total_users),
         "teacher_arc": chart_percent(role_counts["student"] + role_counts["teacher"], total_users),

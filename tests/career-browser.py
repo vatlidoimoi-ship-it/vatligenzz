@@ -41,6 +41,7 @@ try:
         page.on('pageerror', lambda error: errors.append(str(error)))
         page.on('request', lambda request: outgoing.append(request.url) if request.method == 'POST' else None)
         page.route('**/api/career-guidance/chat', lambda route: route.fulfill(json={'success': True, 'response': 'Phản hồi thử nghiệm.'}))
+        page.route('**/api/career-guidance/completion', lambda route: route.fulfill(json={'success': True}))
         page.goto(f'http://127.0.0.1:{server.server_port}/tam-li-huong-nghiep')
         page.locator('.care-card').first.wait_for()
         assert page.locator('.care-card').count() == 5
@@ -76,10 +77,11 @@ try:
                 page.locator('[data-action="share"]').click()
                 assert page.locator('#chatPanel').is_visible()
                 assert 'WHO-5' in page.locator('#advisorInput').input_value()
-                assert not outgoing, 'Questionnaire data was sent without explicit Send'
+                completion_requests = [url for url in outgoing if url.endswith('/api/career-guidance/completion')]
+                assert len(completion_requests) == 4
                 page.locator('#sendBtn').click()
                 page.locator('.bot-message').filter(has_text='Phản hồi thử nghiệm.').wait_for()
-                assert len(outgoing) == 1
+                assert len([url for url in outgoing if url.endswith('/api/career-guidance/chat')]) == 1
                 page.locator('#exploreTab').click()
             else:
                 page.locator('#closeAssessment').click()
