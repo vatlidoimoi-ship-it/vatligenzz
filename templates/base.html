@@ -1087,7 +1087,7 @@
                             {% endif %}
                         </a>
                     </li>
-                    <li><span class="user-info">{{ session.username }}</span></li>
+                    <li><span class="user-info">{{ session.display_name or session.username }}</span></li>
                     <li><a href="{{ url_for('logout') }}" class="btn-logout">Đăng xuất</a></li>
                 {% else %}
                     <li><a href="{{ url_for('login') }}" class="btn-login">Đăng nhập</a></li>

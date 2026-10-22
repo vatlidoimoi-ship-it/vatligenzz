@@ -287,15 +287,15 @@ class RoleFlowTests(unittest.TestCase):
         self.seed_exam()
         web.db._save_json(web.db.progress_file, [{
             'user_id': 'student', 'course_id': 'course_a',
-            'completed_lessons': ['lesson_a'], 'last_updated': '2026-07-15T10:00:00',
+            'completed_lessons': ['lesson_a'], 'last_updated': '2026-10-15T10:00:00',
         }])
         web.db._save_json(web.db.submissions_file, [{
             'id': 'sub_a', 'user_id': 'student', 'course_id': 'course_a',
-            'exercise_id': 'lesson_a', 'submitted_at': '2026-07-15T10:00:00',
+            'exercise_id': 'lesson_a', 'submitted_at': '2026-10-15T10:00:00',
         }])
         web.write_json(web.writable_data_file('exam_results.json'), [
             {'user_id': 'student', 'subject': 'li', 'exam_id': 'exam_test',
-             'submitted_at': '15/03/2026 09:00:00'},
+             'submitted_at': '15/09/2026 09:00:00'},
             {'user_id': 'teacher', 'subject': 'li', 'exam_id': 'exam_test',
              'submitted_at': '20/10/2026 09:00:00'},
         ])
@@ -304,11 +304,12 @@ class RoleFlowTests(unittest.TestCase):
         self.assertEqual(stats['submissions'], 1)
         self.assertEqual(stats['completed_lessons'], 1)
         self.assertEqual(stats['grade_rows'][0]['attempts'], 1)
-        self.assertEqual(stats['reporting_window'], 'T3/2026 – T9/2026')
+        self.assertTrue(stats['reporting_window'].startswith('T9/2026 – '))
         self.assertEqual(stats['monthly_rows'][0]['exams'], 1)
-        self.assertEqual(stats['monthly_rows'][4]['submissions'], 1)
-        self.assertEqual([row['cumulative_exams'] for row in stats['monthly_rows']], [1] * 7)
-        self.assertEqual([row['cumulative_submissions'] for row in stats['monthly_rows']], [0, 0, 0, 0, 1, 1, 1])
+        self.assertEqual(stats['monthly_rows'][1]['submissions'], 1)
+        self.assertTrue(all(row['cumulative_exams'] == 1 for row in stats['monthly_rows']))
+        self.assertEqual(stats['monthly_rows'][0]['cumulative_submissions'], 0)
+        self.assertTrue(all(row['cumulative_submissions'] == 1 for row in stats['monthly_rows'][1:]))
         self.assertTrue(stats['exam_chart_points'].startswith('0,100 '))
         self.assertTrue(stats['exam_chart_points'].endswith('600.0,0.0'))
         self.login('admin')

@@ -52,6 +52,7 @@
                 {% if item.course.grade %}
                 <span class="course-grade-badge">Lớp {{ item.course.grade }}</span>
                 {% endif %}
+                {% if item.teacher_name %}<p class="course-description">Giáo viên: {{ item.teacher_name }}</p>{% endif %}
                 <p class="course-description">{{ item.course.description[:100] }}{% if item.course.description|length > 100 %}...{% endif %}</p>
                 
                 <div class="course-stats">
@@ -66,6 +67,9 @@
                 </div>
                 
                 <div class="course-actions">
+                    <a href="{{ url_for('teacher_class_overview', course_id=item.course.id) }}" class="btn btn-primary btn-small">
+                        Tổng quan lớp & danh sách học sinh
+                    </a>
                     <a href="{{ url_for('course_detail', course_id=item.course.id) }}" class="btn btn-outline btn-small">
                          Xem
                     </a>

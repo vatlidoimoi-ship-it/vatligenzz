@@ -8,6 +8,7 @@ from flask import (
     jsonify,
     flash,
     send_from_directory,
+    abort,
 )
 from dotenv import load_dotenv
 from functools import wraps
@@ -704,6 +705,7 @@ def refresh_login_session():
         return False
     session["role"] = user["role"]
     session["username"] = user["username"]
+    session["display_name"] = user.get("full_name") or user["username"]
     return True
 
 
@@ -852,6 +854,8 @@ def login():
             session["user_id"] = result["user_id"]
             session["username"] = result["username"]
             session["role"] = result["role"]
+            account = get_user_by_id(result["user_id"])
+            session["display_name"] = (account or {}).get("full_name") or result["username"]
 
             flash(f"Chào mừng {result['username']}!", "success")
 
@@ -885,7 +889,7 @@ def notifications_page():
     return render_template(
         "notifications.html",
         notifications=notifications,
-        username=session.get("username"),
+        username=session.get("display_name") or session.get("username"),
     )
 
 
@@ -1139,7 +1143,7 @@ def student_dashboard():
         "student_dashboard.html",
         courses=courses,
         enrolled_courses=enrolled_courses,
-        username=session.get("username"),
+        username=session.get("display_name") or session.get("username"),
     )
 
 
@@ -1154,8 +1158,9 @@ def teacher_dashboard():
     ]
 
     course_stats = []
+    all_progress = db._load_json(db.progress_file)
     for course in my_courses:
-        all_progress = db._load_json(db.progress_file)
+        teacher = get_user_by_id(course.get("teacher_id")) or {}
         students_enrolled = len(
             [p for p in all_progress if p["course_id"] == course["id"]]
         )
@@ -1163,6 +1168,7 @@ def teacher_dashboard():
         course_stats.append(
             {
                 "course": course,
+                "teacher_name": teacher.get("full_name") or teacher.get("username", ""),
                 "students_enrolled": students_enrolled,
                 "total_lessons": len(course.get("lessons", [])),
             }
@@ -1170,9 +1176,168 @@ def teacher_dashboard():
 
     return render_template(
         "teacher_dashboard.html", courses=course_stats, username=session.get("username"),
-        student_count=len({p["user_id"] for p in db._load_json(db.progress_file)
+        student_count=len({p["user_id"] for p in all_progress
                            if p.get("course_id") in {c["id"] for c in my_courses}})
     )
+
+
+def teacher_class_context(course_id):
+    course = db.get_course_by_id(course_id)
+    if (not course or str(course.get("grade", "")) not in ALLOWED_GRADE_LEVELS
+            or not can_manage_learning(course.get("teacher_id"))):
+        abort(404)
+    memberships = [row for row in db._load_json(db.progress_file)
+                   if row.get("course_id") == course_id]
+    ids = {str(row.get("user_id")) for row in memberships}
+    students = sorted((dict(user, display_name=user.get("full_name") or user.get("username")) for user in load_users()
+                       if user.get("role") == "student" and str(user.get("id")) in ids),
+                      key=lambda user: user.get("display_name", "").casefold())
+    return course, memberships, students
+
+
+def teacher_class_exam_context(course):
+    exams = [exam for exam in _load_subject_exam_data("li").get("exams", [])
+             if str(exam.get("grade")) == str(course.get("grade"))]
+    exam_by_id = {exam.get("id"): exam for exam in exams}
+    rows = [row for row in read_json(readable_data_file("exam_results.json"), [])
+            if row.get("subject") == "li" and row.get("exam_id") in exam_by_id]
+    return exam_by_id, rows
+
+
+def teacher_student_report_data(course, membership, student, exam_by_id, exam_rows, course_submissions,
+                                course_grades=None):
+    user_id = str(student["id"])
+    attempts = [row for row in exam_rows if str(row.get("user_id")) == user_id]
+    attempts.sort(key=lambda row: (admin_activity_date(row.get("submitted_at")) or datetime.min.date(),
+                                   str(row.get("submitted_at", ""))[-8:]))
+    scored = [row for row in attempts if isinstance((row.get("result") or {}).get("total_score"), (int, float))]
+    first_by_exam = {}
+    for row in attempts:
+        first_by_exam.setdefault(row.get("exam_id"), row)
+    first_rows = list(first_by_exam.values())
+    first_correct = sum(((row.get("result") or {}).get("multiple_choice") or {}).get("correct_count", 0)
+                        for row in first_rows)
+    first_total = sum(((row.get("result") or {}).get("multiple_choice") or {}).get("total_questions", 0)
+                      for row in first_rows)
+    topic_stats = {}
+    daily_stats = {}
+    wrong_answers = []
+    for row in attempts:
+        result = row.get("result") or {}
+        mc = result.get("multiple_choice") or {}
+        topic = exam_by_id[row["exam_id"]].get("topic") or "Chủ đề khác"
+        bucket = topic_stats.setdefault(topic, {"topic": topic, "correct": 0, "total": 0, "attempts": 0})
+        bucket["correct"] += mc.get("correct_count", 0) or 0
+        bucket["total"] += mc.get("total_questions", 0) or 0
+        bucket["attempts"] += 1
+        day = admin_activity_date(row.get("submitted_at"))
+        if day:
+            daily = daily_stats.setdefault(day.isoformat(), {"day": day.strftime("%d/%m/%Y"), "correct": 0, "total": 0})
+            daily["correct"] += mc.get("correct_count", 0) or 0
+            daily["total"] += mc.get("total_questions", 0) or 0
+        for wrong in result.get("wrong_answers", []):
+            wrong_answers.append({**wrong, "exam_title": row.get("exam_title", ""),
+                                  "submitted_at": row.get("submitted_at", "")})
+    topics = sorted(topic_stats.values(), key=lambda item: item["topic"])
+    for item in topics:
+        item["percent"] = round(item["correct"] * 100 / item["total"]) if item["total"] else 0
+    radar = None
+    if len(topics) >= 3:
+        axes = []
+        radar_topics = sorted(topics, key=lambda item: (-item["total"], item["topic"]))[:6]
+        for index, item in enumerate(radar_topics):
+            angle = -math.pi / 2 + 2 * math.pi * index / len(radar_topics)
+            axes.append({"topic": item["topic"], "percent": item["percent"],
+                         "x": round(170 + 103 * math.cos(angle), 1),
+                         "y": round(150 + 103 * math.sin(angle), 1),
+                         "label_x": round(170 + 135 * math.cos(angle), 1),
+                         "label_y": round(153 + 135 * math.sin(angle), 1),
+                         "angle": angle})
+        grids = []
+        for level in (20, 40, 60, 80, 100):
+            grids.append(" ".join(f'{round(170 + 103 * level / 100 * math.cos(axis["angle"]), 1)},{round(150 + 103 * level / 100 * math.sin(axis["angle"]), 1)}' for axis in axes))
+        polygon = " ".join(f'{round(170 + 103 * axis["percent"] / 100 * math.cos(axis["angle"]), 1)},{round(150 + 103 * axis["percent"] / 100 * math.sin(axis["angle"]), 1)}' for axis in axes)
+        radar = {"axes": axes, "grids": grids, "polygon": polygon}
+    days = [daily_stats[key] for key in sorted(daily_stats)][-7:]
+    for item in days:
+        item["percent"] = round(item["correct"] * 100 / item["total"]) if item["total"] else 0
+    submissions = [row for row in course_submissions
+                   if str(row.get("user_id")) == user_id]
+    submissions.sort(key=lambda row: str(row.get("submitted_at", "")), reverse=True)
+    gradebook = []
+    school_grade = next((row for row in (course_grades or [])
+                         if str(row.get("student_id")) == user_id), None)
+    school_grade_rows = []
+    if school_grade:
+        for field, label in (("tx1", "Thường xuyên 1"), ("tx2", "Thường xuyên 2"),
+                             ("tx3", "Thường xuyên 3"), ("tx4", "Thường xuyên 4"),
+                             ("tx5", "Thường xuyên 5"), ("midterm", "Giữa kì I"),
+                             ("final", "Cuối kì I"), ("average", "Trung bình học kì I")):
+            if school_grade.get(field) is not None:
+                school_grade_rows.append({"kind": "Điểm Vật lí", "title": label,
+                                          "score": school_grade[field], "max_score": 10,
+                                          "date": "Học kì I"})
+    gradebook.extend(school_grade_rows)
+    for row in reversed(attempts):
+        gradebook.append({"kind": "Đề trắc nghiệm", "title": row.get("exam_title", ""),
+                          "score": (row.get("result") or {}).get("total_score"),
+                          "max_score": 10, "date": row.get("submitted_at", "")})
+    for row in submissions:
+        lesson = next((item for item in course.get("lessons", []) if item.get("id") == row.get("exercise_id")), None)
+        gradebook.append({"kind": "Bài tập lớp", "title": (lesson or {}).get("title", "Bài tập"),
+                          "score": row.get("score"), "max_score": 100,
+                          "date": row.get("submitted_at", "")})
+    completed_ids = set(membership.get("completed_lessons", []))
+    lessons = [{"title": lesson.get("title", "Bài học"), "completed": lesson.get("id") in completed_ids}
+               for lesson in course.get("lessons", [])]
+    average = round(sum((row.get("result") or {}).get("total_score", 0) for row in scored) / len(scored), 1) if scored else None
+    return {"student": student, "attempts": attempts, "attempt_count": len(attempts),
+            "average": average, "first_correct": first_correct, "first_total": first_total,
+            "first_percent": round(first_correct * 100 / first_total) if first_total else None,
+            "school_average": school_grade.get("average") if school_grade else None,
+            "school_grade_rows": school_grade_rows,
+            "topics": topics, "radar": radar, "days": days, "wrong_answers": wrong_answers,
+            "submissions": submissions, "gradebook": gradebook, "lessons": lessons,
+            "completed_lessons": sum(item["completed"] for item in lessons),
+            "total_lessons": len(lessons), "last_updated": membership.get("last_updated")}
+
+
+@app.route("/teacher/classes/<course_id>")
+@teacher_required
+def teacher_class_overview(course_id):
+    course, memberships, students = teacher_class_context(course_id)
+    exam_by_id, exam_rows = teacher_class_exam_context(course)
+    course_submissions = db.get_submissions_by_course(course_id)
+    course_grades = [row for row in read_json(readable_data_file("physics_grades.json"), [])
+                     if row.get("course_id") == course_id]
+    memberships_by_id = {str(row.get("user_id")): row for row in memberships}
+    reports = [teacher_student_report_data(course, memberships_by_id[str(student["id"])],
+                                           student, exam_by_id, exam_rows, course_submissions, course_grades) for student in students]
+    scored = [report["average"] for report in reports if report["average"] is not None]
+    school_scored = [report["school_average"] for report in reports if report["school_average"] is not None]
+    summary = {"students": len(students), "active": sum(report["attempt_count"] > 0 for report in reports),
+               "attempts": sum(report["attempt_count"] for report in reports),
+               "average": round(sum(scored) / len(scored), 1) if scored else None,
+               "school_average": round(sum(school_scored) / len(school_scored), 1) if school_scored else None}
+    teacher = get_user_by_id(course.get("teacher_id")) or {}
+    return render_template("teacher_class_overview.html", course=course, reports=reports,
+                           summary=summary, teacher_name=teacher.get("full_name") or teacher.get("username", ""))
+
+
+@app.route("/teacher/classes/<course_id>/students/<student_id>")
+@teacher_required
+def teacher_student_report(course_id, student_id):
+    course, memberships, students = teacher_class_context(course_id)
+    student = next((item for item in students if str(item["id"]) == str(student_id)), None)
+    membership = next((row for row in memberships if str(row.get("user_id")) == str(student_id)), None)
+    if not student or not membership:
+        abort(404)
+    exam_by_id, exam_rows = teacher_class_exam_context(course)
+    course_grades = [row for row in read_json(readable_data_file("physics_grades.json"), [])
+                     if row.get("course_id") == course_id]
+    report = teacher_student_report_data(course, membership, student, exam_by_id, exam_rows,
+                                         db.get_submissions_by_course(course_id), course_grades)
+    return render_template("teacher_student_report.html", course=course, report=report)
 
 
 @app.route("/courses")
@@ -3739,11 +3904,12 @@ def admin_dashboard_stats():
         day = admin_activity_date(row.get("submitted_at"))
         if day:
             activity.setdefault(day.strftime("%Y-%m"), {"exams": 0, "submissions": 0})["submissions"] += 1
-    latest_month = max(["2026-09", *activity.keys()])
+    latest_month = max(["2026-09", datetime.now().strftime("%Y-%m"), *activity.keys()])
     latest_year, latest_number = map(int, latest_month.split("-"))
     monthly_rows = []
-    for offset in range(6, -1, -1):
-        month_index = latest_year * 12 + latest_number - 1 - offset
+    first_month_index = 2026 * 12 + 9 - 1
+    last_month_index = latest_year * 12 + latest_number - 1
+    for month_index in range(first_month_index, last_month_index + 1):
         year, month_zero = divmod(month_index, 12)
         month = month_zero + 1
         counts = activity.get(f"{year:04d}-{month:02d}", {"exams": 0, "submissions": 0})
@@ -4558,6 +4724,7 @@ def update_profile_basic():
     user["full_name"] = full_name
     save_users(users)
     session["username"] = username
+    session["display_name"] = full_name or username
     flash("Đã cập nhật hồ sơ", "success")
     return redirect(url_for("my_profile"))
 

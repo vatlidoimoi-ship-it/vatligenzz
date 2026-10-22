@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Báo cáo {{ report.student.display_name }} - {{ course.title }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/teacher-class-report.css') }}">
+<main class="class-shell">
+  <nav class="class-crumb" aria-label="Đường dẫn"><a href="{{ url_for('teacher_dashboard') }}">Tất cả lớp</a><span>›</span><a href="{{ url_for('teacher_class_overview', course_id=course.id) }}">{{ course.title }}</a><span>›</span><strong>{{ report.student.display_name }}</strong></nav>
+  <header class="class-heading">
+    <div><h1>{{ report.student.display_name }}</h1><p>{{ course.title }} · Báo cáo chi tiết học tập môn Vật lí{% if report.student.student_code %} · Mã học sinh {{ report.student.student_code }}{% endif %}</p></div>
+    <a class="class-outline" href="{{ url_for('teacher_class_overview', course_id=course.id) }}">← Danh sách lớp</a>
+  </header>
+  <div class="report-tabs" role="tablist" aria-label="Nội dung báo cáo">
+    <button type="button" class="active" role="tab" aria-selected="true" aria-controls="report-overview" id="tab-overview" data-report-tab="overview">Tổng quan & sơ đồ</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="report-grades" id="tab-grades" data-report-tab="grades">Bảng điểm</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="report-errors" id="tab-errors" data-report-tab="errors">Phân tích lỗi & sửa bài</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="report-knowledge" id="tab-knowledge" data-report-tab="knowledge">Chi tiết kiến thức</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="report-notes" id="tab-notes" data-report-tab="notes">Nhận xét & hoạt động</button>
+  </div>
+
+  <section id="report-overview" role="tabpanel" aria-labelledby="tab-overview" class="report-panel">
+    <div class="class-metrics">
+      <article><span>Đúng ở lượt đầu</span><strong>{{ report.first_percent if report.first_percent is not none else '—' }}{% if report.first_percent is not none %}%{% endif %}</strong><small>{{ report.first_correct }}/{{ report.first_total }} câu ở lần đầu mỗi đề</small></article>
+      <article><span>Điểm sổ Vật lí</span><strong>{{ report.school_average if report.school_average is not none else '—' }}{% if report.school_average is not none %}/10{% endif %}</strong><small>Học kì I · điểm từ sổ lớp</small></article>
+      <article><span>Bài học hoàn thành</span><strong>{{ report.completed_lessons }}/{{ report.total_lessons }}</strong><small>Trong lớp {{ course.title }}</small></article>
+      <article><span>Thời gian hoạt động</span><strong class="metric-unknown">Chưa ghi nhận</strong><small>Hệ thống chưa lưu thời lượng học</small></article>
+    </div>
+    <div class="report-grid">
+      <article class="class-panel"><div class="class-panel-head"><div><p class="class-eyebrow">NĂNG LỰC THEO LĨNH VỰC</p><h2>Vật lí theo chủ đề</h2></div></div><p class="class-muted">Tỉ lệ trả lời đúng trong những câu trắc nghiệm đã làm.</p>
+      {% if report.topics %}
+      {% if report.radar %}<svg class="report-radar" viewBox="0 0 340 310" role="img" aria-label="Sơ đồ năng lực theo chủ đề Vật lí">
+        {% for grid in report.radar.grids %}<polygon points="{{ grid }}" fill="none" stroke="#d8e2ed" stroke-width="1"/>{% endfor %}
+        {% for axis in report.radar.axes %}<line x1="170" y1="150" x2="{{ axis.x }}" y2="{{ axis.y }}" stroke="#d8e2ed"/><text x="{{ axis.label_x }}" y="{{ axis.label_y }}" text-anchor="middle"><title>{{ axis.topic }}</title>{{ axis.topic|truncate(18) }}</text>{% endfor %}
+        <polygon points="{{ report.radar.polygon }}" fill="#3979b0" fill-opacity=".18" stroke="#2f68a5" stroke-width="2.5"/>
+        {% for axis in report.radar.axes %}<circle cx="{{ (170 + (axis.x - 170) * axis.percent / 100)|round(1) }}" cy="{{ (150 + (axis.y - 150) * axis.percent / 100)|round(1) }}" r="3.5" fill="#2f68a5"/>{% endfor %}
+      </svg>{% endif %}
+      <div class="topic-bars">{% for topic in report.topics %}<div class="topic-row"><div><span>{{ topic.topic }}</span><strong>{{ topic.percent }}%</strong></div><div class="topic-track"><i style="width: {{ topic.percent }}%"></i></div><small>{{ topic.correct }}/{{ topic.total }} câu · {{ topic.attempts }} lượt</small></div>{% endfor %}</div>{% else %}<p class="class-empty">Chưa có kết quả trắc nghiệm để vẽ năng lực theo chủ đề.</p>{% endif %}
+      </article>
+      <article class="class-panel"><div class="class-panel-head"><div><p class="class-eyebrow">DIỄN BIẾN THEO NGÀY</p><h2>Kết quả gần đây</h2></div></div><p class="class-muted">Tỉ lệ câu đúng trong các lượt làm đề cùng ngày.</p>
+      {% if report.days %}<div class="day-bars">{% for day in report.days %}<div><time>{{ day.day }}</time><span class="day-track"><i style="width: {{ day.percent }}%"></i></span><strong>{{ day.percent }}%</strong><small>{{ day.correct }}/{{ day.total }}</small></div>{% endfor %}</div>{% else %}<p class="class-empty">Chưa có hoạt động làm đề được ghi nhận.</p>{% endif %}
+      </article>
+    </div>
+    <p class="class-footnote">Điểm đề Vật lí được tổng hợp theo khối {{ course.grade }} của học sinh; bài học và bài tập chỉ lấy từ {{ course.title }}.</p>
+  </section>
+
+  <section id="report-grades" role="tabpanel" aria-labelledby="tab-grades" class="report-panel" hidden><article class="class-panel"><div class="class-panel-head"><div><p class="class-eyebrow">BẢNG ĐIỂM</p><h2>Kết quả đã ghi nhận</h2></div></div>
+  {% if report.average is not none %}<p class="class-muted">Điểm trung bình đề trắc nghiệm: <strong>{{ report.average }}/10</strong> từ {{ report.attempt_count }} lượt làm.</p>{% endif %}
+  {% if report.gradebook %}<div class="class-table-scroll"><table class="class-table"><thead><tr><th>Loại</th><th>Bài</th><th>Điểm</th><th>Thời điểm</th></tr></thead><tbody>{% for item in report.gradebook %}<tr><td>{{ item.kind }}</td><td>{{ item.title }}</td><td><strong>{{ item.score if item.score is not none else 'Chờ chấm' }}{% if item.score is not none %}/{{ item.max_score }}{% endif %}</strong></td><td>{{ item.date }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<p class="class-empty">Chưa có điểm trắc nghiệm hoặc bài tập.</p>{% endif %}</article></section>
+
+  <section id="report-errors" role="tabpanel" aria-labelledby="tab-errors" class="report-panel" hidden><article class="class-panel"><div class="class-panel-head"><div><p class="class-eyebrow">PHÂN TÍCH LỖI</p><h2>Câu làm sai và hướng sửa</h2></div></div>
+  {% if report.wrong_answers %}<div class="error-list">{% for item in report.wrong_answers|reverse %}<div class="error-card"><small>{{ item.exam_title }} · {{ item.submitted_at }}</small><h3>Câu {{ item.question_number }}. {{ item.question_text }}</h3><p>Học sinh chọn: <strong>{{ item.user_answer }}</strong> · Đáp án đúng: <strong>{{ item.correct_answer }}</strong></p>{% if item.explanation %}<p>Giải thích: {{ item.explanation }}</p>{% endif %}</div>{% endfor %}</div>{% else %}<p class="class-empty">Chưa có câu sai được ghi nhận trong các lượt làm đề.</p>{% endif %}</article></section>
+
+  <section id="report-knowledge" role="tabpanel" aria-labelledby="tab-knowledge" class="report-panel" hidden><div class="report-grid"><article class="class-panel"><div class="class-panel-head"><div><p class="class-eyebrow">CHỦ ĐỀ VẬT LÍ</p><h2>Mức độ theo từng chủ đề</h2></div></div>{% if report.topics %}<div class="topic-bars">{% for topic in report.topics %}<div class="topic-row"><div><span>{{ topic.topic }}</span><strong>{{ topic.percent }}%</strong></div><div class="topic-track"><i style="width: {{ topic.percent }}%"></i></div><small>{{ topic.correct }}/{{ topic.total }} câu đã làm</small></div>{% endfor %}</div>{% else %}<p class="class-empty">Chưa có dữ liệu theo chủ đề.</p>{% endif %}</article>
+  <article class="class-panel"><div class="class-panel-head"><div><p class="class-eyebrow">BÀI HỌC CỦA LỚP</p><h2>Tiến độ học</h2></div></div>{% if report.lessons %}<ul class="lesson-list">{% for lesson in report.lessons %}<li><span>{{ lesson.title }}</span><strong>{{ 'Đã hoàn thành' if lesson.completed else 'Chưa hoàn thành' }}</strong></li>{% endfor %}</ul>{% else %}<p class="class-empty">Lớp chưa có bài học được giao.</p>{% endif %}</article></div></section>
+
+  <section id="report-notes" role="tabpanel" aria-labelledby="tab-notes" class="report-panel" hidden><div class="report-grid"><article class="class-panel"><div class="class-panel-head"><div><p class="class-eyebrow">HOẠT ĐỘNG</p><h2>Các lượt làm đề gần đây</h2></div></div>{% if report.attempts %}<ul class="lesson-list">{% for item in report.attempts|reverse %}<li><span>{{ item.exam_title }}<small>{{ item.submitted_at }}</small></span><strong>{{ item.result.total_score }}/10</strong></li>{% endfor %}</ul>{% else %}<p class="class-empty">Chưa có lượt làm đề.</p>{% endif %}</article>
+  <article class="class-panel"><div class="class-panel-head"><div><p class="class-eyebrow">NHẬN XÉT</p><h2>Phản hồi bài tập</h2></div></div>{% set feedback_rows = report.submissions|selectattr('feedback')|list %}{% if feedback_rows %}<ul class="lesson-list">{% for item in feedback_rows %}<li><span>{{ item.feedback }}<small>{{ item.submitted_at }}</small></span></li>{% endfor %}</ul>{% else %}<p class="class-empty">Chưa có nhận xét cho bài tập trong lớp.</p>{% endif %}</article></div></section>
+</main>
+<script>
+const reportTabs = [...document.querySelectorAll('[data-report-tab]')];
+function openReportTab(name) {
+  reportTabs.forEach(tab => {
+    const active = tab.dataset.reportTab === name;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', String(active));
+    document.getElementById('report-' + tab.dataset.reportTab).hidden = !active;
+  });
+}
+reportTabs.forEach(tab => tab.addEventListener('click', () => openReportTab(tab.dataset.reportTab)));
+</script>
+{% endblock %}
