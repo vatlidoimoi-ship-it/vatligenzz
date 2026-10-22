@@ -98,7 +98,7 @@ class RemoteStore:
     def put(self, key, value):
         response = requests.post(self.url,
                                  headers={**self.headers, 'Prefer': 'resolution=merge-duplicates,return=minimal'},
-                                 params={'on_conflict': 'key'}, json={'key': key, 'value': value}, timeout=60)
+                                 params={'on_conflict': 'key'}, json={'key': key, 'value': value}, timeout=300)
         response.raise_for_status()
 
 
