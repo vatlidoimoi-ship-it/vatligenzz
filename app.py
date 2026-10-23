@@ -1291,7 +1291,12 @@ def teacher_student_report_data(course, membership, student, exam_by_id, exam_ro
     lessons = [{"title": lesson.get("title", "Bài học"), "completed": lesson.get("id") in completed_ids}
                for lesson in course.get("lessons", [])]
     average = round(sum((row.get("result") or {}).get("total_score", 0) for row in scored) / len(scored), 1) if scored else None
+    distinct_exams = len(first_by_exam)
     return {"student": student, "attempts": attempts, "attempt_count": len(attempts),
+            "distinct_exams": distinct_exams,
+            "exam_minimum": 4, "exam_target": 5,
+            "exams_remaining": max(4 - distinct_exams, 0),
+            "exam_minimum_met": distinct_exams >= 4,
             "average": average, "first_correct": first_correct, "first_total": first_total,
             "first_percent": round(first_correct * 100 / first_total) if first_total else None,
             "school_average": school_grade.get("average") if school_grade else None,
@@ -1316,6 +1321,7 @@ def teacher_class_overview(course_id):
     scored = [report["average"] for report in reports if report["average"] is not None]
     school_scored = [report["school_average"] for report in reports if report["school_average"] is not None]
     summary = {"students": len(students), "active": sum(report["attempt_count"] > 0 for report in reports),
+               "minimum_met": sum(report["exam_minimum_met"] for report in reports),
                "attempts": sum(report["attempt_count"] for report in reports),
                "average": round(sum(scored) / len(scored), 1) if scored else None,
                "school_average": round(sum(school_scored) / len(school_scored), 1) if school_scored else None}
@@ -3947,7 +3953,9 @@ def admin_dashboard_stats():
         "career_students": len({row.get("user_id") for row in career_completions}),
         "career_rows": career_rows,
         "submissions": len(submissions),
-        "completed_lessons": sum(len(row.get("completed_lessons", [])) for row in progress),
+        # Each saved submission is one completed exercise attempt. Lesson mastery
+        # remains separate in progress (including its score threshold).
+        "completed_lessons": len(submissions),
         "enrolled_students": len({row.get("user_id") for row in progress}),
         "grade_rows": grade_rows,
         "monthly_rows": monthly_rows,

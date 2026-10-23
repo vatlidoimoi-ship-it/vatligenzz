@@ -17,6 +17,9 @@
   </div>
 
   <section id="report-overview" role="tabpanel" aria-labelledby="tab-overview" class="report-panel">
+    <p class="class-footnote">Đã làm <strong>{{ report.distinct_exams }}</strong> đề khác nhau / {{ report.attempt_count }} lượt. Tối thiểu {{ report.exam_minimum }} đề, mục tiêu {{ report.exam_target }} đề.
+      {% if report.exam_minimum_met %}<strong>Đã đạt tối thiểu.</strong>{% else %}<strong>Còn thiếu {{ report.exams_remaining }} đề để đạt tối thiểu.</strong>{% endif %}
+    </p>
     <div class="class-metrics">
       <article><span>Đúng ở lượt đầu</span><strong>{{ report.first_percent if report.first_percent is not none else '—' }}{% if report.first_percent is not none %}%{% endif %}</strong><small>{{ report.first_correct }}/{{ report.first_total }} câu ở lần đầu mỗi đề</small></article>
       <article><span>Điểm sổ Vật lí</span><strong>{{ report.school_average if report.school_average is not none else '—' }}{% if report.school_average is not none %}/10{% endif %}</strong><small>Học kì I · điểm từ sổ lớp</small></article>

@@ -76,6 +76,32 @@ class TeacherClassReportsTests(unittest.TestCase):
         self.login('admin')
         self.assertEqual(self.client.get('/teacher/classes/course_other').status_code, 200)
 
+    def test_exam_minimum_counts_distinct_exams_instead_of_retries(self):
+        student = web.get_user_by_id('student')
+        rows = [{'user_id': 'student', 'exam_id': 'same'} for _ in range(5)]
+        report = web.teacher_student_report_data(
+            self.course, {}, student, {row['exam_id']: {} for row in rows}, rows, [])
+        self.assertEqual(report['attempt_count'], 5)
+        self.assertEqual(report['distinct_exams'], 1)
+        self.assertEqual(report['exams_remaining'], 3)
+        self.assertFalse(report['exam_minimum_met'])
+        rows.extend({'user_id': 'student', 'exam_id': str(i)} for i in range(3))
+        report = web.teacher_student_report_data(
+            self.course, {}, student, {row['exam_id']: {} for row in rows}, rows, [])
+        self.assertTrue(report['exam_minimum_met'])
+        self.assertEqual(report['exams_remaining'], 0)
+
+    def test_dashboard_completion_counts_submissions_not_lesson_mastery(self):
+        web.db._save_json(web.db.submissions_file, [
+            {'user_id': 'student', 'course_id': 'course_a', 'exercise_id': 'lesson_a', 'score': 20},
+            {'user_id': 'student', 'course_id': 'course_a', 'exercise_id': 'lesson_a', 'score': 90},
+            {'user_id': 'student', 'course_id': 'deleted_course', 'exercise_id': 'lesson_a'},
+        ])
+        stats = web.admin_dashboard_stats()
+        self.assertEqual(stats['submissions'], 2)
+        self.assertEqual(stats['completed_lessons'], 2)
+        self.assertEqual(web.db.get_course_progress('student', 'course_a')['completed_lessons'], ['lesson_a'])
+
     def test_radar_uses_recorded_topics_when_three_are_available(self):
         exam_by_id = {f'exam{i}': {'topic': topic} for i, topic in enumerate(
             ('Chuyển động', 'Lực', 'Năng lượng'), 1)}
