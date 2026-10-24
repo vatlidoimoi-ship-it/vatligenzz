@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import json
 from pathlib import Path
 import random
+from presentation_scores import rebalance
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / '.runtime_data' / 'presentation'
@@ -49,6 +50,12 @@ def build():
             if score >= 7:
                 membership['completed_lessons'].append(exam['id'])
             membership['last_updated'] = when.isoformat()
+    score_summary = rebalance(results, submissions, bank)
+    for membership in memberships.values():
+        membership['completed_lessons'] = [s['exercise_id'] for s in submissions
+                                           if s['user_id'] == membership['user_id']
+                                           and s['course_id'] == membership['course_id']
+                                           and s['score'] >= 70]
     data['data/exam_results.json'] = results
     data['data/submissions.json'] = submissions
     data['data/li.json'] = bank
@@ -61,6 +68,7 @@ def build():
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding='utf-8')
     summary = dict(provenance=provenance, students=len(students), courses=len(courses), exam_attempts=len(results), submissions=len(submissions), completed_exercise_attempts=len(submissions), students_meeting_minimum=sum(len({r['exam_id'] for r in results if r['user_id'] == u['id']}) >= 4 for u in students))
+    summary['scores'] = score_summary
     (DEST / 'manifest.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding='utf-8')
     print(json.dumps(summary, ensure_ascii=False))
 
