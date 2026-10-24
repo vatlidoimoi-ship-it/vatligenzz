@@ -3,11 +3,12 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/teacher-class-report.css') }}">
 <main class="class-shell">
-  <nav class="class-crumb" aria-label="Đường dẫn"><a href="{{ url_for('teacher_dashboard') }}">Tất cả lớp</a><span>›</span><a href="{{ url_for('teacher_class_overview', course_id=course.id) }}">{{ course.title }}</a><span>›</span><strong>{{ report.student.display_name }}</strong></nav>
+  <nav class="class-crumb" aria-label="Đường dẫn"><a href="{{ url_for('teacher_dashboard') }}">Tất cả lớp</a><span>›</span><a href="{{ url_for('teacher_class_overview', course_id=course.id, term=term) }}">{{ course.title }}</a><span>›</span><strong>{{ report.student.display_name }}</strong></nav>
   <header class="class-heading">
     <div><h1>{{ report.student.display_name }}</h1><p>{{ course.title }} · Báo cáo chi tiết học tập môn Vật lí{% if report.student.student_code %} · Mã học sinh {{ report.student.student_code }}{% endif %}</p></div>
-    <a class="class-outline" href="{{ url_for('teacher_class_overview', course_id=course.id) }}">← Danh sách lớp</a>
+    <div><a class="class-outline" href="{{ url_for('teacher_class_gradebook', course_id=course.id, term=term) }}">Nhập bảng điểm cả lớp</a> <a class="class-outline" href="{{ url_for('teacher_class_overview', course_id=course.id, term=term) }}">← Danh sách lớp</a></div>
   </header>
+  <form method="get" class="class-panel"><label for="studentTerm">Điểm sổ theo học kì</label> <select id="studentTerm" name="term">{% for key, label in terms.items() %}<option value="{{ key }}" {% if term == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select> <button class="class-outline" type="submit">Xem học kì</button></form>
   <div class="report-tabs" role="tablist" aria-label="Nội dung báo cáo">
     <button type="button" class="active" role="tab" aria-selected="true" aria-controls="report-overview" id="tab-overview" data-report-tab="overview">Tổng quan & sơ đồ</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="report-grades" id="tab-grades" data-report-tab="grades">Bảng điểm</button>
@@ -22,7 +23,7 @@
     </p>
     <div class="class-metrics">
       <article><span>Đúng ở lượt đầu</span><strong>{{ report.first_percent if report.first_percent is not none else '—' }}{% if report.first_percent is not none %}%{% endif %}</strong><small>{{ report.first_correct }}/{{ report.first_total }} câu ở lần đầu mỗi đề</small></article>
-      <article><span>Điểm sổ Vật lí</span><strong>{{ report.school_average if report.school_average is not none else '—' }}{% if report.school_average is not none %}/10{% endif %}</strong><small>Học kì I · điểm từ sổ lớp</small></article>
+      <article><span>Điểm sổ Vật lí</span><strong>{{ report.school_average if report.school_average is not none else '—' }}{% if report.school_average is not none %}/10{% endif %}</strong><small>{{ term_label }} · điểm từ sổ lớp</small></article>
       <article><span>Bài học hoàn thành</span><strong>{{ report.completed_lessons }}/{{ report.total_lessons }}</strong><small>Trong lớp {{ course.title }}</small></article>
       <article><span>Thời gian hoạt động</span><strong class="metric-unknown">Chưa ghi nhận</strong><small>Hệ thống chưa lưu thời lượng học</small></article>
     </div>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Nhập bảng điểm · {{ course.title }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/teacher-class-report.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gradebook.css') }}">
+<main class="class-shell gradebook-shell">
+  <nav class="class-crumb"><a href="{{ url_for('teacher_dashboard') }}">Tất cả lớp</a><span>›</span><a href="{{ url_for('teacher_class_overview', course_id=course.id, term=term) }}">{{ course.title }}</a><span>›</span><strong>Nhập bảng điểm</strong></nav>
+  <header class="class-heading"><div><p class="class-eyebrow">SỔ ĐIỂM VẬT LÍ</p><h1>{{ course.title }}</h1><p>Nhập điểm cả lớp · {{ term_label }} · {{ rows|length }} học sinh</p></div></header>
+  <section class="class-panel">
+    <nav class="gradebook-terms" aria-label="Chọn học kì">{% for key, label in terms.items() %}<a class="class-outline {% if key == term %}selected{% endif %}" href="{{ url_for('teacher_class_gradebook', course_id=course.id, term=key) }}" {% if key == term %}aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}</nav>
+    <p class="class-muted">Điểm từ 0–10, tối đa một chữ số thập phân (8,5 hoặc 8.5). Để trống khi chưa có điểm; điểm 0 vẫn được tính. Dùng phím Tab để chuyển ô.</p>
+    <p class="class-muted">Hiện chỉ nhập một cột thường xuyên: TX1. TB học kì = (TX1 + 2 × Giữa kì + 3 × Cuối kì) ÷ 6. Chưa đủ 3 điểm sẽ hiển thị “Chưa đủ điểm”. Điểm nhập từ sổ cũ được giữ đến khi bạn sửa điểm của học sinh đó.</p>
+    <label for="gradebookSearch">Tìm theo tên hoặc mã học sinh</label>
+    <input id="gradebookSearch" class="class-search" type="search" placeholder="Nhập tên hoặc mã học sinh...">
+    <form id="gradebookForm" data-csrf="{{ csrf }}" data-save-url="{{ url_for('teacher_class_gradebook', course_id=course.id, term=term) }}">
+      <div class="gradebook-toolbar"><span id="gradebookDirty" aria-live="polite">Chưa có thay đổi</span><button id="gradebookSave" class="class-outline" type="submit" disabled>Lưu thay đổi</button></div>
+      <p id="gradebookStatus" role="status" aria-live="polite"></p>
+      <div class="class-table-scroll"><table class="class-table gradebook-table"><thead><tr><th scope="col">STT</th><th scope="col">Học sinh</th>{% for name in ['TX1', 'Giữa kì', 'Cuối kì'] %}<th scope="col">{{ name }}</th>{% endfor %}<th scope="col">TB học kì</th><th scope="col">Lịch sử</th></tr></thead><tbody>
+      {% for row in rows %}<tr data-student-id="{{ row.student.id }}" data-version="{{ row.version }}" data-search="{{ row.student.display_name }} {{ row.student.student_code or '' }}">
+        <td>{{ loop.index }}</td><th scope="row"><a href="{{ url_for('teacher_student_report', course_id=course.id, student_id=row.student.id, term=term) }}">{{ row.student.display_name }}</a><small>{{ row.student.student_code or 'Chưa có mã' }}</small>{% if row.legacy_scores %}<small>Các điểm thường xuyên khác từ sổ cũ được giữ nguyên.</small>{% endif %}</th>
+        {% for field in ['tx1', 'midterm', 'final'] %}<td><input type="text" inputmode="decimal" autocomplete="off" data-field="{{ field }}" value="{{ row.scores[field] if row.scores[field] is not none else '' }}" aria-label="{{ row.student.display_name }} · {{ field }}" aria-describedby="error-{{ loop.index }}-{{ row.student.id }}"><span class="gradebook-error" id="error-{{ loop.index }}-{{ row.student.id }}"></span></td>{% endfor %}
+        <td><strong data-average>{{ row.average if row.average is not none else 'Chưa đủ điểm' }}</strong>{% if row.imported_average %}<small data-imported>Điểm từ sổ cũ</small>{% endif %}</td>
+        <td data-history></td>
+      </tr>{% else %}<tr><td colspan="7">Lớp chưa có học sinh.</td></tr>{% endfor %}
+      </tbody></table></div>
+      <p id="gradebookSearchEmpty" hidden>Không tìm thấy học sinh phù hợp.</p>
+    </form>
+  </section>
+</main>
+<script id="gradebookInitial" type="application/json">{{ rows|tojson }}</script>
+<script src="{{ url_for('static', filename='js/gradebook.js') }}" defer></script>
+{% endblock %}

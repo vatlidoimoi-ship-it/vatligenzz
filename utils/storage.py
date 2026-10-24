@@ -232,7 +232,7 @@ def _lock_for(path):
     key = str(Path(path).resolve())
     with _json_locks_guard:
         if key not in _json_locks:
-            _json_locks[key] = threading.Lock()
+            _json_locks[key] = threading.RLock()
         return _json_locks[key]
 
 
@@ -255,6 +255,46 @@ def read_json(path, default=None):
 def write_json(path, value):
     _write_local_json(path, value)
     sync_file_to_remote(path)
+
+
+class ConcurrentJSONUpdate(Exception):
+    """The document changed while an editor was saving."""
+
+
+def update_json_atomically(path, transform, default=None):
+    """Transform a fresh document, rejecting concurrent remote writes."""
+    remote_key = _supabase_key_for(path) if SUPABASE_BACKEND else None
+    if remote_key:
+        response = http_session().get(
+            _supabase_table_url(), headers=_supabase_headers(),
+            params={"key": f"eq.{remote_key}", "select": "value,updated_at"}, timeout=20)
+        response.raise_for_status()
+        rows = response.json()
+        value = transform(copy.deepcopy(rows[0]['value'] if rows else default))
+        if rows:
+            response = http_session().patch(
+                _supabase_table_url(), headers=_supabase_headers('return=representation'),
+                params={'key': f'eq.{remote_key}', 'updated_at': f"eq.{rows[0]['updated_at']}", 'select': 'key'},
+                json={'value': value}, timeout=30)
+        else:
+            response = http_session().post(
+                _supabase_table_url(),
+                headers=_supabase_headers('resolution=ignore-duplicates,return=representation'),
+                params={'on_conflict': 'key', 'select': 'key'},
+                json={'key': remote_key, 'value': value}, timeout=30)
+        response.raise_for_status()
+        if len(response.json()) != 1:
+            raise ConcurrentJSONUpdate()
+        with _catalog_cache_lock:
+            _catalog_cache.pop(remote_key, None)
+        reads = _request_reads()
+        if reads is not None:
+            reads[remote_key] = copy.deepcopy(value)
+        return value
+    with _lock_for(path):
+        value = transform(read_json(path, default))
+        _write_local_json(path, value)
+        return value
 
 
 def _copy_seed(seed_path, target_path):

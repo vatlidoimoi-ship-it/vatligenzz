@@ -6,8 +6,9 @@
   <nav class="class-crumb" aria-label="Đường dẫn"><a href="{{ url_for('teacher_dashboard') }}">Tất cả lớp</a><span>›</span><strong>{{ course.title }}</strong></nav>
   <header class="class-heading">
     <div><p class="class-eyebrow">LỚP VẬT LÍ · KHỐI {{ course.grade }}</p><h1>{{ course.title }}</h1><p>Giáo viên: {{ teacher_name }} · Tổng quan và hoạt động học tập của lớp</p></div>
-    <a class="class-outline" href="{{ url_for('course_detail', course_id=course.id) }}">Xem bài học của lớp</a>
+    <div><a class="class-outline" href="{{ url_for('teacher_class_gradebook', course_id=course.id, term=term) }}">Nhập bảng điểm</a> <a class="class-outline" href="{{ url_for('course_detail', course_id=course.id) }}">Xem bài học của lớp</a></div>
   </header>
+  <form method="get" class="class-panel"><label for="classTerm">Điểm sổ theo học kì</label> <select id="classTerm" name="term">{% for key, label in terms.items() %}<option value="{{ key }}" {% if term == key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select> <button class="class-outline" type="submit">Xem học kì</button></form>
   <section class="class-metrics" aria-label="Tổng quan lớp">
     <article><span>Học sinh trong lớp</span><strong>{{ summary.students }}</strong><small>Theo danh sách tham gia lớp</small></article>
     <article><span>Đã làm đề Vật lí</span><strong>{{ summary.active }}</strong><small>Trong {{ summary.students }} học sinh</small></article>
@@ -21,7 +22,7 @@
     <input id="classStudentSearch" class="class-search" type="search" placeholder="Nhập tên học sinh..." autocomplete="off">
     {% if reports %}
     <div class="class-table-scroll"><table class="class-table"><thead><tr><th>Học sinh</th><th>Lượt làm đề</th><th>Tiến độ 4–5 đề</th><th>Điểm sổ Vật lí</th><th>Bài học hoàn thành</th><th>Báo cáo</th></tr></thead><tbody>
-    {% for report in reports %}<tr data-student-name="{{ report.student.display_name|lower }}"><td><span class="class-avatar">{{ report.student.display_name[:1]|upper }}</span><strong>{{ report.student.display_name }}</strong>{% if report.student.student_code %}<small class="class-student-code">{{ report.student.student_code }}</small>{% endif %}</td><td>{{ report.attempt_count }}</td><td>{{ report.distinct_exams }} đề khác nhau<small>{{ "Đã đạt tối thiểu" if report.exam_minimum_met else "Còn thiếu " ~ report.exams_remaining ~ " đề" }}</small></td><td>{{ report.school_average if report.school_average is not none else 'Chưa có' }}{% if report.school_average is not none %}/10{% endif %}</td><td>{{ report.completed_lessons }}/{{ report.total_lessons }}</td><td><a class="class-link" href="{{ url_for('teacher_student_report', course_id=course.id, student_id=report.student.id) }}">Xem báo cáo →</a></td></tr>{% endfor %}
+    {% for report in reports %}<tr data-student-name="{{ report.student.display_name|lower }}"><td><span class="class-avatar">{{ report.student.display_name[:1]|upper }}</span><strong>{{ report.student.display_name }}</strong>{% if report.student.student_code %}<small class="class-student-code">{{ report.student.student_code }}</small>{% endif %}</td><td>{{ report.attempt_count }}</td><td>{{ report.distinct_exams }} đề khác nhau<small>{{ "Đã đạt tối thiểu" if report.exam_minimum_met else "Còn thiếu " ~ report.exams_remaining ~ " đề" }}</small></td><td>{{ report.school_average if report.school_average is not none else 'Chưa có' }}{% if report.school_average is not none %}/10{% endif %}</td><td>{{ report.completed_lessons }}/{{ report.total_lessons }}</td><td><a class="class-link" href="{{ url_for('teacher_student_report', course_id=course.id, student_id=report.student.id, term=term) }}">Xem báo cáo →</a></td></tr>{% endfor %}
     </tbody></table></div>
     <p id="classSearchEmpty" class="class-empty" hidden>Không tìm thấy học sinh phù hợp.</p>
     {% else %}<p class="class-empty">Chưa có học sinh tham gia lớp này.</p>{% endif %}

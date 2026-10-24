@@ -34,6 +34,8 @@ load_dotenv()
 
 from utils.auth import register_user, login_user, get_user_by_id, load_users, save_users
 from utils.database import Database
+from utils import gradebook as school_gradebook
+from utils.storage import update_json_atomically, ConcurrentJSONUpdate
 from utils.gemini_api import (
     chat_with_gemini,
     chat_with_career_guidance,
@@ -1204,6 +1206,42 @@ def teacher_class_exam_context(course):
     return exam_by_id, rows
 
 
+def selected_school_term():
+    term = request.args.get('term', 'hk1')
+    if term not in school_gradebook.TERMS:
+        abort(400)
+    return term
+
+
+@app.route('/teacher/classes/<course_id>/gradebook', methods=['GET', 'POST'])
+@teacher_required
+def teacher_class_gradebook(course_id):
+    course, memberships, students = teacher_class_context(course_id)
+    term = selected_school_term()
+    path = readable_data_file('physics_grades.json')
+    if request.method == 'POST':
+        if not session.get('gradebook_csrf') or request.headers.get('X-CSRF-Token') != session['gradebook_csrf']:
+            return jsonify(error='Phiên nhập điểm không hợp lệ. Vui lòng tải lại trang.'), 403
+        payload = request.get_json(silent=True)
+        if not isinstance(payload, dict):
+            return jsonify(error='Dữ liệu nhập điểm không hợp lệ.'), 400
+        actor = get_user_by_id(session['user_id'])
+        try:
+            rows = update_json_atomically(path, lambda current: school_gradebook.apply_changes(
+                current, course_id, students, term, payload.get('changes'), actor), [])
+        except ConcurrentJSONUpdate:
+            return jsonify(error='Bảng điểm đã được cập nhật ở nơi khác. Hãy ghi lại điểm đang nhập và tải lại trang trước khi lưu.'), 409
+        except ValueError as exc:
+            return jsonify(error=str(exc)), 400
+        return jsonify(message='Đã lưu thay đổi.', rows=school_gradebook.view_rows(rows, course_id, students, term))
+    session.setdefault('gradebook_csrf', uuid.uuid4().hex)
+    rows = read_json(path, [])
+    return render_template('teacher_class_gradebook.html', course=course, term=term,
+                           term_label=school_gradebook.TERMS[term], terms=school_gradebook.TERMS,
+                           rows=school_gradebook.view_rows(rows, course_id, students, term),
+                           csrf=session['gradebook_csrf'])
+
+
 def teacher_student_report_data(course, membership, student, exam_by_id, exam_rows, course_submissions,
                                 course_grades=None):
     user_id = str(student["id"])
@@ -1267,16 +1305,18 @@ def teacher_student_report_data(course, membership, student, exam_by_id, exam_ro
     gradebook = []
     school_grade = next((row for row in (course_grades or [])
                          if str(row.get("student_id")) == user_id), None)
+    term = (school_grade or {}).get('term', 'hk1')
+    term_label = school_gradebook.TERMS.get(term, school_gradebook.TERMS['hk1'])
     school_grade_rows = []
     if school_grade:
         for field, label in (("tx1", "Thường xuyên 1"), ("tx2", "Thường xuyên 2"),
                              ("tx3", "Thường xuyên 3"), ("tx4", "Thường xuyên 4"),
-                             ("tx5", "Thường xuyên 5"), ("midterm", "Giữa kì I"),
-                             ("final", "Cuối kì I"), ("average", "Trung bình học kì I")):
+                             ("tx5", "Thường xuyên 5"), ("midterm", "Giữa kì"),
+                             ("final", "Cuối kì"), ("average", "Trung bình học kì")):
             if school_grade.get(field) is not None:
                 school_grade_rows.append({"kind": "Điểm Vật lí", "title": label,
                                           "score": school_grade[field], "max_score": 10,
-                                          "date": "Học kì I"})
+                                          "date": term_label})
     gradebook.extend(school_grade_rows)
     for row in reversed(attempts):
         gradebook.append({"kind": "Đề trắc nghiệm", "title": row.get("exam_title", ""),
@@ -1311,10 +1351,11 @@ def teacher_student_report_data(course, membership, student, exam_by_id, exam_ro
 @teacher_required
 def teacher_class_overview(course_id):
     course, memberships, students = teacher_class_context(course_id)
+    term = selected_school_term()
     exam_by_id, exam_rows = teacher_class_exam_context(course)
     course_submissions = db.get_submissions_by_course(course_id)
     course_grades = [row for row in read_json(readable_data_file("physics_grades.json"), [])
-                     if row.get("course_id") == course_id]
+                     if row.get("course_id") == course_id and row.get('term', 'hk1') == term]
     memberships_by_id = {str(row.get("user_id")): row for row in memberships}
     reports = [teacher_student_report_data(course, memberships_by_id[str(student["id"])],
                                            student, exam_by_id, exam_rows, course_submissions, course_grades) for student in students]
@@ -1327,23 +1368,25 @@ def teacher_class_overview(course_id):
                "school_average": round(sum(school_scored) / len(school_scored), 1) if school_scored else None}
     teacher = get_user_by_id(course.get("teacher_id")) or {}
     return render_template("teacher_class_overview.html", course=course, reports=reports,
-                           summary=summary, teacher_name=teacher.get("full_name") or teacher.get("username", ""))
+                           summary=summary, term=term, terms=school_gradebook.TERMS, term_label=school_gradebook.TERMS[term], teacher_name=teacher.get("full_name") or teacher.get("username", ""))
 
 
 @app.route("/teacher/classes/<course_id>/students/<student_id>")
 @teacher_required
 def teacher_student_report(course_id, student_id):
     course, memberships, students = teacher_class_context(course_id)
+    term = selected_school_term()
     student = next((item for item in students if str(item["id"]) == str(student_id)), None)
     membership = next((row for row in memberships if str(row.get("user_id")) == str(student_id)), None)
     if not student or not membership:
         abort(404)
     exam_by_id, exam_rows = teacher_class_exam_context(course)
     course_grades = [row for row in read_json(readable_data_file("physics_grades.json"), [])
-                     if row.get("course_id") == course_id]
+                     if row.get("course_id") == course_id and row.get('term', 'hk1') == term]
     report = teacher_student_report_data(course, membership, student, exam_by_id, exam_rows,
                                          db.get_submissions_by_course(course_id), course_grades)
-    return render_template("teacher_student_report.html", course=course, report=report)
+    return render_template("teacher_student_report.html", course=course, report=report,
+                           term=term, terms=school_gradebook.TERMS, term_label=school_gradebook.TERMS[term])
 
 
 @app.route("/courses")
