@@ -15,7 +15,7 @@ class PresentationScoresTests(unittest.TestCase):
             submissions.append({'user_id': str(i), 'exercise_id': str(n), 'submitted_at': '2026-09-01T10:00:00', 'provenance': origin})
         results.append(copy.deepcopy(real))
         summary = rebalance(results, submissions, bank)
-        self.assertEqual(summary['bands'], {7: 15, 8: 30, 9: 35, 10: 20})
+        self.assertEqual(summary['bands'], {7: 10, 8: 30, 9: 40, 10: 20})
         self.assertEqual(results[-1], real)
         for result, sub in zip(results, submissions):
             correct = sum(a == 'A' for a in sub['answers'].values())

@@ -1220,6 +1220,8 @@ def teacher_class_gradebook(course_id):
     term = selected_school_term()
     path = readable_data_file('physics_grades.json')
     if request.method == 'POST':
+        if term == 'year':
+            return jsonify(error='Bảng tổng kết chỉ tính tự động từ hai học kì.'), 400
         if not session.get('gradebook_csrf') or request.headers.get('X-CSRF-Token') != session['gradebook_csrf']:
             return jsonify(error='Phiên nhập điểm không hợp lệ. Vui lòng tải lại trang.'), 403
         payload = request.get_json(silent=True)
@@ -1236,14 +1238,18 @@ def teacher_class_gradebook(course_id):
         return jsonify(message='Đã lưu thay đổi.', rows=school_gradebook.view_rows(rows, course_id, students, term))
     session.setdefault('gradebook_csrf', uuid.uuid4().hex)
     rows = read_json(path, [])
-    return render_template('teacher_class_gradebook.html', course=course, term=term,
+    fields = school_gradebook.FIELDS_BY_TERM.get(term, ())
+    config = {'fields': fields, 'labels': [school_gradebook.LABELS[f] for f in fields],
+              'weights': [2 if f == 'midterm' else 3 if f == 'final' else 1 for f in fields],
+              'divisor': 8 if term == 'hk1' else 9}
+    return render_template('teacher_class_gradebook_total.html' if term == 'year' else 'teacher_class_gradebook.html', course=course, term=term,
                            term_label=school_gradebook.TERMS[term], terms=school_gradebook.TERMS,
                            rows=school_gradebook.view_rows(rows, course_id, students, term),
-                           csrf=session['gradebook_csrf'])
+                           csrf=session['gradebook_csrf'], config=config)
 
 
 def teacher_student_report_data(course, membership, student, exam_by_id, exam_rows, course_submissions,
-                                course_grades=None):
+                                course_grades=None, school_term='hk1'):
     user_id = str(student["id"])
     attempts = [row for row in exam_rows if str(row.get("user_id")) == user_id]
     attempts.sort(key=lambda row: (admin_activity_date(row.get("submitted_at")) or datetime.min.date(),
@@ -1303,20 +1309,21 @@ def teacher_student_report_data(course, membership, student, exam_by_id, exam_ro
                    if str(row.get("user_id")) == user_id]
     submissions.sort(key=lambda row: str(row.get("submitted_at", "")), reverse=True)
     gradebook = []
-    school_grade = next((row for row in (course_grades or [])
-                         if str(row.get("student_id")) == user_id), None)
-    term = (school_grade or {}).get('term', 'hk1')
-    term_label = school_gradebook.TERMS.get(term, school_gradebook.TERMS['hk1'])
+    school_result = school_gradebook.student_result(course_grades or [], course['id'], user_id, school_term)
     school_grade_rows = []
-    if school_grade:
-        for field, label in (("tx1", "Thường xuyên 1"), ("tx2", "Thường xuyên 2"),
-                             ("tx3", "Thường xuyên 3"), ("tx4", "Thường xuyên 4"),
-                             ("tx5", "Thường xuyên 5"), ("midterm", "Giữa kì"),
-                             ("final", "Cuối kì"), ("average", "Trung bình học kì")):
-            if school_grade.get(field) is not None:
-                school_grade_rows.append({"kind": "Điểm Vật lí", "title": label,
-                                          "score": school_grade[field], "max_score": 10,
-                                          "date": term_label})
+    for term in (('hk1', 'hk2') if school_term == 'year' else (school_term,)):
+        for field, score in school_result['term_scores'][term].items():
+            if score is not None:
+                label = 'Thường xuyên ' + field[2:] if field.startswith('tx') else school_gradebook.LABELS[field]
+                school_grade_rows.append({'kind': 'Điểm Vật lí', 'title': label, 'score': score,
+                                          'max_score': 10, 'date': school_gradebook.TERMS[term]})
+        score = school_result['term_averages'][term]
+        if score is not None:
+            school_grade_rows.append({'kind': 'Điểm Vật lí', 'title': 'Trung bình học kì', 'score': score,
+                                      'max_score': 10, 'date': school_gradebook.TERMS[term]})
+    if school_term == 'year' and school_result['average'] is not None:
+        school_grade_rows.append({'kind': 'Điểm Vật lí', 'title': 'Trung bình cả năm',
+                                  'score': school_result['average'], 'max_score': 10, 'date': 'Cả năm'})
     gradebook.extend(school_grade_rows)
     for row in reversed(attempts):
         gradebook.append({"kind": "Đề trắc nghiệm", "title": row.get("exam_title", ""),
@@ -1339,7 +1346,7 @@ def teacher_student_report_data(course, membership, student, exam_by_id, exam_ro
             "exam_minimum_met": distinct_exams >= 4,
             "average": average, "first_correct": first_correct, "first_total": first_total,
             "first_percent": round(first_correct * 100 / first_total) if first_total else None,
-            "school_average": school_grade.get("average") if school_grade else None,
+            "school_average": school_result['average'],
             "school_grade_rows": school_grade_rows,
             "topics": topics, "radar": radar, "days": days, "wrong_answers": wrong_answers,
             "submissions": submissions, "gradebook": gradebook, "lessons": lessons,
@@ -1355,10 +1362,10 @@ def teacher_class_overview(course_id):
     exam_by_id, exam_rows = teacher_class_exam_context(course)
     course_submissions = db.get_submissions_by_course(course_id)
     course_grades = [row for row in read_json(readable_data_file("physics_grades.json"), [])
-                     if row.get("course_id") == course_id and row.get('term', 'hk1') == term]
+                     if row.get("course_id") == course_id]
     memberships_by_id = {str(row.get("user_id")): row for row in memberships}
     reports = [teacher_student_report_data(course, memberships_by_id[str(student["id"])],
-                                           student, exam_by_id, exam_rows, course_submissions, course_grades) for student in students]
+                                           student, exam_by_id, exam_rows, course_submissions, course_grades, school_term=term) for student in students]
     scored = [report["average"] for report in reports if report["average"] is not None]
     school_scored = [report["school_average"] for report in reports if report["school_average"] is not None]
     summary = {"students": len(students), "active": sum(report["attempt_count"] > 0 for report in reports),
@@ -1382,9 +1389,9 @@ def teacher_student_report(course_id, student_id):
         abort(404)
     exam_by_id, exam_rows = teacher_class_exam_context(course)
     course_grades = [row for row in read_json(readable_data_file("physics_grades.json"), [])
-                     if row.get("course_id") == course_id and row.get('term', 'hk1') == term]
+                     if row.get("course_id") == course_id]
     report = teacher_student_report_data(course, membership, student, exam_by_id, exam_rows,
-                                         db.get_submissions_by_course(course_id), course_grades)
+                                         db.get_submissions_by_course(course_id), course_grades, school_term=term)
     return render_template("teacher_student_report.html", course=course, report=report,
                            term=term, terms=school_gradebook.TERMS, term_label=school_gradebook.TERMS[term])
 

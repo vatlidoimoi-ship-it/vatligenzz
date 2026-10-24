@@ -21,7 +21,7 @@ def rebalance(results, submissions, bank):
     def choices(row, band):
         total = len(exams[row['exam_id']]['questions'])
         return [n for n in range(total + 1) if (band <= round(n * 10 / total, 2) < band + 1 if band < 10 else n == total)]
-    targets = {7: round(len(rows) * .15), 8: round(len(rows) * .30), 9: round(len(rows) * .35)}
+    targets = {7: round(len(rows) * .10), 8: round(len(rows) * .30), 9: round(len(rows) * .40)}
     targets[10] = len(rows) - sum(targets.values())
     remaining = list(range(len(rows)))
     assignments = {}

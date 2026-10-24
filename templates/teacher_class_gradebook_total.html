@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Bảng tổng kết · {{ course.title }}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/teacher-class-report.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gradebook.css') }}">
+<main class="class-shell gradebook-shell">
+  <nav class="class-crumb"><a href="{{ url_for('teacher_dashboard') }}">Tất cả lớp</a><span>›</span><a href="{{ url_for('teacher_class_overview', course_id=course.id, term=term) }}">{{ course.title }}</a><span>›</span><strong>Bảng tổng kết</strong></nav>
+  <header class="class-heading"><div><p class="class-eyebrow">SỔ ĐIỂM VẬT LÍ</p><h1>{{ course.title }}</h1><p>Bảng tổng kết cả năm · {{ rows|length }} học sinh</p></div></header>
+  <section class="class-panel">
+    <nav class="gradebook-terms" aria-label="Chọn bảng điểm">{% for key, label in terms.items() %}<a class="class-outline {% if key == term %}selected{% endif %}" href="{{ url_for('teacher_class_gradebook', course_id=course.id, term=key) }}" {% if key == term %}aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}</nav>
+    <p class="class-muted">Cả năm = (HK1 + 2 × HK2) ÷ 3. Điểm học kì và cả năm làm tròn một chữ số thập phân. Giáo viên nhập điểm ở hai bảng học kì; bảng này tự cập nhật. Chưa đủ điểm ở một học kì sẽ chưa có điểm tổng kết.</p>
+    <label for="totalSearch">Tìm theo tên hoặc mã học sinh</label>
+    <input id="totalSearch" class="class-search" type="search" placeholder="Nhập tên hoặc mã học sinh...">
+    <div class="class-table-scroll"><table class="class-table"><thead><tr><th scope="col">STT</th><th scope="col">Học sinh</th><th scope="col">TB học kì I</th><th scope="col">TB học kì II</th><th scope="col">TB cả năm</th><th scope="col">Báo cáo</th></tr></thead><tbody>
+    {% for row in rows %}<tr data-total-search="{{ row.student.display_name }} {{ row.student.student_code or '' }}" data-student-id="{{ row.student.id }}"><td>{{ loop.index }}</td><th scope="row">{{ row.student.display_name }}<small>{{ row.student.student_code or '' }}</small></th><td data-hk1>{{ row.term_averages.hk1 if row.term_averages.hk1 is not none else 'Chưa đủ điểm' }}</td><td data-hk2>{{ row.term_averages.hk2 if row.term_averages.hk2 is not none else 'Chưa đủ điểm' }}</td><td><strong data-annual>{{ row.average if row.average is not none else 'Chưa đủ điểm' }}</strong></td><td><a href="{{ url_for('teacher_student_report', course_id=course.id, student_id=row.student.id, term='year') }}">Xem báo cáo →</a></td></tr>{% else %}<tr><td colspan="6">Lớp chưa có học sinh.</td></tr>{% endfor %}
+    </tbody></table></div>
+    <p id="totalEmpty" hidden>Không tìm thấy học sinh phù hợp.</p>
+  </section>
+</main>
+<script>
+document.getElementById('totalSearch').addEventListener('input', event => {
+  const query = event.target.value.trim().toLocaleLowerCase('vi');
+  const rows = [...document.querySelectorAll('[data-total-search]')];
+  rows.forEach(row => row.hidden = !row.dataset.totalSearch.toLocaleLowerCase('vi').includes(query));
+  document.getElementById('totalEmpty').hidden = rows.some(row => !row.hidden);
+});
+</script>
+{% endblock %}

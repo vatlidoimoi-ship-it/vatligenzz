@@ -2,8 +2,7 @@
   'use strict';
   const form = document.getElementById('gradebookForm');
   if (!form) return;
-  const fields = ['tx1', 'midterm', 'final'];
-  const labels = ['TX1', 'Giữa kì', 'Cuối kì'];
+  const {fields, labels, weights, divisor} = JSON.parse(document.getElementById('gradebookConfig').textContent);
   const rows = [...form.querySelectorAll('[data-student-id]')];
   const original = new Map(JSON.parse(document.getElementById('gradebookInitial').textContent).map(r => [String(r.student.id), r]));
   const save = document.getElementById('gradebookSave');
@@ -51,14 +50,10 @@
       if (changed(row)) {
         count++;
         const complete = values.every(n => n !== null && n !== undefined);
-        const weighted = values.reduce((sum, n, i) => sum + Math.round((n ?? 0) * 10) * [1, 2, 3][i], 0);
-        row.querySelector('[data-average]').textContent = complete ? (Math.round(weighted / 6) / 10).toFixed(1) : 'Chưa đủ điểm';
-        const imported = row.querySelector('[data-imported]');
-        if (imported) imported.hidden = true;
+        const weighted = values.reduce((sum, n, i) => sum + Math.round((n ?? 0) * 10) * weights[i], 0);
+        row.querySelector('[data-average]').textContent = complete ? (Math.round(weighted / divisor) / 10).toFixed(1) : 'Chưa đủ điểm';
       } else {
         row.querySelector('[data-average]').textContent = baseline.average ?? 'Chưa đủ điểm';
-        const imported = row.querySelector('[data-imported]');
-        if (imported) imported.hidden = !baseline.imported_average;
       }
     }
     document.getElementById('gradebookDirty').textContent = count ? `${count} học sinh có thay đổi chưa lưu` : 'Chưa có thay đổi';

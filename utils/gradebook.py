@@ -7,9 +7,24 @@ import json
 
 from utils.storage import ConcurrentJSONUpdate
 
-FIELDS = ('tx1', 'midterm', 'final')
-LABELS = {'tx1': 'TX1', 'midterm': 'Giữa kì', 'final': 'Cuối kì'}
-TERMS = {'hk1': 'Học kì I', 'hk2': 'Học kì II'}
+FIELDS_BY_TERM = {'hk1': ('tx1', 'tx2', 'tx3', 'midterm', 'final'),
+                  'hk2': ('tx1', 'tx2', 'tx3', 'tx4', 'midterm', 'final')}
+LABELS = {'tx1': 'TX1', 'tx2': 'TX2', 'tx3': 'TX3', 'tx4': 'TX4',
+          'midterm': 'Giữa kì', 'final': 'Cuối kì'}
+TERMS = {'hk1': 'Học kì I', 'hk2': 'Học kì II', 'year': 'Bảng tổng kết'}
+
+
+def unverified_import(row):
+    return bool(row and 'mon_toan' in str(row.get('source_file', '')).lower() and not row.get('updated_by'))
+
+
+def scores_for(row, term):
+    source = {} if unverified_import(row) else (row or {})
+    if source and 'mon_toan' in str(source.get('source_file', '')).lower():
+        confirmed = {field for entry in source.get('history', []) for field in entry.get('after', {})}
+        if confirmed:
+            return {f: source.get(f) if f in confirmed else None for f in FIELDS_BY_TERM[term]}
+    return {f: source.get(f) for f in FIELDS_BY_TERM[term]}
 
 
 def version(row):
@@ -43,28 +58,47 @@ def parse_score(value):
     return float(score)
 
 
-def average(scores):
-    if any(scores.get(field) is None for field in FIELDS):
+def average(scores, term='hk1'):
+    fields = FIELDS_BY_TERM[term]
+    if any(scores.get(field) is None for field in fields):
         return None
-    weights = dict(tx1=1, midterm=2, final=3)
-    result = sum(Decimal(str(scores[k])) * weight for k, weight in weights.items()) / 6
+    weights = {f: 2 if f == 'midterm' else 3 if f == 'final' else 1 for f in fields}
+    result = sum(Decimal(str(scores[k])) * weight for k, weight in weights.items()) / sum(weights.values())
     return float(result.quantize(Decimal('.1'), rounding=ROUND_HALF_UP))
+
+
+def annual_average(first, second):
+    if first is None or second is None:
+        return None
+    return float(((Decimal(str(first)) + 2 * Decimal(str(second))) / 3).quantize(Decimal('.1'), rounding=ROUND_HALF_UP))
+
+
+def student_result(rows, course_id, student_id, term):
+    term_rows = {t: find_row(rows, course_id, student_id, t) for t in FIELDS_BY_TERM}
+    term_scores = {t: scores_for(row, t) for t, row in term_rows.items()}
+    averages = {t: average(scores, t) for t, scores in term_scores.items()}
+    selected_average = annual_average(averages['hk1'], averages['hk2']) if term == 'year' else averages[term]
+    return {'average': selected_average, 'term_averages': averages, 'term_scores': term_scores}
 
 
 def view_rows(rows, course_id, students, term):
     output = []
     for student in students:
-        row = find_row(rows, course_id, student['id'], term)
+        row = find_row(rows, course_id, student['id'], term) if term != 'year' else None
+        result = student_result(rows, course_id, student['id'], term)
         output.append({'student': {k: student.get(k) for k in ('id', 'display_name', 'student_code')}, 'version': version(row),
-                       'scores': {f: (row or {}).get(f) for f in FIELDS},
-                       'average': (row or {}).get('average'),
-                       'imported_average': bool(row and row.get('source_file') and not row.get('updated_by')),
+                       'scores': result['term_scores'].get(term, {}),
+                       'average': result['average'], 'term_averages': result['term_averages'],
+                       'unverified_import': unverified_import(row),
                        'history': list(reversed((row or {}).get('history', []))),
-                       'legacy_scores': {f: row[f] for f in ('tx2', 'tx3', 'tx4', 'tx5') if row and row.get(f) is not None}})
+                       'legacy_scores': {f: row[f] for f in ('tx4', 'tx5') if row and not unverified_import(row) and f not in FIELDS_BY_TERM.get(term, ()) and row.get(f) is not None}})
     return output
 
 
 def apply_changes(rows, course_id, students, term, changes, actor):
+    if term not in FIELDS_BY_TERM:
+        raise ValueError('Bảng tổng kết chỉ tính tự động, không nhập điểm trực tiếp.')
+    fields = FIELDS_BY_TERM[term]
     if not isinstance(rows, list):
         raise ValueError('Dữ liệu bảng điểm không hợp lệ.')
     if not isinstance(changes, list) or not changes or len(changes) > len(students):
@@ -82,15 +116,15 @@ def apply_changes(rows, course_id, students, term, changes, actor):
         if change.get('version') != version(row):
             raise ConcurrentJSONUpdate()
         raw = change.get('scores')
-        if not isinstance(raw, dict) or set(raw) != set(FIELDS):
-            raise ValueError('Chỉ nhập TX1, giữa kì và cuối kì; để trống điểm chưa có.')
+        if not isinstance(raw, dict) or set(raw) != set(fields):
+            raise ValueError(f"{TERMS[term]} cần {len(fields) - 2} cột TX, giữa kì và cuối kì; để trống điểm chưa có.")
         scores = {}
-        for field in FIELDS:
+        for field in fields:
             try:
                 scores[field] = parse_score(raw[field])
             except ValueError as exc:
                 raise ValueError(f"{roster[uid]['display_name']} · {LABELS[field]}: {exc}") from None
-        previous = {f: (row or {}).get(f) for f in FIELDS}
+        previous = scores_for(row, term)
         if scores == previous:
             continue
         if row is None:
@@ -98,9 +132,11 @@ def apply_changes(rows, course_id, students, term, changes, actor):
                    'course_id': course_id, 'term': term}
             output.append(row)
         now = datetime.now(timezone(timedelta(hours=7))).isoformat(timespec='seconds')
+        if unverified_import(row):
+            row.setdefault('original_import', {f: row.get(f) for f in ('source_file', 'tx1', 'tx2', 'tx3', 'tx4', 'tx5', 'midterm', 'final', 'average')})
         row.setdefault('history', []).append({'at': now, 'actor_id': actor['id'],
             'actor_name': actor.get('full_name') or actor.get('username'),
             'before': previous, 'after': scores,
-            'average_before': row.get('average'), 'average_after': average(scores)})
-        row.update(scores, average=average(scores), updated_at=now, updated_by=actor['id'])
+            'average_before': average(previous, term), 'average_after': average(scores, term)})
+        row.update(scores, average=average(scores, term), updated_at=now, updated_by=actor['id'], subject='li', entry_source='teacher_manual')
     return output
