@@ -44,11 +44,24 @@ def main():
     (folder / 'intended.json').write_text(json.dumps(values, ensure_ascii=False), encoding='utf-8')
     for name in ['exam_results', 'submissions', 'progress']:
         payload = json.dumps({'value': values[name]}, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
-        response = session.patch(url, params={'key': 'eq.data/' + name + '.json', 'updated_at': 'eq.' + prior[name]['updated_at'], 'select': 'key'}, headers={'Prefer': 'return=representation', 'Content-Type': 'application/json; charset=utf-8'}, data=payload, timeout=90)
-        response.raise_for_status()
-        if len(response.json()) != 1:
-            raise RuntimeError('Concurrent modification: ' + name + '; inspect backup before retrying')
-        check = session.get(url, params={'key': 'eq.data/' + name + '.json', 'select': 'value'}, timeout=40)
+        for attempt in range(4):
+            current = requests.get(url, headers=dict(session.headers), params={'key': 'eq.data/' + name + '.json', 'select': 'value,updated_at'}, timeout=40)
+            current.raise_for_status()
+            row = current.json()[0]
+            if row['value'] == values[name]:
+                break
+            if row['updated_at'] != prior[name]['updated_at']:
+                raise RuntimeError('Concurrent modification: ' + name + '; inspect backup before retrying')
+            try:
+                response = requests.patch(url, params={'key': 'eq.data/' + name + '.json', 'updated_at': 'eq.' + prior[name]['updated_at'], 'select': 'key'}, headers={**dict(session.headers), 'Prefer': 'return=representation', 'Content-Type': 'application/json; charset=utf-8', 'Connection': 'close'}, data=payload, timeout=90)
+                response.raise_for_status()
+                if len(response.json()) != 1:
+                    raise RuntimeError('Concurrent modification: ' + name)
+            except requests.RequestException:
+                if attempt == 3:
+                    raise
+                print('Rechecking after interrupted upload:', name, flush=True)
+        check = requests.get(url, headers=dict(session.headers), params={'key': 'eq.data/' + name + '.json', 'select': 'value'}, timeout=40)
         check.raise_for_status()
         assert check.json()[0]['value'] == values[name]
         print('Published and verified:', name, flush=True)
