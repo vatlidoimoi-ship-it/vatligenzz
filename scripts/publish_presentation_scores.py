@@ -43,7 +43,8 @@ def main():
     (folder / 'before.json').write_text(json.dumps(prior, ensure_ascii=False), encoding='utf-8')
     (folder / 'intended.json').write_text(json.dumps(values, ensure_ascii=False), encoding='utf-8')
     for name in ['exam_results', 'submissions', 'progress']:
-        response = session.patch(url, params={'key': 'eq.data/' + name + '.json', 'updated_at': 'eq.' + prior[name]['updated_at']}, headers={'Prefer': 'return=representation'}, json={'value': values[name]}, timeout=90)
+        payload = json.dumps({'value': values[name]}, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+        response = session.patch(url, params={'key': 'eq.data/' + name + '.json', 'updated_at': 'eq.' + prior[name]['updated_at'], 'select': 'key'}, headers={'Prefer': 'return=representation', 'Content-Type': 'application/json; charset=utf-8'}, data=payload, timeout=90)
         response.raise_for_status()
         if len(response.json()) != 1:
             raise RuntimeError('Concurrent modification: ' + name + '; inspect backup before retrying')
