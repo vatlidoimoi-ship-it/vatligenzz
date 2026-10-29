@@ -4000,7 +4000,10 @@ def admin_dashboard_stats():
         "documents": len(documents),
         "exam_attempts": len(exam_results),
         "career_completions": len(career_completions),
-        "career_students": len({row.get("user_id") for row in career_completions}),
+        "career_students": len({row.get("user_id") for row in career_completions
+                                if row.get("user_id") in student_ids}),
+        "career_simulated": sum(row.get("provenance", {}).get("origin") == "synthetic"
+                                for row in career_completions),
         "career_rows": career_rows,
         "submissions": len(submissions),
         # Each saved submission is one completed exercise attempt. Lesson mastery
@@ -5987,6 +5990,9 @@ def logout_old():
     session.clear()
     return redirect("/login")
 
+
+from utils.game_activities import register_game_activities
+register_game_activities(app, login_required)
 
 from utils.teacher_videos import register_teacher_videos
 register_teacher_videos(app, get_user_by_id)

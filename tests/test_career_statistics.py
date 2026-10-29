@@ -32,6 +32,16 @@ class CareerStatisticsTests(unittest.TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertIn('Lượt làm Tâm lí - hướng nghiệp'.encode(), page.data)
 
+    def test_simulated_completions_do_not_inflate_student_count(self):
+        web.write_json(web.CAREER_COMPLETIONS_FILE, [
+            {'user_id': None, 'package_id': 'big-five',
+             'provenance': {'origin': 'synthetic'}} for _ in range(100)
+        ])
+        stats = web.admin_dashboard_stats()
+        self.assertEqual(stats['career_completions'], 100)
+        self.assertEqual(stats['career_simulated'], 100)
+        self.assertEqual(stats['career_students'], 0)
+
     def test_rejects_unlisted_package_and_private_payload(self):
         for payload in ({'package_id': 'missing'},
                         {'package_id': 'holland', 'answers': [1, 2]},

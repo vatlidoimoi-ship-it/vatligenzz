@@ -159,6 +159,20 @@
             <div class="player-chip">Người chơi: {{ username }}</div>
         </header>
 
+        <section class="topic-grid" aria-label="Hoạt động theo tài liệu">
+            <article class="topic-card">
+                <div class="topic-meta"><span class="grade">Vật lí 11</span><span class="count">10 câu / lượt</span></div>
+                <h2>Thử thách 10 câu</h2>
+                <p>Chọn chuyên đề, trả lời trắc nghiệm và xem giải thích. Nội dung biên soạn theo 4 tài liệu Word trong datatm.</p>
+                <a class="play-btn" style="display:grid;place-items:center;text-decoration:none" href="{{ url_for('game_activities.play', mode='challenge') }}">Vào thử thách</a>
+            </article>
+            <article class="topic-card">
+                <div class="topic-meta"><span class="grade">Vật lí 11</span><span class="count">Thẻ nhớ</span></div>
+                <h2>Thẻ nhớ tự ôn</h2>
+                <p>Tự trả lời trước khi mở đáp án. Đánh dấu thẻ chưa nhớ để ôn lại Dao động, Sóng, Điện trường và Mạch điện.</p>
+                <a class="play-btn" style="display:grid;place-items:center;text-decoration:none" href="{{ url_for('game_activities.play', mode='flashcards') }}">Mở thẻ nhớ</a>
+            </article>
+        </section>
         {% if topics %}
         <section class="topic-grid">
             {% for topic in topics %}

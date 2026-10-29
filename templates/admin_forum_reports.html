@@ -79,7 +79,7 @@
     <section class="chart-card" style="margin-bottom: 18px">
         <div class="card-title"><div><span class="section-kicker">TÂM LÍ - HƯỚNG NGHIỆP</span><h2>Lượt hoàn thành theo gói</h2></div></div>
         <div class="physics-rows">{% for row in stats.career_rows %}<div><span>{{ row.title }}</span><strong>{{ row.count }}</strong><small>lượt hoàn thành</small></div>{% endfor %}</div>
-        <p class="chart-note">Chỉ tính các lượt hoàn thành được ghi nhận từ khi bật thống kê. Không lưu câu trả lời hoặc điểm.</p>
+        <p class="chart-note">Chỉ tính các lượt hoàn thành được ghi nhận từ khi bật thống kê. Không lưu câu trả lời hoặc điểm.{% if stats.career_simulated %} Bao gồm {{ stats.career_simulated }} lượt mô phỏng phục vụ trình diễn, không đại diện cho học sinh đã hoàn thành.{% endif %}</p>
     </section>
 
     <section class="analytics-grid">

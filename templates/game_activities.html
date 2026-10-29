@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="practice">
+    <a href="{{ url_for('enter_nickname') }}">← Về sảnh game</a>
+    <p class="eyebrow">VẬT LÍ 11 · LUYỆN TẬP THEO TÀI LIỆU</p>
+    <h1>{{ 'Thử thách 10 câu' if mode == 'challenge' else 'Thẻ nhớ tự ôn' }}</h1>
+    <p>{{ 'Chọn đáp án, xem lời giải rồi chuyển câu. Mỗi lượt lấy ngẫu nhiên 10 câu.' if mode == 'challenge' else 'Tự nghĩ đáp án trước khi mở thẻ. Đánh dấu câu cần ôn để học lại.' }}</p>
+    <p>Điểm chỉ dùng trong lượt luyện tập này, không ghi vào sổ điểm hoặc bảng xếp hạng.</p>
+    <section id="setup" class="practice-card">
+        <label for="chapter">Chọn chuyên đề</label>
+        <select id="chapter">{% for chapter in chapters %}<option value="{{ loop.index0 }}">{{ chapter.source }} ({{ chapter.questions|length }} câu)</option>{% endfor %}</select>
+        <button id="start" type="button" {% if not chapters %}disabled{% endif %}>Bắt đầu</button>
+        {% if not chapters %}<p>Chưa có nội dung luyện tập.</p>{% endif %}
+    </section>
+    <section id="round" class="practice-card" hidden>
+        <p id="progress" aria-live="polite"></p>
+        <h2 id="question" tabindex="-1"></h2>
+        <div id="options" class="practice-options"></div>
+        <button id="reveal" type="button">Mở đáp án</button>
+        <div id="feedback" role="status" hidden></div>
+        <p id="source" class="source"></p>
+        <div class="practice-actions">
+            <button id="remember" type="button" hidden>Đã nhớ</button>
+            <button id="review" type="button" hidden>Cần ôn lại</button>
+            <button id="next" type="button" hidden>Câu tiếp theo</button>
+            <button id="reset" type="button">Chọn lại chuyên đề</button>
+        </div>
+    </section>
+    <section id="result" class="practice-card" hidden>
+        <h2>Hoàn thành lượt luyện tập</h2>
+        <p id="summary" aria-live="polite"></p>
+        <button id="retry" type="button" hidden>Ôn lại các thẻ chưa nhớ</button>
+        <button id="again" type="button">Chơi lượt mới</button>
+        <a href="{{ url_for('enter_nickname') }}">Về sảnh game</a>
+    </section>
+</main>
+<script id="activity-data" type="application/json">{{ {'mode': mode, 'chapters': chapters}|tojson }}</script>
+<script src="{{ url_for('static', filename='js/game-activities.js') }}" defer></script>
+<style>
+.practice{max-width:900px;margin:32px auto;padding:0 18px;color:#18263d}.practice h1{font-size:clamp(1.8rem,4vw,2.6rem)}.eyebrow{color:#6750a4;font-weight:800;margin-top:24px}.practice-card{background:white;border:1px solid #ded7ee;border-radius:20px;padding:clamp(18px,4vw,32px);margin:24px 0;box-shadow:0 12px 35px #36215b0d}.practice select{display:block;width:100%;padding:12px;margin:12px 0 20px;max-width:100%;font:inherit}.practice button{font:inherit;padding:12px 18px;border:1px solid #cfc5e5;border-radius:10px;background:#6750a4;color:white;cursor:pointer;min-height:44px}.practice button:disabled{cursor:default;opacity:.8}.practice button:focus-visible,.practice select:focus-visible{outline:3px solid #168fbd;outline-offset:3px}.practice h2{font-size:1.3rem;line-height:1.6;white-space:pre-wrap}.practice-options{display:grid;gap:12px;margin:20px 0}.practice-options button{text-align:left;background:#f5f2fb;color:#18263d}.practice-options button.correct{background:#d5f5e5;border-color:#16824b}.practice-options button.wrong{background:#ffe0e0;border-color:#c43b3b}#feedback{background:#f2f7fc;border-radius:12px;padding:18px;line-height:1.7;white-space:pre-wrap}.source{font-size:.9rem;color:#586477;overflow-wrap:anywhere}.practice-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.practice [hidden]{display:none!important}#result a{display:inline-block;margin:14px}
+</style>
+{% endblock %}
